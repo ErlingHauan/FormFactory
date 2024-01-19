@@ -1,6 +1,5 @@
 {
   "private": true,
-  "type": "module",
   "workspaces": [
     "frontend/form-builder",
     "frontend/form-viewer"
