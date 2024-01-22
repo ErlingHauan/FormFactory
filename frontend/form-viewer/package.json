@@ -1,5 +1,9 @@
 {
   "name": "form-viewer",
   "version": "1.0.0",
-  "dependencies": {}
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --config ../webpack.config.js --mode production",
+    "start": "webpack serve --config ../webpack.config.js --mode development"
+  }
 }
