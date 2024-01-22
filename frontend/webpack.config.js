@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* global module, __dirname, process, require */
+
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const devServerPorts = require("./devServerPorts.json");
