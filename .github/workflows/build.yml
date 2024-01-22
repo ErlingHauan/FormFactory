@@ -1,6 +1,9 @@
 name: Build frontend
 
-on: [push]
+on:
+  push:
+    paths-ignore:
+      - "backend/**"
 
 jobs:
   build:
