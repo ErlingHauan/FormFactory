@@ -1,4 +1,4 @@
-name: Test backend
+name: Backend build and test
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - "backend/**"
 
 jobs:
-  test-backend:
+  build-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,7 +17,10 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore backend/FormAPI.sln
 
       - name: Build
-        run: dotnet test backend/FormAPI.sln --no-restore
+        run: dotnet build backend/FormAPI.sln --no-restore
+        
+      - name: Test
+        run: dotnet test backend/FormAPI.sln --no-build
