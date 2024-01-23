@@ -1,4 +1,4 @@
-name: Build frontend
+name: Frontend build, lint, and typecheck no-matrix
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - "backend/**"
 
 jobs:
-  build:
+  build-lint-typecheck:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,12 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install
-
+        
       - name: Build
         run: yarn build
+
+      - name: Lint
+        run: yarn lint
+        
+      - name: Typecheck
+        run: yarn typecheck

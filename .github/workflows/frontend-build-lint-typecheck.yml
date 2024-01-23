@@ -1,0 +1,45 @@
+name: Frontend build, lint, and typecheck matrix
+
+on:
+  push:
+    paths-ignore:
+      - "backend/**"
+
+jobs:
+  build-lint-typecheck:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - name: Build
+            command: yarn build
+          - name: Lint
+            command: yarn lint
+          - name: Typecheck
+            command: yarn typecheck
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: ${{ matrix.name }}
+        run: ${{ matrix.command }}

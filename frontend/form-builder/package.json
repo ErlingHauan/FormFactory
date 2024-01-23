@@ -4,6 +4,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --config ../webpack.config.js --mode production",
-    "start": "webpack serve --config ../webpack.config.js --mode development"
+    "lint": "eslint ./",
+    "start": "webpack serve --config ../webpack.config.js --mode development",
+    "typecheck": "tsc --noEmit"
   }
 }
