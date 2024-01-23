@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="xunit" Version="2.6.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="FormFactory.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="FormFactory.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="FormFactory.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="FormFactory.Tests\**" />
+    <None Remove="Properties\launchSettings.json" />
+    <None Include="src\Properties\launchSettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="FormFactory.Tests\obj\FormFactory.Tests.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="FormFactory.Tests\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="FormFactory.Tests\obj\project.packagespec.json" />
+    <_ContentIncludedByDefault Remove="FormAPI.Tests\obj\Debug\net8.0\FormFactory.Tests.sourcelink.json" />
+    <_ContentIncludedByDefault Remove="FormAPI.Tests\obj\Debug\net8.0\MvcTestingAppManifest.json" />
+    <_ContentIncludedByDefault Remove="FormAPI.Tests\obj\FormAPI.Tests.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="FormAPI.Tests\obj\FormFactory.Tests.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="FormAPI.Tests\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="FormAPI.Tests\obj\project.packagespec.json" />
+  </ItemGroup>
+
+</Project>

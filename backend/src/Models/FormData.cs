@@ -1,4 +1,4 @@
-namespace backend.Models;
+namespace FormAPI.Models;
 
 public class Form
 {
