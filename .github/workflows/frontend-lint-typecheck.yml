@@ -1,0 +1,30 @@
+name: Frontend lint and typecheck
+
+on:
+  push:
+    paths-ignore:
+      - "backend/**"
+
+jobs:
+  lint-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install Dependencies
+        run: yarn install
+        
+      - name: Lint
+        run: yarn lint
+        
+      - name: Typecheck
+        run: yarn typecheck

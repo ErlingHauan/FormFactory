@@ -27,8 +27,10 @@
   },
   "scripts": {
     "build": "yarn workspaces foreach -A -p run build",
+    "lint": "yarn workspaces foreach -A -p run lint",
     "start-form-viewer": "yarn workspace form-viewer run start",
-    "start-form-builder": "yarn workspace form-builder run start"
+    "start-form-builder": "yarn workspace form-builder run start",
+    "typecheck": "yarn workspaces foreach -A -p run typecheck"
   },
   "packageManager": "yarn@4.0.2"
 }
