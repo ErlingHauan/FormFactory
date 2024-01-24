@@ -17,8 +17,8 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      - name: Restore dependencies
-        run: dotnet restore backend/FormAPI.sln
+      - name: Check formatting
+        run: dotnet format backend/FormAPI.sln --verify-no-changes --verbosity detailed
 
       - name: Test
         run: dotnet test backend/FormAPI.sln --no-restore

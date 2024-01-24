@@ -17,8 +17,5 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      - name: Restore dependencies
-        run: dotnet restore backend/FormAPI.sln
-
       - name: Build
         run: dotnet build backend/FormAPI.sln --no-restore
