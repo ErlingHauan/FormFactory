@@ -7,21 +7,21 @@ namespace FormAPI.Controllers;
 [Route("[controller]")]
 public class FormsController : ControllerBase
 {
-  [HttpGet]
-  public ActionResult<Form> Get()
-  {
-    var formData = new Form { Name = "Ola Nordmann", Email = "ola@norge.no" };
-    return Ok(formData);
-  }
-
-  [HttpPost]
-  public IActionResult Post([FromBody] Form formData)
-  {
-    if (!ModelState.IsValid)
+    [HttpGet]
+    public ActionResult<Form> Get()
     {
-      return BadRequest(ModelState);
+        var formData = new Form { Name = "Ola Nordmann", Email = "ola@norge.no" };
+        return Ok(formData);
     }
 
-    return Ok(formData);
-  }
+    [HttpPost]
+    public IActionResult Post([FromBody] Form formData)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        return Ok(formData);
+    }
 }
