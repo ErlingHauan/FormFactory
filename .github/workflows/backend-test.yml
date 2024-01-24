@@ -1,4 +1,4 @@
-name: Backend build and test
+name: Backend test
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - "backend/**"
 
 jobs:
-  build-test:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
