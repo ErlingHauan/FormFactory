@@ -12,3 +12,5 @@
 
 # IDEs and editors
 .idea/
+**/bin/
+**/obj/

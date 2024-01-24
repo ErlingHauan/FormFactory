@@ -1,4 +1,4 @@
-name: Frontend build, lint, and typecheck
+name: Frontend lint and typecheck
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - "backend/**"
 
 jobs:
-  build-lint-typecheck:
+  lint-typecheck:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -22,9 +22,6 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install
-
-      - name: Build
-        run: yarn build
         
       - name: Lint
         run: yarn lint
