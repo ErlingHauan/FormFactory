@@ -13,27 +13,26 @@ public class FormsControllerTests(WebApplicationFactory<FormsController> formApi
 
 {
     private readonly WebApplicationFactory<FormsController> _formApi = formApi;
-    
+
     private HttpClient GetTestClient()
     {
         return _formApi.WithWebHostBuilder(builder =>
         {
         }).CreateDefaultClient();
     }
-    
     [Fact]
     public async Task Get_ReturnsFormData()
     {
         string url = "/forms";
         HttpClient client = GetTestClient();
-        
+
         var response = await client.GetAsync(url);
         Form responseObject = await response.Content.ReadAsAsync<Form>();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.IsType<Form>(responseObject);
     }
-    
+
     [Fact]
     public async Task Post_ValidModel_ReturnsFormData()
     {
@@ -50,7 +49,7 @@ public class FormsControllerTests(WebApplicationFactory<FormsController> formApi
         Assert.Equal(form.Name, returnedForm.Name);
         Assert.Equal(form.Email, returnedForm.Email);
     }
-    
+
     [Fact]
     public async Task Post_InvalidModel_ReturnsBadRequest()
     {
@@ -58,9 +57,9 @@ public class FormsControllerTests(WebApplicationFactory<FormsController> formApi
         HttpClient client = GetTestClient();
         var invalidForm = new { InvalidField = "Test" };
         var httpContent = new StringContent(JsonConvert.SerializeObject(invalidForm), Encoding.UTF8, "application/json");
-        
+
         var response = await client.PostAsync(url, httpContent);
-        
+
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
 }
