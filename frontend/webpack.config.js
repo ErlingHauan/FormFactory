@@ -6,7 +6,7 @@ const path = require("path");
 const devServerPorts = require("./devServerPorts.json");
 
 module.exports = {
-  entry: "./index.tsx",
+  entry: "./src/index.tsx",
   devtool: "source-map",
   performance: {
     hints: false,
@@ -33,7 +33,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html",
+      template: "./public/index.html",
     }),
   ],
   devServer: {
