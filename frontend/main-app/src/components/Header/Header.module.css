@@ -8,6 +8,7 @@
 }
 
 .headerIcon {
+  font-size: 3rem;
   margin-left: var(--fds-spacing-2);
 }
 

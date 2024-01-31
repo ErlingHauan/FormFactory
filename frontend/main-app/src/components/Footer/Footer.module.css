@@ -8,6 +8,6 @@
   gap: var(--fds-spacing-1);
 
   a {
-    color: inherit !important               ;
+    color: inherit !important;
   }
 }

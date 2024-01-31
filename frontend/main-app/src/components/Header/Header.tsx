@@ -7,10 +7,10 @@ export const Header = (): React.JSX.Element => {
   return (
     <header className={classes.header}>
       <Link href="/" className={classes.headerLink}>
-        <Heading level={1} href="/">
+        <Heading level={1}>
           Form Factory
         </Heading>
-        <ClipboardCheckmarkFillIcon fontSize="3rem" className={classes.headerIcon} />
+        <ClipboardCheckmarkFillIcon className={classes.headerIcon} />
       </Link>
       <nav className={classes.nav}>
         <ul>
