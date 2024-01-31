@@ -1,4 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     font-feature-settings: 'cv05' 1 !important; /* Enable lowercase l with tail */
+    margin: 0;
+}
+
+.main {
+    padding: 5% 10%;
 }

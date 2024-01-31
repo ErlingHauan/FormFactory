@@ -266,6 +266,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/aksel-icons@npm:^5.17.1":
+  version: 5.17.1
+  resolution: "@navikt/aksel-icons@npm:5.17.1"
+  checksum: af392983ef6095901a6c5c993d015006a3fc1f68a052142ae4b16694112608010a92ed466515f1fa44fb78d79622f14ebef9d75bd1169556af0192ce48a84d00
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -407,6 +414,13 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 2e1cdba2c410f25649e77856505cd60223250fa12dff7a503e492208dbfdd25f62859918f28aba95315251fd1f5e1ffbfca1e25e73037189ab85dd3f8d0a148c
+  languageName: node
+  linkType: hard
+
+"@types/css-modules@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "@types/css-modules@npm:1.0.5"
+  checksum: 56ee69ec66b726765c6b4a57e0b58665341919267cbe380f9320379e84402a17afacc13228ea1271e1ce2f049465240d553d7bfa236b1f0b87c26c561f9eb875
   languageName: node
   linkType: hard
 
@@ -3738,17 +3752,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mini-css-extract-plugin@npm:^2.7.7":
-  version: 2.7.7
-  resolution: "mini-css-extract-plugin@npm:2.7.7"
-  dependencies:
-    schema-utils: "npm:^4.0.0"
-  peerDependencies:
-    webpack: ^5.0.0
-  checksum: e22f76d96966ee4dfc1318e0f4c45ac75638932df468dc7d103094e1c97cb2d01ea7ccfb354e39d9e57d1971218cdc92678b9c8676472b2f1f801bb514967c44
-  languageName: node
-  linkType: hard
-
 "minimalistic-assert@npm:^1.0.0":
   version: 1.0.1
   resolution: "minimalistic-assert@npm:1.0.1"
@@ -4773,6 +4776,8 @@ __metadata:
   dependencies:
     "@digdir/design-system-react": "npm:^0.47.0"
     "@digdir/design-system-tokens": "npm:^0.12.0"
+    "@navikt/aksel-icons": "npm:^5.17.1"
+    "@types/css-modules": "npm:^1.0.5"
     "@types/react": "npm:^18.2.48"
     "@types/react-dom": "npm:^18.2.18"
     "@typescript-eslint/eslint-plugin": "npm:^6.19.0"
@@ -4782,7 +4787,6 @@ __metadata:
     eslint-plugin-react: "npm:^7.33.2"
     eslint-plugin-react-hooks: "npm:^4.6.0"
     html-webpack-plugin: "npm:^5.6.0"
-    mini-css-extract-plugin: "npm:^2.7.7"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     style-loader: "npm:^3.3.4"
