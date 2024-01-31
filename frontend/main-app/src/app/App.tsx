@@ -10,6 +10,7 @@ export const App = (): React.JSX.Element => {
     <>
       <Header />
       <main className={classes.main}>
+        {/* PlaceholderText will be replaced with Login, Form Builder, etc." */}
         <PlaceholderText />
       </main>
       <Footer />

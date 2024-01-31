@@ -1,12 +1,17 @@
 import React from "react";
 import { Heading, Link } from "@digdir/design-system-react";
-import { TasklistFillIcon } from '@navikt/aksel-icons';
+import { ClipboardCheckmarkFillIcon } from "@navikt/aksel-icons";
 import classes from "./Header.module.css";
 
 export const Header = (): React.JSX.Element => {
   return (
     <header className={classes.header}>
-      <Heading level={1}><TasklistFillIcon />Form Factory</Heading>
+      <Link href="/" className={classes.headerLink}>
+        <Heading level={1} href="/">
+          Form Factory
+        </Heading>
+        <ClipboardCheckmarkFillIcon fontSize="3rem" className={classes.headerIcon} />
+      </Link>
       <nav className={classes.nav}>
         <ul>
           <li>

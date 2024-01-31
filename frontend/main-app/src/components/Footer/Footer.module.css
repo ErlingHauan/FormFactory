@@ -4,7 +4,7 @@
   align-items: center;
   color: var(--fds-semantic-text-neutral-on_inverted);
   background-color: var(--fds-semantic-surface-neutral-inverted);
-  min-height: 300px;
+  min-height: var(--fds-spacing-30);
   gap: var(--fds-spacing-1);
 
   a {
