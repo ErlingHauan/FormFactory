@@ -1,0 +1,4 @@
+.formBoard {
+    display: flex;
+    flex-direction: column;
+}
