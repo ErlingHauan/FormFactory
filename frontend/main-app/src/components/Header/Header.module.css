@@ -8,7 +8,7 @@
 }
 
 .headerIcon {
-  margin-left: var(--fds-spacing-2);
+  font-size: 3rem;
 }
 
 .headerLink {
