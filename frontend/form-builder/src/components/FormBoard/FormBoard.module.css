@@ -1,4 +1,17 @@
 .formBoard {
+    display: blcok;
+}
+
+.noComponents {
+    /* Center the 'drag components here' text in both axis */
+    height: 80%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        margin-top: var(--fds-spacing-4);
+    }
+
 }
