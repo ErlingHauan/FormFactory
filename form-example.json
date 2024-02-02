@@ -1,0 +1,48 @@
+[
+  {
+    "formData": {
+      "id": 1,
+      "name": "User survey",
+      "owner": "user1",
+      "numberOfComponents": 3,
+      "created": "2019-01-01T00:00:00.000Z",
+      "edited": "2019-01-01T00:00:00.000Z",
+      "anonymous": true
+    }
+  },
+  {
+    "component1": {
+      "id": 1,
+      "name": "Name",
+      "type": "text",
+      "required": true,
+      "maxLength": 50,
+      "minLength": 2,
+      "order": 1,
+      "answer": ""
+    }
+  },
+  {
+    "component2": {
+      "id": 2,
+      "name": "Age",
+      "type": "number",
+      "required": true,
+      "minNumber": 13,
+      "maxNumber": 0,
+      "order": 2,
+      "answer": ""
+    }
+  },
+  {
+    "component3": {
+      "id": 3,
+      "name": "LikesChocolate",
+      "type": "radio",
+      "required": false,
+      "options": ["Yes", "No"],
+      "order": 3,
+      "answer": ""
+    }
+  }
+]
