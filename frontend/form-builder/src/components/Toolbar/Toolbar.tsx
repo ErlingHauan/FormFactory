@@ -10,7 +10,7 @@ import classes from "./Toolbar.module.css";
 
 export const Toolbar = (): React.JSX.Element => {
   return (
-    <div className={classes.toolbar}>
+    <>
       <Heading level={2} size="medium" spacing>
         Tools
       </Heading>
@@ -40,6 +40,6 @@ export const Toolbar = (): React.JSX.Element => {
           </li>
         </div>
       </ul>
-    </div>
+    </>
   );
 };

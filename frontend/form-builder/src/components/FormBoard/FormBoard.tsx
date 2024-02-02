@@ -7,7 +7,7 @@ export const FormBoard = (): React.JSX.Element => {
   const form = [];
 
   return (
-    <div className={classes.formBoard}>
+    <>
       <Heading level={2} size="medium" spacing>
         Form
       </Heading>
@@ -17,6 +17,6 @@ export const FormBoard = (): React.JSX.Element => {
           <Paragraph>Drag components here</Paragraph>
         </div>
       )}
-    </div>
+    </>
   );
 };

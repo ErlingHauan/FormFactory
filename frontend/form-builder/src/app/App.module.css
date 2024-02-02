@@ -12,3 +12,10 @@ body {
   grid-template-columns: 1fr 6fr 3fr;
   gap: var(--fds-spacing-4);
 }
+
+.builderSection {
+  background-color: var(--fds-semantic-background-default);
+  box-shadow: var(--fds-shadow-small);
+  padding: var(--fds-spacing-5);
+  text-align: center;
+}

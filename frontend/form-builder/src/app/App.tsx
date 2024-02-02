@@ -8,15 +8,21 @@ import { Heading } from "@digdir/design-system-react";
 
 export const App = (): React.JSX.Element => {
   return (
-      <main className={classes.main}>
-        <Heading level={1} spacing>
-          Form Builder
-        </Heading>
-        <div className={classes.builderGrid}>
+    <main className={classes.main}>
+      <Heading level={1} spacing>
+        Form Builder
+      </Heading>
+      <div className={classes.builderGrid}>
+        <div className={classes.builderSection}>
           <Toolbar />
+        </div>
+        <div className={classes.builderSection}>
           <FormBoard />
+        </div>
+        <div className={classes.builderSection}>
           <SettingsSidebar />
         </div>
-      </main>
+      </div>
+    </main>
   );
 };
