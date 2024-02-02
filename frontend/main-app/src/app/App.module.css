@@ -12,5 +12,5 @@ body {
     background-color: var(--fds-semantic-background-subtle);
 
     /* Sink footer to the bottom of the page. 100vh minus header minus footer  */
-    min-height: calc(100vh - var(--fds-sizing-26) - var(--fds-sizing-30));
+    min-height: calc(100vh - var(--fds-sizing-26) - calc(2 * var(--fds-spacing-30)));
 }

@@ -1,11 +1,21 @@
 .footer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--fds-semantic-text-neutral-on_inverted);
   background-color: var(--fds-semantic-surface-neutral-inverted);
-  min-height: var(--fds-spacing-30);
+  background-image: url(../../../public/footerBackground.svg);
+  background-size: cover;
+  min-height: calc(2 * var(--fds-spacing-30));
   gap: var(--fds-spacing-1);
+
+  .linkContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: var(--fds-spacing-4);
+  }
 
   a {
     color: inherit !important;

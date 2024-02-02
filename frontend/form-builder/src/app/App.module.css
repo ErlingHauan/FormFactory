@@ -9,7 +9,6 @@ body {
 }
 
 .main {
-  background-color: var(--fds-semantic-background-subtle);
   padding: var(--fds-spacing-14) var(--fds-spacing-30);
 }
 
