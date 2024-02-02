@@ -1,11 +1,10 @@
 .toolbar {
-    ul {
-        list-style: none;
-        padding: 0;
-        text-align: center;
-    }
+  background-color: var(--fds-semantic-background-default);
+  box-shadow: var(--fds-shadow-small);
+  padding: var(--fds-spacing-5);
+  text-align: center;
+}
 
-    li {
-        margin-bottom: var(--fds-spacing-4);
-    }
+.toolbarIcon {
+  margin-bottom: var(--fds-spacing-4);
 }

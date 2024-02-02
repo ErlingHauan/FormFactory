@@ -1,17 +1,20 @@
 .formBoard {
-    display: blcok;
+  background-color: var(--fds-semantic-background-default);
+  box-shadow: var(--fds-shadow-small);
+  padding: var(--fds-spacing-5);
+  text-align: center;
 }
 
 .noComponents {
-    /* Center the 'drag components here' text in both axis */
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  /* Center the 'drag components here' text in both axis */
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-    p {
-        margin-top: var(--fds-spacing-4);
-    }
-
+.noComponentsIcon {
+  font-size: 3rem;
+  margin-bottom: var(--fds-spacing-4)
 }

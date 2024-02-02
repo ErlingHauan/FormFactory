@@ -1,6 +1,10 @@
 .sidebar {
     display: flex;
     flex-direction: column;
+    box-shadow: var(--fds-shadow-small);
+    background-color: var(--fds-semantic-background-default);
+    padding: var(--fds-spacing-5);
+    text-align: center;
 }
 
 .spacing {

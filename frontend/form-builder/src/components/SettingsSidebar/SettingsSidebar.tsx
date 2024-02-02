@@ -8,7 +8,7 @@ export const SettingsSidebar = (): React.JSX.Element => {
       <Heading level={2} size="medium" spacing>Settings</Heading>
       <Textfield label="Component name" size="small" className={classes.spacing}/>
       <Textfield label="Minimum length" size="small" className={classes.spacing}/>
-      <Textfield label="Maximum length" size="small" error="Maximum length not set" className={classes.spacing}/>
+      <Textfield label="Maximum length" size="small" className={classes.spacing}/>
     </div>
   );
 };
