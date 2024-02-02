@@ -1,0 +1,57 @@
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "owner": "Big Data AS",
+  "name": "User survey 1",
+  "description": "This is a survey for users of our website. We want to know more about you!",
+  "tags": [
+    "user",
+    "survey",
+    "website"
+  ],
+  "status": "published",
+  "published": 1546300800,
+  "lastEdited": 1546300800,
+  "visibility": "public",
+  "expirationDate": 1646300800,
+  "anonymous": true,
+  "components": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "label": "Navn",
+      "type": "text",
+      "order": 1,
+      "details": {
+        "required": true,
+        "maxLength": 50,
+        "minLength": 2,
+        "pattern": "^[a-zA-ZæøåÆØÅ- ]+$",
+        "placeholder": "Enter your name",
+        "helpText": "Your full name as it appears on your ID"
+      }
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "label": "Alder",
+      "type": "number",
+      "order": 2,
+      "details": {
+        "required": true,
+        "minNumber": 13,
+        "maxNumber": 140
+      }
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440003",
+      "label": "Liker du sjokolade?",
+      "type": "radio",
+      "order": 3,
+      "details": {
+        "required": false,
+        "options": [
+          "Yes",
+          "No"
+        ]
+      }
+    }
+  ]
+}
