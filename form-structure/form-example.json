@@ -10,7 +10,6 @@
   ],
   "status": "published",
   "published": 1546300800,
-  "lastEdited": 1546300800,
   "visibility": "public",
   "expirationDate": 1646300800,
   "anonymous": true,
@@ -24,8 +23,7 @@
         "required": true,
         "maxLength": 50,
         "minLength": 2,
-        "pattern": "^[a-zA-ZæøåÆØÅ- ]+$",
-        "placeholder": "Enter your name",
+        "regex": "^[a-zA-ZæøåÆØÅ- ]+$",
         "helpText": "Your full name as it appears on your ID"
       }
     },
