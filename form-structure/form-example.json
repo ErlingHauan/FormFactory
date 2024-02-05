@@ -1,7 +1,7 @@
 {
   "id": "550e8400-e29b-41d4-a716-446655440000",
   "owner": "Big Data AS",
-  "name": "User survey 1",
+  "title": "User survey 1",
   "description": "This is a survey for users of our website. We want to know more about you!",
   "tags": [
     "user",
