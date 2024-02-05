@@ -9,10 +9,10 @@
     "website"
   ],
   "status": "published",
-  "published": 1546300800,
   "visibility": "public",
-  "expirationDate": 1646300800,
   "anonymous": true,
+  "published": 1546300800,
+  "expirationDate": 1646300800,
   "components": [
     {
       "id": "550e8400-e29b-41d4-a716-446655440001",
