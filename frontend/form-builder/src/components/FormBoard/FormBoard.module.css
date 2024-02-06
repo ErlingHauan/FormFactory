@@ -1,0 +1,13 @@
+.noComponents {
+  /* Center the 'drag components here' text in both axis */
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.noComponentsIcon {
+  font-size: 3rem;
+  margin-bottom: var(--fds-spacing-4)
+}

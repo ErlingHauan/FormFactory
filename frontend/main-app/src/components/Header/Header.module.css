@@ -8,7 +8,8 @@
 }
 
 .headerIcon {
-  font-size: 3rem;
+  font-size: 2rem;
+  color: var(--fds-semantic-text-neutral-default);
 }
 
 .headerLink {

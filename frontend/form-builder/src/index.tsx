@@ -1,9 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+import { App } from "./app";
 
-const App = (): React.JSX.Element => (
-  <div>If you see this, then form-builder has successfully loaded! 🚀</div>
-);
 
 const container = document.getElementById('root');
 const root = createRoot(container);

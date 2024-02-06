@@ -1,0 +1,21 @@
+body {
+  font-family: "Inter", arial, sans-serif;
+  font-feature-settings: "cv05" 1 !important; /* Enable lowercase l with tail */
+}
+
+.main {
+  padding: var(--fds-spacing-14) var(--fds-spacing-30);
+}
+
+.builderGrid {
+  display: grid;
+  grid-template-columns: 1fr 6fr 3fr;
+  gap: var(--fds-spacing-4);
+}
+
+.builderSection {
+  background-color: var(--fds-semantic-background-default);
+  box-shadow: var(--fds-shadow-small);
+  padding: var(--fds-spacing-5);
+  text-align: center;
+}
