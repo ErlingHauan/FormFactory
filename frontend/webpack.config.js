@@ -39,6 +39,7 @@ module.exports = {
   devServer: {
     hot: true,
     port: devServerPorts[process.env.npm_package_name],
+    historyApiFallback: true,
     client: {
       overlay: {
         errors: false,
