@@ -14,7 +14,7 @@ export const App = (): React.JSX.Element => {
             <Header/>
             <main className={classes.main}>
                 <Routes>
-                    <Route path="/" element={<h1>Home</h1>}/>
+                    <Route path="/" element={<Login/>}/>
                     <Route path="/signup" element={<Signup/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/form-builder" element={<FormBuilder/>}/>

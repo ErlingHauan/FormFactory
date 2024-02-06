@@ -12,12 +12,11 @@
 }
 
 .button {
-    margin-top: var(--fds-spacing-6);
-    width: fit-content;
+    margin-top: var(--fds-spacing-4);
     align-self: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .loginContainer {
         box-shadow: 0 0 0;
         background-color: var(--fds-semantic-background-subtle);

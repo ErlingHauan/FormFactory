@@ -12,6 +12,7 @@ export const Signup = (): React.JSX.Element => {
             <Textfield label="Password" className={classes.spacing}/>
             <Textfield label="Repeat password" className={classes.spacing}/>
             <Button className={classes.button}>Sign up</Button> 
+            <Button className={classes.button} as="a" href="/login" variant="secondary" size="small">Go to log in page</Button>
         </div>
     );
 }
