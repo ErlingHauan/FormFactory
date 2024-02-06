@@ -3,8 +3,8 @@ body {
   font-feature-settings: "cv05" 1 !important; /* Enable lowercase l with tail */
 }
 
-.main {
-  padding: var(--fds-spacing-14) var(--fds-spacing-30);
+.headline {
+  align-self: flex-start;
 }
 
 .builderGrid {

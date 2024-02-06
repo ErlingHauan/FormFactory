@@ -1,0 +1,18 @@
+.signupContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fds-semantic-background-default);
+    box-shadow: var(--fds-shadow-small);
+    padding: var(--fds-spacing-14);
+    width: fit-content;
+}
+
+.spacing {
+    margin-bottom: var(--fds-spacing-4);
+}
+
+.button {
+    margin-top: var(--fds-spacing-6);
+    width: fit-content;
+    align-self: center;
+}
