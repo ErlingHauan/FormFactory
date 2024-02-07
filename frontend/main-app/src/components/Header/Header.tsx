@@ -18,7 +18,7 @@ export const Header = (): React.JSX.Element => {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/">Form Builder</Link>
+            <Link href="/form-builder">Form Builder</Link>
           </li>
         </ul>
       </nav>

@@ -8,8 +8,8 @@ import { Heading } from "@digdir/design-system-react";
 
 export const App = (): React.JSX.Element => {
   return (
-    <main className={classes.main}>
-      <Heading level={1} spacing>
+    <>
+      <Heading level={1} spacing className={classes.headline}>
         Form Builder
       </Heading>
       <div className={classes.builderGrid}>
@@ -23,6 +23,6 @@ export const App = (): React.JSX.Element => {
           <SettingsSidebar />
         </div>
       </div>
-    </main>
+    </>
   );
 };

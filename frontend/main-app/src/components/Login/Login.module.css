@@ -1,0 +1,30 @@
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fds-semantic-background-default);
+    box-shadow: var(--fds-shadow-small);
+    padding: var(--fds-spacing-14);
+    width: fit-content;
+    gap: var(--fds-spacing-8);
+}
+
+.fieldContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fds-spacing-4);
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--fds-spacing-2);
+    gap: var(--fds-spacing-4);
+    align-self: center;
+}
+
+@media (max-width: 600px) {
+    .loginContainer {
+        box-shadow: 0 0 0;
+        background-color: var(--fds-semantic-background-subtle);
+    }
+}
