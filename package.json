@@ -37,7 +37,7 @@
     "lint": "yarn workspaces foreach -A -p run lint",
     "start-main-app": "yarn workspace main-app run start",
     "start-form-builder": "yarn workspace form-builder run start",
-    "test": "yarn workspaces foreach -A -p run test",
+    "test": "jest",
     "typecheck": "yarn workspaces foreach -A -p run typecheck"
   },
   "packageManager": "yarn@4.0.2"
