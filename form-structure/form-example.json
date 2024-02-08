@@ -1,0 +1,94 @@
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "email": "admin@bigdata.as",
+  "organization": "Big Data AS",
+  "title": "User survey 1",
+  "description": "This is a survey for users of our website. We want to know more about you!",
+  "tags": [
+    "user",
+    "survey",
+    "website"
+  ],
+  "status": "published",
+  "visibility": "public",
+  "anonymous": true,
+  "published": 1546300800,
+  "expirationDate": 1646300800,
+  "components": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "label": "Navn",
+      "type": "text",
+      "order": 1,
+      "details": {
+        "required": true,
+        "maxLength": 50,
+        "minLength": 2,
+        "regex": "^[a-zA-ZæøåÆØÅ- ]+$",
+        "helpText": "Your full name as it appears on your ID"
+      }
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "label": "Alder",
+      "type": "number",
+      "order": 2,
+      "details": {
+        "required": true,
+        "minNumber": 13,
+        "maxNumber": 140
+      }
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440003",
+      "label": "Liker du sjokolade?",
+      "type": "radio",
+      "order": 3,
+      "details": {
+        "required": false,
+        "options": [
+          "Yes",
+          "No"
+        ]
+      }
+    }
+  ],
+  "responses": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440004",
+      "submitted": 1546300800,
+      "answers": [
+        {
+          "componentId": "550e8400-e29b-41d4-a716-446655440001",
+          "value": "Ola Nordmann"
+        },
+        {
+          "componentId": "550e8400-e29b-41d4-a716-446655440002",
+          "value": 25
+        },
+        {
+          "componentId": "550e8400-e29b-41d4-a716-446655440003",
+          "value": "Yes"
+        }
+      ]
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440005",
+      "submitted": 1546300800,
+      "answers": [
+        {
+          "componentId": "550e8400-e29b-41d4-a716-446655440001",
+          "value": "Kari Nordmann"
+        },
+        {
+          "componentId": "550e8400-e29b-41d4-a716-446655440002",
+          "value": 30
+        },
+        {
+          "componentId": "550e8400-e29b-41d4-a716-446655440003",
+          "value": "No"
+        }
+      ]
+    }
+  ]
+}

@@ -1,3 +1,5 @@
-## FormFactory
+## Form Factory
 
-Allows users to easily create interactive forms through an intuitive drag-and-drop user interface. The application is under development.
+The application is under development.
+
+Use `yarn start-main-app` to run the app in development mode.
