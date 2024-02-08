@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import {Header} from "./Header";
 
 describe("Header component", () => {
-    it('loads and displays header', async () => {
+    it('loads and displays Header Component', async () => {
         // Arrange
         render(<Header/>);
 

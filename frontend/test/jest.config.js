@@ -8,7 +8,7 @@ const config = {
     roots: ["../"],
     moduleNameMapper: {
         "\\.css$": path.join(__dirname, '/styleMock.js')
-    }
+    },
 };
 
 module.exports = config;

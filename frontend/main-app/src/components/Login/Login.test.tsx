@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import {Login} from "./Login";
 
 describe("Login component", () => {
-    it('loads and displays login component', () => {
+    it('loads and displays Login component', () => {
         // Arrange
         render(<Login/>);
 

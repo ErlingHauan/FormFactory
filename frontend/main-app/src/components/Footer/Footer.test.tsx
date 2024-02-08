@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import {Footer} from "./Footer";
 
 describe("Footer component", () => {
-    it('loads and displays footer', async () => {
+    it('loads and displays Footer component', async () => {
         // Arrange
         render(<Footer/>);
 
