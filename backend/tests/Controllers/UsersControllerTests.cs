@@ -19,7 +19,7 @@ public class UsersControllerTests(WebApplicationFactory<UsersController> userApi
         {
         }).CreateDefaultClient();
     }
-    
+
     [Fact]
     public async Task Post_LoginReturnsOk()
     {
@@ -34,13 +34,13 @@ public class UsersControllerTests(WebApplicationFactory<UsersController> userApi
 
         var jsonData = JsonConvert.SerializeObject(user);
         var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        
+
         HttpClient client = GetTestClient();
         var response = await client.PostAsync(url, content);
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
-    
+
     [Fact]
     public async Task Post_LoginReturnsBadRequest()
     {
@@ -55,13 +55,13 @@ public class UsersControllerTests(WebApplicationFactory<UsersController> userApi
 
         var jsonData = JsonConvert.SerializeObject(user);
         var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        
+
         HttpClient client = GetTestClient();
         var response = await client.PostAsync(url, content);
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
-    
+
     [Fact]
     public async Task Post_SignupReturnsOk()
     {
@@ -76,13 +76,13 @@ public class UsersControllerTests(WebApplicationFactory<UsersController> userApi
 
         var jsonData = JsonConvert.SerializeObject(user);
         var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        
+
         HttpClient client = GetTestClient();
         var response = await client.PostAsync(url, content);
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
-    
+
     [Fact]
     public async Task Post_SignupReturnsBadRequest()
     {
@@ -97,7 +97,7 @@ public class UsersControllerTests(WebApplicationFactory<UsersController> userApi
 
         var jsonData = JsonConvert.SerializeObject(user);
         var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        
+
         HttpClient client = GetTestClient();
         var response = await client.PostAsync(url, content);
 
