@@ -1,16 +1,19 @@
-import React from 'react';
-import {render, screen} from '@testing-library/react';
-import {App} from './App';
+import React from "react";
+import {render, screen} from "@testing-library/react";
+import {App} from "./App";
 import {MemoryRouter} from "react-router";
 
-
-describe('App component', () => {
-    it("renders Login when accessing '/'", () => {
+describe("App component", () => {
+    const renderApp = (initialEntries?: string[]) => {
         render(
-            <MemoryRouter>
+            <MemoryRouter initialEntries={initialEntries}>
                 <App/>
-            </MemoryRouter>
-        )
+            </MemoryRouter>)
+    };
+
+
+    it("renders Login when accessing '/'", () => {
+        renderApp();
 
         const title = screen.getByRole("heading", {name: "Log in"});
 
@@ -18,11 +21,7 @@ describe('App component', () => {
     })
 
     it("renders Login when accessing '/login'", () => {
-        render(
-            <MemoryRouter initialEntries={['/login']}>
-                <App/>
-            </MemoryRouter>
-        )
+        renderApp(["/login"]);
 
         const title = screen.getByRole("heading", {name: "Log in"});
 
@@ -30,11 +29,7 @@ describe('App component', () => {
     })
 
     it("renders Signup when accessing '/signup'", () => {
-        render(
-            <MemoryRouter initialEntries={['/signup']}>
-                <App/>
-            </MemoryRouter>
-        )
+        renderApp(["/signup"]);
 
         const title = screen.getByRole("heading", {name: "Sign up"});
 
@@ -42,11 +37,7 @@ describe('App component', () => {
     })
 
     it("renders Form Builder when accessing '/form-builder'", () => {
-        render(
-            <MemoryRouter initialEntries={['/form-builder']}>
-                <App/>
-            </MemoryRouter>
-        )
+        renderApp(["/form-builder"]);
 
         const title = screen.getByRole("heading", {name: "Form Builder"});
 
@@ -54,11 +45,7 @@ describe('App component', () => {
     })
 
     it("renders footer and header when accessing '/'", () => {
-        render(
-            <MemoryRouter>
-                <App/>
-            </MemoryRouter>
-        );
+        renderApp();
 
         const header = screen.getByRole("banner");
         const footer = screen.getByRole("contentinfo");
@@ -68,11 +55,7 @@ describe('App component', () => {
     })
 
     it("renders footer and header when not accessing '/'", () => {
-        render(
-            <MemoryRouter initialEntries={['/form-builder']}>
-                <App/>
-            </MemoryRouter>
-        );
+        renderApp(["/form-builder"]);
 
         const header = screen.getByRole("banner");
         const footer = screen.getByRole("contentinfo");

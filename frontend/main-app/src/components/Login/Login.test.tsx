@@ -1,16 +1,16 @@
-import React from 'react';
-import {render, screen} from '@testing-library/react';
-import '@testing-library/jest-dom';
+import React from "react";
+import {render, screen} from "@testing-library/react";
+import "@testing-library/jest-dom";
 import {Login} from "./Login";
 
 describe("Login component", () => {
-    it('loads and displays Login component', () => {
+    it("loads and displays Login component", () => {
         // Arrange
         render(<Login/>);
 
         // Act
         const title = screen.getByRole("heading", {name: "Log in"});
-        const emailField = screen.getByLabelText("E-mail");
+        const emailField = screen.getByRole("textbox", {name: "E-mail"});
         const passwordField = screen.getByLabelText("Password");
         const loginButton = screen.getByRole("button", {name: "Log in"});
         const signupLink = screen.getByRole("link", {name: "Go to the sign up page"});

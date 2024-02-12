@@ -1,10 +1,10 @@
-import React from 'react';
-import {render, screen} from '@testing-library/react';
-import '@testing-library/jest-dom';
+import React from "react";
+import {render, screen} from "@testing-library/react";
+import "@testing-library/jest-dom";
 import {Header} from "./Header";
 
 describe("Header component", () => {
-    it('loads and displays Header Component', async () => {
+    it("loads and displays Header Component", async () => {
         // Arrange
         render(<Header/>);
 
@@ -16,8 +16,8 @@ describe("Header component", () => {
 
         // Assert
         expect(title).toBeInTheDocument();
-        expect(titleLink).toHaveAttribute('href', '/');
-        expect(homeLink).toHaveAttribute('href', '/');
-        expect(formBuilderLink).toHaveAttribute('href', '/form-builder');
+        expect(titleLink).toHaveAttribute("href", "/");
+        expect(homeLink).toHaveAttribute("href", "/");
+        expect(formBuilderLink).toHaveAttribute("href", "/form-builder");
     });
 })

@@ -6,6 +6,9 @@
     "plugin:react-hooks/recommended"
   ],
   "parser": "@typescript-eslint/parser",
+  "rules": {
+    "quotes": ["error", "double"]
+  },
   "settings": {
     "react": {
       "version": "detect"
