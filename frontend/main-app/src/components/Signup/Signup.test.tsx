@@ -10,8 +10,8 @@ describe("Signup component", () => {
 
         // Act
         const title = screen.getByRole("heading", {name: "Sign up"});
-        const emailField = screen.getByLabelText("E-mail");
-        const orgField = screen.getByLabelText("Organization");
+        const emailField = screen.getByRole("textbox", {name: "E-mail"});
+        const orgField = screen.getByRole("textbox", {name: "Organization"});
         const passwordField = screen.getByLabelText("Password");
         const passwordRepeatField = screen.getByLabelText("Repeat password");
         const signupButton = screen.getByRole("button", {name: "Sign up"});
