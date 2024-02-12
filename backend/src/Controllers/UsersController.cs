@@ -1,4 +1,4 @@
-using FormAPI.Data;
+using FormAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FormAPI.Controllers;
@@ -13,7 +13,7 @@ public class UsersController : ControllerBase
     {
         if (string.IsNullOrWhiteSpace(dto.Email) || string.IsNullOrWhiteSpace(dto.Password))
         {
-            return Unauthorized("E-mail or password cannot be empty");
+            return BadRequest("E-mail or password cannot be empty");
         }
         return Ok();
     }
@@ -24,7 +24,7 @@ public class UsersController : ControllerBase
     {
         if (string.IsNullOrWhiteSpace(dto.Email) || string.IsNullOrWhiteSpace(dto.Password))
         {
-            return Unauthorized("E-mail or password cannot be empty");
+            return BadRequest("E-mail or password cannot be empty");
         }
         return Ok();
     }
