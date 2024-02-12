@@ -11,7 +11,6 @@ describe("App component", () => {
             </MemoryRouter>)
     };
 
-
     it("renders Login when accessing '/'", () => {
         renderApp();
 
