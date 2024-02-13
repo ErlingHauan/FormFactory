@@ -5,10 +5,12 @@ import { Heading, Textfield } from "@digdir/design-system-react";
 export const SettingsSidebar = (): React.JSX.Element => {
   return (
     <>
-      <Heading level={2} size="medium" spacing>Settings</Heading>
-      <Textfield label="Component name" size="small" className={classes.spacing}/>
-      <Textfield label="Minimum length" size="small" className={classes.spacing}/>
-      <Textfield label="Maximum length" size="small" className={classes.spacing}/>
+      <Heading level={2} size="medium" spacing>
+        Settings
+      </Heading>
+      <Textfield label="Component name" size="small" className={classes.spacing} />
+      <Textfield label="Minimum length" size="small" className={classes.spacing} />
+      <Textfield label="Maximum length" size="small" className={classes.spacing} />
     </>
   );
 };
