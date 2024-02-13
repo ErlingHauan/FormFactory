@@ -2,11 +2,16 @@ import React from "react";
 import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import {Login} from "./Login";
+import {MemoryRouter} from "react-router";
 
 describe("Login component", () => {
     it("loads and displays Login component", () => {
         // Arrange
-        render(<Login/>);
+        render(
+            <MemoryRouter>
+                <Login/>
+            </MemoryRouter>
+        );
 
         // Act
         const title = screen.getByRole("heading", {name: "Log in"});
