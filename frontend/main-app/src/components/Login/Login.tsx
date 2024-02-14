@@ -40,7 +40,7 @@ export const Login = (): React.JSX.Element => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={classes.loginContainer}>
+    <form onSubmit={handleSubmit} className={classes.loginContainer} noValidate>
       <Heading level={1} size="xlarge">
         Log in
       </Heading>
