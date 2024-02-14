@@ -1,24 +1,31 @@
 version: '3.8'
-
 services:
+  backend:
+    build: ./backend
+    ports:
+      - "4070:80"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Port=5433;Database=mydatabase;User Id=myuser;Password=mypassword;
+
+  frontend:
+    build: ./
+    ports:
+      - "3070:80"
+    depends_on:
+      - backend
+
   db:
     image: postgres:13
     ports:
-      - "5432:5432"
+      - "5433:5433"
     environment:
       POSTGRES_DB: mydatabase
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
     volumes:
       - postgres_data:/var/lib/postgresql/data
-        
-  form-factory:
-    container_name: form-factory
-    build: .
-    ports:
-      - "4065:80"
-    depends_on:
-      - db
 
 volumes:
   postgres_data:
