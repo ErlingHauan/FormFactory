@@ -3,23 +3,19 @@ services:
   backend:
     build: ./backend
     ports:
-      - "4070:80"
-    depends_on:
-      - db
-    environment:
-      - ConnectionStrings__DefaultConnection=Server=db;Port=5433;Database=mydatabase;User Id=myuser;Password=mypassword;
+      - "8080:8080"
 
   frontend:
-    build: ./
+    build: .
     ports:
-      - "3070:80"
+      - "3030:80"
     depends_on:
       - backend
 
   db:
     image: postgres:13
     ports:
-      - "5433:5433"
+      - "5432:5432"
     environment:
       POSTGRES_DB: mydatabase
       POSTGRES_USER: myuser

@@ -7,7 +7,7 @@ RUN yarn
 RUN yarn build
 
 
-# Building nginx
+# Serving the frontend
 FROM nginx:alpine
 COPY --from=build build/frontend/dist/main-app /usr/share/nginx/html
 EXPOSE 80
