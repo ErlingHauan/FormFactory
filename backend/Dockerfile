@@ -1,18 +1,10 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet restore
-RUN dotnet build "src/FormAPI.csproj" -c Release -o /app/build
+RUN dotnet publish "src/FormAPI.csproj" -o /publish
 
-FROM build AS publish
-RUN dotnet publish "src/FormAPI.csproj" -c Release -o /app/publish
-
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /publish .
+EXPOSE 8080
 ENTRYPOINT ["dotnet", "FormAPI.dll"]
