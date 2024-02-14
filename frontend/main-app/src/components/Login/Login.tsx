@@ -44,20 +44,8 @@ export const Login = (): React.JSX.Element => {
         Log in
       </Heading>
       <div className={classes.fieldContainer}>
-        <Textfield
-          name="email"
-          type="email"
-          label="E-mail"
-          className={classes.spacing}
-          error={formErrors?.email}
-        />
-        <Textfield
-          name="password"
-          type="password"
-          label="Password"
-          className={classes.spacing}
-          error={formErrors?.password}
-        />
+        <Textfield name="email" type="email" label="E-mail" error={formErrors?.email} />
+        <Textfield name="password" type="password" label="Password" error={formErrors?.password} />
       </div>
       <div className={classes.buttonContainer}>
         <Button type="submit" className={classes.button}>
