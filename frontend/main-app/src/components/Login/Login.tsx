@@ -4,7 +4,6 @@ import { Button, Heading, Textfield } from "@digdir/design-system-react";
 import classes from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import { validateLoginForm } from "./LoginUtils";
 import { LoginForm, LoginFormError } from "./types";
 
