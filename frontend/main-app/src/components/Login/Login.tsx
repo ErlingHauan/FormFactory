@@ -19,7 +19,8 @@ export const Login = (): React.JSX.Element => {
 
     // To-do: front end validation
 
-    const url = "https://localhost:4050/api/auth/login";
+    const url = `https://localhost:8080/api/auth/login`;
+    console.log(`Trying to connect to ${url}`);
 
     axios
       .post(url, {
