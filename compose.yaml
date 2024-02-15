@@ -11,17 +11,3 @@ services:
       - "3030:80"
     depends_on:
       - backend
-
-  db:
-    image: postgres:13
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_DB: mydatabase
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:

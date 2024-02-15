@@ -20,7 +20,7 @@ export const Login = (): React.JSX.Element => {
     const isFormValid: boolean = validateLoginForm({ loginForm, setFormErrors });
 
     if (isFormValid) {
-      const url = "https://localhost:4050/api/auth/login";
+      const url = "https://localhost:8080/api/auth/login";
       axios
         .post(url, {
           Email: loginForm.email,
