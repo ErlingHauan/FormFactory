@@ -1,11 +1,8 @@
 # Yarn
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+.yarn/caches
+.yarn/install-state.gz
 **/node_modules
+
 
 # dotenv files
 .env
