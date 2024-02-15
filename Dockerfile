@@ -6,7 +6,6 @@ RUN corepack enable
 RUN yarn
 RUN yarn build
 
-
 # Serving the frontend
 FROM nginx:alpine
 RUN rm /etc/nginx/nginx.conf
