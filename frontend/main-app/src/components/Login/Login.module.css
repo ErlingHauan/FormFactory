@@ -4,7 +4,7 @@
   background-color: var(--fds-semantic-background-default);
   box-shadow: var(--fds-shadow-small);
   padding: var(--fds-spacing-14);
-  width: fit-content;
+  max-width: 400px;
   gap: var(--fds-spacing-8);
 }
 
