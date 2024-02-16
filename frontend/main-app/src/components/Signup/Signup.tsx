@@ -21,7 +21,7 @@ export const Signup = (): React.JSX.Element => {
 
     // To-do: front end validation
 
-    const url = "https://localhost:4050/api/auth/signup";
+    const url = "http://localhost:8080/api/auth/signup";
 
     axios
       .post(url, {
