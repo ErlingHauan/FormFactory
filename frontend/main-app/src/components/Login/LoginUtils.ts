@@ -1,5 +1,7 @@
 import { z } from "zod";
 import { IValidateLoginForm, LoginForm, LoginFormError } from "./types";
+import axios from "axios";
+import { NavigateFunction } from "react-router-dom";
 
 const loginFormSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -20,3 +22,23 @@ export const validateLoginForm: IValidateLoginForm = ({ loginForm, setFormErrors
   setFormErrors(null);
   return true;
 };
+
+export function axiosPostForm(
+  targetUrl: string,
+  formData: FormData,
+  redirectUrl: string,
+  navigate: NavigateFunction,
+) {
+  const formObject = Object.fromEntries(formData);
+  axios
+    .post(targetUrl, formObject)
+    .then((response) => {
+      console.log(response);
+      if (response.status === 200) {
+        navigate(redirectUrl);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}

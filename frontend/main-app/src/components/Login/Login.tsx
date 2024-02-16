@@ -3,29 +3,12 @@ import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import { Button, Heading, Textfield } from "@digdir/design-system-react";
 import classes from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { validateLoginForm } from "./LoginUtils";
+import { axiosPostForm, validateLoginForm } from "./LoginUtils";
 import { LoginForm, LoginFormError } from "./types";
-
 
 export const Login = (): React.JSX.Element => {
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState<LoginFormError | null>(null);
-
-  function axiosPostForm(targetUrl: string, formData: FormData, redirectUrl: string) {
-    const formObject = Object.fromEntries(formData);
-    axios
-      .post(targetUrl, formObject)
-      .then((response) => {
-        console.log(response);
-        if (response.status === 200) {
-          navigate(redirectUrl);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -37,7 +20,7 @@ export const Login = (): React.JSX.Element => {
 
     if (formIsValid) {
       const targetUrl = "https://localhost:4050/api/auth/login";
-      axiosPostForm(targetUrl, formData, "/form-builder");
+      axiosPostForm(targetUrl, formData, "/form-builder", navigate);
     }
   };
 
