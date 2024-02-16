@@ -7,9 +7,25 @@ import axios from "axios";
 import { validateLoginForm } from "./LoginUtils";
 import { LoginForm, LoginFormError } from "./types";
 
+
 export const Login = (): React.JSX.Element => {
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState<LoginFormError | null>(null);
+
+  function axiosPostForm(targetUrl: string, formData: FormData, redirectUrl: string) {
+    const formObject = Object.fromEntries(formData);
+    axios
+      .post(targetUrl, formObject)
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          navigate(redirectUrl);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -17,24 +33,11 @@ export const Login = (): React.JSX.Element => {
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const loginForm: LoginForm = Object.fromEntries(formData) as LoginForm;
 
-    const isFormValid: boolean = validateLoginForm({ loginForm, setFormErrors });
+    const formIsValid: boolean = validateLoginForm({ loginForm, setFormErrors });
 
-    if (isFormValid) {
-      const url = "https://localhost:4050/api/auth/login";
-      axios
-        .post(url, {
-          Email: loginForm.email,
-          Password: loginForm.password,
-        })
-        .then((response) => {
-          console.log(response);
-          if (response.status === 200) {
-            navigate("/form-builder");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    if (formIsValid) {
+      const targetUrl = "https://localhost:4050/api/auth/login";
+      axiosPostForm(targetUrl, formData, "/form-builder");
     }
   };
 
