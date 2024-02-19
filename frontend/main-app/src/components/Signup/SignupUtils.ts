@@ -6,11 +6,11 @@ const signupFormSchema = z.object({
   password: z.string().min(8, "Password must be at least 8 characters long"),
   passwordRepeat: z.string().min(8, "Password must be at least 8 characters long")
 })
-  .refine((data: any) => data.password === data.passwordRepeat, {
+  .refine((data: Record<string, string>) => data.password === data.passwordRepeat, {
     message: "Passwords do not match",
     path: ["password"]
   })
-  .refine((data: any) => data.password === data.passwordRepeat, {
+  .refine((data: Record<string, string>) => data.password === data.passwordRepeat, {
     message: "Passwords do not match",
     path: ["passwordRepeat"]
   });
