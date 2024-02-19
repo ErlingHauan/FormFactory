@@ -20,9 +20,9 @@ export const Login = (): React.JSX.Element => {
     const isFormValid: boolean = validateLoginForm({ loginForm, setFormErrors });
 
     if (isFormValid) {
-
-      const port = process.env.BACKEND_PORT;
-      const url = `https://localhost:${port}/api/auth/login`;
+      const port = process.env.API_PORT;
+      const api = process.env.API_URL;
+      const url = `${api}:${port}/api/auth/login`;
 
       axios
         .post(url, {

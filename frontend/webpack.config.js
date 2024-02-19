@@ -37,7 +37,7 @@ module.exports = {
       template: "./public/index.html",
     }),
     new Dotenv({
-      path: "../../.env.ports"
+      path: "../../.env"
     }),
   ],
   devServer: {
