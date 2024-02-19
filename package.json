@@ -1,5 +1,7 @@
 {
   "private": true,
+  "packageManager": "yarn@4.0.2",
+  "prettier": "./config/prettier.config.js",
   "workspaces": [
     "frontend/form-builder",
     "frontend/main-app"
@@ -49,6 +51,5 @@
     "typecheck": "yarn workspaces foreach -A -p run typecheck",
     "codestyle:check": "prettier frontend --check",
     "codestyle:fix": "prettier frontend --write"
-  },
-  "packageManager": "yarn@4.0.2"
+  }
 }
