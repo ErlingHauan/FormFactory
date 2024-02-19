@@ -14,7 +14,7 @@ export const Login = (): React.JSX.Element => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
-    const loginForm: LoginForm = Object.fromEntries(formData) as LoginForm;
+    const loginForm: LoginForm = Object.fromEntries(formData);
     const formIsValid: boolean = validateLoginForm({ loginForm, setFormErrors });
 
     if (formIsValid) {
