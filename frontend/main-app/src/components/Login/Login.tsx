@@ -1,7 +1,7 @@
-import React, { FormEvent, useState } from "react";
+import classes from "./Login.module.css";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import { Button, Heading, Textfield } from "@digdir/design-system-react";
-import classes from "./Login.module.css";
+import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosPostForm, validateLoginForm } from "./LoginUtils";
 import { LoginForm, LoginFormError } from "./types";

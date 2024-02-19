@@ -1,11 +1,11 @@
-import React, { FormEvent, useState } from "react";
+import classes from "./Signup.module.css";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import { Button, Heading, Textfield } from "@digdir/design-system-react";
-import classes from "./Signup.module.css";
+import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosPostForm } from "../Login/LoginUtils";
-import { SignupForm, SignupFormError } from "./types";
 import { validateSignupForm } from "./SignupUtils";
+import { SignupForm, SignupFormError } from "./types";
 
 export const Signup = (): React.JSX.Element => {
   const navigate = useNavigate();
