@@ -2,6 +2,7 @@
 /* global module, __dirname, process, require */
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack")
 const path = require("path");
 const devServerPorts = require("./devServerPorts.json");
 
@@ -34,6 +35,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+    }),
+    new Dotenv({
+      path: "../../.env.ports"
     }),
   ],
   devServer: {
