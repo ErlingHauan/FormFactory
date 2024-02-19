@@ -11,7 +11,7 @@ export const Signup = (): React.JSX.Element => {
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState<SignupFormError | null>(null);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
@@ -19,8 +19,9 @@ export const Signup = (): React.JSX.Element => {
     const formIsValid: boolean = validateSignupForm({ signupForm, setFormErrors });
 
     if (formIsValid) {
-      const targetUrl = "https://localhost:8080/api/auth/signup";
-      axiosPostForm(targetUrl, formData) && navigate("/form-builder");
+      const apiUrl = process.env.API_URL_HTTP;
+      const targetUrl = `${apiUrl}/api/auth/signup`;
+      await axiosPostForm(targetUrl, formData) && navigate("/form-builder");
     }
   };
 

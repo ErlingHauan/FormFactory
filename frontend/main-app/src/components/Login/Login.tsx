@@ -10,7 +10,7 @@ export const Login = (): React.JSX.Element => {
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState<LoginFormError | null>(null);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
@@ -18,10 +18,9 @@ export const Login = (): React.JSX.Element => {
     const formIsValid: boolean = validateLoginForm({ loginForm, setFormErrors });
 
     if (formIsValid) {
-      const port = process.env.API_PORT;
-      const api = process.env.API_URL;
-      const targetUrl = `${api}:${port}/api/auth/login`;
-      axiosPostForm(targetUrl, formData) && navigate("/form-builder");
+      const apiUrl = process.env.API_URL_HTTP;
+      const targetUrl = `${apiUrl}/api/auth/login`;
+      await axiosPostForm(targetUrl, formData) && navigate("/form-builder");
     }
   };
 
