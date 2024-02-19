@@ -4,7 +4,7 @@ import axios from "axios";
 
 const loginFormSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters long"),
+  password: z.string().min(8, "Password must be at least 8 characters long")
 });
 
 export const validateLoginForm: IValidateLoginForm = ({ loginForm, setFormErrors }) => {
@@ -24,7 +24,7 @@ export const validateLoginForm: IValidateLoginForm = ({ loginForm, setFormErrors
 
 export const axiosPostForm = async (
   targetUrl: string,
-  formData: FormData,
+  formData: FormData
 ): Promise<boolean> => {
   const formObject = Object.fromEntries(formData);
   try {
@@ -37,4 +37,12 @@ export const axiosPostForm = async (
     console.log(error);
   }
   return false;
-}
+};
+
+export const getApiUrl = (): string => {
+  if (process.env.NODE_ENV === "development") {
+    return process.env.API_URL_DEVELOPMENT;
+  } else {
+    return process.env.API_URL_PRODUCTION;
+  }
+};

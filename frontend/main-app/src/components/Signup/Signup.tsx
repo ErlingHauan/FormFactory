@@ -3,7 +3,7 @@ import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import { Button, Heading, Textfield } from "@digdir/design-system-react";
 import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { axiosPostForm } from "../Login/LoginUtils";
+import { axiosPostForm, getApiUrl } from "../Login/LoginUtils";
 import { validateSignupForm } from "./SignupUtils";
 import { SignupForm, SignupFormError } from "./types";
 
@@ -19,7 +19,7 @@ export const Signup = (): React.JSX.Element => {
     const formIsValid: boolean = validateSignupForm({ signupForm, setFormErrors });
 
     if (formIsValid) {
-      const apiUrl = process.env.API_URL_HTTP;
+      const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/auth/signup`;
       await axiosPostForm(targetUrl, formData) && navigate("/form-builder");
     }
