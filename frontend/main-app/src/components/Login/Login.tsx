@@ -1,10 +1,9 @@
-import React, { FormEvent, useState } from "react";
+import classes from "./Login.module.css";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import { Button, Heading, Textfield } from "@digdir/design-system-react";
-import classes from "./Login.module.css";
+import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { validateLoginForm } from "./LoginUtils";
+import { axiosPostForm, validateLoginForm } from "./LoginUtils";
 import { LoginForm, LoginFormError } from "./types";
 
 export const Login = (): React.JSX.Element => {
@@ -15,26 +14,12 @@ export const Login = (): React.JSX.Element => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
-    const loginForm: LoginForm = Object.fromEntries(formData) as LoginForm;
+    const loginForm: LoginForm = Object.fromEntries(formData);
+    const formIsValid: boolean = validateLoginForm({ loginForm, setFormErrors });
 
-    const isFormValid: boolean = validateLoginForm({ loginForm, setFormErrors });
-
-    if (isFormValid) {
-      const url = "http://localhost:8080/api/auth/login";
-      axios
-        .post(url, {
-          Email: loginForm.email,
-          Password: loginForm.password,
-        })
-        .then((response) => {
-          console.log(response);
-          if (response.status === 200) {
-            navigate("/form-builder");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    if (formIsValid) {
+      const targetUrl = "https://localhost:8080/api/auth/login";
+      axiosPostForm(targetUrl, formData) && navigate("/form-builder");
     }
   };
 

@@ -1,55 +1,39 @@
-import React, { FormEvent } from "react";
+import classes from "./Signup.module.css";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import { Button, Heading, Textfield } from "@digdir/design-system-react";
-import classes from "./Signup.module.css";
+import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { axiosPostForm } from "../Login/LoginUtils";
+import { validateSignupForm } from "./SignupUtils";
+import { SignupForm, SignupFormError } from "./types";
 
 export const Signup = (): React.JSX.Element => {
   const navigate = useNavigate();
+  const [formErrors, setFormErrors] = useState<SignupFormError | null>(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
-    const signupForm = {
-      email: formData.get("email"),
-      organization: formData.get("organization"),
-      password: formData.get("password"),
-      passwordRepeat: formData.get("passwordRepeat"),
-    };
+    const signupForm: SignupForm = Object.fromEntries(formData);
+    const formIsValid: boolean = validateSignupForm({ signupForm, setFormErrors });
 
-    // To-do: front end validation
-
-    const url = "http://localhost:8080/api/auth/signup";
-
-    axios
-      .post(url, {
-        Email: signupForm.email,
-        Password: signupForm.password,
-        Organization: signupForm.organization,
-      })
-      .then((response) => {
-        console.log(response);
-        if (response.status === 200) {
-          navigate("/form-builder");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (formIsValid) {
+      const targetUrl = "https://localhost:8080/api/auth/signup";
+      axiosPostForm(targetUrl, formData) && navigate("/form-builder");
+    }
   };
 
   return (
-    <form className={classes.signupContainer} onSubmit={handleSubmit}>
+    <form className={classes.signupContainer} onSubmit={handleSubmit} noValidate>
       <Heading level={1} size="xlarge">
         Sign up
       </Heading>
       <div className={classes.fieldContainer}>
-        <Textfield name="email" type="email" label="E-mail" />
+        <Textfield name="email" type="email" label="E-mail" error={formErrors?.email} />
         <Textfield name="organization" label="Organization" placeholder="Optional" />
-        <Textfield name="password" type="password" label="Password" />
-        <Textfield name="passwordRepeat" type="password" label="Repeat password" />
+        <Textfield name="password" type="password" label="Password" error={formErrors?.password} />
+        <Textfield name="passwordRepeat" type="password" label="Repeat password" error={formErrors?.passwordRepeat} />
       </div>
       <div className={classes.buttonContainer}>
         <Button type="submit" className={classes.button}>
