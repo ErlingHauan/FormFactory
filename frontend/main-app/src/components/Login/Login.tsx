@@ -18,7 +18,7 @@ export const Login = (): React.JSX.Element => {
     const formIsValid: boolean = validateLoginForm({ loginForm, setFormErrors });
 
     if (formIsValid) {
-      const targetUrl = "https://localhost:4050/api/auth/login";
+      const targetUrl = "https://localhost:8080/api/auth/login";
       axiosPostForm(targetUrl, formData) && navigate("/form-builder");
     }
   };

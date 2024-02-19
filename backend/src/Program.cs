@@ -6,20 +6,16 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors(builder =>
     builder
-        .WithOrigins("http://localhost:3050")
+        .WithOrigins("http://localhost:3050", "http://localhost:3030")
         .AllowAnyMethod()
         .AllowAnyHeader()
 );
 
-app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
