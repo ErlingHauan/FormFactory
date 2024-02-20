@@ -19,7 +19,7 @@ export const Signup = (): React.JSX.Element => {
     const formIsValid: boolean = validateSignupForm({ signupForm, setFormErrors });
 
     if (formIsValid) {
-      const targetUrl = "https://localhost:8080/api/auth/signup";
+      const targetUrl = "https://localhost:8081/api/auth/signup";
       axiosPostForm(targetUrl, formData) && navigate("/form-builder");
     }
   };

@@ -8,5 +8,6 @@ RUN dotnet publish "src/FormAPI.csproj" -o /publish
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 COPY --from=build /publish .
-EXPOSE 8080
+COPY formfactory.pfx /https/
+EXPOSE 8081
 ENTRYPOINT ["dotnet", "FormAPI.dll"]
