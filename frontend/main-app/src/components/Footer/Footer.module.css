@@ -12,6 +12,7 @@
 
   .linkContainer {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     text-align: left;
     gap: var(--fds-spacing-4);
@@ -19,5 +20,13 @@
 
   a {
     color: inherit !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .linkContainer > * {
+    text-align: center;
+    margin: auto;
+    line-height: 1.5;
   }
 }

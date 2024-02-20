@@ -3,29 +3,35 @@ import { Heading, Link } from "@digdir/design-system-react";
 import { ClipboardCheckmarkFillIcon } from "@navikt/aksel-icons";
 import classes from "./Header.module.css";
 import { DropdownMenu } from "@digdir/design-system-react";
-import { MenuHamburgerIcon } from "@navikt/aksel-icons";
 
 export const Header = (): React.JSX.Element => {
   const isSmallScreen = window.innerWidth < 768;
 
+  const HeadingBrand = () => (
+    <Link href="/" className={classes.headerLink}>
+      <Heading level={1} size="medium">
+        Form Factory
+      </Heading>
+      <ClipboardCheckmarkFillIcon className={classes.headerIcon} />
+    </Link>
+  );
+
   if (isSmallScreen) {
     return (
       <header className={classes.header}>
-        <Link href="/" className={classes.headerLink}>
-          <Heading level={1} size="medium">
-            Form Factory
-          </Heading>
-          <ClipboardCheckmarkFillIcon className={classes.headerIcon} />
-        </Link>
+        <HeadingBrand />
         <DropdownMenu size="small">
-          <ul>
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/form-builder">Form Builder</Link>
-            </li>
-          </ul>
+          <DropdownMenu.Trigger>Menu</DropdownMenu.Trigger>
+          <DropdownMenu.Content>
+            <DropdownMenu.Group>
+              <DropdownMenu.Item asChild>
+                <a href="/">Home</a>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item asChild>
+                <a href="/form-builder">Form Builder</a>
+              </DropdownMenu.Item>
+            </DropdownMenu.Group>
+          </DropdownMenu.Content>
         </DropdownMenu>
       </header>
     );
@@ -33,12 +39,7 @@ export const Header = (): React.JSX.Element => {
 
   return (
     <header className={classes.header}>
-      <Link href="/" className={classes.headerLink}>
-        <Heading level={1} size="medium">
-          Form Factory
-        </Heading>
-        <ClipboardCheckmarkFillIcon className={classes.headerIcon} />
-      </Link>
+      <HeadingBrand />
       <nav className={classes.nav}>
         <ul>
           <li>
