@@ -5,7 +5,7 @@
   align-items: center;
   color: var(--fds-semantic-text-neutral-on_inverted);
   background-color: var(--fds-semantic-surface-neutral-inverted);
-  background-image: url(../../../public/footerBackground.svg);
+  background-image: url(./footerBackground.svg);
   background-size: cover;
   min-height: calc(2 * var(--fds-spacing-30));
   gap: var(--fds-spacing-1);
