@@ -46,3 +46,9 @@
     padding: 0 var(--fds-spacing-10);
   }
 }
+
+@media screen and (max-width: 360px) {
+  .header {
+    padding: 0 var(--fds-spacing-3);
+  }
+}
