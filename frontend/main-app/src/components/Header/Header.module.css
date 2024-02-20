@@ -1,6 +1,5 @@
 .header {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   height: var(--fds-sizing-26);
   padding: 0 var(--fds-spacing-30);
@@ -38,5 +37,17 @@
   a:hover {
     box-shadow: 0px 2px var(--fds-semantic-border-action-subtle);
     transition: box-shadow 0.1s;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 var(--fds-spacing-10);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 0 var(--fds-spacing-5);
   }
 }
