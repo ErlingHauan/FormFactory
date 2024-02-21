@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Heading, Link } from "@digdir/design-system-react";
 import { ClipboardCheckmarkFillIcon } from "@navikt/aksel-icons";
 import classes from "./Header.module.css";
 import { DropdownMenu } from "@digdir/design-system-react";
 
 export const Header = (): React.JSX.Element => {
-  const isSmallScreen = window.innerWidth < 768;
+  const [windowSize, setWindowSize] = React.useState(window.innerWidth);
+  const isSmallScreen = windowSize < 600;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const HeadingBrand = () => (
     <Link href="/" className={classes.headerLink}>
