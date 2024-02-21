@@ -4,6 +4,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const devServerPorts = require("./devServerPorts.json");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -28,12 +29,24 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
-      },
+      }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html"
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "*",
+          to: "",
+          context: "public",
+          globOptions: {
+            ignore: ["**/*.html"]
+          }
+        }
+      ]
     })
   ],
   devServer: {
