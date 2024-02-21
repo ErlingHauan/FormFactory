@@ -6,6 +6,10 @@ const path = require("path");
 const devServerPorts = require("./devServerPorts.json");
 const CopyPlugin = require("copy-webpack-plugin");
 
+const isMainApp = () => {
+  return process.env.npm_package_name === "main-app";
+}
+
 module.exports = {
   entry: "./src/index.tsx",
   devtool: "source-map",
@@ -36,7 +40,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html"
     }),
-    new CopyPlugin({
+    isMainApp() && new CopyPlugin({
       patterns: [
         {
           from: "*",
