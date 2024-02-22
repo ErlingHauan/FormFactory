@@ -7,6 +7,20 @@ import { Footer } from "../components/Footer";
 import { Signup } from "../components/Signup";
 import { FormBuilder } from "../../../form-builder";
 import { Login } from "../components/Login";
+import i18next from "i18next";
+import { initReactI18next } from "react-i18next";
+import nb from "../../../language/src/nor.json";
+
+i18next.use(initReactI18next).init({
+  resources: {
+    nb: { translation: nb },
+  },
+  lng: "nb",
+  fallbackLng: "nb",
+  react: {
+    useSuspense: false,
+  },
+});
 
 export const App = (): React.JSX.Element => {
   return (
