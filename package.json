@@ -7,8 +7,8 @@
     "frontend/main-app"
   ],
   "dependencies": {
-    "@digdir/design-system-react": "^0.47.0",
-    "@digdir/design-system-tokens": "^0.12.0",
+    "@digdir/design-system-react": "^0.50.0",
+    "@digdir/design-system-tokens": "^0.13.0",
     "@navikt/aksel-icons": "^5.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

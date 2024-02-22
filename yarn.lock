@@ -438,12 +438,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@digdir/design-system-react@npm:^0.47.0":
-  version: 0.47.0
-  resolution: "@digdir/design-system-react@npm:0.47.0"
+"@digdir/design-system-react@npm:^0.50.0":
+  version: 0.50.0
+  resolution: "@digdir/design-system-react@npm:0.50.0"
   dependencies:
     "@altinn/figma-design-tokens": "npm:^6.0.1"
-    "@digdir/design-system-tokens": "npm:^0.12.0"
+    "@digdir/design-system-tokens": "npm:^0.13.0"
     "@floating-ui/react": "npm:0.26.4"
     "@navikt/aksel-icons": "npm:^5.12.2"
     "@radix-ui/react-slot": "npm:^1.0.2"
@@ -452,14 +452,14 @@ __metadata:
   peerDependencies:
     react: ">=18.2.0"
     react-dom: ">=18.2.0"
-  checksum: c3225ded8285def2512885475b2a459b73b016293bd0f2c574b537729ab5d8d1a294e0d40cb7dd2d9a5d2e70d7a7dd540eaaa3b49d1b92f73685790ca4fdde07
+  checksum: a503263941df9b50e5bb9b39d2d38c2bc980daae6ac80c227b368cff29c1be1b896824dae5bf5cebe2b06f6c10fd49a6f5d594371518a50f0bd4579ca65917d3
   languageName: node
   linkType: hard
 
-"@digdir/design-system-tokens@npm:^0.12.0":
-  version: 0.12.0
-  resolution: "@digdir/design-system-tokens@npm:0.12.0"
-  checksum: 0a558b72cd1d240df32b7f9f2d161324435ab187f2871cc1a8fba1ffb86244e22a61f3b984a88499edde4bd121bfc2737499f91d47f9904963c8bee3922d0a4a
+"@digdir/design-system-tokens@npm:^0.13.0":
+  version: 0.13.0
+  resolution: "@digdir/design-system-tokens@npm:0.13.0"
+  checksum: c5cd258836d532df68e102a5aef6aeb810b88ae8e1d898742ba80db416bd68dd4826a44a2d5b841241e89591e08fafea1ae526825afd7753b2541faa151ae82f
   languageName: node
   linkType: hard
 
@@ -7303,8 +7303,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@digdir/design-system-react": "npm:^0.47.0"
-    "@digdir/design-system-tokens": "npm:^0.12.0"
+    "@digdir/design-system-react": "npm:^0.50.0"
+    "@digdir/design-system-tokens": "npm:^0.13.0"
     "@navikt/aksel-icons": "npm:^5.17.1"
     "@testing-library/jest-dom": "npm:^6.4.2"
     "@testing-library/react": "npm:^14.2.1"

@@ -37,8 +37,8 @@ export const Login = (): React.JSX.Element => {
         <Button type="submit" className={classes.button}>
           Log in
         </Button>
-        <Button className={classes.button} as="a" href="/signup" variant="secondary" size="small">
-          Go to the sign up page
+        <Button className={classes.button} asChild variant="secondary" size="small">
+          <a href="/signup">Go to the sign up page</a>
         </Button>
       </div>
     </form>

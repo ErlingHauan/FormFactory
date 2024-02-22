@@ -34,14 +34,19 @@ export const Signup = (): React.JSX.Element => {
         <Textfield name="email" type="email" label="E-mail" error={formErrors?.email} />
         <Textfield name="organization" label="Organization" placeholder="Optional" />
         <Textfield name="password" type="password" label="Password" error={formErrors?.password} />
-        <Textfield name="passwordRepeat" type="password" label="Repeat password" error={formErrors?.passwordRepeat} />
+        <Textfield
+          name="passwordRepeat"
+          type="password"
+          label="Repeat password"
+          error={formErrors?.passwordRepeat}
+        />
       </div>
       <div className={classes.buttonContainer}>
         <Button type="submit" className={classes.button}>
           Sign up
         </Button>
-        <Button className={classes.button} as="a" href="/login" variant="secondary" size="small">
-          Go to the log in page
+        <Button className={classes.button} asChild href="/login" variant="secondary" size="small">
+          <a>Go to the log in page</a>
         </Button>
       </div>
     </form>
