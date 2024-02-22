@@ -31,6 +31,7 @@ services:
     environment:
       - POSTGRES_USER=formfactory
       - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=formfactory
 
 volumes:
   db:
