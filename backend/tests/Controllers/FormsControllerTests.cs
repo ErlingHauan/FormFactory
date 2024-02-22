@@ -27,10 +27,10 @@ public class FormsControllerTests(WebApplicationFactory<FormsController> formApi
         HttpClient client = GetTestClient();
 
         var response = await client.GetAsync(url);
-        Form responseObject = await response.Content.ReadAsAsync<Form>();
+        FormEntity responseObject = await response.Content.ReadAsAsync<FormEntity>();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.IsType<Form>(responseObject);
+        Assert.IsType<FormEntity>(responseObject);
     }
 
     [Fact]
@@ -38,12 +38,12 @@ public class FormsControllerTests(WebApplicationFactory<FormsController> formApi
     {
         string url = "/forms";
         HttpClient client = GetTestClient();
-        var form = new Form { Name = "Ola Nordmann", Email = "ola@norge.no" };
+        var form = new FormEntity { Name = "Ola Nordmann", Email = "ola@norge.no" };
         var httpContent = new StringContent(JsonConvert.SerializeObject(form), Encoding.UTF8, "application/json");
 
         var response = await client.PostAsync(url, httpContent);
         var responseContent = await response.Content.ReadAsStringAsync();
-        var returnedForm = JsonConvert.DeserializeObject<Form>(responseContent);
+        var returnedForm = JsonConvert.DeserializeObject<FormEntity>(responseContent);
 
         Assert.NotNull(returnedForm);
         Assert.Equal(form.Name, returnedForm.Name);
