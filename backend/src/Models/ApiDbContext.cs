@@ -2,11 +2,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FormAPI.Models;
 
-public class DbContext : Microsoft.EntityFrameworkCore.DbContext
+public class ApiDbContext : DbContext
 {
     protected readonly IConfiguration Configuration;
 
-    public DbContext(IConfiguration configuration)
+    public ApiDbContext(IConfiguration configuration)
     {
         Configuration = configuration;
     }

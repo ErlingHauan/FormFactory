@@ -2,18 +2,20 @@
 using FormAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using DbContext = FormAPI.Models.DbContext;
 
 #nullable disable
 
 namespace FormAPI.Migrations
 {
-    [DbContext(typeof(DbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApiDbContext))]
+    [Migration("20240223092421_AddSeedData")]
+    partial class AddSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace FormAPI.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("FormAPI.Models.User", b =>
+            modelBuilder.Entity("FormAPI.Models.UserEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,19 +33,40 @@ namespace FormAPI.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Organization")
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "a@a.com",
+                            Organization = "A.com",
+                            Password = "12345678"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "johnny@testepartementet.no",
+                            Organization = "Testdepartementet",
+                            Password = "johnny123"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "test@test.com",
+                            Organization = "",
+                            Password = "12345678"
+                        });
                 });
 #pragma warning restore 612, 618
         }

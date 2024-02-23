@@ -14,9 +14,9 @@ public interface IUserRepository
 
 public class UserRepository : IUserRepository
 {
-    private readonly DbContext _context;
+    private readonly ApiDbContext _context;
 
-    public UserRepository(DbContext context)
+    public UserRepository(ApiDbContext context)
     {
         this._context = context;
     }
