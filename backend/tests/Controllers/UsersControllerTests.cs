@@ -23,12 +23,11 @@ public class UsersControllerTests(WebApplicationFactory<UsersController> userApi
     [Fact]
     public async Task Post_LoginReturnsOk()
     {
-        string url = "/api/auth/login";
+        string url = "/api/users/login";
         var user = new
         {
-            Id = 0,
             Email = "test@test.com",
-            Password = "123456",
+            Password = "12345678",
             Organization = "Testdepartementet"
         };
 
@@ -42,13 +41,12 @@ public class UsersControllerTests(WebApplicationFactory<UsersController> userApi
     }
 
     [Fact]
-    public async Task Post_LoginReturnsBadRequest()
+    public async Task Post_LoginReturnsUnauthorized()
     {
-        string url = "/api/auth/login";
+        string url = "/api/users/login";
         var user = new
         {
-            Id = 0,
-            Email = "",
+            Email = "emailNotInDb@email.com",
             Password = "123456",
             Organization = "Testdepartementet"
         };
@@ -59,18 +57,17 @@ public class UsersControllerTests(WebApplicationFactory<UsersController> userApi
         HttpClient client = GetTestClient();
         var response = await client.PostAsync(url, content);
 
-        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
     }
 
     [Fact]
-    public async Task Post_SignupReturnsOk()
+    public async Task Post_SignupReturnsCreated()
     {
-        string url = "/api/auth/signup";
+        string url = "/api/users";
         var user = new
         {
-            Id = 0,
-            Email = "test@test.com",
-            Password = "123456",
+            Email = "someTestEmail@test.com",
+            Password = "12345678",
             Organization = "Testdepartementet"
         };
 
@@ -80,16 +77,15 @@ public class UsersControllerTests(WebApplicationFactory<UsersController> userApi
         HttpClient client = GetTestClient();
         var response = await client.PostAsync(url, content);
 
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
     }
 
     [Fact]
     public async Task Post_SignupReturnsBadRequest()
     {
-        string url = "/api/auth/signup";
+        string url = "/api/users";
         var user = new
         {
-            Id = 0,
             Email = "",
             Password = "123456",
             Organization = "Testdepartementet"
