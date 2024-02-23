@@ -7,7 +7,7 @@ To run the build in containers, run `docker-compose up --build` and then `yarn d
 
 Access the frontend on http://localhost:3030. \
 The backend endpoints can be viewed at https://localhost:8081/swagger. \
-A database GUI is available on http://localhost:5050/.
+A database GUI is available on http://localhost:5050/ (log in with "a@a.com" and password "123456").
 
 ## Run in development mode
 If you want to run the frontend or the backend outside of Docker, please see the steps below. \
