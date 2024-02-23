@@ -16,11 +16,11 @@ export const Login = (): React.JSX.Element => {
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const loginForm: LoginForm = Object.fromEntries(formData);
     const formIsValid: boolean = validateLoginForm({ loginForm, setFormErrors });
-    
+
     if (formIsValid) {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/users/login`;
-      await axiosPostForm(targetUrl, formData) && navigate("/form-builder");
+      (await axiosPostForm(targetUrl, formData)) && navigate("/form-builder");
     }
   };
 

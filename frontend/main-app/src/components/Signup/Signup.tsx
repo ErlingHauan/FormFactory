@@ -21,7 +21,7 @@ export const Signup = (): React.JSX.Element => {
     if (formIsValid) {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/users`;
-      await axiosPostForm(targetUrl, formData) && navigate("/form-builder");
+      (await axiosPostForm(targetUrl, formData)) && navigate("/form-builder");
     }
   };
 
