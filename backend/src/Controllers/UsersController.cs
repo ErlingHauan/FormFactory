@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FormAPI.Controllers;
 
 [ApiController]
-[Route("/api/auth/")]
+[Route("/api/users/")]
 public class UsersController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
@@ -66,9 +66,9 @@ public class UsersController : ControllerBase
     [HttpPost("login")]
     public async Task<ActionResult> Login([FromBody] UserDto dto)
     {
-        if (await _userRepository.Get(dto.Id) == null)
+        if (await _userRepository.GetAndAuthenticate(dto) == null)
         {
-            return Unauthorized("User not found");
+            return Unauthorized("Email/password combination is not valid");
         }
 
         return Ok();

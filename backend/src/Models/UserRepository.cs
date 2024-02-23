@@ -6,6 +6,7 @@ public interface IUserRepository
 {
     Task<List<UserDto>> GetAll();
     Task<UserDto?> Get(int id);
+    Task<UserDto?> GetAndAuthenticate(UserDto dto);
     Task<UserDto> Add(UserDto dto);
     Task<UserDto> Update(UserDto dto);
     Task Delete(int id);
@@ -20,9 +21,9 @@ public class UserRepository : IUserRepository
         this._context = context;
     }
 
-    private static UserDto EntityToDto(UserEntity u)
+    private static UserDto EntityToDto(UserEntity user)
     {
-        return new UserDto(u.Id, u.Email, u.Password, u.Organization);
+        return new UserDto(user.Id, user.Email, user.Password, user.Organization);
     }
 
     private static void DtoToEntity(UserDto dto, UserEntity e)
@@ -41,7 +42,25 @@ public class UserRepository : IUserRepository
     {
         var entity = await _context.Users.SingleOrDefaultAsync(u => u.Id == userId);
         if (entity == null)
+        {
+            Console.WriteLine($"User with ID {userId} was not found.");
             return null;
+        }
+
+        return EntityToDto(entity);
+    }
+
+    public async Task<UserDto?> GetAndAuthenticate(UserDto dto)
+    {
+        var entity = await _context.Users.FirstOrDefaultAsync(user =>
+            user.Email == dto.Email && user.Password == dto.Password);
+
+        if (entity == null)
+        {
+            Console.WriteLine($"User {dto.Email}, or the users password was not found.");
+            return null;
+        }
+
         return EntityToDto(entity);
     }
 

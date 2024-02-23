@@ -1,6 +1,4 @@
-using FormAPI.Migrations;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace FormAPI.Models;
 
@@ -24,7 +22,4 @@ public class DbContext : Microsoft.EntityFrameworkCore.DbContext
     }
 
     public DbSet<UserEntity> Users => Set<UserEntity>();
-
-
 }
-
