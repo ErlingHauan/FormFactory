@@ -9,10 +9,12 @@ describe("Header component", () => {
     render(<Header />);
 
     // Act
-    const title = await screen.getByRole("heading", { name: "Form Factory" });
-    const titleLink = await screen.getByRole("link", { name: "Form Factory" });
-    const homeLink = await screen.getByRole("link", { name: "Home" });
-    const formBuilderLink = await screen.getByRole("link", { name: "Form Builder" });
+    const title = await screen.getByRole("heading", { name: "header_form.factory.title.link" });
+    const titleLink = await screen.getByRole("link", { name: "header_form.factory.title.link" });
+    const homeLink = await screen.getByRole("link", { name: "header_form.factory.home.link" });
+    const formBuilderLink = await screen.getByRole("link", {
+      name: "header_form.factory.form.builder.link",
+    });
 
     // Assert
     expect(title).toBeInTheDocument();

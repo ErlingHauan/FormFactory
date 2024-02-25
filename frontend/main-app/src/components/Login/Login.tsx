@@ -18,11 +18,11 @@ export const Login = (): React.JSX.Element => {
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const loginForm: LoginForm = Object.fromEntries(formData);
     const formIsValid: boolean = validateLoginForm({ loginForm, setFormErrors });
-    
+
     if (formIsValid) {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/auth/login`;
-      await axiosPostForm(targetUrl, formData) && navigate("/form-builder");
+      (await axiosPostForm(targetUrl, formData)) && navigate("/form-builder");
     }
   };
 
@@ -32,8 +32,18 @@ export const Login = (): React.JSX.Element => {
         {t("login_page.title")}
       </Heading>
       <div className={classes.fieldContainer}>
-        <Textfield name="email" type="email" label="E-mail" error={formErrors?.email} />
-        <Textfield name="password" type="password" label="Password" error={formErrors?.password} />
+        <Textfield
+          name="email"
+          type="email"
+          label="signup_page.email.label"
+          error={formErrors?.email}
+        />
+        <Textfield
+          name="password"
+          type="password"
+          label="signup_page.password.label"
+          error={formErrors?.password}
+        />
       </div>
       <div className={classes.buttonContainer}>
         <Button type="submit" className={classes.button}>
