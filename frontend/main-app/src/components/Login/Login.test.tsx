@@ -5,7 +5,7 @@ import { Login } from "./Login";
 import { MemoryRouter } from "react-router";
 
 describe("Login component", () => {
-  it("loads and displays Login component", async () => {
+  it("loads and displays Login component", () => {
     // Arrange
     render(
       <MemoryRouter>

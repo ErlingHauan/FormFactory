@@ -35,13 +35,13 @@ export const Login = (): React.JSX.Element => {
         <Textfield
           name="email"
           type="email"
-          label="signup_page.email.label"
+          label={t("signup_page.email.label")}
           error={formErrors?.email}
         />
         <Textfield
           name="password"
           type="password"
-          label="signup_page.password.label"
+          label={t("signup_page.password.label")}
           error={formErrors?.password}
         />
       </div>

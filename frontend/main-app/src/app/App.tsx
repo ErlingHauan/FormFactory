@@ -9,14 +9,14 @@ import { FormBuilder } from "../../../form-builder";
 import { Login } from "../components/Login";
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
-import nb from "../../../language/src/nor.json";
+import en from "../../../language/src/en.json";
 
 i18next.use(initReactI18next).init({
   resources: {
-    nb: { translation: nb },
+    en: { translation: en },
   },
-  lng: "nb",
-  fallbackLng: "nb",
+  lng: "en",
+  fallbackLng: "en",
   react: {
     useSuspense: false,
   },

@@ -16,12 +16,12 @@ export const SettingsSidebar = (): React.JSX.Element => {
         className={classes.spacing}
       />
       <Textfield
-        label={t("settings_side_bar.minimum.lenght")}
+        label={t("settings_side_bar.minimum.length")}
         size="small"
         className={classes.spacing}
       />
       <Textfield
-        label={t("settings_side_bar.maximum.lenght")}
+        label={t("settings_side_bar.maximum.length")}
         size="small"
         className={classes.spacing}
       />
