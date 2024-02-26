@@ -1,7 +1,7 @@
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./Dashboard.module.css";
 import React from "react";
-import { Accordion, Button, Heading, Modal, Paragraph } from "@digdir/design-system-react";
+import { Accordion, Button, Heading, Paragraph } from "@digdir/design-system-react";
 import {
   ClipboardLinkFillIcon,
   CloudDownFillIcon,
@@ -9,6 +9,7 @@ import {
   PersonEnvelopeFillIcon,
   TrashFillIcon
 } from "@navikt/aksel-icons";
+import { FormModal } from "../FormModal/FormModal";
 
 export const Dashboard = (): React.JSX.Element => {
 
@@ -24,7 +25,6 @@ export const Dashboard = (): React.JSX.Element => {
           </a>
         </Button>
       </div>
-
       <Accordion border={true}>
         <Accordion.Item>
           <Accordion.Header>
@@ -43,16 +43,9 @@ export const Dashboard = (): React.JSX.Element => {
             </div>
             <div className={classes.buttonContainer}>
               <Button><ClipboardLinkFillIcon />Share form</Button>
-              <Modal.Root>
-                <Modal.Trigger><PersonEnvelopeFillIcon />View responses</Modal.Trigger>
-                <Modal.Dialog className={classes.modalContainer}>
-                  <Modal.Header>Response 1</Modal.Header>
-                  <Modal.Content>
-                    <Heading level={6} size="small">What is your favorite animal?</Heading>
-                    <Paragraph spacing={true}>Cat</Paragraph>
-                  </Modal.Content>
-                </Modal.Dialog>
-              </Modal.Root>
+              <FormModal>
+                <PersonEnvelopeFillIcon />View responses
+              </FormModal>
               <Button><CloudDownFillIcon />Download data</Button>
               <Button color="danger"><TrashFillIcon />Delete form</Button>
             </div>

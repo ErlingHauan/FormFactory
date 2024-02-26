@@ -18,17 +18,8 @@
     justify-content: space-between;
 }
 
-.infoContainer {
-    
-}
-
 .buttonContainer{
     display: flex;
     flex-direction: column;
     gap: var(--fds-spacing-4);
-}
-
-.modalContainer {
-    justify-self: center;
-    align-self: center;
 }
