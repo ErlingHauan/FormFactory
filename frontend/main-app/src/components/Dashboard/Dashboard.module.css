@@ -1,0 +1,34 @@
+.dashboard {
+    width: 100%;
+    padding: var(--fds-spacing-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--fds-spacing-8);
+}
+
+.headingContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.accordionContentContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.infoContainer {
+    
+}
+
+.buttonContainer{
+    display: flex;
+    flex-direction: column;
+    gap: var(--fds-spacing-4);
+}
+
+.modalContainer {
+    justify-self: center;
+    align-self: center;
+}
