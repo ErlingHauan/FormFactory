@@ -2,7 +2,6 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   height: var(--fds-sizing-26);
   padding: 0 var(--fds-spacing-30);
@@ -43,8 +42,15 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 var(--fds-spacing-14);
+  }
+}
+
 @media screen and (max-width: 600px) {
   .header {
     padding: 0 var(--padding-small-frame);
+    justify-content: space-between;
   }
 }
