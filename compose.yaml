@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   backend:
+    container_name: formfactory-backend
     build: ./backend
     ports:
       - "8081:8081"
@@ -8,10 +9,30 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=123456
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/formfactory.pfx
       - ASPNETCORE_URLS=https://+:8081
+    depends_on: 
+      - db
 
   frontend:
+    container_name: formfactory-frontend
     build: .
     ports:
       - "3030:80"
     depends_on:
       - backend
+
+  db:
+    container_name: formfactory-db
+    image: postgres:16.2-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=formfactory
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=formfactory-db
+
+volumes:
+  db:
+    driver: local

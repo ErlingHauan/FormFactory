@@ -1,11 +1,11 @@
 # Building the backend
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 WORKDIR /src
 COPY . .
 RUN dotnet publish "src/FormAPI.csproj" -o /publish
 
 # Serving the backend
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS base
 WORKDIR /app
 COPY --from=build /publish .
 COPY formfactory.pfx /https/
