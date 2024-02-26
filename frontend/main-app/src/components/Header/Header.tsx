@@ -37,6 +37,9 @@ export const Header = (): React.JSX.Element => {
                 <a href="/">Home</a>
               </DropdownMenu.Item>
               <DropdownMenu.Item asChild>
+                <a href="/dashboard">Dashboard</a>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item asChild>
                 <a href="/form-builder">Form Builder</a>
               </DropdownMenu.Item>
             </DropdownMenu.Group>
@@ -53,6 +56,9 @@ export const Header = (): React.JSX.Element => {
         <ul>
           <li>
             <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/dashboard">Dashboard</Link>
           </li>
           <li>
             <Link href="/form-builder">Form Builder</Link>

@@ -7,6 +7,7 @@ import { Footer } from "../components/Footer";
 import { Signup } from "../components/Signup";
 import { FormBuilder } from "../../../form-builder";
 import { Login } from "../components/Login";
+import { Dashboard } from "../components/Dashboard/Dashboard";
 
 export const App = (): React.JSX.Element => {
   return (
@@ -17,6 +18,7 @@ export const App = (): React.JSX.Element => {
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/form-builder" element={<FormBuilder />} />
         </Routes>
       </main>
