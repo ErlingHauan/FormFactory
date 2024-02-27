@@ -11,27 +11,9 @@ import {
 } from "@navikt/aksel-icons";
 import { FormModal } from "../FormModal/FormModal";
 import { useTranslation } from "react-i18next";
+import formData from "./formData.json"
 
-// Note: Currently this component contains placeholder data. Later, it will load its data dynamically from the database.
-
-const forms = [
-  {
-    id: 1,
-    title: "Form 1",
-    description: "A survey of the users of Form Factory.",
-    status: "Published - June 26th 2024",
-    expirationDate: "Not set",
-    submissions: 19
-  },
-  {
-    id: 2,
-    title: "Form 2",
-    description: "A survey of the users of other form.",
-    status: "Published - June 32th 2028",
-    expirationDate: "Not set",
-    submissions: 16
-  }
-];
+const forms= formData;
 
 interface CustomParagraphProps {
   heading: string;
@@ -72,7 +54,7 @@ export const Dashboard = (): React.JSX.Element => {
         </Heading>
         <Button color="success" asChild>
           <a href="/form-builder">
-            <FilePlusFillIcon />{t("dashboard.new_form")}
+            <FilePlusFillIcon />{t("dashboard.new.form")}
           </a>
         </Button>
       </div>
