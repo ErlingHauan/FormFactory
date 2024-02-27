@@ -19,8 +19,8 @@ body {
   min-height: calc(100vh - var(--fds-sizing-26) - calc(2 * var(--fds-spacing-30)));
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .main {
-    padding: 0;
+    padding: var(--fds-spacing-14) var(--padding-small-frame);
   }
 }

@@ -6,7 +6,7 @@ import { DropdownMenu } from "@digdir/design-system-react";
 
 export const Header = (): React.JSX.Element => {
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
-  const isSmallScreen = windowSize < 600;
+  const isSmallScreen = windowSize < 1000;
 
   useEffect(() => {
     const handleResize = () => {

@@ -15,7 +15,8 @@ body {
 
 .builderSection {
   background-color: var(--fds-semantic-background-default);
-  box-shadow: var(--fds-shadow-small);
+  border: 1px solid var(--fds-semantic-border-neutral-subtle);
+  border-radius: var(--fds-border_radius-medium);
   padding: var(--fds-spacing-5);
   text-align: center;
 }

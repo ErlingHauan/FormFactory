@@ -42,13 +42,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
-  .header {
-    padding: 0 var(--fds-spacing-14);
-  }
-}
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .header {
     padding: 0 var(--padding-small-frame);
     justify-content: space-between;
