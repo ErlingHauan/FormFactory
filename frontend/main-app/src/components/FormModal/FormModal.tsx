@@ -6,6 +6,8 @@ interface FormModalProps {
   children: ReactNode;
 }
 
+// Note: Currently this component contains placeholder data. Later, it will load its data dynamically from the database.
+
 export const FormModal: React.FC<FormModalProps> = ({ children }) => {
   return (
     <Modal.Root>

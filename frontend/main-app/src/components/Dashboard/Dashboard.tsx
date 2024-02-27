@@ -11,8 +11,9 @@ import {
 } from "@navikt/aksel-icons";
 import { FormModal } from "../FormModal/FormModal";
 
-export const Dashboard = (): React.JSX.Element => {
+// Note: Currently this component contains placeholder data. Later, it will load its data dynamically from the database.
 
+export const Dashboard = (): React.JSX.Element => {
   return (
     <main className={classes.dashboard}>
       <div className={classes.headingContainer}>
@@ -58,7 +59,26 @@ export const Dashboard = (): React.JSX.Element => {
           <Accordion.Header>
             <Heading level={2} size="medium">Form 2</Heading>
           </Accordion.Header>
-          <Accordion.Content>Form content</Accordion.Content>
+          <Accordion.Content className={classes.accordionContentContainer}>
+            <div className={classes.infoContainer}>
+              <Heading level={6} size="small">Description</Heading>
+              <Paragraph spacing={true}>A survey of the users of Form Factory.</Paragraph>
+              <Heading level={6} size="small">Status</Heading>
+              <Paragraph spacing={true}>Published - June 26th 2024</Paragraph>
+              <Heading level={6} size="small">Expiration date</Heading>
+              <Paragraph spacing={true}>Not set</Paragraph>
+              <Heading level={6} size="small">Submissions</Heading>
+              <Paragraph spacing={true}>19</Paragraph>
+            </div>
+            <div className={classes.buttonContainer}>
+              <Button><ClipboardLinkFillIcon />Share form</Button>
+              <FormModal>
+                <PersonEnvelopeFillIcon />View responses
+              </FormModal>
+              <Button><CloudDownFillIcon />Download data</Button>
+              <Button color="danger"><TrashFillIcon />Delete form</Button>
+            </div>
+          </Accordion.Content>
         </Accordion.Item>
       </Accordion>
     </main>
