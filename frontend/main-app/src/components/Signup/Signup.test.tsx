@@ -14,13 +14,13 @@ describe("Signup component", () => {
     );
 
     // Act
-    const title = screen.getByRole("heading", { name: "Sign up" });
-    const emailField = screen.getByRole("textbox", { name: "E-mail" });
-    const orgField = screen.getByRole("textbox", { name: "Organization" });
-    const passwordField = screen.getByLabelText("Password");
-    const passwordRepeatField = screen.getByLabelText("Repeat password");
-    const signupButton = screen.getByRole("button", { name: "Sign up" });
-    const loginLink = screen.getByRole("link", { name: "Go to the log in page" });
+    const title = screen.getByRole("heading", { name: "signup_page.title" });
+    const emailField = screen.getByRole("textbox", { name: "signup_page.email.label" });
+    const orgField = screen.getByRole("textbox", { name: "signup_page.organization.label" });
+    const passwordField = screen.getByLabelText("signup_page.password.label");
+    const passwordRepeatField = screen.getByLabelText("signup_page.password.repeat.label");
+    const signupButton = screen.getByRole("button", { name: "signup_page.signup.button" });
+    const loginLink = screen.getByRole("link", { name: "signup_page.go.to.login.button" });
 
     // Assert
     expect(title).toBeInTheDocument();

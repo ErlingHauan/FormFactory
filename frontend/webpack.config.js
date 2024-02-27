@@ -2,6 +2,7 @@
 /* global module, __dirname, process, require */
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack")
 const path = require("path");
 const devServerPorts = require("./devServerPorts.json");
 const CopyPlugin = require("copy-webpack-plugin");
@@ -51,7 +52,10 @@ module.exports = {
           }
         }
       ]
-    })
+    }),
+    new Dotenv({
+      path: "../../.env"
+    }),
   ],
   devServer: {
     hot: true,

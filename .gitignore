@@ -8,7 +8,7 @@
 **/node_modules
 
 # dotenv files
-.env
+#.env
 
 # User-specific files
 *.rsuser
@@ -247,7 +247,6 @@ ClientBin/
 *.dbmdl
 *.dbproj.schemaview
 *.jfm
-*.pfx
 *.publishsettings
 orleans.codegen.cs
 
