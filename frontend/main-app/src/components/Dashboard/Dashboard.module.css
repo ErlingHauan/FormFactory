@@ -5,29 +5,23 @@
     gap: var(--fds-spacing-8);
 }
 
-.headingContainer {
+.accordionContentContainer, .headingContainer {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-}
-
-.accordionContentContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-@media screen and (max-width: 1000px) {
-    .accordionContentContainer {
-        flex-direction: column;
-    }
-    .infoContainer {
-        margin-bottom: var(--fds-spacing-4);
-    }
 }
 
 .buttonContainer {
     display: flex;
     flex-direction: column;
     gap: var(--fds-spacing-4);
+}
+
+@media screen and (max-width: 1000px) {
+    .accordionContentContainer {
+        flex-direction: column;
+    }
+
+    .infoContainer {
+        margin-bottom: var(--fds-spacing-4);
+    }
 }
