@@ -9,11 +9,15 @@ describe("Footer component", () => {
     render(<Footer />);
 
     // Act
-    const githubLink = await screen.getByRole("link", { name: "Form Factory at GitHub" });
-    const akselLink = await screen.getByRole("link", { name: "Icons by Aksel" });
-    const bgjarLink = await screen.getByRole("link", { name: "Background pattern by BGJar" });
+    const githubLink = await screen.getByRole("link", { name: "footer_form.factory.gitHub.link" });
+    const akselLink = await screen.getByRole("link", {
+      name: "footer_form.factory.aksel.icons.link",
+    });
+    const bgjarLink = await screen.getByRole("link", {
+      name: "footer_form.factory.background.pattern.BGJar.link",
+    });
     const designsystemetLink = await screen.getByRole("link", {
-      name: "Components and colors by Designsystemet",
+      name: "footer_form.factory.designsystem.link",
     });
 
     // Assert

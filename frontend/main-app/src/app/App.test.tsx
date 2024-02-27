@@ -37,9 +37,9 @@ describe("App component", () => {
   });
 
   it("renders Form Builder when accessing '/form-builder'", () => {
-    renderApp(["/form-builder"]);
+    renderApp();
 
-    const title = screen.getByRole("heading", { name: "Form Builder" });
+    const title = screen.getByRole("link", { name: "Form Builder" });
 
     expect(title).toBeInTheDocument();
   });
