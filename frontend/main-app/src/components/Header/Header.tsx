@@ -3,10 +3,12 @@ import { Heading, Link } from "@digdir/design-system-react";
 import { ClipboardCheckmarkFillIcon } from "@navikt/aksel-icons";
 import classes from "./Header.module.css";
 import { DropdownMenu } from "@digdir/design-system-react";
+import { useTranslation } from "react-i18next";
 
 export const Header = (): React.JSX.Element => {
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
   const isSmallScreen = windowSize < 600;
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,10 +54,10 @@ export const Header = (): React.JSX.Element => {
       <nav className={classes.nav}>
         <ul>
           <li>
-            <Link href="/">Home</Link>
+            <Link href="/">{t("header_form.factory.home.link")}</Link>
           </li>
           <li>
-            <Link href="/form-builder">Form Builder</Link>
+            <Link href="/form-builder">{t("header_form.factory.form.builder.link")}</Link>
           </li>
         </ul>
       </nav>
