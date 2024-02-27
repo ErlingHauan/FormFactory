@@ -11,16 +11,16 @@ import {
 } from "@navikt/aksel-icons";
 import { FormModal } from "../FormModal/FormModal";
 import { useTranslation } from "react-i18next";
-import formData from "./formData.json"
+import formData from "./formData.json";
 
-const forms= formData;
+const forms = formData;
 
 interface CustomParagraphProps {
   heading: string;
   content: string | number;
 }
 
-const CustomParagraph: React.FC<CustomParagraphProps> = ({ heading, content }) => (
+export const CustomParagraph: React.FC<CustomParagraphProps> = ({ heading, content }) => (
   <>
     <Heading level={6} size="small">
       {heading}
@@ -28,20 +28,6 @@ const CustomParagraph: React.FC<CustomParagraphProps> = ({ heading, content }) =
     <Paragraph spacing={true}>{content}</Paragraph>
   </>
 );
-
-const ButtonGroup = (): React.JSX.Element => {
-  const {t} = useTranslation();
-  return (
-    <div className={classes.buttonContainer}>
-      <Button><ClipboardLinkFillIcon />{t("dashboard.share.form")}</Button>
-      <FormModal>
-        <PersonEnvelopeFillIcon />{t("dashboard.view.responses")}
-      </FormModal>
-      <Button><CloudDownFillIcon />{t("dashboard.download")}</Button>
-      <Button color="danger"><TrashFillIcon />{t("dashboard.delete.form")}</Button>
-    </div>
-  );
-}
 
 export const Dashboard = (): React.JSX.Element => {
   const { t } = useTranslation();
@@ -72,7 +58,14 @@ export const Dashboard = (): React.JSX.Element => {
                 <CustomParagraph heading="Expiration date" content={form.expirationDate} />
                 <CustomParagraph heading="Submissions" content={form.submissions} />
               </div>
-              <ButtonGroup />
+              <div className={classes.buttonContainer}>
+                <Button><ClipboardLinkFillIcon />{t("dashboard.share.form")}</Button>
+                <FormModal formId={1}>
+                  <PersonEnvelopeFillIcon />{t("dashboard.view.responses")}
+                </FormModal>
+                <Button><CloudDownFillIcon />{t("dashboard.download")}</Button>
+                <Button color="danger"><TrashFillIcon />{t("dashboard.delete.form")}</Button>
+              </div>
             </Accordion.Content>
           </Accordion.Item>
         </Accordion>
