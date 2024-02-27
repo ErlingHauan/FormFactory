@@ -11,11 +11,6 @@
     justify-content: space-between;
 }
 
-.accordion {
-    border: none;
-    box-shadow: var(--fds-shadow-small);
-}
-
 .accordionContentContainer {
     display: flex;
     flex-direction: row;
