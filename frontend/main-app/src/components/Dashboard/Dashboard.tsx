@@ -47,6 +47,20 @@ const CustomParagraph: React.FC<CustomParagraphProps> = ({ heading, content }) =
   </>
 );
 
+const ButtonGroup = (): React.JSX.Element => {
+  const {t} = useTranslation();
+  return (
+    <div className={classes.buttonContainer}>
+      <Button><ClipboardLinkFillIcon />{t("dashboard.share.form")}</Button>
+      <FormModal>
+        <PersonEnvelopeFillIcon />{t("dashboard.view.responses")}
+      </FormModal>
+      <Button><CloudDownFillIcon />{t("dashboard.download")}</Button>
+      <Button color="danger"><TrashFillIcon />{t("dashboard.delete.form")}</Button>
+    </div>
+  );
+}
+
 export const Dashboard = (): React.JSX.Element => {
   const { t } = useTranslation();
 
@@ -54,7 +68,7 @@ export const Dashboard = (): React.JSX.Element => {
     <main className={classes.dashboard}>
       <div className={classes.headingContainer}>
         <Heading level={1}>
-          Dashboard
+          {t("dashboard")}
         </Heading>
         <Button color="success" asChild>
           <a href="/form-builder">
@@ -76,14 +90,7 @@ export const Dashboard = (): React.JSX.Element => {
                 <CustomParagraph heading="Expiration date" content={form.expirationDate} />
                 <CustomParagraph heading="Submissions" content={form.submissions} />
               </div>
-              <div className={classes.buttonContainer}>
-                <Button><ClipboardLinkFillIcon />Share form</Button>
-                <FormModal>
-                  <PersonEnvelopeFillIcon />View responses
-                </FormModal>
-                <Button><CloudDownFillIcon />Download data</Button>
-                <Button color="danger"><TrashFillIcon />Delete form</Button>
-              </div>
+              <ButtonGroup />
             </Accordion.Content>
           </Accordion.Item>
         </Accordion>
