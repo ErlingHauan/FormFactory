@@ -18,6 +18,12 @@
     justify-content: space-between;
 }
 
+@media (max-width < 800px) {
+.accordionContentContainer {
+    flex-direction: column;
+}
+}
+
 .buttonContainer{
     display: flex;
     flex-direction: column;
