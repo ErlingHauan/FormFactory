@@ -3,3 +3,7 @@
     align-self: center;
     max-width: 50%;
 }
+
+.spacing {
+    margin-bottom: var(--fds-spacing-5);
+}
