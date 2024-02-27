@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { axiosPostForm, getApiUrl } from "../Login/LoginUtils";
 import { validateSignupForm } from "./SignupUtils";
 import { SignupForm, SignupFormError } from "./types";
+import { useTranslation } from "react-i18next";
 
 export const Signup = (): React.JSX.Element => {
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState<SignupFormError | null>(null);
+  const { t } = useTranslation();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,25 +30,39 @@ export const Signup = (): React.JSX.Element => {
   return (
     <form className={classes.signupContainer} onSubmit={handleSubmit} noValidate>
       <Heading level={1} size="xlarge">
-        Sign up
+        {t("signup_page.title")}
       </Heading>
       <div className={classes.fieldContainer}>
-        <Textfield name="email" type="email" label="E-mail" error={formErrors?.email} />
-        <Textfield name="organization" label="Organization" placeholder="Optional" />
-        <Textfield name="password" type="password" label="Password" error={formErrors?.password} />
+        <Textfield
+          name="email"
+          type="email"
+          label={t("signup_page.email.label")}
+          error={formErrors?.email}
+        />
+        <Textfield
+          name="organization"
+          label={t("signup_page.organization.label")}
+          placeholder="Optional"
+        />
+        <Textfield
+          name="password"
+          type="password"
+          label={t("signup_page.password.label")}
+          error={formErrors?.password}
+        />
         <Textfield
           name="passwordRepeat"
           type="password"
-          label="Repeat password"
+          label={t("signup_page.password.repeat.label")}
           error={formErrors?.passwordRepeat}
         />
       </div>
       <div className={classes.buttonContainer}>
         <Button type="submit" className={classes.button}>
-          Sign up
+          {t("signup_page.signup.button")}
         </Button>
-        <Button className={classes.button} asChild href="/login" variant="secondary" size="small">
-          <a>Go to the log in page</a>
+        <Button className={classes.button} as="a" href="/login" variant="secondary" size="small">
+          {t("signup_page.go.to.login.button")}
         </Button>
       </div>
     </form>

@@ -8,6 +8,20 @@ import { Signup } from "../components/Signup";
 import { FormBuilder } from "../../../form-builder";
 import { Login } from "../components/Login";
 import { Dashboard } from "../components/Dashboard/Dashboard";
+import i18next from "i18next";
+import { initReactI18next } from "react-i18next";
+import en from "../../../language/src/en.json";
+
+i18next.use(initReactI18next).init({
+  resources: {
+    en: { translation: en },
+  },
+  lng: "en",
+  fallbackLng: "en",
+  react: {
+    useSuspense: false,
+  },
+});
 
 export const App = (): React.JSX.Element => {
   return (

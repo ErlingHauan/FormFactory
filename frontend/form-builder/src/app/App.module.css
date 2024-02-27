@@ -1,3 +1,13 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
 body {
   font-family: "Inter", arial, sans-serif;
   font-feature-settings: "cv05" 1 !important; /* Enable lowercase l with tail */
