@@ -20,5 +20,10 @@
   <ItemGroup>
     <None Include="Properties\launchSettings.json" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Mappers\" />
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 
 </Project>

@@ -1,6 +1,8 @@
+using FormAPI.Data;
+using FormAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FormAPI.Models;
+namespace FormAPI.Repositories;
 
 public interface IUserRepository
 {
