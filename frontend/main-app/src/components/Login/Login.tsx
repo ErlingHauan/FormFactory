@@ -22,7 +22,7 @@ export const Login = (): React.JSX.Element => {
     if (formIsValid) {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/auth/login`;
-      (await axiosPostForm(targetUrl, formData)) && navigate("/form-builder");
+      (await axiosPostForm(targetUrl, formData)) && navigate("/dashboard");
     }
   };
 

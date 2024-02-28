@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 export const Header = (): React.JSX.Element => {
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
-  const isSmallScreen = windowSize < 600;
+  const isSmallScreen = windowSize < 1000;
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -39,6 +39,9 @@ export const Header = (): React.JSX.Element => {
                 <a href="/">Home</a>
               </DropdownMenu.Item>
               <DropdownMenu.Item asChild>
+                <a href="/dashboard">Dashboard</a>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item asChild>
                 <a href="/form-builder">Form Builder</a>
               </DropdownMenu.Item>
             </DropdownMenu.Group>
@@ -55,6 +58,9 @@ export const Header = (): React.JSX.Element => {
         <ul>
           <li>
             <Link href="/">{t("header_form.factory.home.link")}</Link>
+          </li>
+          <li>
+            <Link href="/dashboard">Dashboard</Link>
           </li>
           <li>
             <Link href="/form-builder">{t("header_form.factory.form.builder.link")}</Link>

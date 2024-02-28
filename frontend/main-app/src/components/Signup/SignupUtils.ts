@@ -1,18 +1,19 @@
 import { z } from "zod";
 import { IValidateSignupForm, SignupForm, SignupFormError } from "./types";
 
-const signupFormSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters long"),
-  passwordRepeat: z.string().min(8, "Password must be at least 8 characters long")
-})
-  .refine((data: Record<string, string>) => data.password === data.passwordRepeat, {
-    message: "Passwords do not match",
-    path: ["password"]
+const signupFormSchema = z
+  .object({
+    email: z.string().email("Please enter a valid email address"),
+    password: z.string().min(8, "Password must be at least 8 characters long"),
+    passwordRepeat: z.string().min(8, "Password must be at least 8 characters long"),
   })
   .refine((data: Record<string, string>) => data.password === data.passwordRepeat, {
     message: "Passwords do not match",
-    path: ["passwordRepeat"]
+    path: ["password"],
+  })
+  .refine((data: Record<string, string>) => data.password === data.passwordRepeat, {
+    message: "Passwords do not match",
+    path: ["passwordRepeat"],
   });
 
 export const validateSignupForm: IValidateSignupForm = ({ signupForm, setFormErrors }) => {

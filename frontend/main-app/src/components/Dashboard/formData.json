@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "User Experience Survey for Form Factory",
+    "description": "A survey of the users of Form Factory.",
+    "status": "Published - June 26th, 2024",
+    "expirationDate": "Not set",
+    "submissions": 19
+  },
+  {
+    "id": 2,
+    "title": "User Feedback Survey on Platform Usability",
+    "description": "A survey of the users of other form.",
+    "status": "Published - June 30th, 2028",
+    "expirationDate": "Not set",
+    "submissions": 16
+  },
+  {
+    "id": 3,
+    "title": "Online Webinar Feedback Form",
+    "description": "Feedback form for online webinar.",
+    "status": "Published - July 15th, 2024",
+    "expirationDate": "December 31st, 2024",
+    "submissions": 45
+  },
+  {
+    "id": 4,
+    "title": "Employee Satisfaction Survey 2024",
+    "description": "Employee satisfaction survey 2024.",
+    "status": "Draft",
+    "expirationDate": "Not set",
+    "submissions": 0
+  },
+  {
+    "id": 5,
+    "title": "Market Research Survey for New Product X",
+    "description": "Market research survey for product X.",
+    "status": "Published - September 1st, 2024",
+    "expirationDate": "September 30th, 2024",
+    "submissions": 112
+  },
+  {
+    "id": 6,
+    "title": "Customer Feedback for Service Y Enhancement",
+    "description": "Customer feedback form for Service Y.",
+    "status": "Published - October 5th, 2024",
+    "expirationDate": "October 31st, 2024",
+    "submissions": 73
+  },
+  {
+    "id": 7,
+    "title": "Tech Conference Event Registration 2024",
+    "description": "Event registration form for Annual Tech Conference.",
+    "status": "Published - May 20th, 2024",
+    "expirationDate": "May 10th, 2024",
+    "submissions": 200
+  },
+  {
+    "id": 8,
+    "title": "Year-End Employee Feedback 2024",
+    "description": "Year-end feedback form 2024.",
+    "status": "Published - November 1st, 2024",
+    "expirationDate": "December 31st, 2024",
+    "submissions": 89
+  },
+  {
+    "id": 9,
+    "title": "New Product Idea Submission and Evaluation",
+    "description": "New product idea submission form.",
+    "status": "Published - August 15th, 2024",
+    "expirationDate": "August 31st, 2024",
+    "submissions": 34
+  },
+  {
+    "id": 10,
+    "title": "Customer Service Improvement Survey 2024",
+    "description": "Customer service improvement survey.",
+    "status": "Published - July 22nd, 2024",
+    "expirationDate": "July 31st, 2024",
+    "submissions": 58
+  }
+]
