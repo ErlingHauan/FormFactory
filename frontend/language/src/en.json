@@ -27,6 +27,7 @@
   "signup_page.organization.label": "Organization",
   "signup_page.password.label": "Password",
   "signup_page.password.repeat.label": "Repeat password",
+  "signup_page.server.error": "Error connecting to the server",
   "signup_page.signup.button": "Sign up",
   "signup_page.title": "Sign up",
   "toolbar_tools": "Tools",
