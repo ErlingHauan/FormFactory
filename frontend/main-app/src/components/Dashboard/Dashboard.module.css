@@ -1,27 +1,28 @@
 .dashboard {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--fds-spacing-8);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-spacing-8);
 }
 
-.accordionContentContainer, .headingContainer {
-    display: flex;
-    justify-content: space-between;
+.accordionContentContainer,
+.headingContainer {
+  display: flex;
+  justify-content: space-between;
 }
 
 .buttonContainer {
-    display: flex;
-    flex-direction: column;
-    gap: var(--fds-spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-spacing-4);
 }
 
 @media screen and (max-width: 1000px) {
-    .accordionContentContainer {
-        flex-direction: column;
-    }
+  .accordionContentContainer {
+    flex-direction: column;
+  }
 
-    .infoContainer {
-        margin-bottom: var(--fds-spacing-4);
-    }
+  .infoContainer {
+    margin-bottom: var(--fds-spacing-4);
+  }
 }

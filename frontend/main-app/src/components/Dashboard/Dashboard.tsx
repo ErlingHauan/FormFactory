@@ -1,33 +1,20 @@
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./Dashboard.module.css";
 import React from "react";
-import { Accordion, Button, Heading, Paragraph } from "@digdir/design-system-react";
+import { Accordion, Button, Heading } from "@digdir/design-system-react";
 import {
   ClipboardLinkFillIcon,
   CloudDownFillIcon,
   FilePlusFillIcon,
   PersonEnvelopeFillIcon,
-  TrashFillIcon
+  TrashFillIcon,
 } from "@navikt/aksel-icons";
 import { FormModal } from "../FormModal/FormModal";
 import { useTranslation } from "react-i18next";
 import formData from "./formData.json";
+import { CustomParagraph } from "../CustomParagraph/CustomParagraph";
 
 const forms = formData;
-
-interface CustomParagraphProps {
-  heading: string;
-  content: string | number;
-}
-
-export const CustomParagraph: React.FC<CustomParagraphProps> = ({ heading, content }) => (
-  <>
-    <Heading level={6} size="small">
-      {heading}
-    </Heading>
-    <Paragraph spacing={true}>{content}</Paragraph>
-  </>
-);
 
 export const Dashboard = (): React.JSX.Element => {
   const { t } = useTranslation();
@@ -35,12 +22,11 @@ export const Dashboard = (): React.JSX.Element => {
   return (
     <main className={classes.dashboard}>
       <div className={classes.headingContainer}>
-        <Heading level={1}>
-          {t("dashboard")}
-        </Heading>
+        <Heading level={1}>{t("dashboard")}</Heading>
         <Button color="success" asChild>
           <a href="/form-builder">
-            <FilePlusFillIcon />{t("dashboard.new.form")}
+            <FilePlusFillIcon />
+            {t("dashboard.new.form")}
           </a>
         </Button>
       </div>
@@ -49,7 +35,9 @@ export const Dashboard = (): React.JSX.Element => {
         <Accordion border={true} key={form.id}>
           <Accordion.Item>
             <Accordion.Header>
-              <Heading level={2} size="medium">{form.title}</Heading>
+              <Heading level={2} size="medium">
+                {form.title}
+              </Heading>
             </Accordion.Header>
             <Accordion.Content className={classes.accordionContentContainer}>
               <div className={classes.infoContainer}>
@@ -59,12 +47,23 @@ export const Dashboard = (): React.JSX.Element => {
                 <CustomParagraph heading="Submissions" content={form.submissions} />
               </div>
               <div className={classes.buttonContainer}>
-                <Button><ClipboardLinkFillIcon />{t("dashboard.share.form")}</Button>
+                <Button>
+                  <ClipboardLinkFillIcon />
+                  {t("dashboard.share.form")}
+                </Button>
+                {/* FormModal will use form.id when the backend/database has been made */}
                 <FormModal formId={1}>
-                  <PersonEnvelopeFillIcon />{t("dashboard.view.responses")}
+                  <PersonEnvelopeFillIcon />
+                  {t("dashboard.view.submissions")}
                 </FormModal>
-                <Button><CloudDownFillIcon />{t("dashboard.download")}</Button>
-                <Button color="danger"><TrashFillIcon />{t("dashboard.delete.form")}</Button>
+                <Button>
+                  <CloudDownFillIcon />
+                  {t("dashboard.download")}
+                </Button>
+                <Button color="danger">
+                  <TrashFillIcon />
+                  {t("dashboard.delete.form")}
+                </Button>
               </div>
             </Accordion.Content>
           </Accordion.Item>

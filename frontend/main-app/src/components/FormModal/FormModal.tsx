@@ -1,15 +1,37 @@
 import classes from "./FormModal.module.css";
 import { Divider, Heading, Modal } from "@digdir/design-system-react";
 import React, { ReactNode } from "react";
-import { CustomParagraph } from "../Dashboard/Dashboard";
-import responseData from "./responseData.json";
+import submittedData from "./submittedData.json";
+import { CustomParagraph } from "../CustomParagraph/CustomParagraph";
+
+const ListAnswers = (): React.JSX.Element => {
+  const submissions = submittedData.submissions;
+
+  return (
+    <>
+      {submissions.map(({ submissionId, answers }, submissionIndex) => (
+        <React.Fragment key={submissionId}>
+          <Heading level={3} size="large" spacing>
+            Submission #{submissionId}
+          </Heading>
+          {answers.map(({ answerId, question, answer }) => (
+            <CustomParagraph key={answerId} heading={question} content={answer} />
+          ))}
+          {submissionIndex < submissions.length - 1 && (
+            <Divider color="strong" className={classes.spacing} />
+          )}
+        </React.Fragment>
+      ))}
+    </>
+  );
+};
 
 interface FormModalProps {
   formId: number;
   children: ReactNode;
 }
 
-// Note: Currently this component contains placeholder data. Later, it will load its data dynamically from the database.
+// In the future, FormModal will POST the formId to a backend endpoint that fetches all submissions for that form from the database.
 
 export const FormModal: React.FC<FormModalProps> = ({ formId, children }) => {
   return (
@@ -17,17 +39,10 @@ export const FormModal: React.FC<FormModalProps> = ({ formId, children }) => {
       <Modal.Trigger>{children}</Modal.Trigger>
       <Modal.Dialog className={classes.modalWindow}>
         <Modal.Header>
-          <Heading level={1} size="large" spacing>
-            Responses
-          </Heading></Modal.Header>
+            Submissions to {submittedData.title}
+        </Modal.Header>
         <Modal.Content>
-          <Heading level={2} size="medium" spacing>Response 1</Heading>
-          <CustomParagraph heading="What is your favorite animal?" content="Cat" />
-          <CustomParagraph heading="What is your 2nd favorite animal?" content="Dog" />
-          <Divider className={classes.spacing} />
-          <Heading level={2} size="medium" spacing>Response 2</Heading>
-          <CustomParagraph heading="What is your favorite animal?" content="Cat" />
-          <CustomParagraph heading="What is your 2nd favorite animal?" content="Dog" />
+          <ListAnswers />
         </Modal.Content>
       </Modal.Dialog>
     </Modal.Root>

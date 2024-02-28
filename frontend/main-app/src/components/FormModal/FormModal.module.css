@@ -1,9 +1,9 @@
 .modalWindow {
-    justify-self: center;
-    align-self: center;
-    max-width: 50%;
+  justify-self: center;
+  align-self: center;
+  min-width: 90%;
 }
 
 .spacing {
-    margin-bottom: var(--fds-spacing-5);
+  margin: var(--fds-spacing-8) 0;
 }
