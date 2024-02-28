@@ -27,13 +27,10 @@ const ListAnswers = (): React.JSX.Element => {
 };
 
 interface FormModalProps {
-  formId: number;
   children: ReactNode;
 }
 
-// In the future, FormModal will POST the formId to a backend endpoint that fetches all submissions for that form from the database.
-
-export const FormModal: React.FC<FormModalProps> = ({ formId, children }) => {
+export const FormModal: React.FC<FormModalProps> = ({ children }) => {
   return (
     <Modal.Root>
       <Modal.Trigger>{children}</Modal.Trigger>

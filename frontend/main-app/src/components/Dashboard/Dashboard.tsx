@@ -52,7 +52,7 @@ export const Dashboard = (): React.JSX.Element => {
                   {t("dashboard.share.form")}
                 </Button>
                 {/* FormModal will use form.id when the backend/database has been made */}
-                <FormModal formId={1}>
+                <FormModal>
                   <PersonEnvelopeFillIcon />
                   {t("dashboard.view.submissions")}
                 </FormModal>
