@@ -1,5 +1,6 @@
 using FormAPI.Data;
 using FormAPI.Models;
+using FormAPI.Mappers;
 using Microsoft.EntityFrameworkCore;
 
 namespace FormAPI.Repositories;
@@ -23,24 +24,6 @@ public class UserRepository : IUserRepository
         this._context = context;
     }
 
-    private static UserDto EntityToDto(UserEntity user)
-    {
-        if (user.Email == null || user.Password == null)
-            throw new InvalidOperationException("User email or password cannot be null.");
-
-        return new UserDto(user.Id, user.Email, user.Password, user.Organization);
-    }
-
-    private static void DtoToEntity(UserDto dto, UserEntity e)
-    {
-        if (dto.Email == null || dto.Password == null)
-            throw new InvalidOperationException("User email or password cannot be null.");
-
-        e.Email = dto.Email;
-        e.Password = dto.Password;
-        e.Organization = dto.Organization;
-    }
-
     public async Task<List<UserDto>> GetAll()
     {
         return await _context.Users.Select(u => new UserDto(u.Id, u.Email, u.Password, u.Organization)).ToListAsync();
@@ -55,7 +38,7 @@ public class UserRepository : IUserRepository
             return null;
         }
 
-        return EntityToDto(entity);
+        return UserMappers.EntityToDto(entity);
     }
 
     public async Task<UserDto?> GetAndAuthenticate(UserDto dto)
@@ -69,16 +52,16 @@ public class UserRepository : IUserRepository
             return null;
         }
 
-        return EntityToDto(entity);
+        return UserMappers.EntityToDto(entity);
     }
 
     public async Task<UserDto> Add(UserDto dto)
     {
         var entity = new UserEntity();
-        DtoToEntity(dto, entity);
+        UserMappers.DtoToEntity(dto, entity);
         _context.Users.Add(entity);
         await _context.SaveChangesAsync();
-        return EntityToDto(entity);
+        return UserMappers.EntityToDto(entity);
     }
 
     public async Task<UserDto> Update(UserDto dto)
@@ -86,10 +69,10 @@ public class UserRepository : IUserRepository
         var entity = await _context.Users.FindAsync(dto.Id);
         if (entity == null)
             throw new ArgumentException($"Error updating user {dto.Email} with ID {dto.Id}");
-        DtoToEntity(dto, entity);
+        UserMappers.DtoToEntity(dto, entity);
         _context.Entry(entity).State = EntityState.Modified;
         await _context.SaveChangesAsync();
-        return EntityToDto(entity);
+        return UserMappers.EntityToDto(entity);
     }
 
     public async Task Delete(int id)
