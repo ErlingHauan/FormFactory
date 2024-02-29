@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FormAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240228132030_AddSeedData")]
+    [Migration("20240229133735_AddSeedData")]
     partial class AddSeedData
     {
         /// <inheritdoc />
