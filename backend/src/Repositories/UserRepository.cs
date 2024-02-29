@@ -8,7 +8,7 @@ namespace FormAPI.Repositories;
 public interface IUserRepository
 {
     Task<List<UserEntity>> GetAll();
-    Task<UserDto?> Get(int id);
+    Task<UserEntity?> Get(int id);
     Task<UserDto?> GetAndAuthenticate(UserDto dto);
     Task<UserDto> Add(UserDto dto);
     Task<UserDto> Update(UserDto dto);
@@ -29,7 +29,7 @@ public class UserRepository : IUserRepository
         return await _context.Users.Select(u => new UserEntity(u.Id, u.Email, u.Password, u.Organization)).ToListAsync();
     }
 
-    public async Task<UserDto?> Get(int userId)
+    public async Task<UserEntity?> Get(int userId)
     {
         var entity = await _context.Users.SingleOrDefaultAsync(u => u.Id == userId);
         if (entity == null)
@@ -38,7 +38,7 @@ public class UserRepository : IUserRepository
             return null;
         }
 
-        return UserMappers.EntityToDto(entity);
+        return entity;
     }
 
     public async Task<UserDto?> GetAndAuthenticate(UserDto dto)

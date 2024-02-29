@@ -28,13 +28,14 @@ public class UsersController : ControllerBase
     [HttpGet("{userId:int}")]
     public async Task<ActionResult<UserDto>> Get(int userId)
     {
-        var user = await _userRepository.Get(userId);
-        if (user == null)
+        var userEntity = await _userRepository.Get(userId);
+        if (userEntity == null)
         {
             return NotFound($"User {userId} was not found.");
         }
 
-        return user;
+        var userDto = UserMappers.EntityToDto(userEntity);
+        return Ok(userEntity);
     }
 
     [HttpPost]
