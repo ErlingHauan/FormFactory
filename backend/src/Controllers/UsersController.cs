@@ -21,7 +21,6 @@ public class UsersController : ControllerBase
     {
         var entityList = await _userRepository.GetAll();
         var dtoList = entityList.Select(UserMappers.EntityToDto).ToList();
-        
         return Ok(dtoList);
     }
 
@@ -70,11 +69,11 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult> Login([FromBody] UserDto dto)
+    public async Task<ActionResult> Login([FromBody] UserEntity entity)
     {
-        if (await _userRepository.GetAndAuthenticate(dto) == null)
+        if (await _userRepository.ConfirmEmailAndPassword(entity) == null)
         {
-            return Unauthorized("Email/password combination is not valid");
+            return Unauthorized("Email/password combination was not found.");
         }
 
         return Ok();

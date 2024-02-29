@@ -9,7 +9,7 @@ public interface IUserRepository
 {
     Task<List<UserEntity>> GetAll();
     Task<UserEntity?> Get(int id);
-    Task<UserDto?> GetAndAuthenticate(UserDto dto);
+    Task<UserEntity?> ConfirmEmailAndPassword(UserEntity entity);
     Task<UserDto> Add(UserDto dto);
     Task<UserDto> Update(UserDto dto);
     Task Delete(int id);
@@ -41,18 +41,18 @@ public class UserRepository : IUserRepository
         return entity;
     }
 
-    public async Task<UserDto?> GetAndAuthenticate(UserDto dto)
+    public async Task<UserEntity?> ConfirmEmailAndPassword(UserEntity entity)
     {
-        var entity = await _context.Users.FirstOrDefaultAsync(user =>
-            user.Email == dto.Email && user.Password == dto.Password);
+        var entityResult = await _context.Users.FirstOrDefaultAsync(user =>
+            user.Email == entity.Email && user.Password == entity.Password);
 
-        if (entity == null)
+        if (entityResult == null)
         {
-            Console.WriteLine($"User {dto.Email}, or the users password was not found.");
+            Console.WriteLine($"Email and password combination was not found.");
             return null;
         }
 
-        return UserMappers.EntityToDto(entity);
+        return entityResult;
     }
 
     public async Task<UserDto> Add(UserDto dto)
