@@ -10,7 +10,7 @@ public interface IUserRepository
     Task<List<UserEntity>> GetAll();
     Task<UserEntity?> Get(int id);
     Task<UserEntity?> ConfirmEmailAndPassword(UserEntity entity);
-    Task<UserDto> Add(UserDto dto);
+    Task<UserEntity> Add(UserEntity entity);
     Task<UserDto> Update(UserDto dto);
     Task Delete(int id);
 }
@@ -55,13 +55,11 @@ public class UserRepository : IUserRepository
         return entityResult;
     }
 
-    public async Task<UserDto> Add(UserDto dto)
+    public async Task<UserEntity> Add(UserEntity entity)
     {
-        var entity = new UserEntity();
-        UserMappers.DtoToEntity(dto, entity);
         _context.Users.Add(entity);
         await _context.SaveChangesAsync();
-        return UserMappers.EntityToDto(entity);
+        return entity;
     }
 
     public async Task<UserDto> Update(UserDto dto)

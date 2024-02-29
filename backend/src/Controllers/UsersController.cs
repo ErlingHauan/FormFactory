@@ -40,8 +40,13 @@ public class UsersController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<UserDto>> Create([FromBody] UserDto dto)
     {
-        var newUser = await _userRepository.Add(dto);
-        return CreatedAtAction(nameof(Get), new { userId = newUser.Id }, newUser);
+        var entity = new UserEntity();
+        UserMappers.DtoToEntity(dto, entity);
+        
+        var createdEntity = await _userRepository.Add(entity);
+        var createdDto = UserMappers.EntityToDto(createdEntity);
+        
+        return CreatedAtAction(nameof(Get), new { userId = createdDto.Id }, createdDto);
     }
 
     [HttpPut]
