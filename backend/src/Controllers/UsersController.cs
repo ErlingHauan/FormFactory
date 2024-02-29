@@ -1,5 +1,6 @@
 using FormAPI.Models;
 using FormAPI.Repositories;
+using FormAPI.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FormAPI.Controllers;
@@ -18,7 +19,10 @@ public class UsersController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UserDto>>> GetAll()
     {
-        return Ok(await _userRepository.GetAll());
+        var entityList = await _userRepository.GetAll();
+        var dtoList = entityList.Select(UserMappers.EntityToDto).ToList();
+        
+        return Ok(dtoList);
     }
 
     [HttpGet("{userId:int}")]

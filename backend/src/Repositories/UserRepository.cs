@@ -7,7 +7,7 @@ namespace FormAPI.Repositories;
 
 public interface IUserRepository
 {
-    Task<List<UserDto>> GetAll();
+    Task<List<UserEntity>> GetAll();
     Task<UserDto?> Get(int id);
     Task<UserDto?> GetAndAuthenticate(UserDto dto);
     Task<UserDto> Add(UserDto dto);
@@ -24,9 +24,9 @@ public class UserRepository : IUserRepository
         this._context = context;
     }
 
-    public async Task<List<UserDto>> GetAll()
+    public async Task<List<UserEntity>> GetAll()
     {
-        return await _context.Users.Select(u => new UserDto(u.Id, u.Email, u.Password, u.Organization)).ToListAsync();
+        return await _context.Users.Select(u => new UserEntity(u.Id, u.Email, u.Password, u.Organization)).ToListAsync();
     }
 
     public async Task<UserDto?> Get(int userId)
