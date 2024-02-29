@@ -11,7 +11,7 @@ public class UserMappers
 
         return new UserDto(user.Id, user.Email, user.Password, user.Organization);
     }
-    
+
     public static void DtoToEntity(UserDto dto, UserEntity e)
     {
         if (dto.Email == null || dto.Password == null)

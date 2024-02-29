@@ -44,7 +44,7 @@ public class UsersController : ControllerBase
         UserMappers.DtoToEntity(dto, entity);
         var createdEntity = await _userRepository.Add(entity);
         var createdDto = UserMappers.EntityToDto(createdEntity);
-        
+
         return CreatedAtAction(nameof(Get), new { userId = createdDto.Id }, createdDto);
     }
 

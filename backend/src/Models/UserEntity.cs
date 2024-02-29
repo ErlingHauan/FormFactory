@@ -6,10 +6,10 @@ public class UserEntity
     public string? Email { get; set; }
     public string? Password { get; set; }
     public string? Organization { get; set; }
-    
+
     public UserEntity()
-    {}
-    
+    { }
+
     public UserEntity(int id, string? email, string? password, string? organization)
     {
         Id = id;

@@ -67,7 +67,7 @@ public class UserRepository : IUserRepository
         var foundEntity = await _context.Users.FindAsync(entity.Id);
         if (foundEntity == null)
             throw new ArgumentException($"Did not find user with ID {entity.Id}");
-        
+
         _context.Entry(foundEntity).CurrentValues.SetValues(entity);
         await _context.SaveChangesAsync();
         return entity;
