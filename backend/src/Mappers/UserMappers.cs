@@ -17,6 +17,7 @@ public class UserMappers
         if (dto.Email == null || dto.Password == null)
             throw new InvalidOperationException("User email or password cannot be null.");
 
+        e.Id = dto.Id;
         e.Email = dto.Email;
         e.Password = dto.Password;
         e.Organization = dto.Organization;

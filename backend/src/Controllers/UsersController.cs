@@ -42,7 +42,6 @@ public class UsersController : ControllerBase
     {
         var entity = new UserEntity();
         UserMappers.DtoToEntity(dto, entity);
-        
         var createdEntity = await _userRepository.Add(entity);
         var createdDto = UserMappers.EntityToDto(createdEntity);
         
@@ -52,12 +51,9 @@ public class UsersController : ControllerBase
     [HttpPut]
     public async Task<ActionResult<UserDto>> Update([FromBody] UserDto dto)
     {
-        if (await _userRepository.Get(dto.Id) == null)
-        {
-            return NotFound($"User with id {dto.Id} was not found.");
-        }
-
-        var updatedUser = await _userRepository.Update(dto);
+        var entity = new UserEntity();
+        UserMappers.DtoToEntity(dto, entity);
+        var updatedUser = await _userRepository.Update(entity);
         return Ok(updatedUser);
     }
 

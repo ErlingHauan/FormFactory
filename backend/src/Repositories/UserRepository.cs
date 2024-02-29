@@ -11,7 +11,7 @@ public interface IUserRepository
     Task<UserEntity?> Get(int id);
     Task<UserEntity?> ConfirmEmailAndPassword(UserEntity entity);
     Task<UserEntity> Add(UserEntity entity);
-    Task<UserDto> Update(UserDto dto);
+    Task<UserEntity> Update(UserEntity entity);
     Task Delete(int id);
 }
 
@@ -62,15 +62,15 @@ public class UserRepository : IUserRepository
         return entity;
     }
 
-    public async Task<UserDto> Update(UserDto dto)
+    public async Task<UserEntity> Update(UserEntity entity)
     {
-        var entity = await _context.Users.FindAsync(dto.Id);
-        if (entity == null)
-            throw new ArgumentException($"Error updating user {dto.Email} with ID {dto.Id}");
-        UserMappers.DtoToEntity(dto, entity);
-        _context.Entry(entity).State = EntityState.Modified;
+        var foundEntity = await _context.Users.FindAsync(entity.Id);
+        if (foundEntity == null)
+            throw new ArgumentException($"Did not find user with ID {entity.Id}");
+        
+        _context.Entry(foundEntity).CurrentValues.SetValues(entity);
         await _context.SaveChangesAsync();
-        return UserMappers.EntityToDto(entity);
+        return entity;
     }
 
     public async Task Delete(int id)
