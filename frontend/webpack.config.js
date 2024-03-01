@@ -5,6 +5,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const path = require("path");
 const devServerPorts = require("./devServerPorts.json");
+const CopyPlugin = require("copy-webpack-plugin");
+
+const isMainApp = () => {
+  return process.env.npm_package_name === "main-app";
+};
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -36,6 +41,19 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
+    isMainApp() &&
+      new CopyPlugin({
+        patterns: [
+          {
+            from: "*",
+            to: "",
+            context: "public",
+            globOptions: {
+              ignore: ["**/*.html"],
+            },
+          },
+        ],
+      }),
     new Dotenv({
       path: "../../.env",
     }),

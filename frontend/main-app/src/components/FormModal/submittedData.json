@@ -1,0 +1,116 @@
+{
+  "formId": 1,
+  "title": "User Survey",
+  "submissions": [
+    {
+      "submissionId": 1,
+      "answers": [
+        {
+          "answerId": 1,
+          "question": "What is your favorite animal?",
+          "answer": "Cat"
+        },
+        {
+          "answerId": 2,
+          "question": "What is your 2nd favorite animal?",
+          "answer": "Cat"
+        },
+        {
+          "answerId": 3,
+          "question": "What is your favorite color?",
+          "answer": "Blue"
+        },
+        {
+          "answerId": 4,
+          "question": "What is your favorite hobby?",
+          "answer": "Reading"
+        },
+        {
+          "answerId": 5,
+          "question": "What is your favorite food?",
+          "answer": "Pizza"
+        },
+        {
+          "answerId": 6,
+          "question": "What is your favorite book?",
+          "answer": "1984 by George Orwell"
+        },
+        {
+          "answerId": 7,
+          "question": "What is your favorite movie?",
+          "answer": "Inception"
+        },
+        {
+          "answerId": 8,
+          "question": "What is your favorite song?",
+          "answer": "Bohemian Rhapsody by Queen"
+        },
+        {
+          "answerId": 9,
+          "question": "What is your favorite sport?",
+          "answer": "Soccer"
+        },
+        {
+          "answerId": 10,
+          "question": "What is your favorite season?",
+          "answer": "Autumn"
+        }
+      ]
+    },
+    {
+      "submissionId": 2,
+      "answers": [
+        {
+          "answerId": 1,
+          "question": "What is your favorite animal?",
+          "answer": "Dog"
+        },
+        {
+          "answerId": 2,
+          "question": "What is your 2nd favorite animal?",
+          "answer": "Horse"
+        },
+        {
+          "answerId": 3,
+          "question": "What is your favorite color?",
+          "answer": "Green"
+        },
+        {
+          "answerId": 4,
+          "question": "What is your favorite hobby?",
+          "answer": "Hiking"
+        },
+        {
+          "answerId": 5,
+          "question": "What is your favorite food?",
+          "answer": "Sushi"
+        },
+        {
+          "answerId": 6,
+          "question": "What is your favorite book?",
+          "answer": "The Lord of the Rings by J.R.R. Tolkien"
+        },
+        {
+          "answerId": 7,
+          "question": "What is your favorite movie?",
+          "answer": "The Matrix"
+        },
+        {
+          "answerId": 8,
+          "question": "What is your favorite song?",
+          "answer": "Imagine by John Lennon"
+        },
+        {
+          "answerId": 9,
+          "question": "What is your favorite sport?",
+          "answer": "Basketball"
+        },
+        {
+          "answerId": 10,
+          "question": "What is your favorite season?",
+          "answer": "Spring"
+        }
+      ]
+    }
+  ]
+}

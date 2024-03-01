@@ -18,4 +18,4 @@ Note that the database is only available through Docker, meaning the `formfactor
 3. Run `yarn start-frontend`.
 
 Then access the app on http://localhost:3050.
-To see the backend endpoints, go to https://localhost:8082/swagger.
+To see the backend endpoints, go to http://localhost:8080/swagger.
