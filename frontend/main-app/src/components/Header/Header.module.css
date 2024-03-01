@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   height: var(--fds-sizing-26);
-  padding: 0 var(--fds-spacing-30);
+  padding: 0 var(--fds-spacing-12);
   border-bottom: 1px solid var(--fds-semantic-border-neutral-subtle);
 }
 
