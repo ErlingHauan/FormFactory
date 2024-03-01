@@ -1,7 +1,7 @@
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./Dashboard.module.css";
-import React from "react";
-import { Accordion, Button, Heading } from "@digdir/design-system-react";
+import React, { useEffect, useState } from "react";
+import { Accordion, Button, Heading, Paragraph } from "@digdir/design-system-react";
 import {
   ClipboardLinkFillIcon,
   CloudDownFillIcon,
@@ -10,17 +10,26 @@ import {
   TrashFillIcon,
 } from "@navikt/aksel-icons";
 import { FormModal } from "../FormModal/FormModal";
+import { CustomParagraph } from "../CustomParagraph/CustomParagraph";
 import { useTranslation } from "react-i18next";
 import formData from "./formData.json";
-import { CustomParagraph } from "../CustomParagraph/CustomParagraph";
 
 const forms = formData;
 
-export const Dashboard = (): React.JSX.Element => {
+const Overview = (): React.JSX.Element => {
   const { t } = useTranslation();
+  const [numberOfSubmissions, setNumberOfSubmissions] = useState(0);
+
+  useEffect(() => {
+    let totalSubmissions = 0;
+    for (const form of forms) {
+      totalSubmissions += form.submissions;
+    }
+    setNumberOfSubmissions(totalSubmissions);
+  }, []);
 
   return (
-    <main className={classes.dashboard}>
+    <div className={classes.overview}>
       <div className={classes.headingContainer}>
         <Heading level={1}>{t("dashboard")}</Heading>
         <Button color="success" asChild>
@@ -30,7 +39,46 @@ export const Dashboard = (): React.JSX.Element => {
           </a>
         </Button>
       </div>
+      <Paragraph>Number of forms: {forms.length}</Paragraph>
+      {forms.length > 0 ? (
+        <>
+          <Paragraph spacing>Total submissions: {numberOfSubmissions}</Paragraph>
+          <Paragraph>Your forms are shown below.</Paragraph>
+        </>
+      ) : (
+        <Paragraph>Press the button on the right to create your first form!</Paragraph>
+      )}
+    </div>
+  );
+};
 
+const ButtonGroup = (): React.JSX.Element => {
+  const { t } = useTranslation();
+  return (
+    <div className={classes.buttonContainer}>
+      <FormModal>
+        <PersonEnvelopeFillIcon />
+        {t("dashboard.view.submissions")}
+      </FormModal>
+      <Button className={classes.button} variant="secondary">
+        <CloudDownFillIcon />
+        {t("dashboard.download")}
+      </Button>
+      <Button className={classes.button} variant="secondary">
+        <ClipboardLinkFillIcon />
+        {t("dashboard.share.form")}
+      </Button>
+      <Button className={classes.button} color="danger" variant="secondary">
+        <TrashFillIcon />
+        {t("dashboard.delete.form")}
+      </Button>
+    </div>
+  );
+};
+
+const FormList = (): React.JSX.Element => {
+  return (
+    <div className={classes.formList}>
       {forms.map((form) => (
         <Accordion border={true} key={form.id}>
           <Accordion.Item>
@@ -46,29 +94,20 @@ export const Dashboard = (): React.JSX.Element => {
                 <CustomParagraph heading="Expiration date" content={form.expirationDate} />
                 <CustomParagraph heading="Submissions" content={form.submissions} />
               </div>
-              <div className={classes.buttonContainer}>
-                <Button>
-                  <ClipboardLinkFillIcon />
-                  {t("dashboard.share.form")}
-                </Button>
-                {/* FormModal will use form.id when the backend/database has been made */}
-                <FormModal>
-                  <PersonEnvelopeFillIcon />
-                  {t("dashboard.view.submissions")}
-                </FormModal>
-                <Button>
-                  <CloudDownFillIcon />
-                  {t("dashboard.download")}
-                </Button>
-                <Button color="danger">
-                  <TrashFillIcon />
-                  {t("dashboard.delete.form")}
-                </Button>
-              </div>
+              <ButtonGroup />
             </Accordion.Content>
           </Accordion.Item>
         </Accordion>
       ))}
+    </div>
+  );
+};
+
+export const Dashboard = (): React.JSX.Element => {
+  return (
+    <main className={classes.dashboard}>
+      <Overview />
+      <FormList />
     </main>
   );
 };

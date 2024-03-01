@@ -33,11 +33,11 @@ interface FormModalProps {
 export const FormModal: React.FC<FormModalProps> = ({ children }) => {
   return (
     <Modal.Root>
-      <Modal.Trigger>{children}</Modal.Trigger>
+      <Modal.Trigger className={classes.button} variant="secondary">
+        {children}
+      </Modal.Trigger>
       <Modal.Dialog className={classes.modalWindow}>
-        <Modal.Header>
-            Submissions to {submittedData.title}
-        </Modal.Header>
+        <Modal.Header>Submissions to {submittedData.title}</Modal.Header>
         <Modal.Content>
           <ListAnswers />
         </Modal.Content>
