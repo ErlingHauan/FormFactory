@@ -27,7 +27,7 @@ export const axiosPostForm = async (targetUrl: string, formData: FormData): Prom
   try {
     const response = await axios.post(targetUrl, formObject);
     console.log(response);
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 201) {
       return true;
     }
   } catch (error) {

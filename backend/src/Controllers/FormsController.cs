@@ -8,20 +8,20 @@ namespace FormAPI.Controllers;
 public class FormsController : ControllerBase
 {
     [HttpGet]
-    public ActionResult<Form> Get()
+    public ActionResult<FormEntity> Get()
     {
-        var formData = new Form { Name = "Ola Nordmann", Email = "ola@norge.no" };
+        var formData = new FormEntity { Name = "Ola Nordmann", Email = "ola@norge.no" };
         return Ok(formData);
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] Form formData)
+    public IActionResult Post([FromBody] FormEntity formEntityData)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        return Ok(formData);
+        return Ok(formEntityData);
     }
 }

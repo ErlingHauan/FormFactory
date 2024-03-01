@@ -47,12 +47,13 @@
   },
   "scripts": {
     "build": "yarn workspaces foreach -A -p run build",
-    "lint": "yarn workspaces foreach -A -p run lint",
-    "start-main-app": "yarn workspace main-app run start",
-    "start-form-builder": "yarn workspace form-builder run start",
-    "test": "jest --config=./frontend/test/jest.config.js",
-    "typecheck": "yarn workspaces foreach -A -p run typecheck",
     "codestyle:check": "prettier frontend --check",
-    "codestyle:fix": "prettier frontend --write"
+    "codestyle:fix": "prettier frontend --write",
+    "db:seed": "dotnet ef database update --project backend/src/FormAPI.csproj",
+    "lint": "yarn workspaces foreach -A -p run lint",
+    "start-backend": "dotnet run --project backend/src/FormAPI.csproj",
+    "start-frontend": "yarn workspace main-app run start",
+    "test": "jest --config=./frontend/test/jest.config.js",
+    "typecheck": "yarn workspaces foreach -A -p run typecheck"
   }
 }
