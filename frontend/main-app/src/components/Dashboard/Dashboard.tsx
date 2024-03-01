@@ -41,12 +41,12 @@ const Overview = (): React.JSX.Element => {
       </div>
       {forms.length > 0 ? (
         <>
-          <Paragraph>Number of forms: {forms.length}</Paragraph>
-          <Paragraph spacing>Total submissions: {numberOfSubmissions}</Paragraph>
-          <Paragraph>Your forms are shown below.</Paragraph>
+          <Paragraph>{t("dashboard.number.of.forms")}{forms.length}</Paragraph>
+          <Paragraph spacing>{t("dashboard.total.submissions")}{numberOfSubmissions}</Paragraph>
+          <Paragraph>{t("dashboard.forms.below")}</Paragraph>
         </>
       ) : (
-        <Paragraph>Press the button on the right to create your first form!</Paragraph>
+        <Paragraph>{t("dashboard.empty.message")}</Paragraph>
       )}
     </div>
   );
