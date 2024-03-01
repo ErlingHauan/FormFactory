@@ -39,9 +39,9 @@ const Overview = (): React.JSX.Element => {
           </a>
         </Button>
       </div>
-      <Paragraph>Number of forms: {forms.length}</Paragraph>
       {forms.length > 0 ? (
         <>
+          <Paragraph>Number of forms: {forms.length}</Paragraph>
           <Paragraph spacing>Total submissions: {numberOfSubmissions}</Paragraph>
           <Paragraph>Your forms are shown below.</Paragraph>
         </>
