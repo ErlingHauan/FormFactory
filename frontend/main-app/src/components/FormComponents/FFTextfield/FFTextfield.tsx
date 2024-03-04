@@ -2,7 +2,6 @@ import React from "react";
 import { Heading, Textfield } from "@digdir/design-system-react";
 
 interface TextFieldProps {
-  className?: string;
   question: string;
   required?: boolean;
   minLength?: number;

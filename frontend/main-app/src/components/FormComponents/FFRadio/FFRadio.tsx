@@ -2,7 +2,6 @@ import React from "react";
 import { Radio } from "@digdir/design-system-react";
 
 interface FFRadioProps {
-  className?: string;
   question: string;
   required?: boolean;
   choices: string[];
