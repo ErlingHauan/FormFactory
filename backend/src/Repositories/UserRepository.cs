@@ -10,7 +10,7 @@ public interface IUserRepository
     Task<List<UserEntity>> GetAll();
     Task<UserEntity?> Get(int id);
     Task<UserEntity?> ConfirmEmailAndPassword(UserEntity entity);
-    Task<UserEntity> Add(UserEntity user);
+    Task<UserEntity> Create(UserEntity user);
     Task<UserEntity> Update(UserEntity updatedEntity);
     Task Delete(int id);
 }
@@ -57,7 +57,7 @@ public class UserRepository : IUserRepository
         return result;
     }
 
-    public async Task<UserEntity> Add(UserEntity user)
+    public async Task<UserEntity> Create(UserEntity user)
     {
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
