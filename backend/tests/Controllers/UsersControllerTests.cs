@@ -63,7 +63,7 @@ public class UsersControllerTests
     public async Task Get_UserNotFound_ReturnsNotFound()
     {
         // Arrange
-        _mockRepo.Setup(repo => repo.Get(1)).ReturnsAsync((UserEntity)null);
+        _mockRepo.Setup(repo => repo.Get(1)).ReturnsAsync((UserEntity?)null);
 
         // Act
         var result = await _controller.Get(1);
@@ -125,7 +125,7 @@ public class UsersControllerTests
     {
         // Arrange
         var dto = new UserDto(0, "user1@example.com", "password1", null);
-        _mockRepo.Setup(repo => repo.ConfirmEmailAndPassword(It.IsAny<UserEntity>())).ReturnsAsync((UserEntity)null);
+        _mockRepo.Setup(repo => repo.ConfirmEmailAndPassword(It.IsAny<UserEntity>())).ReturnsAsync((UserEntity?)null);
 
         // Act
         var result = await _controller.Login(dto);
@@ -155,7 +155,7 @@ public class UsersControllerTests
     {
         // Arrange
         var userId = 1;
-        _mockRepo.Setup(repo => repo.Get(userId)).ReturnsAsync((UserEntity)null);
+        _mockRepo.Setup(repo => repo.Get(userId)).ReturnsAsync((UserEntity?)null);
         _mockRepo.Setup(repo => repo.Delete(userId));
 
         // Act
