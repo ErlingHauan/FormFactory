@@ -2,6 +2,7 @@ import { Button, Heading } from "@digdir/design-system-react";
 import React from "react";
 import { FFTextfield, FFRadio } from "../FormComponents";
 import classes from "./FormViewer.module.css";
+import { TasklistSendFillIcon } from "@navikt/aksel-icons";
 
 const form = {
   id: 1994,
@@ -58,9 +59,9 @@ const form = {
 
 export const FormViewer = (): React.JSX.Element => {
   return (
-    <main>
+    <main className={classes.card}>
       <form>
-        <Heading level={1} size="xlarge" spacing>{form.title}</Heading>
+        <Heading level={1} size="xlarge">{form.title}</Heading>
         {form.components.map((c) => (
           c.type === "textfield" ? (
             <div className={classes.component}>
@@ -81,7 +82,9 @@ export const FormViewer = (): React.JSX.Element => {
             </div>
           )
         ))}
-        <Button>Submit form</Button>
+        <div className={classes.buttonContainer}>
+        <Button size={"large"} fullWidth={false}>Submit form<TasklistSendFillIcon /></Button>
+        </div>
       </form>
     </main>
   );
