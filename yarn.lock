@@ -7081,6 +7081,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-dnd-html5-backend@npm:^16.0.1":
+  version: 16.0.1
+  resolution: "react-dnd-html5-backend@npm:16.0.1"
+  dependencies:
+    dnd-core: "npm:^16.0.1"
+  checksum: 6e4b632a11e20211d71f5f3bedadf13ecec2fa73372fde388619838294b1375f15b717d1ce128e12c872ff7b15c32d26761d2026b33c14fc55e4fd5477c15289
+  languageName: node
+  linkType: hard
+
 "react-dnd-touch-backend@npm:^16.0.1":
   version: 16.0.1
   resolution: "react-dnd-touch-backend@npm:16.0.1"
@@ -7494,6 +7503,7 @@ __metadata:
     prettier: "npm:^3.2.5"
     react: "npm:^18.2.0"
     react-dnd: "npm:^16.0.1"
+    react-dnd-html5-backend: "npm:^16.0.1"
     react-dnd-touch-backend: "npm:^16.0.1"
     react-dom: "npm:^18.2.0"
     react-i18next: "npm:^14.0.5"
