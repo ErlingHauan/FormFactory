@@ -35,9 +35,7 @@ export const FormModal: React.FC<FormModalProps> = ({ children }) => {
     <Modal.Root>
       <Modal.Trigger>{children}</Modal.Trigger>
       <Modal.Dialog className={classes.modalWindow}>
-        <Modal.Header>
-            Submissions to {submittedData.title}
-        </Modal.Header>
+        <Modal.Header>Submissions to {submittedData.title}</Modal.Header>
         <Modal.Content>
           <ListAnswers />
         </Modal.Content>
