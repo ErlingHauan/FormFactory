@@ -1,4 +1,5 @@
 using FormAPI.Controllers;
+using FormAPI.Mappers;
 using FormAPI.Models;
 using FormAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -53,7 +54,7 @@ public class UsersControllerTests
 
         // Assert
         var actionResult = Assert.IsType<OkObjectResult>(result.Result);
-        var user = Assert.IsType<UserEntity>(actionResult.Value);
+        var user = Assert.IsType<UserDto>(actionResult.Value);
         Assert.Equal(1, user.Id);
         Assert.Equal("user1@example.com", user.Email);
     }
@@ -77,28 +78,90 @@ public class UsersControllerTests
         // Arrange
         var newUserDto = new UserDto(1, "user1@example.com", "password1", "Org1");
         _mockRepo.Setup(repo => repo.Create(It.IsAny<UserEntity>())).ReturnsAsync((UserEntity e) => e);
-        
+
         // Act
         var result = await _controller.Create(newUserDto);
 
         // Assert
-        var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(result.Result);
-        var returnedDto = Assert.IsType<UserDto>(createdAtActionResult.Value);
+        var actionResult = Assert.IsType<CreatedAtActionResult>(result.Result);
+        var returnedDto = Assert.IsType<UserDto>(actionResult.Value);
         Assert.Equal(1, returnedDto.Id);
         Assert.Equal("user1@example.com", returnedDto.Email);
     }
 
-    // Write a test that do not create a user if data is missing
+    [Fact]
+    public async Task Update_ReturnsUpdatedUser()
+    {
+        // Arrange 
+        var updatedUserDto = new UserDto(1, "user1@example.com", "password1", "Org1");
+        _mockRepo.Setup(repo => repo.Update(It.IsAny<UserEntity>())).ReturnsAsync((UserEntity e) => e);
 
-    // Write a test that should update a user successfully
+        // Act
+        var result = await _controller.Update(updatedUserDto);
 
-    // Write a test that does not find the provided user
+        // Assert
+        var actionResult = Assert.IsType<OkObjectResult>(result.Result);
+        Assert.IsType<UserDto>(actionResult.Value);
+    }
 
-    // Write a test that can't update the user due to missing information
+    [Fact]
+    public async Task Login_ReturnsOk()
+    {
+        // Arrange
+        var dto = new UserDto(0, "user1@example.com", "password1", null);
+        var entity = new UserEntity();
+        UserMappers.DtoToEntity(dto, entity);
+        _mockRepo.Setup(repo => repo.ConfirmEmailAndPassword(It.IsAny<UserEntity>())).ReturnsAsync(entity);
 
-    // Write a test that logs in the user successfully
+        // Act
+        var result = await _controller.Login(dto);
 
-    // Write a test that can't log in the user due to wrong email/password combination
+        // Assert
+        Assert.IsType<OkResult>(result);
+    }
 
-    // Make tests into E2E tests
+    [Fact]
+    public async Task Login_ReturnsUnauthorized()
+    {
+        // Arrange
+        var dto = new UserDto(0, "user1@example.com", "password1", null);
+        _mockRepo.Setup(repo => repo.ConfirmEmailAndPassword(It.IsAny<UserEntity>())).ReturnsAsync((UserEntity)null);
+
+        // Act
+        var result = await _controller.Login(dto);
+
+        // Assert
+        Assert.IsType<UnauthorizedObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task Delete_ReturnsOk()
+    {
+        // Arrange
+        var userToBeDeleted = new UserEntity
+        { Id = 1, Email = "user1@example.com", Password = "password1", Organization = "Org1" };
+        _mockRepo.Setup(repo => repo.Get(userToBeDeleted.Id)).ReturnsAsync(userToBeDeleted);
+        _mockRepo.Setup(repo => repo.Delete(userToBeDeleted.Id));
+
+        // Act
+        var result = await _controller.Delete(userToBeDeleted.Id);
+
+        // Assert
+        Assert.IsType<OkResult>(result);
+    }
+
+    [Fact]
+    public async Task Delete_ReturnsNotFound()
+    {
+        // Arrange
+        var userId = 1;
+        _mockRepo.Setup(repo => repo.Get(userId)).ReturnsAsync((UserEntity)null);
+        _mockRepo.Setup(repo => repo.Delete(userId));
+
+        // Act
+        var result = await _controller.Delete(userId);
+
+        // Assert
+        Assert.IsType<NotFoundObjectResult>(result);
+    }
 }

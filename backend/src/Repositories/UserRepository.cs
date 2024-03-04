@@ -45,12 +45,12 @@ public class UserRepository : IUserRepository
 
     public async Task<UserEntity?> ConfirmEmailAndPassword(UserEntity entity)
     {
-        UserEntity? result = await _context.Users.FirstOrDefaultAsync(user =>
+        var result = await _context.Users.FirstOrDefaultAsync(user =>
             user.Email == entity.Email && user.Password == entity.Password);
 
         if (result == null)
         {
-            Console.WriteLine($"Email and password combination was not found.");
+            Console.WriteLine("Email and password combination was not found.");
             return null;
         }
 
