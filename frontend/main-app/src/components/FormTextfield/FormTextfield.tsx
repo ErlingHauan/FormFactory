@@ -7,13 +7,14 @@ interface TextFieldProps {
   required?: boolean;
   minLength?: number;
   maxLength?: number;
+  error?: any;
 }
 
-export const FormTextfield: React.FC<TextFieldProps> = ({ question, name }) => {
+export const FormTextfield: React.FC<TextFieldProps> = ({ question, error, name }) => {
   return (
     <>
       <Heading level={6} size="xxsmall" spacing>{question}</Heading>
-      <Textfield name={name}/>
+      <Textfield name={name} error={error}/>
     </>
   );
 };
