@@ -31,7 +31,7 @@ const Overview = (): React.JSX.Element => {
   return (
     <div className={classes.overview}>
       <div className={classes.headingContainer}>
-        <Heading level={1} size="large">{t("dashboard")}</Heading>
+        <Heading level={1} size="medium">{t("dashboard")}</Heading>
         <Button size="small" color="success" asChild>
           <a href="/form-builder">
             <FilePlusFillIcon />
