@@ -8,7 +8,7 @@ interface CustomParagraphProps {
 
 export const CustomParagraph: React.FC<CustomParagraphProps> = ({ heading, content }) => (
   <>
-    <Heading level={6} size="small">
+    <Heading level={6} size="xxsmall">
       {heading}
     </Heading>
     <Paragraph spacing={true}>{content}</Paragraph>
