@@ -1,5 +1,5 @@
 import { Button, Heading } from "@digdir/design-system-react";
-import React, { useEffect } from "react";
+import React, { FormEvent } from "react";
 import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
 import { FormRadio } from "../FormRadio";
@@ -60,29 +60,35 @@ const form = {
 };
 
 
+const validateForm = (event: FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+
+  let schemaShape = {};
+  form.components.map((c) => {
+    if (c.required) {
+      schemaShape[c.id] = z.string().min(3);
+    }
+  });
+
+  // const formSchema = z.object({});
+  
+  const formData = new FormData(event.currentTarget as HTMLFormElement);
+  const submittedForm = Object.fromEntries(formData);
+  console.log(submittedForm);
+  
+  // const parsedForm = formSchema.parse(submittedForm);
+};
+
 export const FormViewer = (): React.JSX.Element => {
-  useEffect(() => {
-    const formSchema = z.object({});
-
-    form.components.map((c) => {
-      if (c.required) {
-        formSchema[c.id] = z.string();
-      }
-    });
-
-    const parsedForm = formSchema.parse(form);
-    console.log(parsedForm);
-  }, []);
-
-
   return (
     <main className={classes.card}>
-      <form>
+      <form onSubmit={validateForm}>
         <Heading level={1} size="xlarge">{form.title}</Heading>
         {form.components.map((c) => (
           c.type === "textfield" ? (
             <div key={c.id} className={classes.component}>
               <FormTextfield
+                name={c.id.toString()}
                 question={c.question}
                 required={c.required}
                 minLength={c.minLength}
@@ -92,6 +98,7 @@ export const FormViewer = (): React.JSX.Element => {
           ) : (
             <div key={c.id} className={classes.component}>
               <FormRadio
+                id={c.id.toString()}
                 question={c.question}
                 required={c.required}
                 choices={c.choices}
@@ -100,7 +107,7 @@ export const FormViewer = (): React.JSX.Element => {
           )
         ))}
         <div className={classes.buttonContainer}>
-          <Button size={"large"} fullWidth={false}>Submit form<TasklistSendFillIcon /></Button>
+          <Button type="submit" size={"large"} fullWidth={false}>Submit form<TasklistSendFillIcon /></Button>
         </div>
       </form>
     </main>
