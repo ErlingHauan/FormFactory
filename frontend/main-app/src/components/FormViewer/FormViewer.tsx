@@ -1,9 +1,10 @@
 import { Button, Heading } from "@digdir/design-system-react";
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
 import { FormRadio } from "../FormRadio";
 import { FormTextfield } from "../FormTextfield";
+import { z } from "zod";
 
 const form = {
   id: 1994,
@@ -58,14 +59,29 @@ const form = {
   ]
 };
 
+
 export const FormViewer = (): React.JSX.Element => {
+  useEffect(() => {
+    const formSchema = z.object({});
+
+    form.components.map((c) => {
+      if (c.required) {
+        formSchema[c.id] = z.string();
+      }
+    });
+
+    const parsedForm = formSchema.parse(form);
+    console.log(parsedForm);
+  }, []);
+
+
   return (
     <main className={classes.card}>
       <form>
         <Heading level={1} size="xlarge">{form.title}</Heading>
         {form.components.map((c) => (
           c.type === "textfield" ? (
-            <div className={classes.component}>
+            <div key={c.id} className={classes.component}>
               <FormTextfield
                 question={c.question}
                 required={c.required}
@@ -74,7 +90,7 @@ export const FormViewer = (): React.JSX.Element => {
               />
             </div>
           ) : (
-            <div className={classes.component}>
+            <div key={c.id} className={classes.component}>
               <FormRadio
                 question={c.question}
                 required={c.required}
@@ -84,7 +100,7 @@ export const FormViewer = (): React.JSX.Element => {
           )
         ))}
         <div className={classes.buttonContainer}>
-        <Button size={"large"} fullWidth={false}>Submit form<TasklistSendFillIcon /></Button>
+          <Button size={"large"} fullWidth={false}>Submit form<TasklistSendFillIcon /></Button>
         </div>
       </form>
     </main>

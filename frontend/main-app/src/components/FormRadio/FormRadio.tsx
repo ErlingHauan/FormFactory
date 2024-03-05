@@ -11,8 +11,8 @@ export const FormRadio: React.FC<FFRadioProps> = ({ question, choices }) => {
   return (
     <>
       <Radio.Group legend={question}>
-        {choices.map((choice) => (
-          <Radio value={choice}>{choice}</Radio>
+        {choices.map((choice, index) => (
+          <Radio key={index} value={choice}>{choice}</Radio>
         ))}
       </Radio.Group>
     </>
