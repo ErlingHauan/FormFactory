@@ -4,7 +4,6 @@ import { Heading, Textfield } from "@digdir/design-system-react";
 interface TextFieldProps {
   name: string
   question: string;
-  required?: boolean;
   minLength?: number;
   maxLength?: number;
   error?: any;
