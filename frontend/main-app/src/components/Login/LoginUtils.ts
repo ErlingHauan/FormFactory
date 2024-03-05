@@ -4,7 +4,7 @@ import axios from "axios";
 
 const loginFormSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters long")
+  password: z.string().min(8, "Password must be at least 8 characters long"),
 });
 
 export const validateLoginForm: IValidateLoginForm = ({ loginForm, setFormErrors }) => {
@@ -22,15 +22,12 @@ export const validateLoginForm: IValidateLoginForm = ({ loginForm, setFormErrors
   return true;
 };
 
-export const axiosPostForm = async (
-  targetUrl: string,
-  formData: FormData
-): Promise<boolean> => {
+export const axiosPostForm = async (targetUrl: string, formData: FormData): Promise<boolean> => {
   const formObject = Object.fromEntries(formData);
   try {
     const response = await axios.post(targetUrl, formObject);
     console.log(response);
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 201) {
       return true;
     }
   } catch (error) {
@@ -43,7 +40,7 @@ export const getApiUrl = (): string => {
   const env = process.env.NODE_ENV;
   const apiUrlDev = process.env.API_URL_DEVELOPMENT;
   const apiUrlProd = process.env.API_URL_PRODUCTION;
-  
+
   if (env === "development") {
     if (!apiUrlDev) {
       throw new Error("API_URL_DEVELOPMENT is not set in the .env file.");

@@ -1,6 +1,6 @@
 import classes from "./Signup.module.css";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
-import { Button, Heading, Textfield } from "@digdir/design-system-react";
+import { Alert, Button, Heading, Textfield } from "@digdir/design-system-react";
 import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosPostForm, getApiUrl } from "../Login/LoginUtils";
@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 export const Signup = (): React.JSX.Element => {
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState<SignupFormError | null>(null);
+  const [serverError, setServerError] = useState<string | null>(null);
   const { t } = useTranslation();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -22,8 +23,12 @@ export const Signup = (): React.JSX.Element => {
 
     if (formIsValid) {
       const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/auth/signup`;
-      await axiosPostForm(targetUrl, formData) && navigate("/form-builder");
+      const targetUrl = `${apiUrl}/api/users`;
+      if (await axiosPostForm(targetUrl, formData)) {
+        navigate("/dashboard");
+      } else {
+        setServerError(t("signup_page.server.error"));
+      }
     }
   };
 
@@ -57,6 +62,7 @@ export const Signup = (): React.JSX.Element => {
           error={formErrors?.passwordRepeat}
         />
       </div>
+      {serverError && <Alert severity="danger">{serverError}</Alert>}
       <div className={classes.buttonContainer}>
         <Button type="submit" className={classes.button}>
           {t("signup_page.signup.button")}
