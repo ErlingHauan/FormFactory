@@ -13,28 +13,30 @@ export const FormViewer = (): React.JSX.Element => {
   const validateForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    let schemaShape = {};
-    form.components.map((c) => {
-      if (c.required) {
-        schemaShape[c.id] = z.string().min(1);
-      }
-    });
-
-    const automatedSchema = z.object(schemaShape);
+    const generateSchema = (form) => {
+      let schemaShape = {};
+      form.components.map((c) => {
+        if (c.required) {
+          schemaShape[c.id] = z.string().min(1);
+        }
+      });
+      const validationSchema = z.object(schemaShape);
+      return validationSchema;
+    };
+    
+    const validationSchema = generateSchema(form);
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const cleanedFormData = Object.fromEntries(formData);
 
-    const result = automatedSchema.safeParse(cleanedFormData);
+    const result = validationSchema.safeParse(cleanedFormData);
     if ("error" in result) {
       setFormErrors(result.error.formErrors.fieldErrors);
-      console.log(result.error.formErrors.fieldErrors);
-      console.log(formErrors);
     } else {
-      console.log(result.data);
       setFormErrors({});
+      // Send form submission to backend
     }
   };
-  
+
   return (
     <main className={classes.card}>
       <form onSubmit={validateForm}>
