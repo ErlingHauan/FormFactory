@@ -28,12 +28,17 @@ const ListAnswers = (): React.JSX.Element => {
 
 interface FormModalProps {
   children: ReactNode;
+  className?: string;
+  size?: string;
+  variant?: string;
 }
 
-export const FormModal: React.FC<FormModalProps> = ({ children }) => {
+export const FormModal: React.FC<FormModalProps> = ({ children, className, size, variant }) => {
   return (
     <Modal.Root>
-      <Modal.Trigger>{children}</Modal.Trigger>
+      <Modal.Trigger className={className} variant={variant} size={size}>
+        {children}
+      </Modal.Trigger>
       <Modal.Dialog className={classes.modalWindow}>
         <Modal.Header>Submissions to {submittedData.title}</Modal.Header>
         <Modal.Content>
