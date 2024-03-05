@@ -1,8 +1,9 @@
 import { Button, Heading } from "@digdir/design-system-react";
 import React from "react";
-import { FFTextfield, FFRadio } from "../FormComponents";
 import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
+import { FormRadio } from "../FormRadio";
+import { FormTextfield } from "../FormTextfield";
 
 const form = {
   id: 1994,
@@ -65,7 +66,7 @@ export const FormViewer = (): React.JSX.Element => {
         {form.components.map((c) => (
           c.type === "textfield" ? (
             <div className={classes.component}>
-              <FFTextfield
+              <FormTextfield
                 question={c.question}
                 required={c.required}
                 minLength={c.minLength}
@@ -74,7 +75,7 @@ export const FormViewer = (): React.JSX.Element => {
             </div>
           ) : (
             <div className={classes.component}>
-              <FFRadio
+              <FormRadio
                 question={c.question}
                 required={c.required}
                 choices={c.choices}

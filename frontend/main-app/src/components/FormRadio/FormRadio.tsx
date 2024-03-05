@@ -7,7 +7,7 @@ interface FFRadioProps {
   choices: string[];
 }
 
-export const FFRadio: React.FC<FFRadioProps> = ({ question, choices }) => {
+export const FormRadio: React.FC<FFRadioProps> = ({ question, choices }) => {
   return (
     <>
       <Radio.Group legend={question}>

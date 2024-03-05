@@ -8,7 +8,7 @@ interface TextFieldProps {
   maxLength?: number;
 }
 
-export const FFTextfield: React.FC<TextFieldProps> = ({ question }) => {
+export const FormTextfield: React.FC<TextFieldProps> = ({ question }) => {
   return (
     <>
       <Heading level={6} size="xxsmall" spacing>{question}</Heading>
