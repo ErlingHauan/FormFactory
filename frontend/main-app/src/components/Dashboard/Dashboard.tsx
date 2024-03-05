@@ -82,7 +82,7 @@ const FormList = (): React.JSX.Element => {
         <Accordion border={true} key={form.id}>
           <Accordion.Item>
             <Accordion.Header>
-              <Heading level={2} size="xsmall">
+              <Heading level={2} size="xxsmall">
                 {form.title}
               </Heading>
             </Accordion.Header>
