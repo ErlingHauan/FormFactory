@@ -1,17 +1,17 @@
 .card {
-    background: var(--fds-semantic-background-default);
-    border: 1px solid var(--fds-semantic-border-neutral-subtle);
-    border-radius: var(--fds-border_radius-medium);
-    padding: var(--fds-spacing-10) var(--fds-spacing-14);
-    min-width: 75%;
+  background: var(--fds-semantic-background-default);
+  border: 1px solid var(--fds-semantic-border-neutral-subtle);
+  border-radius: var(--fds-border_radius-medium);
+  padding: var(--fds-spacing-10) var(--fds-spacing-14);
+  min-width: 75%;
 }
 
 .component {
-    margin: var(--fds-spacing-10) 0;
+  margin: var(--fds-spacing-10) 0;
 }
 
 .buttonContainer {
-    display: flex;
-    justify-content: end;
-    padding: var(--fds-spacing-5) 0;
+  display: flex;
+  justify-content: end;
+  padding: var(--fds-spacing-5) 0;
 }

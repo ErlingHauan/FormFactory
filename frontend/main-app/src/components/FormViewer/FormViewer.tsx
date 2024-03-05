@@ -12,12 +12,12 @@ export const FormViewer = (): React.JSX.Element => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
+
     const validationSchema = generateSchema(form);
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const formDataObject = Object.fromEntries(formData);
     const result = validationSchema.safeParse(formDataObject);
-    
+
     if ("error" in result) {
       setFormErrors(result.error.formErrors.fieldErrors);
     } else {
@@ -29,8 +29,10 @@ export const FormViewer = (): React.JSX.Element => {
   return (
     <main className={classes.card}>
       <form onSubmit={handleSubmit}>
-        <Heading level={1} size="xlarge">{form.title}</Heading>
-        {form.components.map((c) => (
+        <Heading level={1} size="xlarge">
+          {form.title}
+        </Heading>
+        {form.components.map((c) =>
           c.type === "textfield" ? (
             <div key={c.id} className={classes.component}>
               <FormTextfield
@@ -43,16 +45,15 @@ export const FormViewer = (): React.JSX.Element => {
             </div>
           ) : (
             <div key={c.id} className={classes.component}>
-              <FormRadio
-                name={c.id.toString()}
-                question={c.question}
-                choices={c.choices}
-              />
+              <FormRadio name={c.id.toString()} question={c.question} choices={c.choices} />
             </div>
-          )
-        ))}
+          ),
+        )}
         <div className={classes.buttonContainer}>
-          <Button type="submit" size={"large"} fullWidth={false}>Submit form<TasklistSendFillIcon /></Button>
+          <Button type="submit" size={"large"} fullWidth={false}>
+            Submit form
+            <TasklistSendFillIcon />
+          </Button>
         </div>
       </form>
     </main>

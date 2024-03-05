@@ -31,7 +31,9 @@ const Overview = (): React.JSX.Element => {
   return (
     <div className={classes.overview}>
       <div className={classes.headingContainer}>
-        <Heading level={1} size="medium">{t("dashboard")}</Heading>
+        <Heading level={1} size="medium">
+          {t("dashboard")}
+        </Heading>
         <Button size="small" color="success" asChild>
           <a href="/form-builder">
             <FilePlusFillIcon />
@@ -41,8 +43,14 @@ const Overview = (): React.JSX.Element => {
       </div>
       {forms.length > 0 ? (
         <>
-          <Paragraph>{t("dashboard.number.of.forms")}{forms.length}</Paragraph>
-          <Paragraph>{t("dashboard.total.submissions")}{numberOfSubmissions}</Paragraph>
+          <Paragraph>
+            {t("dashboard.number.of.forms")}
+            {forms.length}
+          </Paragraph>
+          <Paragraph>
+            {t("dashboard.total.submissions")}
+            {numberOfSubmissions}
+          </Paragraph>
         </>
       ) : (
         <Paragraph>{t("dashboard.empty.message")}</Paragraph>
