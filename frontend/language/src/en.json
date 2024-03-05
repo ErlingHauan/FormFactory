@@ -30,7 +30,7 @@
   "signup_page.organization.label": "Organization",
   "signup_page.password.label": "Password",
   "signup_page.password.repeat.label": "Repeat password",
-  "signup_page.server.error": "Error connecting to the server",
+  "signup_page.server.error": "The server did not respond as expected. If you are a developer, please make sure that both the database and the correct backend for your environment is running. If problems persist, please contact us at GitHub.",
   "signup_page.signup.button": "Sign up",
   "signup_page.title": "Sign up",
   "toolbar_tools": "Tools",
