@@ -7,13 +7,3 @@
 .spacing {
   margin: var(--fds-spacing-8) 0;
 }
-
-.button {
-  justify-content: left;
-}
-
-@media screen and (max-width: 1000px) {
-  .button {
-    justify-content: center;
-  }
-}

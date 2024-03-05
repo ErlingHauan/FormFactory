@@ -32,7 +32,7 @@ const Overview = (): React.JSX.Element => {
     <div className={classes.overview}>
       <div className={classes.headingContainer}>
         <Heading level={1}>{t("dashboard")}</Heading>
-        <Button color="success" asChild>
+        <Button size="small" color="success" asChild>
           <a href="/form-builder">
             <FilePlusFillIcon />
             {t("dashboard.new.form")}
@@ -42,8 +42,7 @@ const Overview = (): React.JSX.Element => {
       {forms.length > 0 ? (
         <>
           <Paragraph>{t("dashboard.number.of.forms")}{forms.length}</Paragraph>
-          <Paragraph spacing>{t("dashboard.total.submissions")}{numberOfSubmissions}</Paragraph>
-          <Paragraph>{t("dashboard.forms.below")}</Paragraph>
+          <Paragraph>{t("dashboard.total.submissions")}{numberOfSubmissions}</Paragraph>
         </>
       ) : (
         <Paragraph>{t("dashboard.empty.message")}</Paragraph>
@@ -56,19 +55,19 @@ const ButtonGroup = (): React.JSX.Element => {
   const { t } = useTranslation();
   return (
     <div className={classes.buttonContainer}>
-      <FormModal>
+      <FormModal className={classes.button} size="small" variant="secondary">
         <PersonEnvelopeFillIcon />
         {t("dashboard.view.submissions")}
       </FormModal>
-      <Button className={classes.button} variant="secondary">
+      <Button className={classes.button} size="small" variant="secondary">
         <CloudDownFillIcon />
         {t("dashboard.download")}
       </Button>
-      <Button className={classes.button} variant="secondary">
+      <Button className={classes.button} size="small" variant="secondary">
         <ClipboardLinkFillIcon />
         {t("dashboard.share.form")}
       </Button>
-      <Button className={classes.button} color="danger" variant="secondary">
+      <Button className={classes.button} color="danger" size="small" variant="secondary">
         <TrashFillIcon />
         {t("dashboard.delete.form")}
       </Button>
@@ -83,7 +82,7 @@ const FormList = (): React.JSX.Element => {
         <Accordion border={true} key={form.id}>
           <Accordion.Item>
             <Accordion.Header>
-              <Heading level={2} size="medium">
+              <Heading level={2} size="xsmall">
                 {form.title}
               </Heading>
             </Accordion.Header>
