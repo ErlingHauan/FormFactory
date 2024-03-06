@@ -7,10 +7,11 @@ interface TextFieldProps {
   minLength?: number;
   maxLength?: number;
   error?: any;
+  required: boolean
 }
 
-export const FormTextfield: React.FC<TextFieldProps> = ({ question, error, name, minLength }) => {
-  const requiredPlaceholder = minLength > 0 && "Required";
+export const FormTextfield: React.FC<TextFieldProps> = ({ question, error, name, required }) => {
+  const requiredPlaceholder = required ? "Required" : undefined;
   return (
     <>
       <Heading level={6} size="xxsmall" spacing>
