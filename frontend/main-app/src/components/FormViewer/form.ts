@@ -1,11 +1,11 @@
-export const form = {
+export default {
   id: 1994,
   title: "Pet survey",
   published: "2018-01-10",
   components: [
     {
       id: 1,
-      question: "How many animals do you have?",
+      question: "If you have animals, how many animals do you have?",
       componentType: "textfield",
       inputType: "number",
       required: true,
@@ -20,7 +20,7 @@ export const form = {
     },
     {
       id: 3,
-      question: "Would you consider being an animal owner?",
+      question: "If you don't have animals, would you consider becoming an animal owner?",
       componentType: "textfield",
       inputType: "string",
       required: true,
@@ -29,9 +29,9 @@ export const form = {
     },
     {
       id: 4,
-      question: "How often do you take your pets for a walk?",
+      question: "If you would get a new pet, what animal would it be?",
       componentType: "radio",
-      choices: ["Daily", "2-3 times a week", "Weekly", "Rarely", "Never"],
+      choices: ["Dog", "Cat", "Horse", "Cow", "Chicken"],
     },
     {
       id: 5,

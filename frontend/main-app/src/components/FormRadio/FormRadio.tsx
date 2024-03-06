@@ -1,13 +1,13 @@
 import React from "react";
 import { Radio } from "@digdir/design-system-react";
 
-interface RadioProps {
+interface FormRadioProps {
   name: string;
   question: string;
   choices: string[];
 }
 
-export const FormRadio: React.FC<RadioProps> = ({ question, name, choices }) => {
+export const FormRadio: React.FC<FormRadioProps> = ({ question, name, choices }) => {
   return (
     <>
       <Radio.Group name={name} legend={question}>

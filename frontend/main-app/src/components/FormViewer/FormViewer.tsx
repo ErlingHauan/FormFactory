@@ -1,29 +1,33 @@
-import { Button, Heading } from "@digdir/design-system-react";
+import { Alert, Button, Heading } from "@digdir/design-system-react";
 import React, { FormEvent, useState } from "react";
 import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
 import { FormRadio } from "../FormRadio";
 import { FormTextfield } from "../FormTextfield";
-import { form } from "./form";
+import form from "./form";
 import { cleanFormData, generateValidationSchema } from "./FormViewerUtils";
+import { useTranslation } from "react-i18next";
 
 export const FormViewer = (): React.JSX.Element => {
-  const [formErrors, setFormErrors] = useState(null);
+  const {t} = useTranslation();
+  const [formErrors, setFormErrors] = useState({});
+  const [formAlert, setFormAlert] = useState("");
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const validationSchema = generateValidationSchema(form);
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const cleanedFormData = cleanFormData(formData);
+    const validationSchema = generateValidationSchema(form);
     const result = validationSchema.safeParse(cleanedFormData);
 
     if ("error" in result) {
       setFormErrors(result.error.formErrors.fieldErrors);
+      setFormAlert("error")
     } else {
       setFormErrors({});
-      console.log("Form validation successful.");
       // Pass form submission to backend
+      setFormAlert("success");
     }
   };
   return (
@@ -39,8 +43,6 @@ export const FormViewer = (): React.JSX.Element => {
                 name={c.id.toString()}
                 question={c.question}
                 required={c.required}
-                minLength={c.minLength}
-                maxLength={c.maxLength}
                 error={formErrors?.[c.id]}
               />
             </div>
@@ -57,6 +59,8 @@ export const FormViewer = (): React.JSX.Element => {
           </Button>
         </div>
       </form>
+      {formAlert == "success" && <Alert severity="success">{t("form_viewer.success")}</Alert>}
+      {formAlert == "error" && <Alert severity="danger">{t("form_viewer.error")}</Alert>}
     </main>
   );
 };

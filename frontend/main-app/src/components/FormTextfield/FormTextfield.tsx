@@ -1,16 +1,14 @@
 import React from "react";
 import { Heading, Textfield } from "@digdir/design-system-react";
 
-interface TextFieldProps {
+interface FormTextFieldProps {
   name: string;
   question: string;
-  minLength?: number;
-  maxLength?: number;
   error?: string[];
   required: boolean;
 }
 
-export const FormTextfield: React.FC<TextFieldProps> = ({ question, error, name, required }) => {
+export const FormTextfield: React.FC<FormTextFieldProps> = ({ question, error, name, required }) => {
   const requiredPlaceholder = required ? "Required" : undefined;
   return (
     <>
