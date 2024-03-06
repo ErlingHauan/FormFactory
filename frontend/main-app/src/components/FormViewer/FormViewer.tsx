@@ -12,8 +12,7 @@ export const FormViewer = (): React.JSX.Element => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-
-      
+     
       const validationSchema = generateValidationSchema(form);
       const formData = new FormData(event.currentTarget as HTMLFormElement);
       const cleanedFormData = cleanFormData(formData);

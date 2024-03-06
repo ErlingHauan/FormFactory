@@ -24,7 +24,9 @@ export const generateValidationSchema = (form) => {
 
     switch (component.inputType) {
       case "string":
-        validator = z.string();
+        validator = z.string( {
+          required_error: "Field is required. "
+        });
 
         if (component.required) {
           validator = validator.min(1, { message: "Field is required. " });
@@ -56,13 +58,13 @@ export const generateValidationSchema = (form) => {
 
         if (component.greaterThan) {
           if (validator instanceof ZodNumber) {
-            validator = validator.gt(component.greaterThan);
+            validator = validator.gt(component.greaterThan, { message: `Number must be greater than ${component.greaterThan}. `});
           }
         }
 
         if (component.lessThan) {
           if (validator instanceof ZodNumber) {
-            validator = validator.lt(component.lessThan);
+            validator = validator.lt(component.lessThan, { message: `Number must be less than ${component.lessThan}. `});
           }
         }
         break;
