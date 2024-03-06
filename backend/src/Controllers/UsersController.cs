@@ -34,7 +34,7 @@ public class UsersController : ControllerBase
         }
 
         var userDto = UserMappers.EntityToDto(userEntity);
-        return Ok(userEntity);
+        return Ok(userDto);
     }
 
     [HttpPost]
@@ -42,7 +42,7 @@ public class UsersController : ControllerBase
     {
         var entity = new UserEntity();
         UserMappers.DtoToEntity(dto, entity);
-        var createdEntity = await _userRepository.Add(entity);
+        var createdEntity = await _userRepository.Create(entity);
         var createdDto = UserMappers.EntityToDto(createdEntity);
 
         return CreatedAtAction(nameof(Get), new { userId = createdDto.Id }, createdDto);
@@ -53,8 +53,10 @@ public class UsersController : ControllerBase
     {
         var entity = new UserEntity();
         UserMappers.DtoToEntity(dto, entity);
-        var updatedUser = await _userRepository.Update(entity);
-        return Ok(updatedUser);
+        var updatedEntity = await _userRepository.Update(entity);
+        var updatedDto = UserMappers.EntityToDto(updatedEntity);
+
+        return Ok(updatedDto);
     }
 
     [HttpDelete("{userId:int}")]
@@ -70,8 +72,11 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult> Login([FromBody] UserEntity entity)
+    public async Task<ActionResult> Login([FromBody] UserDto dto)
     {
+        var entity = new UserEntity();
+        UserMappers.DtoToEntity(dto, entity);
+
         if (await _userRepository.ConfirmEmailAndPassword(entity) == null)
         {
             return Unauthorized("Email/password combination was not found.");

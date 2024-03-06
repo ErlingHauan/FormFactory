@@ -1,102 +1,167 @@
-using System.Net;
-using System.Text;
 using FormAPI.Controllers;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Newtonsoft.Json;
+using FormAPI.Mappers;
+using FormAPI.Models;
+using FormAPI.Repositories;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
 using Xunit;
 
 namespace FormAPI.Tests.Controllers;
 
-public class UsersControllerTests(WebApplicationFactory<UsersController> userApi)
-    : IClassFixture<WebApplicationFactory<UsersController>>
-
+public class UsersControllerTests
 {
-    private readonly WebApplicationFactory<UsersController> _userApi = userApi;
+    private readonly Mock<IUserRepository> _mockRepo;
+    private readonly UsersController _controller;
 
-    private HttpClient GetTestClient()
+    public UsersControllerTests()
     {
-        return _userApi.WithWebHostBuilder(builder =>
-        {
-        }).CreateDefaultClient();
+        _mockRepo = new Mock<IUserRepository>();
+        _controller = new UsersController(_mockRepo.Object);
     }
 
     [Fact]
-    public async Task Post_LoginReturnsOk()
+    public async Task GetAll_ReturnsAllUsers()
     {
-        string url = "/api/users/login";
-        var user = new
+        // Arrange
+        var mockUsers = new List<UserEntity>
         {
-            Email = "test@test.com",
-            Password = "12345678",
-            Organization = "Testdepartementet"
+            new UserEntity { Id = 1, Email = "user1@example.com", Password = "password1", Organization = "Org1" },
+            new UserEntity { Id = 2, Email = "user2@example.com", Password = "password2", Organization = "Org2" }
         };
+        _mockRepo.Setup(repo => repo.GetAll()).ReturnsAsync(mockUsers);
 
-        var jsonData = JsonConvert.SerializeObject(user);
-        var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        // Act
+        var result = await _controller.GetAll();
 
-        HttpClient client = GetTestClient();
-        var response = await client.PostAsync(url, content);
-
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        // Assert
+        var actionResult = Assert.IsType<OkObjectResult>(result.Result);
+        var returnedUsers = Assert.IsType<List<UserDto>>(actionResult.Value);
+        Assert.Equal(2, returnedUsers.Count);
     }
 
     [Fact]
-    public async Task Post_LoginReturnsUnauthorized()
+    public async Task Get_ReturnsFoundUser()
     {
-        string url = "/api/users/login";
-        var user = new
+        //Assert
+        var mockUsers = new List<UserEntity>
         {
-            Email = "emailNotInDb@email.com",
-            Password = "123456",
-            Organization = "Testdepartementet"
+            new UserEntity { Id = 1, Email = "user1@example.com", Password = "password1", Organization = "Org1" },
         };
+        _mockRepo.Setup(repo => repo.Get(1)).ReturnsAsync(mockUsers.First(u => u.Id == 1));
 
-        var jsonData = JsonConvert.SerializeObject(user);
-        var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        // Act
+        var result = await _controller.Get(1);
 
-        HttpClient client = GetTestClient();
-        var response = await client.PostAsync(url, content);
-
-        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+        // Assert
+        var actionResult = Assert.IsType<OkObjectResult>(result.Result);
+        var user = Assert.IsType<UserDto>(actionResult.Value);
+        Assert.Equal(1, user.Id);
+        Assert.Equal("user1@example.com", user.Email);
     }
 
     [Fact]
-    public async Task Post_SignupReturnsCreated()
+    public async Task Get_UserNotFound_ReturnsNotFound()
     {
-        string url = "/api/users";
-        var user = new
-        {
-            Email = "someTestEmail@test.com",
-            Password = "12345678",
-            Organization = "Testdepartementet"
-        };
+        // Arrange
+        _mockRepo.Setup(repo => repo.Get(1)).ReturnsAsync((UserEntity?)null);
 
-        var jsonData = JsonConvert.SerializeObject(user);
-        var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        // Act
+        var result = await _controller.Get(1);
 
-        HttpClient client = GetTestClient();
-        var response = await client.PostAsync(url, content);
-
-        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+        // Assert
+        Assert.IsType<NotFoundObjectResult>(result.Result);
     }
 
     [Fact]
-    public async Task Post_SignupReturnsBadRequest()
+    public async Task Create_ReturnsCreatedUser()
     {
-        string url = "/api/users";
-        var user = new
-        {
-            Email = "",
-            Password = "123456",
-            Organization = "Testdepartementet"
-        };
+        // Arrange
+        var newUserDto = new UserDto(1, "user1@example.com", "password1", "Org1");
+        _mockRepo.Setup(repo => repo.Create(It.IsAny<UserEntity>())).ReturnsAsync((UserEntity e) => e);
 
-        var jsonData = JsonConvert.SerializeObject(user);
-        var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        // Act
+        var result = await _controller.Create(newUserDto);
 
-        HttpClient client = GetTestClient();
-        var response = await client.PostAsync(url, content);
+        // Assert
+        var actionResult = Assert.IsType<CreatedAtActionResult>(result.Result);
+        var returnedDto = Assert.IsType<UserDto>(actionResult.Value);
+        Assert.Equal(1, returnedDto.Id);
+        Assert.Equal("user1@example.com", returnedDto.Email);
+    }
 
-        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+    [Fact]
+    public async Task Update_ReturnsUpdatedUser()
+    {
+        // Arrange 
+        var updatedUserDto = new UserDto(1, "user1@example.com", "password1", "Org1");
+        _mockRepo.Setup(repo => repo.Update(It.IsAny<UserEntity>())).ReturnsAsync((UserEntity e) => e);
+
+        // Act
+        var result = await _controller.Update(updatedUserDto);
+
+        // Assert
+        var actionResult = Assert.IsType<OkObjectResult>(result.Result);
+        Assert.IsType<UserDto>(actionResult.Value);
+    }
+
+    [Fact]
+    public async Task Login_ReturnsOk()
+    {
+        // Arrange
+        var dto = new UserDto(0, "user1@example.com", "password1", null);
+        var entity = new UserEntity();
+        UserMappers.DtoToEntity(dto, entity);
+        _mockRepo.Setup(repo => repo.ConfirmEmailAndPassword(It.IsAny<UserEntity>())).ReturnsAsync(entity);
+
+        // Act
+        var result = await _controller.Login(dto);
+
+        // Assert
+        Assert.IsType<OkResult>(result);
+    }
+
+    [Fact]
+    public async Task Login_ReturnsUnauthorized()
+    {
+        // Arrange
+        var dto = new UserDto(0, "user1@example.com", "password1", null);
+        _mockRepo.Setup(repo => repo.ConfirmEmailAndPassword(It.IsAny<UserEntity>())).ReturnsAsync((UserEntity?)null);
+
+        // Act
+        var result = await _controller.Login(dto);
+
+        // Assert
+        Assert.IsType<UnauthorizedObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task Delete_ReturnsOk()
+    {
+        // Arrange
+        var userToBeDeleted = new UserEntity
+        { Id = 1, Email = "user1@example.com", Password = "password1", Organization = "Org1" };
+        _mockRepo.Setup(repo => repo.Get(userToBeDeleted.Id)).ReturnsAsync(userToBeDeleted);
+        _mockRepo.Setup(repo => repo.Delete(userToBeDeleted.Id));
+
+        // Act
+        var result = await _controller.Delete(userToBeDeleted.Id);
+
+        // Assert
+        Assert.IsType<OkResult>(result);
+    }
+
+    [Fact]
+    public async Task Delete_ReturnsNotFound()
+    {
+        // Arrange
+        var userId = 1;
+        _mockRepo.Setup(repo => repo.Get(userId)).ReturnsAsync((UserEntity?)null);
+        _mockRepo.Setup(repo => repo.Delete(userId));
+
+        // Act
+        var result = await _controller.Delete(userId);
+
+        // Assert
+        Assert.IsType<NotFoundObjectResult>(result);
     }
 }
