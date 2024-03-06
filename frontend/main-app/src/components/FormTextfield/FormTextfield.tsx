@@ -6,8 +6,8 @@ interface TextFieldProps {
   question: string;
   minLength?: number;
   maxLength?: number;
-  error?: any;
-  required: boolean
+  error?: string[];
+  required: boolean;
 }
 
 export const FormTextfield: React.FC<TextFieldProps> = ({ question, error, name, required }) => {

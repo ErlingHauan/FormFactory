@@ -11,23 +11,21 @@ export const FormViewer = (): React.JSX.Element => {
   const [formErrors, setFormErrors] = useState(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-     
-      const validationSchema = generateValidationSchema(form);
-      const formData = new FormData(event.currentTarget as HTMLFormElement);
-      const cleanedFormData = cleanFormData(formData);
-      const result = validationSchema.safeParse(cleanedFormData);
+    event.preventDefault();
 
-      if ("error" in result) {
-        setFormErrors(result.error.formErrors.fieldErrors);
-      } else {
-        setFormErrors({});
-        console.log("Form validation successful.");
-        // Pass form submission to backend
-      }
+    const validationSchema = generateValidationSchema(form);
+    const formData = new FormData(event.currentTarget as HTMLFormElement);
+    const cleanedFormData = cleanFormData(formData);
+    const result = validationSchema.safeParse(cleanedFormData);
+
+    if ("error" in result) {
+      setFormErrors(result.error.formErrors.fieldErrors);
+    } else {
+      setFormErrors({});
+      console.log("Form validation successful.");
+      // Pass form submission to backend
     }
-  ;
-
+  };
   return (
     <main className={classes.card}>
       <form onSubmit={handleSubmit}>
@@ -50,7 +48,7 @@ export const FormViewer = (): React.JSX.Element => {
             <div key={c.id} className={classes.component}>
               <FormRadio name={c.id.toString()} question={c.question} choices={c.choices} />
             </div>
-          )
+          ),
         )}
         <div className={classes.buttonContainer}>
           <Button type="submit" size={"large"} fullWidth={false}>

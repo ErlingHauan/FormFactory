@@ -1,7 +1,7 @@
 import { z, ZodNumber, ZodOptional, ZodString } from "zod";
 
 export const cleanFormData = (formData: FormData) => {
-  const obj = Object.fromEntries(formData)
+  const obj = Object.fromEntries(formData);
   const newObj = {};
 
   for (const key in obj) {
@@ -14,18 +14,18 @@ export const cleanFormData = (formData: FormData) => {
   }
 
   return newObj;
-}
+};
 
 export const generateValidationSchema = (form) => {
-  let schemaShape = {};
+  const schemaShape = {};
 
   form.components.forEach((component) => {
-    let validator: ZodString | ZodNumber | ZodOptional<any>;
+    let validator: ZodString | ZodNumber | ZodOptional<ZodString | ZodNumber>;
 
     switch (component.inputType) {
       case "string":
-        validator = z.string( {
-          required_error: "Field is required. "
+        validator = z.string({
+          required_error: "Field is required. ",
         });
 
         if (component.required) {
@@ -36,20 +36,24 @@ export const generateValidationSchema = (form) => {
 
         if (component.minLength) {
           if (validator instanceof ZodString) {
-            validator = validator.min(component.minLength, { message: `Field must have at least ${component.minLength} characters. ` });
+            validator = validator.min(component.minLength, {
+              message: `Field must have at least ${component.minLength} characters. `,
+            });
           }
         }
 
         if (component.maxLength) {
           if (validator instanceof ZodString) {
-            validator = validator.max(component.maxLength, { message: `Field must have more than ${component.maxLength} characters. ` });
+            validator = validator.max(component.maxLength, {
+              message: `Field must have more than ${component.maxLength} characters. `,
+            });
           }
         }
         break;
 
       case "number":
         validator = z.coerce.number({
-          invalid_type_error: "Number required. "
+          invalid_type_error: "Number required. ",
         });
 
         if (!component.required) {
@@ -58,13 +62,17 @@ export const generateValidationSchema = (form) => {
 
         if (component.greaterThan) {
           if (validator instanceof ZodNumber) {
-            validator = validator.gt(component.greaterThan, { message: `Number must be greater than ${component.greaterThan}. `});
+            validator = validator.gt(component.greaterThan, {
+              message: `Number must be greater than ${component.greaterThan}. `,
+            });
           }
         }
 
         if (component.lessThan) {
           if (validator instanceof ZodNumber) {
-            validator = validator.lt(component.lessThan, { message: `Number must be less than ${component.lessThan}. `});
+            validator = validator.lt(component.lessThan, {
+              message: `Number must be less than ${component.lessThan}. `,
+            });
           }
         }
         break;
