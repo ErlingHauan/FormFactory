@@ -31,5 +31,21 @@ public static class SeedData
                 Organization = ""
             }
         });
+
+        builder.Entity<FormEntity>().HasData(new List<FormEntity>
+        {
+            new FormEntity()
+            {
+                Id = Guid.NewGuid(),
+                User = "user1@example.com",
+                Organization = "Org1",
+                Title = "Test Survey",
+                Description = "This form was created as a test.",
+                Status = "draft",
+                Published = null,
+                Expires = null,
+                Components = null
+            }
+        });
     }
 }

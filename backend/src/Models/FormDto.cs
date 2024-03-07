@@ -24,5 +24,5 @@ public record FormDto
 
     public DateTime? Expires { get; init; }
 
-    public Component[]? Components { get; init; }
+    public ComponentEntity[]? Components { get; init; }
 }

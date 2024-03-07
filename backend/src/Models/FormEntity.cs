@@ -10,5 +10,5 @@ public class FormEntity
     public string? Status { get; set; }
     public DateTime? Published { get; set; }
     public DateTime? Expires { get; set; }
-    public Component[]? Components { get; set; }
+    public ICollection<ComponentEntity>? Components { get; set; }
 }

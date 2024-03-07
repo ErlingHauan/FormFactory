@@ -3,6 +3,7 @@ using System;
 using FormAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FormAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240307132659_AddSeedData")]
+    partial class AddSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,7 +68,7 @@ namespace FormAPI.Migrations
 
                     b.HasIndex("FormId");
 
-                    b.ToTable("Components");
+                    b.ToTable("ComponentEntity");
                 });
 
             modelBuilder.Entity("FormAPI.Models.FormEntity", b =>
@@ -102,7 +105,7 @@ namespace FormAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("45c8f0be-8af0-4bb0-afe3-ade3fe2ea201"),
+                            Id = new Guid("c13298d7-76c1-4c86-9846-fb2bba36ebfb"),
                             Description = "This form was created as a test.",
                             Organization = "Org1",
                             Status = "draft",

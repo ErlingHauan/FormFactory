@@ -2,10 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FormAPI.Models;
 
-public class Component
+public class ComponentEntity
 {
     [Required]
-    public string? Name { get; set; }
+    public Guid Id { get; set; }
 
     [Required]
     public int? Order { get; set; }
@@ -28,4 +28,6 @@ public class Component
     public int? LessThan { get; set; }
 
     public string[]? RadioChoices { get; set; }
+    
+    public FormEntity? Form { get; set; }
 }
