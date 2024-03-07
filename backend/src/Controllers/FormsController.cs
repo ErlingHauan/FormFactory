@@ -1,5 +1,7 @@
+using FormAPI.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using FormAPI.Models;
+using FormAPI.Repositories;
 
 namespace FormAPI.Controllers;
 
@@ -7,14 +9,22 @@ namespace FormAPI.Controllers;
 [Route("[controller]")]
 public class FormsController : ControllerBase
 {
-    [HttpGet]
-    public ActionResult<FormDto> Get()
+    private readonly IFormRepository _formRepository;
+    
+    public FormsController(IFormRepository formRepository)
     {
-        var component = new ComponentEntity() { Required = true, Label = "What is your name?", Order = 0, Type = "textfield" };
-        var form = new FormDto() { Title = "Survey", User = "user1@example.com", Status = "draft", Components = [component] };
-        return Ok(form);
+        _formRepository = formRepository;
+    }
+    
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<FormDto>>> GetAll()
+    {
+        var entityList = await _formRepository.GetAll();
+        var dtoList = entityList.Select(FormMappers.ToFormDto).ToList();
+        return Ok(dtoList);
     }
 
+    // Needs updating to create new row in database
     [HttpPost]
     public IActionResult Post([FromBody] FormDto formData)
     {
