@@ -8,10 +8,11 @@ namespace FormAPI.Controllers;
 public class FormsController : ControllerBase
 {
     [HttpGet]
-    public ActionResult<FormEntity> Get()
+    public ActionResult<FormDto> Get()
     {
-        var formData = new FormEntity { Name = "Ola Nordmann", Email = "ola@norge.no" };
-        return Ok(formData);
+        var component = new Component() {Name = "name", Required = true, Label = "What is your name?", Order = 0, Type = "textfield"};
+        var form = new FormDto() { Title = "Survey", User = "user1@example.com", Status = "draft", Components = [component]};
+        return Ok(form);
     }
 
     [HttpPost]
