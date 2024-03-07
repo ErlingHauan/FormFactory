@@ -15,13 +15,8 @@ public class FormsController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] FormEntity formEntityData)
+    public IActionResult Post([FromBody] FormDto formData)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
-        return Ok(formEntityData);
+        return Ok(formData);
     }
 }
