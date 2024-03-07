@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FormAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class AddSeedData : Migration
+    public partial class SeedData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,7 +25,8 @@ namespace FormAPI.Migrations
                     Description = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<string>(type: "text", nullable: true),
                     Published = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    Expires = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    Expires = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    Components = table.Column<string>(type: "json", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -47,36 +48,10 @@ namespace FormAPI.Migrations
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ComponentEntity",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Order = table.Column<int>(type: "integer", nullable: false),
-                    Label = table.Column<string>(type: "text", nullable: false),
-                    Type = table.Column<string>(type: "text", nullable: false),
-                    Required = table.Column<bool>(type: "boolean", nullable: false),
-                    MinLength = table.Column<int>(type: "integer", nullable: true),
-                    MaxLength = table.Column<int>(type: "integer", nullable: true),
-                    GreaterThan = table.Column<int>(type: "integer", nullable: true),
-                    LessThan = table.Column<int>(type: "integer", nullable: true),
-                    RadioChoices = table.Column<string[]>(type: "text[]", nullable: true),
-                    FormId = table.Column<Guid>(type: "uuid", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ComponentEntity", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ComponentEntity_Forms_FormId",
-                        column: x => x.FormId,
-                        principalTable: "Forms",
-                        principalColumn: "Id");
-                });
-
             migrationBuilder.InsertData(
                 table: "Forms",
-                columns: new[] { "Id", "Description", "Expires", "Organization", "Published", "Status", "Title", "User" },
-                values: new object[] { new Guid("c13298d7-76c1-4c86-9846-fb2bba36ebfb"), "This form was created as a test.", null, "Org1", null, "draft", "Test Survey", "user1@example.com" });
+                columns: new[] { "Id", "Components", "Description", "Expires", "Organization", "Published", "Status", "Title", "User" },
+                values: new object[] { new Guid("4c62b945-1107-4abe-8c0e-0d2709bbfc06"), null, "This form was created as a test.", null, "Org1", null, "draft", "Test Survey", "user1@example.com" });
 
             migrationBuilder.InsertData(
                 table: "Users",
@@ -87,24 +62,16 @@ namespace FormAPI.Migrations
                     { 2, "johnny@testepartementet.no", "Testdepartementet", "johnny123" },
                     { 3, "test@test.com", "", "12345678" }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ComponentEntity_FormId",
-                table: "ComponentEntity",
-                column: "FormId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ComponentEntity");
+                name: "Forms");
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "Forms");
         }
     }
 }

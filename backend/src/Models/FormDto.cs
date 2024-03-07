@@ -24,5 +24,5 @@ public record FormDto
 
     public DateTime? Expires { get; init; }
 
-    public ICollection<Component>? Components { get; init; }
+    public List<Component>? Components { get; init; }
 }

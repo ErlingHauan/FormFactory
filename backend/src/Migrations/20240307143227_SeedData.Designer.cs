@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FormAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240307132659_AddSeedData")]
-    partial class AddSeedData
+    [Migration("20240307143227_SeedData")]
+    partial class SeedData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,57 +25,14 @@ namespace FormAPI.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("FormAPI.Models.ComponentEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("FormId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int?>("GreaterThan")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Label")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int?>("LessThan")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("MaxLength")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("MinLength")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Order")
-                        .IsRequired()
-                        .HasColumnType("integer");
-
-                    b.Property<string[]>("RadioChoices")
-                        .HasColumnType("text[]");
-
-                    b.Property<bool>("Required")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FormId");
-
-                    b.ToTable("ComponentEntity");
-                });
-
             modelBuilder.Entity("FormAPI.Models.FormEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("Components")
+                        .HasColumnType("json");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -105,7 +62,7 @@ namespace FormAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c13298d7-76c1-4c86-9846-fb2bba36ebfb"),
+                            Id = new Guid("4c62b945-1107-4abe-8c0e-0d2709bbfc06"),
                             Description = "This form was created as a test.",
                             Organization = "Org1",
                             Status = "draft",
@@ -157,20 +114,6 @@ namespace FormAPI.Migrations
                             Organization = "",
                             Password = "12345678"
                         });
-                });
-
-            modelBuilder.Entity("FormAPI.Models.ComponentEntity", b =>
-                {
-                    b.HasOne("FormAPI.Models.FormEntity", "Form")
-                        .WithMany("Components")
-                        .HasForeignKey("FormId");
-
-                    b.Navigation("Form");
-                });
-
-            modelBuilder.Entity("FormAPI.Models.FormEntity", b =>
-                {
-                    b.Navigation("Components");
                 });
 #pragma warning restore 612, 618
         }
