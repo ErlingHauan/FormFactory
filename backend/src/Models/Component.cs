@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FormAPI.Models;
 
-public record ComponentDto
+public class Component
 {
     [Required]
     public Guid Id { get; set; }

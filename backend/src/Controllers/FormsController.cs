@@ -17,14 +17,12 @@ public class FormsController : ControllerBase
     }
     
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<FormDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<FormEntity>>> GetAll()
     {
         var entityList = await _formRepository.GetAll();
-        var dtoList = entityList.Select(FormMappers.ToFormDto).ToList();
-        return Ok(dtoList);
+        return Ok(entityList);
     }
 
-    // Needs updating to create new row in database
     [HttpPost]
     public IActionResult Post([FromBody] FormDto formData)
     {
