@@ -4,7 +4,7 @@ import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
 import { FormRadio } from "../FormRadio";
 import { FormTextfield } from "../FormTextfield";
-import form from "./form";
+import formSchema from "./formSchema";
 import { cleanFormData, generateValidationSchema } from "./FormViewerUtils";
 import { useTranslation } from "react-i18next";
 
@@ -18,7 +18,7 @@ export const FormViewer = (): React.JSX.Element => {
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const cleanedFormData = cleanFormData(formData);
-    const validationSchema = generateValidationSchema(form);
+    const validationSchema = generateValidationSchema(formSchema);
     const result = validationSchema.safeParse(cleanedFormData);
 
     if ("error" in result) {
@@ -34,9 +34,9 @@ export const FormViewer = (): React.JSX.Element => {
     <main className={classes.card}>
       <form onSubmit={handleSubmit}>
         <Heading level={1} size="xlarge">
-          {form.title}
+          {formSchema.title}
         </Heading>
-        {form.components.map((c) =>
+        {formSchema.components.map((c) =>
           c.componentType === "textfield" ? (
             <div key={c.id} className={classes.component}>
               <FormTextfield
