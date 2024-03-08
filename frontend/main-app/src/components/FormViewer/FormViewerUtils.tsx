@@ -6,11 +6,7 @@ export const cleanFormData = (formData: FormData) => {
 
   for (const key in obj) {
     const value = obj[key];
-    if (value === "") {
-      newObj[key] = undefined;
-    } else {
-      newObj[key] = value;
-    }
+    newObj[key] = value === "" ? undefined : value;
   }
 
   return newObj;
