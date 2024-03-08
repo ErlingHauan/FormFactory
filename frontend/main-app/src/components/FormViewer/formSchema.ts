@@ -5,7 +5,7 @@ export default {
   components: [
     {
       id: 1,
-      question: "If you have animals, how many animals do you have?",
+      label: "If you have animals, how many animals do you have?",
       componentType: "textfield",
       inputType: "number",
       required: true,
@@ -14,13 +14,13 @@ export default {
     },
     {
       id: 2,
-      question: "Do you prefer dogs or cats?",
+      label: "Do you prefer dogs or cats?",
       componentType: "radio",
       choices: ["Dogs", "Cats"],
     },
     {
       id: 3,
-      question: "If you don't have animals, would you consider becoming an animal owner?",
+      label: "If you don't have animals, would you consider becoming an animal owner?",
       componentType: "textfield",
       inputType: "string",
       required: true,
@@ -29,13 +29,13 @@ export default {
     },
     {
       id: 4,
-      question: "If you would get a new pet, what animal would it be?",
+      label: "If you would get a new pet, what animal would it be?",
       componentType: "radio",
       choices: ["Dog", "Cat", "Horse", "Cow", "Chicken"],
     },
     {
       id: 5,
-      question: "What is the main factor in choosing a pet?",
+      label: "What is the main factor in choosing a pet?",
       componentType: "textfield",
       inputType: "string",
       required: true,
@@ -44,7 +44,7 @@ export default {
     },
     {
       id: 6,
-      question: "Have you ever adopted a pet from a shelter?",
+      label: "Have you ever adopted a pet from a shelter?",
       componentType: "radio",
       choices: ["Yes", "No"],
     },

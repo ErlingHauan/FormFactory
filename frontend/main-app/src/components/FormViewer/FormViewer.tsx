@@ -25,8 +25,8 @@ export const FormViewer = (): React.JSX.Element => {
       setFormErrors(result.error.formErrors.fieldErrors);
       setFormAlert("error")
     } else {
+      // To do: Pass form submission to backend
       setFormErrors({});
-      // Pass form submission to backend
       setFormAlert("success");
     }
   };
@@ -41,14 +41,14 @@ export const FormViewer = (): React.JSX.Element => {
             <div key={c.id} className={classes.component}>
               <FormTextfield
                 name={c.id.toString()}
-                question={c.question}
+                label={c.label}
                 required={c.required}
                 error={formErrors?.[c.id]}
               />
             </div>
           ) : (
             <div key={c.id} className={classes.component}>
-              <FormRadio name={c.id.toString()} question={c.question} choices={c.choices} />
+              <FormRadio name={c.id.toString()} question={c.label} choices={c.choices} />
             </div>
           ),
         )}
