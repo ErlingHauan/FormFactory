@@ -3,7 +3,7 @@ import { z, ZodNumber, ZodOptional, ZodString } from "zod";
 export const cleanFormData = (formData: FormData) => {
   const obj = Object.fromEntries(formData);
   const newObj = {};
-  
+
   // Zod does not validate numbers correctly if given empty string
   for (const key in obj) {
     const value = obj[key];
@@ -14,8 +14,8 @@ export const cleanFormData = (formData: FormData) => {
 };
 
 export const generateValidationSchema = (form: Form) => {
-  let validator: ZodString | ZodNumber | ZodOptional<any>;
-  let schemaShape: Record<string, typeof validator> = {};
+  let validator: ZodString | ZodNumber | ZodOptional<ZodString> | ZodOptional<ZodNumber>;
+  const schemaShape: Record<string, typeof validator> = {};
 
   form.components.forEach((component) => {
     if (component.inputType === "number") {
