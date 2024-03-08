@@ -3,7 +3,9 @@ import { z, ZodNumber, ZodOptional, ZodString } from "zod";
 export const cleanFormData = (formData: FormData) => {
   const obj = Object.fromEntries(formData);
   const newObj = {};
-
+  
+  // It is necessary to turn empty fields into undefined.
+  // z.coerce.number turns empty strings into 0, which does not validate correctly.
   for (const key in obj) {
     const value = obj[key];
     if (value === "") {
