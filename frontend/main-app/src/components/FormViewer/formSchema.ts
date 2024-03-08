@@ -10,7 +10,7 @@ export default {
       inputType: "number",
       required: true,
       greaterThan: undefined,
-      lessThan: 3,
+      lessThan: 1000,
     },
     {
       name: "preference",
@@ -24,7 +24,7 @@ export default {
       componentType: "textfield",
       inputType: "string",
       required: true,
-      minLength: 2,
+      minLength: 0,
       maxLength: 300,
     },
     {

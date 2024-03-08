@@ -11,12 +11,7 @@ export const FormComponents = ({ components, errors }): React.JSX.Element => {
 
         return componentType === "textfield" ? (
           <div key={name} className={classes.component}>
-            <FormTextfield
-              name={name}
-              label={label}
-              required={required}
-              error={errors?.[name]}
-            />
+            <FormTextfield name={name} label={label} required={required} error={errors?.[name]} />
           </div>
         ) : (
           <div key={name} className={classes.component}>

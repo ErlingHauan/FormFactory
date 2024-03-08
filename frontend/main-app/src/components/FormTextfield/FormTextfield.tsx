@@ -10,7 +10,5 @@ interface FormTextFieldProps {
 
 export const FormTextfield: React.FC<FormTextFieldProps> = ({ label, error, name, required }) => {
   const requiredPlaceholder = required ? "Required" : undefined;
-  return (
-    <Textfield name={name} label={label} error={error} placeholder={requiredPlaceholder} />
-  );
+  return <Textfield name={name} label={label} error={error} placeholder={requiredPlaceholder} />;
 };
