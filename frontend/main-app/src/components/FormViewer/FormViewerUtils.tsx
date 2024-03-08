@@ -3,7 +3,8 @@ import { z, ZodNumber, ZodOptional, ZodString } from "zod";
 export const cleanFormData = (formData: FormData) => {
   const obj = Object.fromEntries(formData);
   const newObj = {};
-
+  
+  // Zod does not validate numbers correctly if given empty string
   for (const key in obj) {
     const value = obj[key];
     newObj[key] = value === "" ? undefined : value;
