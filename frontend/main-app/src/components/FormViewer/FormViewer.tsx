@@ -9,7 +9,7 @@ import { cleanFormData, generateValidationSchema } from "./FormViewerUtils";
 import { useTranslation } from "react-i18next";
 
 export const FormViewer = (): React.JSX.Element => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [formErrors, setFormErrors] = useState({});
   const [formAlert, setFormAlert] = useState("");
 
@@ -23,34 +23,44 @@ export const FormViewer = (): React.JSX.Element => {
 
     if ("error" in result) {
       setFormErrors(result.error.formErrors.fieldErrors);
-      setFormAlert("error")
+      setFormAlert("error");
     } else {
       // To do: Pass form submission to backend
       setFormErrors({});
       setFormAlert("success");
     }
   };
+
+  const getComponent = (component: FormComponent) => {
+    const { componentType, name, label, required, choices } = component;
+
+    return (
+      componentType === "textfield" ? (
+        <div key={name} className={classes.component}>
+          <FormTextfield
+            name={name}
+            label={label}
+            required={required}
+            error={formErrors?.[name]}
+          />
+        </div>
+      ) : (
+        <div key={name} className={classes.component}>
+          <FormRadio name={name} question={label} choices={choices} />
+        </div>
+      )
+    );
+  };
+
   return (
     <main className={classes.card}>
       <form onSubmit={handleSubmit}>
         <Heading level={1} size="xlarge">
           {formSchema.title}
         </Heading>
-        {formSchema.components.map((c) =>
-          c.componentType === "textfield" ? (
-            <div key={c.id} className={classes.component}>
-              <FormTextfield
-                name={c.id.toString()}
-                label={c.label}
-                required={c.required}
-                error={formErrors?.[c.id]}
-              />
-            </div>
-          ) : (
-            <div key={c.id} className={classes.component}>
-              <FormRadio name={c.id.toString()} question={c.label} choices={c.choices} />
-            </div>
-          ),
+        {formSchema.components.map((component) => {
+            return getComponent(component);
+          }
         )}
         <div className={classes.buttonContainer}>
           <Button type="submit" size={"large"} fullWidth={false}>

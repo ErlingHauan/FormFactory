@@ -16,10 +16,10 @@ export const cleanFormData = (formData: FormData) => {
   return newObj;
 };
 
-export const generateValidationSchema = (form) => {
+export const generateValidationSchema = (form: Form) => {
   const schemaShape = {};
 
-  form.components.forEach((component) => {
+  form.components.forEach((component: FormComponent) => {
     let validator: ZodString | ZodNumber | ZodOptional<ZodString | ZodNumber>;
 
     switch (component.inputType) {
@@ -80,7 +80,7 @@ export const generateValidationSchema = (form) => {
       default:
         validator = z.string();
     }
-    schemaShape[component.id] = validator;
+    schemaShape[component.name] = validator;
   });
   return z.object(schemaShape);
 };
