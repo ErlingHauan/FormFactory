@@ -22,7 +22,7 @@ export const FormComponents: React.FC<FormComponentsProps> = ({
           </div>
         ) : (
           <div key={name} className={classes.component}>
-            <FormRadio name={name} question={label} choices={choices} />
+            <FormRadio name={name} label={label} choices={choices} />
           </div>
         );
       })}
