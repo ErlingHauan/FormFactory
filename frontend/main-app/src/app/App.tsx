@@ -11,6 +11,7 @@ import { Dashboard } from "../components/Dashboard/Dashboard";
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import en from "../../../language/src/en.json";
+import { FormViewer } from "../components/FormViewer";
 
 i18next.use(initReactI18next).init({
   resources: {
@@ -34,6 +35,7 @@ export const App = (): React.JSX.Element => {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/form-builder" element={<FormBuilder />} />
+          <Route path="/form-viewer" element={<FormViewer />} />
         </Routes>
       </main>
       <Footer />
