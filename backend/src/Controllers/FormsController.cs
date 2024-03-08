@@ -24,8 +24,9 @@ public class FormsController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] FormDto formData)
+    public async Task<ActionResult<FormEntity>> Post([FromBody] FormEntity formData)
     {
-        return Ok(formData);
+        var createdForm = await _formRepository.Create(formData);
+        return Ok(createdForm);
     }
 }
