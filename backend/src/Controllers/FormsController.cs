@@ -22,6 +22,13 @@ public class FormsController : ControllerBase
         var entityList = await _formRepository.GetAll();
         return Ok(entityList);
     }
+    
+    [HttpGet("{formId:guid}")]
+    public async Task<ActionResult<FormEntity>> Get(Guid formId)
+    {
+        var entityList = await _formRepository.Get(formId);
+        return Ok(entityList);
+    }
 
     [HttpPost]
     public async Task<ActionResult<FormEntity>> Post([FromBody] FormEntity formData)
