@@ -36,9 +36,7 @@ const getStringValidator = (component: FormComponent) => {
     required_error: "Field is required. ",
   });
 
-  if (component.required) {
-    validator = validator.min(1, { message: "Field is required. " });
-  } else {
+  if (!component.required) {
     validator = validator.optional();
   }
 
