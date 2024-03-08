@@ -2,11 +2,10 @@ import { Alert, Button, Heading } from "@digdir/design-system-react";
 import React, { FormEvent, useState } from "react";
 import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
-import { FormRadio } from "../FormRadio";
-import { FormTextfield } from "../FormTextfield";
 import formSchema from "./formSchema";
 import { cleanFormData, generateValidationSchema } from "./FormViewerUtils";
 import { useTranslation } from "react-i18next";
+import { FormComponents } from "../FormComponents/FormComponents";
 
 export const FormViewer = (): React.JSX.Element => {
   const { t } = useTranslation();
@@ -31,37 +30,13 @@ export const FormViewer = (): React.JSX.Element => {
     }
   };
 
-  const getComponent = (component: FormComponent) => {
-    const { componentType, name, label, required, choices } = component;
-
-    return (
-      componentType === "textfield" ? (
-        <div key={name} className={classes.component}>
-          <FormTextfield
-            name={name}
-            label={label}
-            required={required}
-            error={formErrors?.[name]}
-          />
-        </div>
-      ) : (
-        <div key={name} className={classes.component}>
-          <FormRadio name={name} question={label} choices={choices} />
-        </div>
-      )
-    );
-  };
-
   return (
     <main className={classes.card}>
       <form onSubmit={handleSubmit}>
         <Heading level={1} size="xlarge">
           {formSchema.title}
         </Heading>
-        {formSchema.components.map((component) => {
-            return getComponent(component);
-          }
-        )}
+        <FormComponents components={formSchema.components} errors={formErrors} />
         <div className={classes.buttonContainer}>
           <Button type="submit" size={"large"} fullWidth={false}>
             Submit form

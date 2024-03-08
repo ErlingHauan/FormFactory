@@ -6,11 +6,6 @@
   min-width: 75%;
 }
 
-.component {
-  padding-top: var(--fds-spacing-14);
-  padding-bottom: var(--fds-spacing-1);
-}
-
 .buttonContainer {
   display: flex;
   justify-content: end;
