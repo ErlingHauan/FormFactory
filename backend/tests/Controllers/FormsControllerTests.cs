@@ -22,10 +22,10 @@ public class FormsControllerTests
     public async Task GetAll_ReturnsAllForms()
     {
         // Arrange
-        var mockComponents = new List<Component>
+        var mockComponents = new List<FormComponent>
         {
-            new Component { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
-            new Component
+            new FormComponent { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
+            new FormComponent
             {
                 Name = "question2", Label = "Question 2", Required = false, Order = 1, Type = "radio",
                 RadioChoices = ["Yes", "No"]
@@ -99,10 +99,10 @@ public class FormsControllerTests
     public async Task Create_ReturnsCreatedForm()
     {
         // Arrange
-        var mockComponents = new List<Component>
+        var mockComponents = new List<FormComponent>
         {
-            new Component { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
-            new Component
+            new FormComponent { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
+            new FormComponent
             {
                 Name = "question2", Label = "Question 2", Required = false, Order = 1, Type = "radio",
                 RadioChoices = ["Yes", "No"]
@@ -134,10 +134,10 @@ public class FormsControllerTests
     public async Task Update_ReturnsUpdatedForm()
     {
         // Arrange 
-        var mockComponents = new List<Component>
+        var mockComponents = new List<FormComponent>
         {
-            new Component { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
-            new Component
+            new FormComponent { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
+            new FormComponent
             {
                 Name = "question2", Label = "Question 2", Required = false, Order = 1, Type = "radio",
                 RadioChoices = ["Yes", "No"]

@@ -32,9 +32,9 @@ public static class SeedData
             }
         });
 
-        var componentList = new List<Component>
+        var componentList = new List<FormComponent>
         {
-            new Component()
+            new FormComponent()
             {
                 Name = "question1",
                 Label = "Question 1",
@@ -44,7 +44,7 @@ public static class SeedData
                 Response = "Yes"
             },
 
-            new Component()
+            new FormComponent()
             {
                 Name = "question2",
                 Label = "Question 2",

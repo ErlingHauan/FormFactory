@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FormAPI.Models;
 
-public class Component
+public class FormComponent
 {
     [Required]
     public string? Name { get; set; }

@@ -25,7 +25,7 @@ public class ApiDbContext : DbContext
             entity.Property(e => e.Components)
                 .HasConversion(
                     v => JsonSerializer.Serialize(v, new JsonSerializerOptions(JsonSerializerDefaults.Web)),
-                    v => JsonSerializer.Deserialize<List<Component>>(v,
+                    v => JsonSerializer.Deserialize<List<FormComponent>>(v,
                         new JsonSerializerOptions(JsonSerializerDefaults.Web)))
                 .HasColumnType("json");
         });
@@ -35,7 +35,7 @@ public class ApiDbContext : DbContext
             entity.Property(e => e.Components)
                 .HasConversion(
                     v => JsonSerializer.Serialize(v, new JsonSerializerOptions(JsonSerializerDefaults.Web)),
-                    v => JsonSerializer.Deserialize<List<Component>>(v,
+                    v => JsonSerializer.Deserialize<List<FormComponent>>(v,
                         new JsonSerializerOptions(JsonSerializerDefaults.Web)))
                 .HasColumnType("json");
         });
