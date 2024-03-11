@@ -10,5 +10,5 @@ public record SubmissionDto
     public DateTime Submitted { get; set; }
     
     [Required]
-    public List<FormComponent>? Components { get; set; }
+    public List<SubmissionResponse>? Responses { get; set; }
 }
