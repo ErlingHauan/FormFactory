@@ -94,4 +94,36 @@ public class FormsControllerTests
         // Assert
         Assert.IsType<NotFoundObjectResult>(result.Result);
     }
+    
+    [Fact]
+    public async Task Create_ReturnsCreatedForm()
+    {
+        // Arrange
+        var mockComponents = new List<Component>
+        {
+            new Component { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
+            new Component
+            {
+                Name = "question2", Label = "Question 2", Required = false, Order = 1, Type = "radio",
+                RadioChoices = ["Yes", "No"]
+            }
+        };
+        var mockGuid = new Guid("8bd8e16b-e1ec-4834-9c76-863b56995291");
+        var mockForm = new FormDto
+        {
+            Id = mockGuid, User = "user1@example.com", Title = "Form1", Status = "Published",
+            Components = mockComponents
+        };
+        
+        _mockRepo.Setup(repo => repo.Create(It.IsAny<FormEntity>())).ReturnsAsync((FormEntity e) => e);
+
+        // Act
+        var result = await _controller.Post(mockForm);
+
+        // Assert
+        var actionResult = Assert.IsType<CreatedAtActionResult>(result.Result);
+        var returnedDto = Assert.IsType<FormDto>(actionResult.Value);
+        Assert.Equal(mockGuid, returnedDto.Id);
+        Assert.Equal("user1@example.com", returnedDto.User);
+    }
 }
