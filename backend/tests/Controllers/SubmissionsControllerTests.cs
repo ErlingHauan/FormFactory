@@ -1,3 +1,4 @@
+using Castle.Components.DictionaryAdapter;
 using FormAPI.Controllers;
 using FormAPI.Models;
 using FormAPI.Repositories;
@@ -22,12 +23,44 @@ public class SubmissionsControllerTests
     public async Task GetAll_ReturnsAllSubmissions()
     {
         // Arrange
-        
+        var mockResponses = new EditableList<SubmissionResponse>
+        {
+            new SubmissionResponse
+            {
+                Name = "question1",
+                Label = "Question 1",
+                Order = 0,
+                Response = "Yes."
+            }
+        };
+
+        var mockSubmissions = new List<SubmissionEntity>
+        {
+            new SubmissionEntity
+            {
+                Id = Guid.NewGuid(),
+                FormId = Guid.NewGuid(),
+                Submitted = DateTime.Now,
+                Responses = mockResponses
+            },
+
+            new SubmissionEntity
+            {
+                Id = Guid.NewGuid(),
+                FormId = Guid.NewGuid(),
+                Submitted = DateTime.Now,
+                Responses = mockResponses
+            }
+        };
+
+        _mockRepo.Setup(repo => repo.GetAll()).ReturnsAsync(mockSubmissions);
+
         // Act
         var result = await _controller.GetAll();
-        
+
         // Assert
         var actionResult = Assert.IsType<OkObjectResult>(result.Result);
-        Assert.IsType<List<SubmissionDto>>(actionResult.Value);
+        var resultList = Assert.IsType<List<SubmissionDto>>(actionResult.Value);
+        Assert.Equal(2, resultList.Count);
     }
 }

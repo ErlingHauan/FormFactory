@@ -13,7 +13,7 @@ public interface ISubmissionRepository
 public class SubmissionRepository : ISubmissionRepository
 {
     private readonly ApiDbContext _context;
-    
+
     public SubmissionRepository(ApiDbContext context)
     {
         _context = context;
