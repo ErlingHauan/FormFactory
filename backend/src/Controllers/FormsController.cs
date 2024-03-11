@@ -39,11 +39,11 @@ public class FormsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<FormDto>> Post([FromBody] FormDto formData)
+    public async Task<ActionResult<FormDto>> Create([FromBody] FormDto formData)
     {
         var entity = FormMappers.ToEntity(formData);
         var resultEntity = await _formRepository.Create(entity);
         var resultDto = FormMappers.ToDto(resultEntity);
-        return Ok(resultDto);
+        return CreatedAtAction(nameof(Get), new { formId = resultDto.Id }, resultDto);
     }
 }

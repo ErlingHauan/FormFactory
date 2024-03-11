@@ -118,7 +118,7 @@ public class FormsControllerTests
         _mockRepo.Setup(repo => repo.Create(It.IsAny<FormEntity>())).ReturnsAsync((FormEntity e) => e);
 
         // Act
-        var result = await _controller.Post(mockForm);
+        var result = await _controller.Create(mockForm);
 
         // Assert
         var actionResult = Assert.IsType<CreatedAtActionResult>(result.Result);
