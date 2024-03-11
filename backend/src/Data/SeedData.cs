@@ -41,7 +41,6 @@ public static class SeedData
                 Required = true,
                 Order = 0,
                 Type = "textfield",
-                Response = "Yes"
             },
 
             new FormComponent()
@@ -52,7 +51,6 @@ public static class SeedData
                 Order = 1,
                 Type = "radio",
                 RadioChoices = ["Yes", "No", "Maybe"],
-                Response = "No"
             }
         };
 
@@ -72,20 +70,38 @@ public static class SeedData
             }
         });
 
+        var responseList = new List<SubmissionResponse>
+        {
+            new SubmissionResponse()
+            {
+                Name = "question1",
+                Label = "Question 1",
+                Order = 0,
+                Response = "Yes, I agree"
+            },
+            new SubmissionResponse()
+            {
+                Name = "question2",
+                Label = "Question 2",
+                Order = 1,
+                Response = "No"
+            }
+        };
+
         builder.Entity<SubmissionEntity>().HasData(new List<SubmissionEntity>
         {
             new SubmissionEntity()
             {
                 Id = Guid.NewGuid(),
                 Submitted = new DateTime(),
-                Components = componentList
+                Responses = responseList
             },
-            
+
             new SubmissionEntity()
             {
                 Id = Guid.NewGuid(),
                 Submitted = new DateTime(),
-                Components = componentList
+                Responses = responseList
             }
         });
     }

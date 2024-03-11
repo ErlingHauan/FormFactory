@@ -32,10 +32,10 @@ public class ApiDbContext : DbContext
 
         builder.Entity<SubmissionEntity>(entity =>
         {
-            entity.Property(e => e.Components)
+            entity.Property(e => e.Responses)
                 .HasConversion(
                     v => JsonSerializer.Serialize(v, new JsonSerializerOptions(JsonSerializerDefaults.Web)),
-                    v => JsonSerializer.Deserialize<List<FormComponent>>(v,
+                    v => JsonSerializer.Deserialize<List<SubmissionResponse>>(v,
                         new JsonSerializerOptions(JsonSerializerDefaults.Web)))
                 .HasColumnType("json");
         });

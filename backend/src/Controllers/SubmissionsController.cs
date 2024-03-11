@@ -30,6 +30,6 @@ public class SubmissionsController : ControllerBase
    {
       var entity = SubmissionMappers.ToEntity(dto);
       var result = await _submissionRepository.Create(entity);
-      return Created();
+      return Ok(result);
    }
 }

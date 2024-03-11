@@ -11,7 +11,7 @@ public class SubmissionMappers
         {
             Id = dto.Id,
             Submitted = dto.Submitted,
-            Components = dto.Components
+            Responses = dto.Responses
         };
 
         return entity;
@@ -23,7 +23,7 @@ public class SubmissionMappers
         {
             Id = entity.Id,
             Submitted = entity.Submitted,
-            Components = entity.Components
+            Responses = entity.Responses
         };
 
         return dto;

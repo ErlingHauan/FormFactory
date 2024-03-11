@@ -59,8 +59,8 @@ namespace FormAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1ba46324-ba4e-4a62-a30b-08ed32822624"),
-                            Components = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null,\"response\":\"Yes\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\",\"Maybe\"],\"response\":\"No\"}]",
+                            Id = new Guid("7d2d6c10-7b8e-45a0-b35e-a31758a15405"),
+                            Components = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\",\"Maybe\"]}]",
                             Description = "This form was created as a test.",
                             Organization = "Org1",
                             Status = "draft",
@@ -75,8 +75,7 @@ namespace FormAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Components")
-                        .IsRequired()
+                    b.Property<string>("Responses")
                         .HasColumnType("json");
 
                     b.Property<DateTime>("Submitted")
@@ -89,14 +88,14 @@ namespace FormAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("27b9d3a4-d926-4f6b-97c9-14b48a8bf76a"),
-                            Components = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null,\"response\":\"Yes\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\",\"Maybe\"],\"response\":\"No\"}]",
+                            Id = new Guid("512c7a61-464b-4e49-808a-322d1f14c27d"),
+                            Responses = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"response\":\"Yes, I agree\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"response\":\"No\"}]",
                             Submitted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("35f6cd1d-1948-4c5d-ab82-b053d041aea7"),
-                            Components = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null,\"response\":\"Yes\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\",\"Maybe\"],\"response\":\"No\"}]",
+                            Id = new Guid("3c9ce0c9-92a4-43dd-83c8-73ef591d374b"),
+                            Responses = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"response\":\"Yes, I agree\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"response\":\"No\"}]",
                             Submitted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
