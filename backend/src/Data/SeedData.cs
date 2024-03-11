@@ -93,14 +93,14 @@ public static class SeedData
             new SubmissionEntity()
             {
                 Id = Guid.NewGuid(),
-                Submitted = new DateTime(),
+                Submitted = DateTime.Now,
                 Responses = responseList
             },
 
             new SubmissionEntity()
             {
                 Id = Guid.NewGuid(),
-                Submitted = new DateTime(),
+                Submitted = DateTime.Now,
                 Responses = responseList
             }
         });
