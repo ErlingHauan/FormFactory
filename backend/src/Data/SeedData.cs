@@ -40,7 +40,8 @@ public static class SeedData
                 Label = "Question 1",
                 Required = true,
                 Order = 0,
-                Type = "textfield"
+                Type = "textfield",
+                Response = "Yes"
             },
 
             new Component()
@@ -50,7 +51,8 @@ public static class SeedData
                 Required = true,
                 Order = 1,
                 Type = "radio",
-                RadioChoices = ["Yes", "No", "Maybe"]
+                RadioChoices = ["Yes", "No", "Maybe"],
+                Response = "No"
             }
         };
 
@@ -66,6 +68,23 @@ public static class SeedData
                 Status = "draft",
                 Published = null,
                 Expires = null,
+                Components = componentList
+            }
+        });
+
+        builder.Entity<SubmissionEntity>().HasData(new List<SubmissionEntity>
+        {
+            new SubmissionEntity()
+            {
+                Id = Guid.NewGuid(),
+                Submitted = new DateTime(),
+                Components = componentList
+            },
+            
+            new SubmissionEntity()
+            {
+                Id = Guid.NewGuid(),
+                Submitted = new DateTime(),
                 Components = componentList
             }
         });
