@@ -28,4 +28,6 @@ public class Component
     public int? LessThan { get; set; }
 
     public string[]? RadioChoices { get; set; }
+    
+    public string? Response { get; set; }
 }
