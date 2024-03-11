@@ -60,23 +60,12 @@ public class FormsControllerTests
     public async Task Get_ReturnsFoundForm()
     {
         // Arrange
-        var mockComponents = new List<Component>
-        {
-            new Component { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
-            new Component
-            {
-                Name = "question2", Label = "Question 2", Required = false, Order = 1, Type = "radio",
-                RadioChoices = ["Yes", "No"]
-            }
-        };
-
         var mockGuid = new Guid("8bd8e16b-e1ec-4834-9c76-863b56995291");
         var mockForms = new List<FormEntity>
         {
             new FormEntity
             {
-                Id = mockGuid, User = "user1@example.com", Title = "Form1", Status = "Published",
-                Components = mockComponents
+                Id = mockGuid, User = "user1@example.com", Title = "Form1", Status = "Published"
             },
         };
 
@@ -179,7 +168,8 @@ public class FormsControllerTests
     {
         // Arrange
         var mockGuid = new Guid("8bd8e16b-e1ec-4834-9c76-863b56995291");
-        var mockForm = new FormEntity { Id = mockGuid, User = "user1@example.com", Title = "Form1", Status = "Published" };
+        var mockForm = new FormEntity
+        { Id = mockGuid, User = "user1@example.com", Title = "Form1", Status = "Published" };
 
         _mockRepo.Setup(repo => repo.Delete(It.IsAny<Guid>())).ReturnsAsync(mockForm);
 

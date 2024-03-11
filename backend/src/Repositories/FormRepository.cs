@@ -59,6 +59,7 @@ public class FormRepository : IFormRepository
         var foundForm = await _context.Forms.SingleOrDefaultAsync(f => f.Id == id);
         if (foundForm == null)
         {
+            Console.WriteLine($"From with ID {id} was not found.");
             return null;
         }
         _context.Forms.Remove(foundForm);
