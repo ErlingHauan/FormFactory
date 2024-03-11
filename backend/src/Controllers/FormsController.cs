@@ -67,13 +67,13 @@ public class FormsController : ControllerBase
         return Ok(resultDto);
     }
 
-    [HttpDelete]
-    public async Task<ActionResult<FormDto>> Delete(Guid id)
+    [HttpDelete("{formId:guid}")]
+    public async Task<ActionResult<FormDto>> Delete(Guid formId)
     {
-        var resultEntity = await _formRepository.Delete(id);
+        var resultEntity = await _formRepository.Delete(formId);
         if (resultEntity == null)
         {
-            return NotFound(id);
+            return NotFound(formId);
         }
         
         var resultDto = FormMappers.ToDto(resultEntity);
