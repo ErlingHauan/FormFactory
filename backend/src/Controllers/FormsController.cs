@@ -17,23 +17,33 @@ public class FormsController : ControllerBase
     }
     
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<FormEntity>>> GetAll()
+    public async Task<ActionResult<IEnumerable<FormDto>>> GetAll()
     {
         var entityList = await _formRepository.GetAll();
-        return Ok(entityList);
+        var dtoList = entityList.Select(FormMappers.ToDto).ToList();
+        return Ok(dtoList);
     }
     
     [HttpGet("{formId:guid}")]
-    public async Task<ActionResult<FormEntity>> Get(Guid formId)
+    public async Task<ActionResult<FormDto>> Get(Guid formId)
     {
-        var entityList = await _formRepository.Get(formId);
-        return Ok(entityList);
+        var entity = await _formRepository.Get(formId);
+
+        if (entity == null)
+        {
+            return NotFound(formId);
+        }
+        
+        var dto = FormMappers.ToDto(entity);
+        return Ok(dto);
     }
 
     [HttpPost]
-    public async Task<ActionResult<FormEntity>> Post([FromBody] FormEntity formData)
+    public async Task<ActionResult<FormDto>> Post([FromBody] FormDto formData)
     {
-        var createdForm = await _formRepository.Create(formData);
-        return Ok(createdForm);
+        var entity = FormMappers.ToEntity(formData);
+        var resultEntity = await _formRepository.Create(entity);
+        var resultDto = FormMappers.ToDto(resultEntity);
+        return Ok(resultDto);
     }
 }

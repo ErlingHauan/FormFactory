@@ -5,7 +5,7 @@ namespace FormAPI.Models;
 public class Component
 {
     [Required]
-    public string? Id { get; set; }
+    public string? Name { get; set; }
 
     [Required]
     public int? Order { get; set; }

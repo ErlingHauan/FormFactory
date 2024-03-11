@@ -8,8 +8,8 @@ namespace FormAPI.Repositories;
 public interface IFormRepository
 {
     Task<List<FormEntity>> GetAll();
-    Task<FormEntity> Get(Guid id);
-    Task<FormEntity> Create(FormEntity form);
+    Task<FormEntity?> Get(Guid id);
+    Task<FormEntity?> Create(FormEntity form);
 }
 
 public class FormRepository : IFormRepository
@@ -27,7 +27,7 @@ public class FormRepository : IFormRepository
         return formList;
     }
 
-    public async Task<FormEntity> Get(Guid id)
+    public async Task<FormEntity?> Get(Guid id)
     {
         var foundEntity = await _context.Forms.FindAsync(id);
         if (foundEntity == null)
@@ -38,7 +38,7 @@ public class FormRepository : IFormRepository
         return foundEntity;
     }
 
-    public async Task<FormEntity> Create(FormEntity form)
+    public async Task<FormEntity?> Create(FormEntity form)
     {
         _context.Forms.Add(form);
         await _context.SaveChangesAsync();
