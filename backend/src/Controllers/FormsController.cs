@@ -2,11 +2,12 @@ using FormAPI.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using FormAPI.Models;
 using FormAPI.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace FormAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/api/forms")]
 public class FormsController : ControllerBase
 {
     private readonly IFormRepository _formRepository;
@@ -43,7 +44,39 @@ public class FormsController : ControllerBase
     {
         var entity = FormMappers.ToEntity(formData);
         var resultEntity = await _formRepository.Create(entity);
+        if (resultEntity == null)
+        {
+            return BadRequest();
+        }
+            
         var resultDto = FormMappers.ToDto(resultEntity);
         return CreatedAtAction(nameof(Get), new { formId = resultDto.Id }, resultDto);
+    }
+
+    [HttpPut]
+    public async Task<ActionResult<FormDto>> Update([FromBody] FormDto formData)
+    {
+        var entity = FormMappers.ToEntity(formData);
+        var resultEntity = await _formRepository.Update(entity);
+        if (resultEntity == null)
+        {
+            return NotFound(formData);
+        }
+        
+        var resultDto = FormMappers.ToDto(resultEntity);
+        return Ok(resultDto);
+    }
+
+    [HttpDelete]
+    public async Task<ActionResult<FormDto>> Delete(Guid id)
+    {
+        var resultEntity = await _formRepository.Delete(id);
+        if (resultEntity == null)
+        {
+            return NotFound(id);
+        }
+        
+        var resultDto = FormMappers.ToDto(resultEntity);
+        return Ok(resultDto);
     }
 }
