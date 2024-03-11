@@ -31,7 +31,29 @@ public static class SeedData
                 Organization = ""
             }
         });
+        
+        var componentList = new List<Component>
+        {
+            new Component()
+            {
+                Name = "question1",
+                Label = "Question 1",
+                Required = true,
+                Order = 0,
+                Type = "textfield"
+            },
 
+            new Component()
+            {
+                Name = "question2",
+                Label = "Question 2",
+                Required = true,
+                Order = 1,
+                Type = "radio",
+                RadioChoices = ["Yes", "No", "Maybe"]
+            }
+        };
+        
         builder.Entity<FormEntity>().HasData(new List<FormEntity>
         {
             new FormEntity()
@@ -44,7 +66,7 @@ public static class SeedData
                 Status = "draft",
                 Published = null,
                 Expires = null,
-                Components = null
+                Components = componentList
             }
         });
     }

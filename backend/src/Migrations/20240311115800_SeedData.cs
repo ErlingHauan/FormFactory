@@ -51,7 +51,7 @@ namespace FormAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Forms",
                 columns: new[] { "Id", "Components", "Description", "Expires", "Organization", "Published", "Status", "Title", "User" },
-                values: new object[] { new Guid("4c62b945-1107-4abe-8c0e-0d2709bbfc06"), null, "This form was created as a test.", null, "Org1", null, "draft", "Test Survey", "user1@example.com" });
+                values: new object[] { new Guid("43b92cb6-a0e3-4848-a480-c3826a3110a6"), "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\",\"Maybe\"]}]", "This form was created as a test.", null, "Org1", null, "draft", "Test Survey", "user1@example.com" });
 
             migrationBuilder.InsertData(
                 table: "Users",

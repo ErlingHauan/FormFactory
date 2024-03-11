@@ -59,7 +59,8 @@ namespace FormAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4c62b945-1107-4abe-8c0e-0d2709bbfc06"),
+                            Id = new Guid("43b92cb6-a0e3-4848-a480-c3826a3110a6"),
+                            Components = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\",\"Maybe\"]}]",
                             Description = "This form was created as a test.",
                             Organization = "Org1",
                             Status = "draft",
