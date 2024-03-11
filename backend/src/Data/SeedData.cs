@@ -31,7 +31,7 @@ public static class SeedData
                 Organization = ""
             }
         });
-        
+
         var componentList = new List<Component>
         {
             new Component()
@@ -53,7 +53,7 @@ public static class SeedData
                 RadioChoices = ["Yes", "No", "Maybe"]
             }
         };
-        
+
         builder.Entity<FormEntity>().HasData(new List<FormEntity>
         {
             new FormEntity()

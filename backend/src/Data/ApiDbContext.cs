@@ -28,7 +28,7 @@ public class ApiDbContext : DbContext
                     v => JsonSerializer.Deserialize<List<Component>>(v, new JsonSerializerOptions(JsonSerializerDefaults.Web)))
                 .HasColumnType("json");
         });
-        
+
         SeedData.Seed(builder);
     }
 

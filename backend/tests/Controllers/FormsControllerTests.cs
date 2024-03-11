@@ -122,7 +122,10 @@ public class FormsControllerTests
         var mockGuid = new Guid("8bd8e16b-e1ec-4834-9c76-863b56995291");
         var mockForm = new FormDto
         {
-            Id = mockGuid, User = "user1@example.com", Title = "Form1", Status = "Published",
+            Id = mockGuid,
+            User = "user1@example.com",
+            Title = "Form1",
+            Status = "Published",
             Components = mockComponents
         };
 
@@ -154,7 +157,10 @@ public class FormsControllerTests
         var mockGuid = new Guid("8bd8e16b-e1ec-4834-9c76-863b56995291");
         var mockForm = new FormDto
         {
-            Id = mockGuid, User = "user1@example.com", Title = "Form1", Status = "Published",
+            Id = mockGuid,
+            User = "user1@example.com",
+            Title = "Form1",
+            Status = "Published",
             Components = mockComponents
         };
 
@@ -174,7 +180,7 @@ public class FormsControllerTests
         // Arrange
         var mockGuid = new Guid("8bd8e16b-e1ec-4834-9c76-863b56995291");
         var mockForm = new FormEntity { Id = mockGuid, User = "user1@example.com", Title = "Form1", Status = "Published" };
-        
+
         _mockRepo.Setup(repo => repo.Delete(It.IsAny<Guid>())).ReturnsAsync(mockForm);
 
         // Act
@@ -190,11 +196,11 @@ public class FormsControllerTests
     {
         // Arrange
         _mockRepo.Setup(repo => repo.Get(It.IsAny<Guid>())).ReturnsAsync((FormEntity?)null);
-        
+
         // Act
         var mockGuid = new Guid("8bd8e16b-e1ec-4834-9c76-863b56995291");
         var result = await _controller.Delete(mockGuid);
-        
+
         // Assert
         var actionResult = Assert.IsType<NotFoundObjectResult>(result.Result);
         Assert.IsType<Guid>(actionResult.Value);

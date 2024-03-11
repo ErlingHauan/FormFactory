@@ -11,12 +11,12 @@ namespace FormAPI.Controllers;
 public class FormsController : ControllerBase
 {
     private readonly IFormRepository _formRepository;
-    
+
     public FormsController(IFormRepository formRepository)
     {
         _formRepository = formRepository;
     }
-    
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<FormDto>>> GetAll()
     {
@@ -24,7 +24,7 @@ public class FormsController : ControllerBase
         var dtoList = entityList.Select(FormMappers.ToDto).ToList();
         return Ok(dtoList);
     }
-    
+
     [HttpGet("{formId:guid}")]
     public async Task<ActionResult<FormDto>> Get(Guid formId)
     {
@@ -34,7 +34,7 @@ public class FormsController : ControllerBase
         {
             return NotFound(formId);
         }
-        
+
         var dto = FormMappers.ToDto(entity);
         return Ok(dto);
     }
@@ -48,7 +48,7 @@ public class FormsController : ControllerBase
         {
             return BadRequest();
         }
-            
+
         var resultDto = FormMappers.ToDto(resultEntity);
         return CreatedAtAction(nameof(Get), new { formId = resultDto.Id }, resultDto);
     }
@@ -62,7 +62,7 @@ public class FormsController : ControllerBase
         {
             return NotFound(formData);
         }
-        
+
         var resultDto = FormMappers.ToDto(resultEntity);
         return Ok(resultDto);
     }
@@ -75,7 +75,7 @@ public class FormsController : ControllerBase
         {
             return NotFound(formId);
         }
-        
+
         var resultDto = FormMappers.ToDto(resultEntity);
         return Ok(resultDto);
     }
