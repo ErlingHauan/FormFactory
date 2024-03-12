@@ -63,4 +63,43 @@ public class SubmissionsControllerTests
         var resultList = Assert.IsType<List<SubmissionDto>>(actionResult.Value);
         Assert.Equal(2, resultList.Count);
     }
+
+    [Fact]
+    public async Task GetFormSubmissions_GetsAllSubmissionsForSpecificForm()
+    {
+        // Arrange
+        var submissionId = new Guid("00000000-0000-0000-0000-000000000000");
+        var formId = new Guid("11111111-1111-1111-1111-111111111111");
+
+        var mockSubmissions = new List<SubmissionEntity>
+        {
+            new SubmissionEntity
+            {
+                Id = submissionId,
+                FormId = formId,
+                Submitted = DateTime.Now,
+            },
+
+            new SubmissionEntity
+            {
+                Id = Guid.NewGuid(),
+                FormId = Guid.NewGuid(),
+                Submitted = DateTime.Now,
+            }
+        };
+
+        _mockRepo.Setup(repo => repo.GetFormSubmissions(formId))
+            .ReturnsAsync(mockSubmissions.Where(entity => entity.FormId == formId).ToList);
+
+        // Act
+        var result = await _controller.GetFormSubmissions(formId);
+
+        // Assert
+        var actionResult = Assert.IsType<OkObjectResult>(result.Result);
+        var resultList = Assert.IsType<List<SubmissionDto>>(actionResult.Value);
+        Assert.Single(resultList);
+
+        var resultEntity = resultList[0];
+        Assert.Equal(submissionId, resultEntity.Id);
+    }
 }

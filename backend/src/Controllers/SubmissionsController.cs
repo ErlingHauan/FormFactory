@@ -1,7 +1,6 @@
 using FormAPI.Mappers;
 using FormAPI.Models;
 using FormAPI.Repositories;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FormAPI.Controllers;
@@ -25,8 +24,16 @@ public class SubmissionsController : ControllerBase
         return Ok(dtoList);
     }
 
+    [HttpGet("form/:formId")]
+    public async Task<ActionResult<IEnumerable<SubmissionDto>>> GetFormSubmissions(Guid formId)
+    {
+        var entityList = await _submissionRepository.GetFormSubmissions(formId);
+        var dtoList = entityList.Select(SubmissionMappers.ToDto).ToList();
+        return Ok(dtoList);
+    }
+
     [HttpPost]
-    public async Task<ActionResult<SubmissionDto>> Post([FromBody] SubmissionDto dto)
+    public async Task<ActionResult<SubmissionDto>> Create([FromBody] SubmissionDto dto)
     {
         var entity = SubmissionMappers.ToEntity(dto);
         var result = await _submissionRepository.Create(entity);
