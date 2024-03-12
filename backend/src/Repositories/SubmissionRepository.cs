@@ -1,5 +1,6 @@
 using FormAPI.Data;
 using FormAPI.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace FormAPI.Repositories;
@@ -10,6 +11,7 @@ public interface ISubmissionRepository
     Task<SubmissionEntity> GetSingle(Guid submussionId);
     Task<List<SubmissionEntity>> GetFormSubmissions(Guid formId);
     Task<SubmissionEntity?> Create(SubmissionEntity entity);
+    Task<SubmissionEntity> Delete(Guid submussionId);
 }
 
 public class SubmissionRepository : ISubmissionRepository
@@ -49,6 +51,20 @@ public class SubmissionRepository : ISubmissionRepository
     public async Task<SubmissionEntity?> Create(SubmissionEntity entity)
     {
         _context.Submissions.Add(entity);
+        await _context.SaveChangesAsync();
+        return entity;
+    }
+
+    public async Task<SubmissionEntity?> Delete(Guid submissionId)
+    {
+        var entity = await _context.Submissions.FindAsync(submissionId);
+        if (entity == null)
+        {
+            Console.WriteLine($"Submission with ID {submissionId} was not found.");
+            return null;
+        }
+
+        _context.Submissions.Remove(entity);
         await _context.SaveChangesAsync();
         return entity;
     }

@@ -1,6 +1,7 @@
 using FormAPI.Mappers;
 using FormAPI.Models;
 using FormAPI.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FormAPI.Controllers;
@@ -46,5 +47,19 @@ public class SubmissionsController : ControllerBase
         var entity = SubmissionMappers.ToEntity(dto);
         var result = await _submissionRepository.Create(entity);
         return Ok(result);
+    }
+
+    [HttpDelete(":submissionId")]
+    public async Task<ActionResult<SubmissionDto>> Delete(Guid submissionId)
+    {
+        var entity = await _submissionRepository.Delete(submissionId);
+
+        if (entity == null)
+        {
+            return NotFound();
+        }
+
+        var dto = SubmissionMappers.ToDto(entity);
+        return Ok(dto);
     }
 }
