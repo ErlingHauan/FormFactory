@@ -65,6 +65,40 @@ public class SubmissionsControllerTests
     }
 
     [Fact]
+    public async Task GetSingle_ReturnsSingleSubmission()
+    {
+        // Arrange
+        var submissionId = new Guid("00000000-0000-0000-0000-000000000000");
+        var mockSubmissions = new List<SubmissionEntity>
+        {
+            new SubmissionEntity
+            {
+                Id = submissionId,
+                FormId = Guid.NewGuid(),
+                Submitted = DateTime.Now,
+            },
+
+            new SubmissionEntity
+            {
+                Id = Guid.NewGuid(),
+                FormId = Guid.NewGuid(),
+                Submitted = DateTime.Now,
+            }
+        };
+
+        _mockRepo.Setup(repo => repo.GetSingle(submissionId))
+            .ReturnsAsync(mockSubmissions.First(entity => entity.Id == submissionId));
+
+        // Act
+        var result = await _controller.GetSingle(submissionId);
+
+        // Assert
+        var actionResult = Assert.IsType<OkObjectResult>(result.Result);
+        var resultEntity = Assert.IsType<SubmissionDto>(actionResult.Value);
+        Assert.Equal(submissionId, resultEntity.Id);
+    }
+
+    [Fact]
     public async Task GetFormSubmissions_GetsAllSubmissionsForSpecificForm()
     {
         // Arrange

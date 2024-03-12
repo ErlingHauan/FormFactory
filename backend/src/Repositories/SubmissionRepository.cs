@@ -7,6 +7,7 @@ namespace FormAPI.Repositories;
 public interface ISubmissionRepository
 {
     Task<List<SubmissionEntity>> GetAll();
+    Task<SubmissionEntity> GetSingle(Guid submussionId);
     Task<List<SubmissionEntity>> GetFormSubmissions(Guid formId);
     Task<SubmissionEntity?> Create(SubmissionEntity entity);
 }
@@ -26,12 +27,25 @@ public class SubmissionRepository : ISubmissionRepository
         return submissionList;
     }
 
+    public async Task<SubmissionEntity> GetSingle(Guid submissionId)
+    {
+        var entity = await _context.Submissions.FindAsync(submissionId);
+
+        if (entity == null)
+        {
+            Console.WriteLine($"Submission with ID {submissionId} was not found.");
+            return null;
+        }
+
+        return entity;
+    }
+
     public async Task<List<SubmissionEntity>> GetFormSubmissions(Guid formId)
     {
         var submissionList = await _context.Submissions.Where(submission => formId == submission.FormId).ToListAsync();
         return submissionList;
     }
-    
+
     public async Task<SubmissionEntity?> Create(SubmissionEntity entity)
     {
         _context.Submissions.Add(entity);

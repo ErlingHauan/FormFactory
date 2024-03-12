@@ -24,6 +24,14 @@ public class SubmissionsController : ControllerBase
         return Ok(dtoList);
     }
 
+    [HttpGet(":submissionId")]
+    public async Task<ActionResult<SubmissionDto>> GetSingle(Guid submissionId)
+    {
+        var entity = await _submissionRepository.GetSingle(submissionId);
+        var dto = SubmissionMappers.ToDto(entity);
+        return Ok(dto);
+    }
+
     [HttpGet("form/:formId")]
     public async Task<ActionResult<IEnumerable<SubmissionDto>>> GetFormSubmissions(Guid formId)
     {

@@ -10,7 +10,7 @@ public record SubmissionDto
     public Guid FormId { get; set; }
 
     [Required]
-    public DateTime Submitted { get; set; }
+    public DateTimeOffset Submitted { get; set; }
 
     [Required]
     public List<SubmissionResponse>? Responses { get; set; }

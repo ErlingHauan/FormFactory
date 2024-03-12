@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FormAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240311143718_SeedData")]
+    [Migration("20240312092438_SeedData")]
     partial class SeedData
     {
         /// <inheritdoc />
@@ -62,7 +62,7 @@ namespace FormAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7d2d6c10-7b8e-45a0-b35e-a31758a15405"),
+                            Id = new Guid("65b454e9-3bbd-49fb-bfd4-3d7c56433bf5"),
                             Components = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\",\"Maybe\"]}]",
                             Description = "This form was created as a test.",
                             Organization = "Org1",
@@ -78,10 +78,13 @@ namespace FormAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("FormId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Responses")
                         .HasColumnType("json");
 
-                    b.Property<DateTime>("Submitted")
+                    b.Property<DateTimeOffset>("Submitted")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -91,15 +94,17 @@ namespace FormAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("512c7a61-464b-4e49-808a-322d1f14c27d"),
+                            Id = new Guid("26555edd-420f-42b3-b194-41348b3cd24c"),
+                            FormId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Responses = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"response\":\"Yes, I agree\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"response\":\"No\"}]",
-                            Submitted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Submitted = new DateTimeOffset(new DateTime(2024, 3, 12, 9, 24, 38, 299, DateTimeKind.Unspecified).AddTicks(8862), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
-                            Id = new Guid("3c9ce0c9-92a4-43dd-83c8-73ef591d374b"),
+                            Id = new Guid("4ff49f46-b662-4382-a442-47aa7e99e784"),
+                            FormId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Responses = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"response\":\"Yes, I agree\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"response\":\"No\"}]",
-                            Submitted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Submitted = new DateTimeOffset(new DateTime(2024, 3, 12, 9, 24, 38, 299, DateTimeKind.Unspecified).AddTicks(8866), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 
