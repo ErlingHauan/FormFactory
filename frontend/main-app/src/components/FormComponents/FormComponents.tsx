@@ -10,9 +10,9 @@ interface FormComponentsProps {
 }
 
 export const FormComponents: React.FC<FormComponentsProps> = ({
-                                                                components,
-                                                                errors
-                                                              }): React.JSX.Element => {
+  components,
+  errors,
+}): React.JSX.Element => {
   return (
     <>
       {components.map((component: FormComponent) => {

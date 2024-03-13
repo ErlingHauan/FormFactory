@@ -7,14 +7,14 @@ import {
   CloudDownFillIcon,
   FilePlusFillIcon,
   PersonEnvelopeFillIcon,
-  TrashFillIcon
+  TrashFillIcon,
 } from "@navikt/aksel-icons";
 import { FormModal } from "../FormModal/FormModal";
 import { CustomParagraph } from "../CustomParagraph";
 import { useTranslation } from "react-i18next";
 import { getForms } from "./httpUtils";
 
-const Overview = ({forms}): React.JSX.Element => {
+const Overview = ({ forms }): React.JSX.Element => {
   const { t } = useTranslation();
   const [numberOfSubmissions, setNumberOfSubmissions] = useState(0);
 
@@ -81,7 +81,7 @@ const ButtonGroup = (): React.JSX.Element => {
   );
 };
 
-const FormList = ({forms}): React.JSX.Element => {  
+const FormList = ({ forms }): React.JSX.Element => {
   return (
     <div className={classes.formList}>
       {forms.map((form) => (
@@ -96,7 +96,10 @@ const FormList = ({forms}): React.JSX.Element => {
               <div className={classes.infoContainer}>
                 <CustomParagraph heading="Description" content={form.description} />
                 <CustomParagraph heading="Status" content={form.status} />
-                <CustomParagraph heading="Expiration date" content={form.expirationDate || "Not set"} />
+                <CustomParagraph
+                  heading="Expiration date"
+                  content={form.expirationDate || "Not set"}
+                />
                 <CustomParagraph heading="Submissions" content={"Not implemented yet"} />
               </div>
               <ButtonGroup />
@@ -110,15 +113,15 @@ const FormList = ({forms}): React.JSX.Element => {
 
 export const Dashboard = (): React.JSX.Element => {
   const [forms, setForms] = useState([]);
-  
+
   useEffect(() => {
-    getForms(setForms)
+    getForms(setForms);
   }, [setForms]);
 
   return (
     <main className={classes.dashboard}>
-      <Overview forms={forms}/>
-      <FormList forms={forms}/>
+      <Overview forms={forms} />
+      <FormList forms={forms} />
     </main>
   );
 };

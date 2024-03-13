@@ -4,7 +4,7 @@ import axios from "axios";
 export const getFormSchema = async (formId: string, setFormSchema) => {
   const apiUrl = getApiUrl();
   const targetUrl = `${apiUrl}/api/forms/${formId}`;
-  
+
   try {
     const response = await axios.get(targetUrl);
     setFormSchema(response.data);
@@ -31,7 +31,7 @@ export const postSubmission = async (formId, formData, setFormAlert) => {
   const formattedSubmission = {
     formId: formId,
     submitted: new Date(),
-    responses: responses
+    responses: responses,
   };
 
   const apiUrl = getApiUrl();

@@ -10,16 +10,16 @@ import { getFormSchema, postSubmission } from "./httpUtils";
 
 export const FormViewer = (): React.JSX.Element => {
   const { t } = useTranslation();
-  const  { formId } = useParams();
-  
+  const { formId } = useParams();
+
   const [formErrors, setFormErrors] = useState({});
   const [formAlert, setFormAlert] = useState("");
   const [formSchema, setFormSchema] = useState<Form>(null);
-  
+
   useEffect(() => {
     getFormSchema(formId, setFormSchema);
   }, [formId]);
-  
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -53,9 +53,14 @@ export const FormViewer = (): React.JSX.Element => {
           </div>
         </form>
         {formAlert == "success" && <Alert severity="success">{t("form_viewer.success")}</Alert>}
-        {formAlert == "validationError" && <Alert severity="danger">{t("form_viewer.error")}</Alert>}
-        {formAlert == "serverError" &&
-          <Alert severity="danger">Your form was validated correctly, but the server did not receive the form.</Alert>}
+        {formAlert == "validationError" && (
+          <Alert severity="danger">{t("form_viewer.error")}</Alert>
+        )}
+        {formAlert == "serverError" && (
+          <Alert severity="danger">
+            Your form was validated correctly, but the server did not receive the form.
+          </Alert>
+        )}
       </main>
     );
   }

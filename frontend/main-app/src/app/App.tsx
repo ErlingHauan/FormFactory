@@ -15,13 +15,13 @@ import { FormViewer } from "../components/FormViewer";
 
 i18next.use(initReactI18next).init({
   resources: {
-    en: { translation: en }
+    en: { translation: en },
   },
   lng: "en",
   fallbackLng: "en",
   react: {
-    useSuspense: false
-  }
+    useSuspense: false,
+  },
 });
 
 export const App = (): React.JSX.Element => {
