@@ -1,0 +1,52 @@
+export default {
+  id: 1994,
+  title: "Pet survey",
+  published: "2018-01-10",
+  components: [
+    {
+      name: "number.of.animals",
+      label: "If you have animals, how many animals do you have?",
+      componentType: "textfield",
+      inputType: "number",
+      required: true,
+      greaterThan: undefined,
+      lessThan: 1000,
+    },
+    {
+      name: "preference",
+      label: "Do you prefer dogs or cats?",
+      componentType: "radio",
+      choices: ["Dogs", "Cats"],
+    },
+    {
+      name: "become.animal.owner",
+      label: "If you don't have animals, would you consider becoming an animal owner?",
+      componentType: "textfield",
+      inputType: "string",
+      required: true,
+      minLength: 0,
+      maxLength: 300,
+    },
+    {
+      name: "kind.of.new.pet",
+      label: "If you would get a new pet, what animal would it be?",
+      componentType: "radio",
+      choices: ["Dog", "Cat", "Horse", "Cow", "Chicken"],
+    },
+    {
+      name: "choosing.main.factor",
+      label: "What is the main factor in choosing a pet?",
+      componentType: "textfield",
+      inputType: "string",
+      required: true,
+      minLength: 0,
+      maxLength: 200,
+    },
+    {
+      name: "adopted.pet",
+      label: "Have you ever adopted a pet from a shelter?",
+      componentType: "radio",
+      choices: ["Yes", "No"],
+    },
+  ],
+};
