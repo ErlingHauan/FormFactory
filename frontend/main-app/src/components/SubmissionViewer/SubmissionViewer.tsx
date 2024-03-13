@@ -1,4 +1,4 @@
-import classes from "./FormModal.module.css";
+import classes from "./SubmissionViewer.module.css";
 import { Heading, Modal } from "@digdir/design-system-react";
 import React, { ReactNode } from "react";
 import submittedData from "./submittedData.json";
@@ -9,7 +9,7 @@ const ListAnswers = (): React.JSX.Element => {
 
   return (
     <>
-      {submissions.map(({ submissionId, answers })  => (
+      {submissions.map(({ submissionId, answers }) => (
         <div key={submissionId} className={classes.submission}>
           <Heading level={3} size="medium" className={classes.submissionHeading}>
             Submission #{submissionId}
@@ -30,14 +30,21 @@ interface FormModalProps {
   variant?: string;
 }
 
-export const FormModal: React.FC<FormModalProps> = ({ children, className, size, variant }) => {
+export const SubmissionViewer: React.FC<FormModalProps> = ({
+  children,
+  className,
+  size,
+  variant,
+}) => {
   return (
     <Modal.Root>
       <Modal.Trigger className={className} variant={variant} size={size}>
         {children}
       </Modal.Trigger>
       <Modal.Dialog className={classes.modalWindow}>
-        <Modal.Header className={classes.modalHeader}>Submissions to {submittedData.title}</Modal.Header>
+        <Modal.Header className={classes.modalHeader}>
+          Submissions to {submittedData.title}
+        </Modal.Header>
         <Modal.Content className={classes.modalContent}>
           <ListAnswers />
         </Modal.Content>

@@ -9,8 +9,8 @@ import {
   PersonEnvelopeFillIcon,
   TrashFillIcon,
 } from "@navikt/aksel-icons";
-import { FormModal } from "../FormModal/FormModal";
-import { CustomParagraph } from "../CustomParagraph/CustomParagraph";
+import { SubmissionViewer } from "../SubmissionViewer";
+import { CustomParagraph } from "../CustomParagraph";
 import { useTranslation } from "react-i18next";
 import formData from "./formData.json";
 
@@ -63,10 +63,10 @@ const ButtonGroup = (): React.JSX.Element => {
   const { t } = useTranslation();
   return (
     <div className={classes.buttonContainer}>
-      <FormModal className={classes.button} size="small" variant="secondary">
+      <SubmissionViewer className={classes.button} size="small" variant="secondary">
         <PersonEnvelopeFillIcon />
         {t("dashboard.view.submissions")}
-      </FormModal>
+      </SubmissionViewer>
       <Button className={classes.button} size="small" variant="secondary">
         <CloudDownFillIcon />
         {t("dashboard.download")}
