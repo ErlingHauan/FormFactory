@@ -1,15 +1,11 @@
-import { Heading, Paragraph } from "@digdir/design-system-react";
-import {
-  BulletListIcon,
-  TasklistSaveIcon,
-  TasklistSendIcon,
-  MenuHamburgerIcon,
-} from "@navikt/aksel-icons";
+import { Heading } from "@digdir/design-system-react";
+
 import React from "react";
 import classes from "./Toolbar.module.css";
 import { useTranslation } from "react-i18next";
 import { useDrag } from "react-dnd";
 import { DraggableItemsType } from "../../types/dndTypes";
+import { ToolBarItems } from "./ToolBarItems/ToolBarItems";
 
 export const Toolbar = (): React.JSX.Element => {
   const { t } = useTranslation();
@@ -33,28 +29,9 @@ export const Toolbar = (): React.JSX.Element => {
         {t("toolbar_tools")}
       </Heading>
       <ul>
-        <div className={classes.toolbarIcon}>
+        <div className={classes.toolbarIcon} ref={drag}>
           <li>
-            <TasklistSaveIcon fontSize="3rem" />
-            <Paragraph size="xsmall">{t("toolbar_tools.save.form.component")}</Paragraph>
-          </li>
-        </div>
-        <div className={classes.toolbarIcon}>
-          <li>
-            <TasklistSendIcon fontSize="3rem" />
-            <Paragraph size="xsmall">{t("toolbar_tools.validate.form.component")}</Paragraph>
-          </li>
-        </div>
-        <div className={classes.toolbarIcon}>
-          <li ref={drag} id="text-field">
-            <MenuHamburgerIcon fontSize="3rem" />
-            <Paragraph size="xsmall">{t("toolbar_tools.text.field.component")}</Paragraph>
-          </li>
-        </div>
-        <div className={classes.toolbarIcon}>
-          <li ref={drag} id="multiple-choice">
-            <BulletListIcon fontSize="3rem" />
-            <Paragraph size="xsmall">{t("toolbar_tools.multiple.choice.component")}</Paragraph>
+            <ToolBarItems />
           </li>
         </div>
       </ul>
