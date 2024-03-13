@@ -44,7 +44,9 @@ public class SubmissionsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<SubmissionDto>> Create([FromBody] SubmissionDto dto)
     {
+        Console.WriteLine($"Submitted submission belongs to form with id {dto.FormId}.");
         var entity = SubmissionMappers.ToEntity(dto);
+        Console.WriteLine($"After conversion to entity, it has ID {entity.FormId}");
         var result = await _submissionRepository.Create(entity);
         return Ok(result);
     }

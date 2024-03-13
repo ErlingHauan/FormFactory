@@ -10,6 +10,7 @@ public class SubmissionMappers
         var entity = new SubmissionEntity
         {
             Id = dto.Id,
+            FormId = dto.FormId,
             Submitted = dto.Submitted,
             Responses = dto.Responses
         };
@@ -22,6 +23,7 @@ public class SubmissionMappers
         var dto = new SubmissionDto
         {
             Id = entity.Id,
+            FormId = entity.FormId,
             Submitted = entity.Submitted,
             Responses = entity.Responses
         };

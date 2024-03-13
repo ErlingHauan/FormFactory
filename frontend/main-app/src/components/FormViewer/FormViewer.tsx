@@ -48,7 +48,7 @@ export const FormViewer = (): React.JSX.Element => {
     }
     
     const formattedSubmission = {
-      formId: formId, // formId is not received correctly in backend
+      formId: formId,
       submitted: new Date(),
       responses: responses
     };
