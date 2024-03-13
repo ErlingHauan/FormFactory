@@ -81,7 +81,7 @@ const ButtonGroup = (): React.JSX.Element => {
   );
 };
 
-const FormList = ({forms}): React.JSX.Element => {
+const FormList = ({forms}): React.JSX.Element => {  
   return (
     <div className={classes.formList}>
       {forms.map((form) => (
@@ -97,7 +97,7 @@ const FormList = ({forms}): React.JSX.Element => {
                 <CustomParagraph heading="Description" content={form.description} />
                 <CustomParagraph heading="Status" content={form.status} />
                 <CustomParagraph heading="Expiration date" content={form.expirationDate || "Not set"} />
-                <CustomParagraph heading="Submissions" content={form.submissions} />
+                <CustomParagraph heading="Submissions" content={"Not implemented yet"} />
               </div>
               <ButtonGroup />
             </Accordion.Content>
