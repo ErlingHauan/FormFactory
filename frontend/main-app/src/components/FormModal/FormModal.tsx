@@ -2,7 +2,7 @@ import classes from "./FormModal.module.css";
 import { Divider, Heading, Modal } from "@digdir/design-system-react";
 import React, { ReactNode } from "react";
 import submittedData from "./submittedData.json";
-import { CustomParagraph } from "../CustomParagraph/CustomParagraph";
+import { CustomParagraph } from "../CustomParagraph";
 
 const ListAnswers = (): React.JSX.Element => {
   const submissions = submittedData.submissions;

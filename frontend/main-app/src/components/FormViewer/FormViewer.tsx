@@ -5,7 +5,7 @@ import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
 import { cleanFormData, generateValidationSchema } from "./validationUtils";
 import { useTranslation } from "react-i18next";
-import { FormComponents } from "../FormComponents/FormComponents";
+import { FormComponents } from "../FormComponents";
 import { getFormSchema, postSubmission } from "./httpUtils";
 
 export const FormViewer = (): React.JSX.Element => {

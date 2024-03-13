@@ -4,6 +4,7 @@ import axios from "axios";
 export const getFormSchema = async (formId: string, setFormSchema) => {
   const apiUrl = getApiUrl();
   const targetUrl = `${apiUrl}/api/forms/${formId}`;
+  
   try {
     const response = await axios.get(targetUrl);
     setFormSchema(response.data);
