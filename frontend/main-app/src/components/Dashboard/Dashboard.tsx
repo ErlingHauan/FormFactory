@@ -7,7 +7,7 @@ import {
   CloudDownFillIcon,
   FilePlusFillIcon,
   PersonEnvelopeFillIcon,
-  TrashFillIcon,
+  TrashFillIcon
 } from "@navikt/aksel-icons";
 import { SubmissionViewer } from "../SubmissionViewer";
 import { CustomParagraph } from "../CustomParagraph";
@@ -34,27 +34,33 @@ const Overview = (): React.JSX.Element => {
         <Heading level={1} size="medium">
           {t("dashboard")}
         </Heading>
-        <Button size="small" color="success" asChild>
-          <a href="/form-builder">
-            <FilePlusFillIcon />
-            {t("dashboard.new.form")}
-          </a>
-        </Button>
       </div>
-      {forms.length > 0 ? (
-        <>
-          <Paragraph>
-            {t("dashboard.number.of.forms")}
-            {forms.length}
-          </Paragraph>
-          <Paragraph>
-            {t("dashboard.total.submissions")}
-            {numberOfSubmissions}
-          </Paragraph>
-        </>
-      ) : (
-        <Paragraph>{t("dashboard.empty.message")}</Paragraph>
-      )}
+      <div className={classes.overviewContent}>
+        <div className={classes.paragraphContainer}>
+          {forms.length > 0 ? (
+            <>
+              <Paragraph>
+                {t("dashboard.number.of.forms")}
+                {forms.length}
+              </Paragraph>
+              <Paragraph>
+                {t("dashboard.total.submissions")}
+                {numberOfSubmissions}
+              </Paragraph>
+            </>
+          ) : (
+            <Paragraph>{t("dashboard.empty.message")}</Paragraph>
+          )}
+        </div>
+        <div className={classes.newFormButtonContainer}>
+          <Button size="small" color="success" asChild>
+            <a href="/form-builder">
+              <FilePlusFillIcon />
+              {t("dashboard.new.form")}
+            </a>
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
@@ -62,7 +68,7 @@ const Overview = (): React.JSX.Element => {
 const ButtonGroup = (): React.JSX.Element => {
   const { t } = useTranslation();
   return (
-    <div className={classes.buttonContainer}>
+    <div className={classes.accordionButtonContainer}>
       <SubmissionViewer className={classes.button} size="small" variant="secondary">
         <PersonEnvelopeFillIcon />
         {t("dashboard.view.submissions")}
