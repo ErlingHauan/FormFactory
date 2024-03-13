@@ -74,14 +74,12 @@ public static class SeedData
         {
             new SubmissionResponse()
             {
-                Name = "question1",
                 Label = "Question 1",
                 Order = 0,
                 Response = "Yes, I agree"
             },
             new SubmissionResponse()
             {
-                Name = "question2",
                 Label = "Question 2",
                 Order = 1,
                 Response = "No"
