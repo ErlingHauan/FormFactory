@@ -3,11 +3,10 @@ import React, { FormEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
-import { cleanFormData, generateValidationSchema } from "./FormViewerUtils";
+import { cleanFormData, generateValidationSchema } from "./validationUtils";
 import { useTranslation } from "react-i18next";
 import { FormComponents } from "../FormComponents/FormComponents";
-import { getApiUrl } from "../Login/LoginUtils";
-import axios from "axios";
+import { getFormSchema, postSubmission } from "./httpUtils";
 
 export const FormViewer = (): React.JSX.Element => {
   const { t } = useTranslation();
@@ -16,55 +15,11 @@ export const FormViewer = (): React.JSX.Element => {
   const [formErrors, setFormErrors] = useState({});
   const [formAlert, setFormAlert] = useState("");
   const [formSchema, setFormSchema] = useState<Form>(null);
-
-  const getFormSchema = async (formId: string) => {
-    const apiUrl = getApiUrl();
-    const targetUrl = `${apiUrl}/api/forms/${formId}`;
-    try {
-      const response = await axios.get(targetUrl);
-      setFormSchema(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  
   useEffect(() => {
-    getFormSchema(formId);
+    getFormSchema(formId, setFormSchema);
   }, [formId]);
-
-  const postSubmission = async (formId, formData) => {
-    let responses = [];
-    let order = 0;
-    
-    for (const key in formData) {
-      const response = {
-        label: key,
-        response: formData[key],
-        order: order,
-      };
-      
-      responses.push(response);
-      order++;
-    }
-    
-    const formattedSubmission = {
-      formId: formId,
-      submitted: new Date(),
-      responses: responses
-    };
-    
-    const apiUrl = getApiUrl();
-    const targetUrl = `${apiUrl}/api/submissions/`;
-    try {
-      const response = await axios.post(targetUrl, formattedSubmission);
-      setFormAlert("success");
-      console.log(response.status);
-    } catch (error) {
-      setFormAlert("serverError");
-      console.log(error);
-    }
-  };
-
+  
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -78,7 +33,7 @@ export const FormViewer = (): React.JSX.Element => {
       setFormAlert("validationError");
     } else {
       setFormErrors({});
-      postSubmission(formId, cleanedFormData);
+      postSubmission(formId, cleanedFormData, setFormAlert);
     }
   };
 
