@@ -1,12 +1,12 @@
 interface FormComponent {
   name: string;
   label: string;
-  componentType: string;
+  type: string;
   inputType?: string;
   required?: boolean;
   greaterThan?: number;
   lessThan?: number;
-  choices?: string[];
+  radioChoices?: string[];
   minLength?: number;
   maxLength?: number;
 }
