@@ -32,9 +32,9 @@ public static class SeedData
             }
         });
 
-        var componentList = new List<Component>
+        var componentList = new List<FormComponent>
         {
-            new Component()
+            new()
             {
                 Name = "question1",
                 Label = "Question 1",
@@ -43,7 +43,7 @@ public static class SeedData
                 Type = "textfield"
             },
 
-            new Component()
+            new()
             {
                 Name = "question2",
                 Label = "Question 2",
@@ -56,7 +56,7 @@ public static class SeedData
 
         builder.Entity<FormEntity>().HasData(new List<FormEntity>
         {
-            new FormEntity()
+            new()
             {
                 Id = Guid.NewGuid(),
                 User = "user1@example.com",
