@@ -42,7 +42,7 @@ public class UsersControllerTests
     [Fact]
     public async Task Get_ReturnsFoundUser()
     {
-        //Assert
+        //Arrange
         var mockUsers = new List<UserEntity>
         {
             new UserEntity { Id = 1, Email = "user1@example.com", Password = "password1", Organization = "Org1" },

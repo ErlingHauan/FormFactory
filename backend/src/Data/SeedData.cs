@@ -31,5 +31,43 @@ public static class SeedData
                 Organization = ""
             }
         });
+
+        var componentList = new List<FormComponent>
+        {
+            new()
+            {
+                Name = "question1",
+                Label = "Question 1",
+                Required = true,
+                Order = 0,
+                Type = "textfield"
+            },
+
+            new()
+            {
+                Name = "question2",
+                Label = "Question 2",
+                Required = true,
+                Order = 1,
+                Type = "radio",
+                RadioChoices = ["Yes", "No", "Maybe"]
+            }
+        };
+
+        builder.Entity<FormEntity>().HasData(new List<FormEntity>
+        {
+            new()
+            {
+                Id = Guid.NewGuid(),
+                User = "user1@example.com",
+                Organization = "Org1",
+                Title = "Test Survey",
+                Description = "This form was created as a test.",
+                Status = "draft",
+                Published = null,
+                Expires = null,
+                Components = componentList
+            }
+        });
     }
 }

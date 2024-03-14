@@ -1,27 +1,82 @@
+using FormAPI.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using FormAPI.Models;
+using FormAPI.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace FormAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/api/forms")]
 public class FormsController : ControllerBase
 {
-    [HttpGet]
-    public ActionResult<FormEntity> Get()
+    private readonly IFormRepository _formRepository;
+
+    public FormsController(IFormRepository formRepository)
     {
-        var formData = new FormEntity { Name = "Ola Nordmann", Email = "ola@norge.no" };
-        return Ok(formData);
+        _formRepository = formRepository;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<FormDto>>> GetAll()
+    {
+        var entityList = await _formRepository.GetAll();
+        var dtoList = entityList.Select(FormMappers.ToDto).ToList();
+        return Ok(dtoList);
+    }
+
+    [HttpGet("{formId:guid}")]
+    public async Task<ActionResult<FormDto>> Get(Guid formId)
+    {
+        var entity = await _formRepository.Get(formId);
+
+        if (entity == null)
+        {
+            return NotFound(formId);
+        }
+
+        var dto = FormMappers.ToDto(entity);
+        return Ok(dto);
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] FormEntity formEntityData)
+    public async Task<ActionResult<FormDto>> Create([FromBody] FormDto formData)
     {
-        if (!ModelState.IsValid)
+        var entity = FormMappers.ToEntity(formData);
+        var resultEntity = await _formRepository.Create(entity);
+        if (resultEntity == null)
         {
-            return BadRequest(ModelState);
+            return BadRequest();
         }
 
-        return Ok(formEntityData);
+        var resultDto = FormMappers.ToDto(resultEntity);
+        return CreatedAtAction(nameof(Get), new { formId = resultDto.Id }, resultDto);
+    }
+
+    [HttpPut]
+    public async Task<ActionResult<FormDto>> Update([FromBody] FormDto formData)
+    {
+        var entity = FormMappers.ToEntity(formData);
+        var resultEntity = await _formRepository.Update(entity);
+        if (resultEntity == null)
+        {
+            return NotFound(formData);
+        }
+
+        var resultDto = FormMappers.ToDto(resultEntity);
+        return Ok(resultDto);
+    }
+
+    [HttpDelete("{formId:guid}")]
+    public async Task<ActionResult<FormDto>> Delete(Guid formId)
+    {
+        var resultEntity = await _formRepository.Delete(formId);
+        if (resultEntity == null)
+        {
+            return NotFound(formId);
+        }
+
+        var resultDto = FormMappers.ToDto(resultEntity);
+        return Ok(resultDto);
     }
 }

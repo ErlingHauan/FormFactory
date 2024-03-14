@@ -2,6 +2,13 @@ namespace FormAPI.Models;
 
 public class FormEntity
 {
-    public required string Name { get; set; }
-    public required string Email { get; set; }
+    public Guid Id { get; set; }
+    public string? User { get; set; }
+    public string? Organization { get; set; }
+    public string? Title { get; set; }
+    public string? Description { get; set; }
+    public string? Status { get; set; }
+    public DateTime? Published { get; set; }
+    public DateTime? Expires { get; set; }
+    public List<FormComponent>? Components { get; set; }
 }

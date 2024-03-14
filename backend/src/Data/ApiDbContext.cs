@@ -1,3 +1,4 @@
+using System.Text.Json;
 using FormAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,8 +20,18 @@ public class ApiDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        builder.Entity<FormEntity>(entity =>
+        {
+            entity.Property(e => e.Components)
+                .HasConversion(
+                    v => JsonSerializer.Serialize(v, new JsonSerializerOptions(JsonSerializerDefaults.Web)),
+                    v => JsonSerializer.Deserialize<List<FormComponent>>(v, new JsonSerializerOptions(JsonSerializerDefaults.Web)))
+                .HasColumnType("json");
+        });
+
         SeedData.Seed(builder);
     }
 
     public DbSet<UserEntity> Users => Set<UserEntity>();
+    public DbSet<FormEntity> Forms => Set<FormEntity>();
 }
