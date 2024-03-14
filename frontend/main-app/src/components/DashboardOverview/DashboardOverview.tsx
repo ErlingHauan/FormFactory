@@ -7,7 +7,7 @@ import { Button, Heading, Paragraph } from "@digdir/design-system-react";
 import { FilePlusFillIcon } from "@navikt/aksel-icons";
 
 interface DashboardOverviewProps {
-  forms: Form[]
+  forms: Form[];
 }
 export const DashboardOverview: React.FC<DashboardOverviewProps> = ({ forms }) => {
   const { t } = useTranslation();

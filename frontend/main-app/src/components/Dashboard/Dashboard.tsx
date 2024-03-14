@@ -13,7 +13,7 @@ export const Dashboard = (): React.JSX.Element => {
     const getAllForms = async () => {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/forms`;
-      
+
       try {
         const result = await axios.get(targetUrl);
         setForms(result.data);
