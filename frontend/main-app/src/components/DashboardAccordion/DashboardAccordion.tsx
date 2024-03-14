@@ -42,8 +42,8 @@ interface DashboardAccordionProps {
 }
 
 export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) => {
-  const [submissionCount, setSubmissionCount] = useState();
   const [submissions, setSubmissions] = useState();
+  const [submissionCount, setSubmissionCount] = useState();
 
   useEffect(() => {
     const getSubmissionCount = async () => {

@@ -33,7 +33,7 @@ export const FormViewer = (): React.JSX.Element => {
       setFormAlert("validationError");
     } else {
       setFormErrors({});
-      postSubmission(formId, cleanedFormData, setFormAlert);
+      postSubmission(formSchema, cleanedFormData, setFormAlert);
     }
   };
 

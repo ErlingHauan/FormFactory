@@ -13,15 +13,15 @@ export const getFormSchema = async (formId: string, setFormSchema) => {
   }
 };
 
-export const postSubmission = async (formId, formData, setFormAlert) => {
+export const postSubmission = async (formSchema, formData, setFormAlert) => {
   const responses = [];
   let order = 0;
 
   for (const key in formData) {
     const response = {
-      label: key,
-      response: formData[key],
       order: order,
+      label: formSchema.components[order].label,
+      response: formData[key],
     };
 
     responses.push(response);
@@ -29,7 +29,7 @@ export const postSubmission = async (formId, formData, setFormAlert) => {
   }
 
   const formattedSubmission = {
-    formId: formId,
+    formId: formSchema.id,
     submitted: new Date(),
     responses: responses,
   };
