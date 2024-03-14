@@ -5,7 +5,6 @@
     padding: var(--fds-spacing-5);
 }
 
-.accordionContentContainer,
 .headingContainer {
     display: flex;
     justify-content: space-between;

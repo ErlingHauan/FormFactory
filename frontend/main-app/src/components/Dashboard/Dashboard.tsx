@@ -1,11 +1,10 @@
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./Dashboard.module.css";
 import React, { useEffect, useState } from "react";
-import { Accordion, Button, Heading, Paragraph } from "@digdir/design-system-react";
+import { Accordion, Button, Heading } from "@digdir/design-system-react";
 import {
   ClipboardLinkFillIcon,
   CloudDownFillIcon,
-  FilePlusFillIcon,
   PersonEnvelopeFillIcon,
   TrashFillIcon
 } from "@navikt/aksel-icons";
@@ -13,59 +12,9 @@ import { FormModal } from "../FormModal/FormModal";
 import { CustomParagraph } from "../CustomParagraph";
 import { useTranslation } from "react-i18next";
 import { getForms } from "./httpUtils";
-import { getApiUrl } from "../Login/LoginUtils";
-import axios from "axios";
+import { DashboardOverview } from "../DashboardOverview/DashboardOverview";
 
-const Overview = ({ forms }): React.JSX.Element => {
-  const { t } = useTranslation();
-  const [submissionCount, setSubmissionCount] = useState();
-  
-  useEffect(() => {
-    const getSubmissionCount = async () => {
-      const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/submissions/`;
 
-      try {
-        const result = await axios.get(targetUrl);
-        setSubmissionCount(result.data.length);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    
-    getSubmissionCount();
-  }, []);
-
-  return (
-    <div className={classes.overview}>
-      <div className={classes.headingContainer}>
-        <Heading level={1} size="medium">
-          {t("dashboard")}
-        </Heading>
-        <Button size="small" color="success" asChild>
-          <a href="/form-builder">
-            <FilePlusFillIcon />
-            {t("dashboard.new.form")}
-          </a>
-        </Button>
-      </div>
-      {forms.length > 0 ? (
-        <>
-          <Paragraph>
-            {t("dashboard.number.of.forms")}
-            {forms.length}
-          </Paragraph>
-          <Paragraph>
-            {t("dashboard.total.submissions")}
-            {submissionCount}
-          </Paragraph>
-        </>
-      ) : (
-        <Paragraph>{t("dashboard.empty.message")}</Paragraph>
-      )}
-    </div>
-  );
-};
 
 const ButtonGroup = (): React.JSX.Element => {
   const { t } = useTranslation();
@@ -130,7 +79,7 @@ export const Dashboard = (): React.JSX.Element => {
 
   return (
     <main className={classes.dashboard}>
-      <Overview forms={forms} />
+      <DashboardOverview forms={forms} />
       <FormList forms={forms} />
     </main>
   );
