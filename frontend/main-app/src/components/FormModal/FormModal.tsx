@@ -4,20 +4,20 @@ import React, { ReactNode } from "react";
 import submittedData from "./submittedData.json";
 import { CustomParagraph } from "../CustomParagraph";
 
-const ListAnswers = (): React.JSX.Element => {
-  const submissions = submittedData.submissions;
+const ListAnswers = ({submissions}): React.JSX.Element => {
+  // const submissions = submittedData.submissions;
 
   return (
     <>
-      {submissions.map(({ submissionId, answers }, submissionIndex) => (
-        <React.Fragment key={submissionId}>
+      {submissions.map(({ id, responses }, index: number) => (
+        <React.Fragment key={id}>
           <Heading level={3} size="large" spacing>
-            Submission #{submissionId}
+            Submission #{index + 1}
           </Heading>
-          {answers.map(({ answerId, question, answer }) => (
-            <CustomParagraph key={answerId} heading={question} content={answer} />
+          {responses.map(({ order, label, response }) => (
+            <CustomParagraph key={order} heading={label} content={response} />
           ))}
-          {submissionIndex < submissions.length - 1 && (
+          {index < submissions.length - 1 && (
             <Divider color="strong" className={classes.spacing} />
           )}
         </React.Fragment>
@@ -28,12 +28,13 @@ const ListAnswers = (): React.JSX.Element => {
 
 interface FormModalProps {
   children: ReactNode;
+  submissions: Submission[];
   className?: string;
   size?: string;
   variant?: string;
 }
 
-export const FormModal: React.FC<FormModalProps> = ({ children, className, size, variant }) => {
+export const FormModal: React.FC<FormModalProps> = ({ children, submissions, className, size, variant }) => {
   return (
     <Modal.Root>
       <Modal.Trigger className={className} variant={variant} size={size}>
@@ -42,7 +43,7 @@ export const FormModal: React.FC<FormModalProps> = ({ children, className, size,
       <Modal.Dialog className={classes.modalWindow}>
         <Modal.Header>Submissions to {submittedData.title}</Modal.Header>
         <Modal.Content>
-          <ListAnswers />
+          <ListAnswers submissions={submissions}/>
         </Modal.Content>
       </Modal.Dialog>
     </Modal.Root>

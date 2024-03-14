@@ -13,11 +13,11 @@ import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
 import { CustomParagraph } from "../CustomParagraph";
 
-const ButtonGroup = (): React.JSX.Element => {
+const ButtonGroup = ({submissions}): React.JSX.Element => {
   const { t } = useTranslation();
   return (
     <div className={classes.buttonContainer}>
-      <FormModal className={classes.button} size="small" variant="secondary">
+      <FormModal submissions={submissions} className={classes.button} size="small" variant="secondary">
         <PersonEnvelopeFillIcon />
         {t("dashboard.view.submissions")}
       </FormModal>
@@ -43,6 +43,7 @@ interface DashboardAccordionProps {
 
 export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) => {
   const [submissionCount, setSubmissionCount] = useState();
+  const [submissions, setSubmissions] = useState();
 
   useEffect(() => {
     const getSubmissionCount = async () => {
@@ -51,6 +52,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
 
       try {
         const result = await axios.get(targetUrl);
+        setSubmissions(result.data);
         setSubmissionCount(result.data.length);
       } catch (error) {
         console.log(error);
@@ -75,7 +77,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
             <CustomParagraph heading="Expiration date" content={form.expires || "Not set"} />
             <CustomParagraph heading="Submissions" content={submissionCount} />
           </div>
-          <ButtonGroup />
+          <ButtonGroup submissions={submissions} />
         </Accordion.Content>
       </Accordion.Item>
     </Accordion>
