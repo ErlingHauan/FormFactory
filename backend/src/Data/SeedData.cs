@@ -34,29 +34,29 @@ public static class SeedData
 
         var componentList = new List<FormComponent>
         {
-            new FormComponent()
+            new()
             {
                 Name = "question1",
                 Label = "Question 1",
                 Required = true,
                 Order = 0,
-                Type = "textfield",
+                Type = "textfield"
             },
 
-            new FormComponent()
+            new()
             {
                 Name = "question2",
                 Label = "Question 2",
                 Required = true,
                 Order = 1,
                 Type = "radio",
-                RadioChoices = ["Yes", "No", "Maybe"],
+                RadioChoices = ["Yes", "No", "Maybe"]
             }
         };
 
         builder.Entity<FormEntity>().HasData(new List<FormEntity>
         {
-            new FormEntity()
+            new()
             {
                 Id = Guid.NewGuid(),
                 User = "user1@example.com",

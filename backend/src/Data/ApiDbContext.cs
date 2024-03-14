@@ -44,6 +44,8 @@ public class ApiDbContext : DbContext
     }
 
     public DbSet<UserEntity> Users => Set<UserEntity>();
+
     public DbSet<FormEntity> Forms => Set<FormEntity>();
+
     public DbSet<SubmissionEntity> Submissions => Set<SubmissionEntity>();
 }
