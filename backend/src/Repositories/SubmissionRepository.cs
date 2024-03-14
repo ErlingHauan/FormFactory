@@ -8,7 +8,7 @@ namespace FormAPI.Repositories;
 public interface ISubmissionRepository
 {
     Task<List<SubmissionEntity>> GetAll();
-    Task<SubmissionEntity> GetSingle(Guid submussionId);
+    Task<SubmissionEntity> GetSingle(Guid submissionId);
     Task<List<SubmissionEntity>> GetFormSubmissions(Guid formId);
     Task<SubmissionEntity?> Create(SubmissionEntity entity);
     Task<SubmissionEntity> Delete(Guid submussionId);
