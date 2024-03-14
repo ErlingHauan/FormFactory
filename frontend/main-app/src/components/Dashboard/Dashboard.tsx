@@ -10,10 +10,11 @@ export const Dashboard = (): React.JSX.Element => {
   const [forms, setForms] = useState<Form[]>([]);
 
   useEffect(() => {
-    const getForms = async (setForms) => {
+    const getForms = async () => {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/forms`;
 
+      // Gets all forms from the database
       try {
         const result = await axios.get(targetUrl);
         setForms(result.data);
@@ -21,16 +22,16 @@ export const Dashboard = (): React.JSX.Element => {
         console.log(error);
       }
     };
-    
-    getForms(setForms);
+
+    getForms();
   }, []);
 
   return (
     <main className={classes.dashboard}>
       <DashboardOverview forms={forms} />
       <div className={classes.formList}>
-        {forms.map((form: Form) => (
-          <DashboardAccordion form={form} />
+        {forms.map((form) => (
+          <DashboardAccordion key={form.id} form={form} />
         ))}
       </div>
     </main>

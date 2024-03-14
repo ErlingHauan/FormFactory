@@ -6,7 +6,10 @@ import classes from "./DashboardOverview.module.css";
 import { Button, Heading, Paragraph } from "@digdir/design-system-react";
 import { FilePlusFillIcon } from "@navikt/aksel-icons";
 
-export const DashboardOverview = ({ forms }): React.JSX.Element => {
+interface DashboardOverviewProps {
+  forms: Form[]
+}
+export const DashboardOverview: React.FC<DashboardOverviewProps> = ({ forms }) => {
   const { t } = useTranslation();
   const [submissionCount, setSubmissionCount] = useState();
 
@@ -15,6 +18,7 @@ export const DashboardOverview = ({ forms }): React.JSX.Element => {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/submissions/`;
 
+      // Gets all submissions in the database
       try {
         const result = await axios.get(targetUrl);
         setSubmissionCount(result.data.length);

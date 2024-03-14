@@ -13,11 +13,11 @@ interface FormComponent {
 
 interface Form {
   id: number;
-  user: string,
-  organization?: string,
+  user: string;
+  organization?: string;
   title: string;
-  description: string,
-  status: string,
+  description: string;
+  status: string;
   published: string;
   expires: string;
   components: FormComponent[];

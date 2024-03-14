@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import classes from "./DashboardAccordion.module.css";
 import { FormModal } from "../FormModal/FormModal";
-import { ClipboardLinkFillIcon, CloudDownFillIcon, PersonEnvelopeFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
+import {
+  ClipboardLinkFillIcon,
+  CloudDownFillIcon,
+  PersonEnvelopeFillIcon,
+  TrashFillIcon,
+} from "@navikt/aksel-icons";
 import { Accordion, Button, Heading } from "@digdir/design-system-react";
 import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
@@ -32,7 +37,11 @@ const ButtonGroup = (): React.JSX.Element => {
   );
 };
 
-export const DashboardAccordion = ({ form }): React.JSX.Element => {
+interface DashboardAccordionProps {
+  form: Form;
+}
+
+export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) => {
   const [submissionCount, setSubmissionCount] = useState();
 
   useEffect(() => {
@@ -40,6 +49,7 @@ export const DashboardAccordion = ({ form }): React.JSX.Element => {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/submissions/form/${form.id}`;
 
+      // Gets all responses that correspond to the form id
       try {
         const result = await axios.get(targetUrl);
         setSubmissionCount(result.data.length);
@@ -49,7 +59,7 @@ export const DashboardAccordion = ({ form }): React.JSX.Element => {
     };
 
     getSubmissionCount();
-  }, []);
+  }, );
 
   return (
     <Accordion border={true} key={form.id}>
@@ -63,10 +73,7 @@ export const DashboardAccordion = ({ form }): React.JSX.Element => {
           <div className={classes.infoContainer}>
             <CustomParagraph heading="Description" content={form.description} />
             <CustomParagraph heading="Status" content={form.status} />
-            <CustomParagraph
-              heading="Expiration date"
-              content={form.expires || "Not set"}
-            />
+            <CustomParagraph heading="Expiration date" content={form.expires || "Not set"} />
             <CustomParagraph heading="Submissions" content={submissionCount} />
           </div>
           <ButtonGroup />

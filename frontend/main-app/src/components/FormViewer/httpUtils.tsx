@@ -14,7 +14,7 @@ export const getFormSchema = async (formId: string, setFormSchema) => {
 };
 
 export const postSubmission = async (formId, formData, setFormAlert) => {
-  let responses = [];
+  const responses = [];
   let order = 0;
 
   for (const key in formData) {

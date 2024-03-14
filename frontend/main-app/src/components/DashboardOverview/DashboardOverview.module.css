@@ -1,12 +1,12 @@
 .overview {
-    background-color: var(--fds-semantic-background-default);
-    border: 1px solid var(--fds-semantic-border-neutral-subtle);
-    border-radius: var(--fds-border_radius-medium);
-    padding: var(--fds-spacing-5);
+  background-color: var(--fds-semantic-background-default);
+  border: 1px solid var(--fds-semantic-border-neutral-subtle);
+  border-radius: var(--fds-border_radius-medium);
+  padding: var(--fds-spacing-5);
 }
 
 .headingContainer {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: var(--fds-spacing-4);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--fds-spacing-4);
 }
