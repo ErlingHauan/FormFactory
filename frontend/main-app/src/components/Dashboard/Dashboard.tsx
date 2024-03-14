@@ -7,7 +7,7 @@ import {
   CloudDownFillIcon,
   FilePlusFillIcon,
   PersonEnvelopeFillIcon,
-  TrashFillIcon,
+  TrashFillIcon
 } from "@navikt/aksel-icons";
 import { FormModal } from "../FormModal/FormModal";
 import { CustomParagraph } from "../CustomParagraph";
@@ -16,15 +16,6 @@ import { getForms } from "./httpUtils";
 
 const Overview = ({ forms }): React.JSX.Element => {
   const { t } = useTranslation();
-  const [numberOfSubmissions, setNumberOfSubmissions] = useState(0);
-
-  useEffect(() => {
-    let totalSubmissions = 0;
-    for (const form of forms) {
-      totalSubmissions += form.submissions;
-    }
-    setNumberOfSubmissions(totalSubmissions);
-  }, []);
 
   return (
     <div className={classes.overview}>
@@ -47,7 +38,7 @@ const Overview = ({ forms }): React.JSX.Element => {
           </Paragraph>
           <Paragraph>
             {t("dashboard.total.submissions")}
-            {numberOfSubmissions}
+            {"Not implemented yet"}
           </Paragraph>
         </>
       ) : (
@@ -84,7 +75,7 @@ const ButtonGroup = (): React.JSX.Element => {
 const FormList = ({ forms }): React.JSX.Element => {
   return (
     <div className={classes.formList}>
-      {forms.map((form) => (
+      {forms.map((form: Form) => (
         <Accordion border={true} key={form.id}>
           <Accordion.Item>
             <Accordion.Header>
@@ -98,7 +89,7 @@ const FormList = ({ forms }): React.JSX.Element => {
                 <CustomParagraph heading="Status" content={form.status} />
                 <CustomParagraph
                   heading="Expiration date"
-                  content={form.expirationDate || "Not set"}
+                  content={form.expires || "Not set"}
                 />
                 <CustomParagraph heading="Submissions" content={"Not implemented yet"} />
               </div>
@@ -112,11 +103,12 @@ const FormList = ({ forms }): React.JSX.Element => {
 };
 
 export const Dashboard = (): React.JSX.Element => {
-  const [forms, setForms] = useState([]);
+  const [forms, setForms] = useState<Form[]>([]);
 
   useEffect(() => {
     getForms(setForms);
   }, [setForms]);
+  
 
   return (
     <main className={classes.dashboard}>
