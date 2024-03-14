@@ -13,9 +13,28 @@ import { FormModal } from "../FormModal/FormModal";
 import { CustomParagraph } from "../CustomParagraph";
 import { useTranslation } from "react-i18next";
 import { getForms } from "./httpUtils";
+import { getApiUrl } from "../Login/LoginUtils";
+import axios from "axios";
 
 const Overview = ({ forms }): React.JSX.Element => {
   const { t } = useTranslation();
+  const [submissionCount, setSubmissionCount] = useState();
+  
+  useEffect(() => {
+    const getSubmissionCount = async () => {
+      const apiUrl = getApiUrl();
+      const targetUrl = `${apiUrl}/api/submissions/`;
+
+      try {
+        const result = await axios.get(targetUrl);
+        setSubmissionCount(result.data.length);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    
+    getSubmissionCount();
+  }, []);
 
   return (
     <div className={classes.overview}>
@@ -38,7 +57,7 @@ const Overview = ({ forms }): React.JSX.Element => {
           </Paragraph>
           <Paragraph>
             {t("dashboard.total.submissions")}
-            {"Not implemented yet"}
+            {submissionCount}
           </Paragraph>
         </>
       ) : (
@@ -104,11 +123,10 @@ const FormList = ({ forms }): React.JSX.Element => {
 
 export const Dashboard = (): React.JSX.Element => {
   const [forms, setForms] = useState<Form[]>([]);
-
+  
   useEffect(() => {
     getForms(setForms);
   }, [setForms]);
-  
 
   return (
     <main className={classes.dashboard}>
