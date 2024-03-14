@@ -18,7 +18,6 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({ forms }) =
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/submissions/`;
 
-      // Gets all submissions in the database
       try {
         const result = await axios.get(targetUrl);
         setSubmissionCount(result.data.length);

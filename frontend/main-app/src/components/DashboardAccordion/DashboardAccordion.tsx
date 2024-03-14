@@ -49,7 +49,6 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/submissions/form/${form.id}`;
 
-      // Gets all responses that correspond to the form id
       try {
         const result = await axios.get(targetUrl);
         setSubmissionCount(result.data.length);

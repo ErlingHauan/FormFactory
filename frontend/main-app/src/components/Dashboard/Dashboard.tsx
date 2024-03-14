@@ -10,11 +10,10 @@ export const Dashboard = (): React.JSX.Element => {
   const [forms, setForms] = useState<Form[]>([]);
 
   useEffect(() => {
-    const getForms = async () => {
+    const getAllForms = async () => {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/forms`;
-
-      // Gets all forms from the database
+      
       try {
         const result = await axios.get(targetUrl);
         setForms(result.data);
@@ -23,7 +22,7 @@ export const Dashboard = (): React.JSX.Element => {
       }
     };
 
-    getForms();
+    getAllForms();
   }, []);
 
   return (
