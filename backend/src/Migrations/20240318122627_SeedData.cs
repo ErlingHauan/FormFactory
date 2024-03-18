@@ -65,15 +65,15 @@ namespace FormAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Forms",
                 columns: new[] { "Id", "Components", "Description", "Expires", "Organization", "Published", "Status", "Title", "User" },
-                values: new object[] { new Guid("f7795736-611b-4951-a1f1-f9992b236718"), "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\",\"Maybe\"]}]", "This form was created as a test.", null, "Org1", null, "draft", "Test Survey", "user1@example.com" });
+                values: new object[] { new Guid("f7795736-611b-4951-a1f1-f9992b236718"), "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\",\"Maybe\"]}]", "This form was created as a test.", null, "Org1", null, "Draft", "Test Survey", "user1@example.com" });
 
             migrationBuilder.InsertData(
                 table: "Submissions",
                 columns: new[] { "Id", "FormId", "Responses", "Submitted" },
                 values: new object[,]
                 {
-                    { new Guid("095f4f3d-971d-4387-9213-875771195e6d"), new Guid("f7795736-611b-4951-a1f1-f9992b236718"), "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"response\":\"Yes, I agree\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"response\":\"No\"}]", new DateTimeOffset(new DateTime(2024, 3, 18, 12, 1, 1, 961, DateTimeKind.Unspecified).AddTicks(8426), new TimeSpan(0, 0, 0, 0, 0)) },
-                    { new Guid("0d149fd9-028d-45fe-bdbd-b1206c937ffa"), new Guid("f7795736-611b-4951-a1f1-f9992b236718"), "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"response\":\"Yes, I agree\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"response\":\"No\"}]", new DateTimeOffset(new DateTime(2024, 3, 18, 12, 1, 1, 961, DateTimeKind.Unspecified).AddTicks(8430), new TimeSpan(0, 0, 0, 0, 0)) }
+                    { new Guid("83c84894-a7db-441f-841c-4121567560d6"), new Guid("f7795736-611b-4951-a1f1-f9992b236718"), "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"response\":\"Yes, I agree\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"response\":\"No\"}]", new DateTimeOffset(new DateTime(2024, 3, 18, 12, 26, 26, 806, DateTimeKind.Unspecified).AddTicks(9010), new TimeSpan(0, 0, 0, 0, 0)) },
+                    { new Guid("a209ad3d-9495-4d2d-83ac-22c55293bfab"), new Guid("f7795736-611b-4951-a1f1-f9992b236718"), "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"response\":\"Yes, I agree\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"response\":\"No\"}]", new DateTimeOffset(new DateTime(2024, 3, 18, 12, 26, 26, 806, DateTimeKind.Unspecified).AddTicks(8992), new TimeSpan(0, 0, 0, 0, 0)) }
                 });
 
             migrationBuilder.InsertData(
