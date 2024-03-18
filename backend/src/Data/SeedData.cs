@@ -58,7 +58,7 @@ public static class SeedData
         {
             new()
             {
-                Id = Guid.NewGuid(),
+                Id = new Guid("f7795736-611b-4951-a1f1-f9992b236718"),
                 User = "user1@example.com",
                 Organization = "Org1",
                 Title = "Test Survey",
@@ -74,6 +74,7 @@ public static class SeedData
         {
             new()
             {
+                Name = "question1",
                 Label = "Question 1",
                 Order = 0,
                 Response = "Yes, I agree"
@@ -81,6 +82,7 @@ public static class SeedData
 
             new()
             {
+                Name = "question2",
                 Label = "Question 2",
                 Order = 1,
                 Response = "No"
@@ -92,6 +94,7 @@ public static class SeedData
             new()
             {
                 Id = Guid.NewGuid(),
+                FormId = new Guid("f7795736-611b-4951-a1f1-f9992b236718"),
                 Submitted = DateTimeOffset.UtcNow,
                 Responses = responseList
             },
@@ -99,6 +102,7 @@ public static class SeedData
             new()
             {
                 Id = Guid.NewGuid(),
+                FormId = new Guid("f7795736-611b-4951-a1f1-f9992b236718"),
                 Submitted = DateTimeOffset.UtcNow,
                 Responses = responseList
             }

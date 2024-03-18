@@ -13,29 +13,35 @@ export const getFormSchema = async (formId: string, setFormSchema) => {
   }
 };
 
-export const postSubmission = async (formSchema, formData, setFormAlert) => {
+const formatSubmission = (formSchema, formData) => {
   const responses = [];
-  let order = 0;
+  let i = 0;
 
+  // Create a response object for every question in the submitted form
   for (const key in formData) {
     const response = {
-      order: order,
-      label: formSchema.components[order].label,
+      name: formSchema.components[i].name,
+      order: formSchema.components[i].order,
+      label: formSchema.components[i].label,
       response: formData[key],
     };
 
     responses.push(response);
-    order++;
+    i++;
   }
 
-  const formattedSubmission = {
+  return {
     formId: formSchema.id,
     submitted: new Date(),
     responses: responses,
   };
+};
 
+export const postSubmission = async (formSchema, formData, setFormAlert) => {
+  const formattedSubmission = formatSubmission(formSchema, formData);
   const apiUrl = getApiUrl();
   const targetUrl = `${apiUrl}/api/submissions/`;
+
   try {
     const response = await axios.post(targetUrl, formattedSubmission);
     setFormAlert("success");
