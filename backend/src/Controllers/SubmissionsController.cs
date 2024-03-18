@@ -29,6 +29,12 @@ public class SubmissionsController : ControllerBase
     public async Task<ActionResult<SubmissionDto>> GetSingle(Guid submissionId)
     {
         var entity = await _submissionRepository.GetSingle(submissionId);
+
+        if (entity == null)
+        {
+            return NotFound();
+        }
+        
         var dto = SubmissionMappers.ToDto(entity);
         return Ok(dto);
     }
