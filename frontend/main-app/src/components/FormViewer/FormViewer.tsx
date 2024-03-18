@@ -54,12 +54,10 @@ export const FormViewer = (): React.JSX.Element => {
         </form>
         {formAlert == "success" && <Alert severity="success">{t("form_viewer.success")}</Alert>}
         {formAlert == "validationError" && (
-          <Alert severity="danger">{t("form_viewer.error")}</Alert>
+          <Alert severity="danger">{t("form_viewer.validationError")}</Alert>
         )}
         {formAlert == "serverError" && (
-          <Alert severity="danger">
-            Your form was validated correctly, but the server did not receive the form.
-          </Alert>
+          <Alert severity="danger">{t("form_viewer.serverError")}</Alert>
         )}
       </main>
     );
