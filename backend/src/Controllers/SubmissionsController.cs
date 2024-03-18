@@ -34,7 +34,7 @@ public class SubmissionsController : ControllerBase
         {
             return NotFound();
         }
-        
+
         var dto = SubmissionMappers.ToDto(entity);
         return Ok(dto);
     }
