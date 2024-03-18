@@ -24,7 +24,7 @@ const ListAnswers: React.FC<ListAnswersProps> = ({ submissions }) => {
   );
 };
 
-interface FormModalProps {
+interface SubmissionViewerProps {
   children: ReactNode;
   submissions: Submission[];
   formTitle: string;
@@ -33,7 +33,7 @@ interface FormModalProps {
   variant?: string;
 }
 
-export const SubmissionViewer: React.FC<FormModalProps> = ({
+export const SubmissionViewer: React.FC<SubmissionViewerProps> = ({
   children,
   submissions,
   formTitle,
