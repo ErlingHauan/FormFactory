@@ -25,7 +25,18 @@ public class ApiDbContext : DbContext
             entity.Property(e => e.Components)
                 .HasConversion(
                     v => JsonSerializer.Serialize(v, new JsonSerializerOptions(JsonSerializerDefaults.Web)),
-                    v => JsonSerializer.Deserialize<List<FormComponent>>(v, new JsonSerializerOptions(JsonSerializerDefaults.Web)))
+                    v => JsonSerializer.Deserialize<List<FormComponent>>(v,
+                        new JsonSerializerOptions(JsonSerializerDefaults.Web)))
+                .HasColumnType("json");
+        });
+
+        builder.Entity<SubmissionEntity>(entity =>
+        {
+            entity.Property(e => e.Responses)
+                .HasConversion(
+                    v => JsonSerializer.Serialize(v, new JsonSerializerOptions(JsonSerializerDefaults.Web)),
+                    v => JsonSerializer.Deserialize<List<SubmissionResponse>>(v,
+                        new JsonSerializerOptions(JsonSerializerDefaults.Web)))
                 .HasColumnType("json");
         });
 
@@ -33,5 +44,8 @@ public class ApiDbContext : DbContext
     }
 
     public DbSet<UserEntity> Users => Set<UserEntity>();
+
     public DbSet<FormEntity> Forms => Set<FormEntity>();
+
+    public DbSet<SubmissionEntity> Submissions => Set<SubmissionEntity>();
 }

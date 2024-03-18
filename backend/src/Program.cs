@@ -9,6 +9,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApiDbContext>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IFormRepository, FormRepository>();
+builder.Services.AddScoped<ISubmissionRepository, SubmissionRepository>();
 
 var app = builder.Build();
 

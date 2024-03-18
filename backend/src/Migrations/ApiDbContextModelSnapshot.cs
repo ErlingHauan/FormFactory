@@ -59,13 +59,49 @@ namespace FormAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("43b92cb6-a0e3-4848-a480-c3826a3110a6"),
+                            Id = new Guid("f7795736-611b-4951-a1f1-f9992b236718"),
                             Components = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\",\"Maybe\"]}]",
                             Description = "This form was created as a test.",
                             Organization = "Org1",
                             Status = "draft",
                             Title = "Test Survey",
                             User = "user1@example.com"
+                        });
+                });
+
+            modelBuilder.Entity("FormAPI.Models.SubmissionEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("FormId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Responses")
+                        .HasColumnType("json");
+
+                    b.Property<DateTimeOffset>("Submitted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Submissions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("b12af4fb-93e9-4be6-967a-522ee77f0da0"),
+                            FormId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Responses = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"response\":\"Yes, I agree\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"response\":\"No\"}]",
+                            Submitted = new DateTimeOffset(new DateTime(2024, 3, 14, 12, 49, 20, 181, DateTimeKind.Unspecified).AddTicks(5990), new TimeSpan(0, 0, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = new Guid("15dcfbe8-3815-4312-ae0e-e19316d9a33f"),
+                            FormId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Responses = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"response\":\"Yes, I agree\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"response\":\"No\"}]",
+                            Submitted = new DateTimeOffset(new DateTime(2024, 3, 14, 12, 49, 20, 181, DateTimeKind.Unspecified).AddTicks(5993), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 
