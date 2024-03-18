@@ -8,10 +8,10 @@ namespace FormAPI.Repositories;
 public interface ISubmissionRepository
 {
     Task<List<SubmissionEntity>> GetAll();
-    Task<SubmissionEntity> GetSingle(Guid submussionId);
+    Task<SubmissionEntity?> GetSingle(Guid submissionId);
     Task<List<SubmissionEntity>> GetFormSubmissions(Guid formId);
     Task<SubmissionEntity?> Create(SubmissionEntity entity);
-    Task<SubmissionEntity> Delete(Guid submussionId);
+    Task<SubmissionEntity?> Delete(Guid submussionId);
 }
 
 public class SubmissionRepository : ISubmissionRepository
@@ -29,7 +29,7 @@ public class SubmissionRepository : ISubmissionRepository
         return submissionList;
     }
 
-    public async Task<SubmissionEntity> GetSingle(Guid submissionId)
+    public async Task<SubmissionEntity?> GetSingle(Guid submissionId)
     {
         var entity = await _context.Submissions.FindAsync(submissionId);
 

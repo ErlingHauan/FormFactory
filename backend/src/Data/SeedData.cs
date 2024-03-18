@@ -9,21 +9,21 @@ public static class SeedData
     {
         builder.Entity<UserEntity>().HasData(new List<UserEntity>
         {
-            new UserEntity
+            new()
             {
                 Id = 1,
                 Email = "a@a.com",
                 Password = "12345678",
                 Organization = "A.com"
             },
-            new UserEntity
+            new()
             {
                 Id = 2,
                 Email = "johnny@testepartementet.no",
                 Password = "johnny123",
                 Organization = "Testdepartementet"
             },
-            new UserEntity
+            new()
             {
                 Id = 3,
                 Email = "test@test.com",
@@ -72,13 +72,14 @@ public static class SeedData
 
         var responseList = new List<SubmissionResponse>
         {
-            new SubmissionResponse()
+            new()
             {
                 Label = "Question 1",
                 Order = 0,
                 Response = "Yes, I agree"
             },
-            new SubmissionResponse()
+
+            new()
             {
                 Label = "Question 2",
                 Order = 1,
@@ -88,14 +89,14 @@ public static class SeedData
 
         builder.Entity<SubmissionEntity>().HasData(new List<SubmissionEntity>
         {
-            new SubmissionEntity()
+            new()
             {
                 Id = Guid.NewGuid(),
                 Submitted = DateTimeOffset.UtcNow,
                 Responses = responseList
             },
 
-            new SubmissionEntity()
+            new()
             {
                 Id = Guid.NewGuid(),
                 Submitted = DateTimeOffset.UtcNow,
