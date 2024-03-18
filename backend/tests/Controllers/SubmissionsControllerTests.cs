@@ -27,7 +27,6 @@ public class SubmissionsControllerTests
         {
             new SubmissionResponse
             {
-                Name = "question1",
                 Label = "Question 1",
                 Order = 0,
                 Response = "Yes."

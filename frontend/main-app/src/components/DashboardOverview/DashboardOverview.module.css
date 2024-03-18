@@ -10,3 +10,13 @@
   justify-content: space-between;
   margin-bottom: var(--fds-spacing-4);
 }
+
+.overviewContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.newFormButtonContainer {
+  display: flex;
+  align-items: end;
+}

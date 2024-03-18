@@ -1,5 +1,5 @@
-import classes from "./FormModal.module.css";
-import { Divider, Heading, Modal } from "@digdir/design-system-react";
+import classes from "./SubmissionViewer.module.css";
+import { Heading, Modal } from "@digdir/design-system-react";
 import React, { ReactNode } from "react";
 import { CustomParagraph } from "../CustomParagraph";
 
@@ -11,15 +11,14 @@ const ListAnswers: React.FC<ListAnswersProps> = ({ submissions }) => {
   return (
     <>
       {submissions.map(({ id, responses }, index: number) => (
-        <React.Fragment key={id}>
-          <Heading level={3} size="large" spacing>
+        <div key={id} className={classes.submission}>
+          <Heading level={3} size="medium" className={classes.submissionHeading}>
             Submission #{index + 1}
           </Heading>
           {responses.map(({ order, label, response }) => (
             <CustomParagraph key={order} heading={label} content={response} />
           ))}
-          {index < submissions.length - 1 && <Divider color="strong" className={classes.spacing} />}
-        </React.Fragment>
+        </div>
       ))}
     </>
   );
@@ -34,7 +33,7 @@ interface FormModalProps {
   variant?: string;
 }
 
-export const FormModal: React.FC<FormModalProps> = ({
+export const SubmissionViewer: React.FC<FormModalProps> = ({
   children,
   submissions,
   formTitle,
@@ -48,8 +47,8 @@ export const FormModal: React.FC<FormModalProps> = ({
         {children}
       </Modal.Trigger>
       <Modal.Dialog className={classes.modalWindow}>
-        <Modal.Header>Submissions to {formTitle}</Modal.Header>
-        <Modal.Content>
+        <Modal.Header className={classes.modalHeader}>Submissions to {formTitle}</Modal.Header>
+        <Modal.Content className={classes.modalContent}>
           <ListAnswers submissions={submissions} />
         </Modal.Content>
       </Modal.Dialog>

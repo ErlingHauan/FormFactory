@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import classes from "./DashboardAccordion.module.css";
-import { FormModal } from "../FormModal/FormModal";
 import {
   ClipboardLinkFillIcon,
   CloudDownFillIcon,
@@ -12,6 +11,7 @@ import { Accordion, Button, Heading } from "@digdir/design-system-react";
 import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
 import { CustomParagraph } from "../CustomParagraph";
+import { SubmissionViewer } from "../SubmissionViewer";
 
 interface ButtonGroupProps {
   submissions: Submission[];
@@ -22,7 +22,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formTitle }) => 
   const { t } = useTranslation();
   return (
     <div className={classes.buttonContainer}>
-      <FormModal
+      <SubmissionViewer
         submissions={submissions}
         formTitle={formTitle}
         className={classes.button}
@@ -31,7 +31,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formTitle }) => 
       >
         <PersonEnvelopeFillIcon />
         {t("dashboard.view.submissions")}
-      </FormModal>
+      </SubmissionViewer>
       <Button className={classes.button} size="small" variant="secondary">
         <CloudDownFillIcon />
         {t("dashboard.download")}
