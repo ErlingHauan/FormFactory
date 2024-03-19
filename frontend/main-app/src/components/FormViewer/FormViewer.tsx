@@ -1,12 +1,12 @@
-import { Alert, Button, Heading, Paragraph } from "@digdir/design-system-react";
+import { Button, Heading, Paragraph } from "@digdir/design-system-react";
 import React, { FormEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
-import { cleanFormData, generateValidationSchema } from "./validationUtils";
-import { useTranslation } from "react-i18next";
+import { cleanFormData, generateValidationSchema, alertToRender } from "./validationUtils";
 import { FormComponent } from "../FormComponent";
 import { getFormSchema, postSubmission } from "./httpUtils";
+import { useTranslation } from "react-i18next";
 
 export const FormViewer = (): React.JSX.Element => {
   const { t } = useTranslation();
@@ -37,19 +37,9 @@ export const FormViewer = (): React.JSX.Element => {
     }
   };
 
-  let alertToRender = (alertType): React.JSX.Element => {
-    if (alertType == "success") {
-      return <Alert severity="success">{t("form_viewer.success")}</Alert>;
-    } else if (alertType == "validationError") {
-      return <Alert severity="danger">{t("form_viewer.validationError")}</Alert>;
-    } else if (alertType == "serverError") {
-      return <Alert severity="danger">{t("form_viewer.serverError")}</Alert>;
-    }
-  };
-
-  if (formSchema) {
+  const RenderValidForm = () => {
     return (
-      <main className={classes.card}>
+      <>
         <form onSubmit={handleSubmit}>
           <Heading level={1} size="xlarge">
             {formSchema.title}
@@ -68,18 +58,25 @@ export const FormViewer = (): React.JSX.Element => {
             </Button>
           </div>
         </form>
-        {alertToRender(formAlert)}
-      </main>
+        {alertToRender(formAlert, t)}
+      </>
     );
-  }
+  };
 
-  if (!formSchema) {
+  const RenderInvalidForm = () => {
     return (
-      <main className={classes.card}>
+      <>
         <Heading spacing>Form not found</Heading>
         {formId && <Paragraph>Could not find form with ID {formId}.</Paragraph>}
         {!formId && <Paragraph>No form Id was provided in the URL.</Paragraph>}
-      </main>
+      </>
     );
-  }
+  };
+
+  return (
+    // prettier-ignore
+    <main className={classes.card}>
+      {formSchema ? <RenderValidForm /> : <RenderInvalidForm />}
+    </main>
+  );
 };
