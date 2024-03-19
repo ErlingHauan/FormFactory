@@ -5,12 +5,13 @@ import classes from "./FormBoard.module.css";
 import { useTranslation } from "react-i18next";
 import { useDrop } from "react-dnd";
 import { DraggableItemsType } from "../../types/dndTypes";
-import { ItemProps } from "../Toolbar/ToolBarItems/ToolBarItems";
+import { ItemProps } from "../Toolbar/DraggableItem/DraggableItem";
 
 export const FormBoard = (): React.JSX.Element => {
   const form = [];
   const { t } = useTranslation();
   const [droppedItems, setDroppedItems] = React.useState<string[]>([]);
+
   const [{ isOver }, drop] = useDrop(() => ({
     accept: DraggableItemsType.ToolbarItem,
     drop: (item: ItemProps) => {
