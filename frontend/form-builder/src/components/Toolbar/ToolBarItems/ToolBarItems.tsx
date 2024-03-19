@@ -52,11 +52,14 @@ export const ToolBarItems = () => {
   );
 };
 
+export interface ItemProps {
+  icon: React.ReactNode;
+  text: string;
+  draggable: boolean;
+}
+
 interface DraggableItemProps {
-  item: {
-    icon: React.ReactNode;
-    text: string;
-  };
+  item: ItemProps;
   index: number;
 }
 
