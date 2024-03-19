@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Heading, Link } from "@digdir/design-system-react";
-import { ClipboardCheckmarkFillIcon } from "@navikt/aksel-icons";
+import { ClipboardCheckmarkFillIcon, MenuHamburgerIcon } from "@navikt/aksel-icons";
 import classes from "./Header.module.css";
 import { DropdownMenu } from "@digdir/design-system-react";
 import { useTranslation } from "react-i18next";
@@ -32,7 +32,9 @@ export const Header = (): React.JSX.Element => {
       <header className={classes.header}>
         <HeadingBrand />
         <DropdownMenu size="small">
-          <DropdownMenu.Trigger>Menu</DropdownMenu.Trigger>
+          <DropdownMenu.Trigger variant="tertiary" icon="true">
+            <MenuHamburgerIcon className={classes.headerIcon} />
+          </DropdownMenu.Trigger>
           <DropdownMenu.Content>
             <DropdownMenu.Group>
               <DropdownMenu.Item asChild>

@@ -1,0 +1,27 @@
+.modalWindow {
+  justify-self: center;
+  align-self: center;
+  min-width: 90%;
+}
+
+.modalHeader {
+  background: var(--fds-semantic-surface-action-first-subtle);
+  padding: var(--fds-spacing-6);
+}
+
+.modalContent {
+  margin: 0;
+  padding: 0;
+}
+
+.submissionHeading {
+  margin-bottom: var(--fds-spacing-5);
+}
+
+.submission {
+  padding: var(--fds-spacing-6);
+}
+
+.submission:nth-child(even) {
+  background: var(--fds-semantic-background-subtle);
+}

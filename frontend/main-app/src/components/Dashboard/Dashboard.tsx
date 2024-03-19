@@ -7,10 +7,10 @@ import {
   CloudDownFillIcon,
   FilePlusFillIcon,
   PersonEnvelopeFillIcon,
-  TrashFillIcon,
+  TrashFillIcon
 } from "@navikt/aksel-icons";
-import { FormModal } from "../FormModal/FormModal";
-import { CustomParagraph } from "../CustomParagraph/CustomParagraph";
+import { SubmissionViewer } from "../SubmissionViewer";
+import { CustomParagraph } from "../CustomParagraph";
 import { useTranslation } from "react-i18next";
 import formData from "./formData.json";
 
@@ -31,22 +31,36 @@ const Overview = (): React.JSX.Element => {
   return (
     <div className={classes.overview}>
       <div className={classes.headingContainer}>
-        <Heading level={1} size="medium">{t("dashboard")}</Heading>
-        <Button size="small" color="success" asChild>
-          <a href="/form-builder">
-            <FilePlusFillIcon />
-            {t("dashboard.new.form")}
-          </a>
-        </Button>
+        <Heading level={1} size="medium">
+          {t("dashboard")}
+        </Heading>
       </div>
-      {forms.length > 0 ? (
-        <>
-          <Paragraph>{t("dashboard.number.of.forms")}{forms.length}</Paragraph>
-          <Paragraph>{t("dashboard.total.submissions")}{numberOfSubmissions}</Paragraph>
-        </>
-      ) : (
-        <Paragraph>{t("dashboard.empty.message")}</Paragraph>
-      )}
+      <div className={classes.overviewContent}>
+        <div className={classes.paragraphContainer}>
+          {forms.length > 0 ? (
+            <>
+              <Paragraph>
+                {t("dashboard.number.of.forms")}
+                {forms.length}
+              </Paragraph>
+              <Paragraph>
+                {t("dashboard.total.submissions")}
+                {numberOfSubmissions}
+              </Paragraph>
+            </>
+          ) : (
+            <Paragraph>{t("dashboard.empty.message")}</Paragraph>
+          )}
+        </div>
+        <div className={classes.newFormButtonContainer}>
+          <Button size="small" color="success" asChild>
+            <a href="/form-builder">
+              <FilePlusFillIcon />
+              {t("dashboard.new.form")}
+            </a>
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
@@ -54,11 +68,11 @@ const Overview = (): React.JSX.Element => {
 const ButtonGroup = (): React.JSX.Element => {
   const { t } = useTranslation();
   return (
-    <div className={classes.buttonContainer}>
-      <FormModal className={classes.button} size="small" variant="secondary">
+    <div className={classes.accordionButtonContainer}>
+      <SubmissionViewer className={classes.button} size="small" variant="secondary">
         <PersonEnvelopeFillIcon />
         {t("dashboard.view.submissions")}
-      </FormModal>
+      </SubmissionViewer>
       <Button className={classes.button} size="small" variant="secondary">
         <CloudDownFillIcon />
         {t("dashboard.download")}
