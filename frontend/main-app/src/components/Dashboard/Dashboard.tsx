@@ -10,7 +10,7 @@ export const Dashboard = (): React.JSX.Element => {
   const [forms, setForms] = useState<Form[]>([]);
 
   useEffect(() => {
-    const getAllForms = async () => {
+    (async function getAllForms() {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/forms`;
 
@@ -20,9 +20,7 @@ export const Dashboard = (): React.JSX.Element => {
       } catch (error) {
         console.log(error);
       }
-    };
-
-    getAllForms();
+    })();
   }, []);
 
   return (

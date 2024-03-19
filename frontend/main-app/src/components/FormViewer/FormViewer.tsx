@@ -1,12 +1,12 @@
-import { Alert, Button, Heading, Paragraph } from "@digdir/design-system-react";
+import { Button, Heading } from "@digdir/design-system-react";
 import React, { FormEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
-import { cleanFormData, generateValidationSchema } from "./validationUtils";
+import { cleanFormData, generateValidationSchema, alertToRender } from "./validationUtils";
+import { FormComponent } from "../FormComponent";
+import { getFormIdError, getFormSchema, postSubmission } from "./httpUtils";
 import { useTranslation } from "react-i18next";
-import { FormComponents } from "../FormComponents";
-import { getFormSchema, postSubmission } from "./httpUtils";
 
 export const FormViewer = (): React.JSX.Element => {
   const { t } = useTranslation();
@@ -37,14 +37,20 @@ export const FormViewer = (): React.JSX.Element => {
     }
   };
 
-  if (formSchema) {
+  const RenderValidForm = () => {
     return (
-      <main className={classes.card}>
+      <>
         <form onSubmit={handleSubmit}>
           <Heading level={1} size="xlarge">
             {formSchema.title}
           </Heading>
-          <FormComponents components={formSchema.components} errors={formErrors} />
+          {formSchema.components.map((component) => (
+            <FormComponent
+              key={component.name}
+              component={component}
+              error={formErrors[component.name]}
+            />
+          ))}
           <div className={classes.buttonContainer}>
             <Button type="submit" size={"large"} fullWidth={false}>
               Submit form
@@ -52,24 +58,24 @@ export const FormViewer = (): React.JSX.Element => {
             </Button>
           </div>
         </form>
-        {formAlert == "success" && <Alert severity="success">{t("form_viewer.success")}</Alert>}
-        {formAlert == "validationError" && (
-          <Alert severity="danger">{t("form_viewer.validationError")}</Alert>
-        )}
-        {formAlert == "serverError" && (
-          <Alert severity="danger">{t("form_viewer.serverError")}</Alert>
-        )}
-      </main>
+        {alertToRender(formAlert, t)}
+      </>
     );
-  }
+  };
 
-  if (!formSchema) {
+  const RenderInvalidForm = () => {
     return (
-      <main className={classes.card}>
+      <>
         <Heading spacing>Form not found</Heading>
-        {formId && <Paragraph>Could not find form with ID {formId}.</Paragraph>}
-        {!formId && <Paragraph>No form Id was provided in the URL.</Paragraph>}
-      </main>
+        {getFormIdError(formId, t)}
+      </>
     );
-  }
+  };
+
+  return (
+    // prettier-ignore
+    <main className={classes.card}>
+      {formSchema ? <RenderValidForm /> : <RenderInvalidForm />}
+    </main>
+  );
 };

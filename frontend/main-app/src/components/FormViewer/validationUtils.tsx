@@ -1,4 +1,7 @@
 import { z, ZodNumber, ZodOptional, ZodString } from "zod";
+import { TFunction } from "i18next";
+import React from "react";
+import { Alert } from "@digdir/design-system-react";
 
 export const cleanFormData = (formData: FormData) => {
   const obj = Object.fromEntries(formData);
@@ -88,4 +91,14 @@ const getNumberValidator = (component: FormComponent) => {
   }
 
   return validator;
+};
+
+export const alertToRender = (alertType: string, t: TFunction): React.JSX.Element => {
+  if (alertType == "success") {
+    return <Alert severity="success">{t("form_viewer.success")}</Alert>;
+  } else if (alertType == "validationError") {
+    return <Alert severity="danger">{t("form_viewer.validationError")}</Alert>;
+  } else if (alertType == "serverError") {
+    return <Alert severity="danger">{t("form_viewer.serverError")}</Alert>;
+  }
 };
