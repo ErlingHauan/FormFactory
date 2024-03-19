@@ -43,7 +43,7 @@ export const postSubmission = async (formSchema, formData, setFormAlert) => {
   const targetUrl = `${apiUrl}/api/submissions/`;
 
   try {
-    const response = await axios.post(targetUrl, formattedSubmission);
+    await axios.post(targetUrl, formattedSubmission);
     setFormAlert("success");
   } catch (error) {
     setFormAlert("serverError");
