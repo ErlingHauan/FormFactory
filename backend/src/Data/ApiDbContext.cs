@@ -40,7 +40,9 @@ public class ApiDbContext : DbContext
                 .HasColumnType("json");
         });
 
-        SeedData.Seed(builder);
+        SeedData.SeedUsers(builder);
+        SeedData.SeedForms(builder);
+        SeedData.SeedSubmissions(builder);
     }
 
     public DbSet<UserEntity> Users => Set<UserEntity>();
