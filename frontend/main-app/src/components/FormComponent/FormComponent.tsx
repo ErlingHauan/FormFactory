@@ -1,4 +1,4 @@
-import classes from "./FormComponents.module.css";
+import classes from "./FormComponent.module.css";
 import { FormTextfield } from "../FormTextfield";
 import { FormRadio } from "../FormRadio";
 import React from "react";

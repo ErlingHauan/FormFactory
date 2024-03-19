@@ -5,7 +5,7 @@ import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
 import { cleanFormData, generateValidationSchema } from "./validationUtils";
 import { useTranslation } from "react-i18next";
-import { FormComponent } from "../FormComponents";
+import { FormComponent } from "../FormComponent";
 import { getFormSchema, postSubmission } from "./httpUtils";
 
 export const FormViewer = (): React.JSX.Element => {
@@ -37,6 +37,16 @@ export const FormViewer = (): React.JSX.Element => {
     }
   };
 
+  let alertToRender = (alertType): React.JSX.Element => {
+    if (alertType == "success") {
+      return <Alert severity="success">{t("form_viewer.success")}</Alert>;
+    } else if (alertType == "validationError") {
+      return <Alert severity="danger">{t("form_viewer.validationError")}</Alert>;
+    } else if (alertType == "serverError") {
+      return <Alert severity="danger">{t("form_viewer.serverError")}</Alert>;
+    }
+  };
+
   if (formSchema) {
     return (
       <main className={classes.card}>
@@ -45,7 +55,11 @@ export const FormViewer = (): React.JSX.Element => {
             {formSchema.title}
           </Heading>
           {formSchema.components.map((component) => (
-            <FormComponent component={component} error={formErrors[component.name]} />
+            <FormComponent
+              key={component.name}
+              component={component}
+              error={formErrors[component.name]}
+            />
           ))}
           <div className={classes.buttonContainer}>
             <Button type="submit" size={"large"} fullWidth={false}>
@@ -54,13 +68,7 @@ export const FormViewer = (): React.JSX.Element => {
             </Button>
           </div>
         </form>
-        {formAlert == "success" && <Alert severity="success">{t("form_viewer.success")}</Alert>}
-        {formAlert == "validationError" && (
-          <Alert severity="danger">{t("form_viewer.validationError")}</Alert>
-        )}
-        {formAlert == "serverError" && (
-          <Alert severity="danger">{t("form_viewer.serverError")}</Alert>
-        )}
+        {alertToRender(formAlert)}
       </main>
     );
   }
