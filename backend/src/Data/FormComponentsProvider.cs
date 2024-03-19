@@ -10,9 +10,9 @@ public static class FormComponentsProvider
     /// <returns>A list of FormComponent objects for the user survey form.</returns>
     public static List<FormComponent> GetUserSurveyComponents()
     {
-        return new List<FormComponent>
-        {
-            new FormComponent
+        return
+        [
+            new FormComponent()
             {
                 Name = "age",
                 Label = "How old are you?",
@@ -22,7 +22,8 @@ public static class FormComponentsProvider
                 GreaterThan = 8,
                 LessThan = 125
             },
-            new FormComponent
+
+            new FormComponent()
             {
                 Name = "usage",
                 Label = "What will you be using Form Factory for?",
@@ -31,16 +32,17 @@ public static class FormComponentsProvider
                 Type = "textfield",
                 MaxLength = 1000
             },
-            new FormComponent
+
+            new FormComponent()
             {
                 Name = "rating",
                 Label = "From 1-5, how would you rate Form Factory?",
                 Required = true,
                 Order = 2,
                 Type = "radio",
-                RadioChoices = new[] { "1", "2", "3", "4", "5" }
+                RadioChoices = ["1", "2", "3", "4", "5"]
             }
-        };
+        ];
     }
 
     /// <summary>
@@ -49,9 +51,9 @@ public static class FormComponentsProvider
     /// <returns>A list of FormComponent objects for the developer conference form.</returns>
     public static List<FormComponent> GetDevConferenceComponents()
     {
-        return new List<FormComponent>
-        {
-            new FormComponent
+        return
+        [
+            new FormComponent()
             {
                 Name = "name",
                 Label = "Full name: ",
@@ -59,16 +61,18 @@ public static class FormComponentsProvider
                 Order = 0,
                 Type = "textfield"
             },
-            new FormComponent
+
+            new FormComponent()
             {
                 Name = "dinner",
                 Label = "Will you be participating in the dinner afterwards?",
                 Required = true,
                 Order = 1,
                 Type = "radio",
-                RadioChoices = new[] { "Yes", "no" }
+                RadioChoices = ["Yes", "No"]
             },
-            new FormComponent
+
+            new FormComponent()
             {
                 Name = "allergies",
                 Label = "Do you have any allergies/dietary restrictions?",
@@ -76,7 +80,7 @@ public static class FormComponentsProvider
                 Order = 2,
                 Type = "textfield"
             }
-        };
+        ];
     }
 
     /// <summary>
@@ -85,35 +89,37 @@ public static class FormComponentsProvider
     /// <returns>A list of FormComponent objects for the psychological safety survey form.</returns>
     public static List<FormComponent> GetPsychSafetyComponents()
     {
-        return new List<FormComponent>
-        {
-            new FormComponent
+        return
+        [
+            new FormComponent()
             {
                 Name = "expectations",
                 Label = "On this team, I understand what is expected of me.",
                 Required = true,
                 Order = 0,
                 Type = "radio",
-                RadioChoices = new[] { "Strongly agree", "Agree", "Neutral", "Disagree", "Strongly Disagree" }
+                RadioChoices = ["Strongly agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"]
             },
-            new FormComponent
+
+            new FormComponent()
             {
                 Name = "ideas",
                 Label = "I feel my ideas are valued, and I feel safe in suggesting them.",
                 Required = true,
                 Order = 0,
                 Type = "radio",
-                RadioChoices = new[] { "Strongly agree", "Agree", "Neutral", "Disagree", "Strongly Disagree" }
+                RadioChoices = ["Strongly agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"]
             },
-            new FormComponent
+
+            new FormComponent()
             {
                 Name = "mistakes",
                 Label = "If I make a mistake on this team, it is never held against me",
                 Required = true,
                 Order = 0,
                 Type = "radio",
-                RadioChoices = new[] { "Strongly agree", "Agree", "Neutral", "Disagree", "Strongly Disagree" }
+                RadioChoices = ["Strongly agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"]
             }
-        };
+        ];
     }
 }
