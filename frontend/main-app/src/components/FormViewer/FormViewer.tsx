@@ -5,7 +5,7 @@ import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
 import { cleanFormData, generateValidationSchema } from "./validationUtils";
 import { useTranslation } from "react-i18next";
-import { FormComponents } from "../FormComponents";
+import { FormComponent } from "../FormComponents";
 import { getFormSchema, postSubmission } from "./httpUtils";
 
 export const FormViewer = (): React.JSX.Element => {
@@ -44,7 +44,9 @@ export const FormViewer = (): React.JSX.Element => {
           <Heading level={1} size="xlarge">
             {formSchema.title}
           </Heading>
-          <FormComponents components={formSchema.components} errors={formErrors} />
+          {formSchema.components.map((component) => (
+            <FormComponent component={component} error={formErrors[component.name]} />
+          ))}
           <div className={classes.buttonContainer}>
             <Button type="submit" size={"large"} fullWidth={false}>
               Submit form
