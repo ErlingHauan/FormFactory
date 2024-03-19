@@ -15,7 +15,7 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({ forms }) =
   const [submissionCount, setSubmissionCount] = useState();
 
   useEffect(() => {
-    const getSubmissionCount = async () => {
+    (async function getSubmissionCount() {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/submissions/`;
 
@@ -25,9 +25,7 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({ forms }) =
       } catch (error) {
         console.log(error);
       }
-    };
-
-    getSubmissionCount();
+    })();
   }, []);
 
   return (
