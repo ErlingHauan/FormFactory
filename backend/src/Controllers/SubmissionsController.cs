@@ -25,7 +25,7 @@ public class SubmissionsController : ControllerBase
         return Ok(dtoList);
     }
 
-    [HttpGet(":submissionId")]
+    [HttpGet("{submissionId}")]
     public async Task<ActionResult<SubmissionDto>> GetSingle(Guid submissionId)
     {
         var entity = await _submissionRepository.GetSingle(submissionId);
@@ -39,7 +39,7 @@ public class SubmissionsController : ControllerBase
         return Ok(dto);
     }
 
-    [HttpGet("form/:formId")]
+    [HttpGet("form/{formId}")]
     public async Task<ActionResult<IEnumerable<SubmissionDto>>> GetFormSubmissions(Guid formId)
     {
         var entityList = await _submissionRepository.GetFormSubmissions(formId);
@@ -55,7 +55,7 @@ public class SubmissionsController : ControllerBase
         return Ok(result);
     }
 
-    [HttpDelete(":submissionId")]
+    [HttpDelete("{submissionId}")]
     public async Task<ActionResult<SubmissionDto>> Delete(Guid submissionId)
     {
         var entity = await _submissionRepository.Delete(submissionId);

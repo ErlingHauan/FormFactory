@@ -1,16 +1,24 @@
-import { Alert, Button, Heading } from "@digdir/design-system-react";
-import React, { FormEvent, useState } from "react";
+import { Button, Heading } from "@digdir/design-system-react";
+import React, { FormEvent, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
-import formSchema from "./formSchema";
-import { cleanFormData, generateValidationSchema } from "./FormViewerUtils";
+import { cleanFormData, generateValidationSchema, alertToRender } from "./validationUtils";
+import { FormComponent } from "../FormComponent";
+import { getFormIdError, getFormSchema, postSubmission } from "./httpUtils";
 import { useTranslation } from "react-i18next";
-import { FormComponents } from "../FormComponents/FormComponents";
 
 export const FormViewer = (): React.JSX.Element => {
   const { t } = useTranslation();
+  const { formId } = useParams();
+
   const [formErrors, setFormErrors] = useState({});
   const [formAlert, setFormAlert] = useState("");
+  const [formSchema, setFormSchema] = useState<Form>(null);
+
+  useEffect(() => {
+    getFormSchema(formId, setFormSchema);
+  }, [formId]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -22,30 +30,52 @@ export const FormViewer = (): React.JSX.Element => {
 
     if ("error" in result) {
       setFormErrors(result.error.formErrors.fieldErrors);
-      setFormAlert("error");
+      setFormAlert("validationError");
     } else {
-      // To do: Pass form submission to backend
       setFormErrors({});
-      setFormAlert("success");
+      postSubmission(formSchema, cleanedFormData, setFormAlert);
     }
   };
 
+  const RenderValidForm = () => {
+    return (
+      <>
+        <form onSubmit={handleSubmit}>
+          <Heading level={1} size="xlarge">
+            {formSchema.title}
+          </Heading>
+          {formSchema.components.map((component) => (
+            <FormComponent
+              key={component.name}
+              component={component}
+              error={formErrors[component.name]}
+            />
+          ))}
+          <div className={classes.buttonContainer}>
+            <Button type="submit" size={"large"} fullWidth={false}>
+              Submit form
+              <TasklistSendFillIcon />
+            </Button>
+          </div>
+        </form>
+        {alertToRender(formAlert, t)}
+      </>
+    );
+  };
+
+  const RenderInvalidForm = () => {
+    return (
+      <>
+        <Heading spacing>Form not found</Heading>
+        {getFormIdError(formId, t)}
+      </>
+    );
+  };
+
   return (
+    // prettier-ignore
     <main className={classes.card}>
-      <form onSubmit={handleSubmit}>
-        <Heading level={1} size="xlarge">
-          {formSchema.title}
-        </Heading>
-        <FormComponents components={formSchema.components} errors={formErrors} />
-        <div className={classes.buttonContainer}>
-          <Button type="submit" size={"large"} fullWidth={false}>
-            Submit form
-            <TasklistSendFillIcon />
-          </Button>
-        </div>
-      </form>
-      {formAlert == "success" && <Alert severity="success">{t("form_viewer.success")}</Alert>}
-      {formAlert == "error" && <Alert severity="danger">{t("form_viewer.error")}</Alert>}
+      {formSchema ? <RenderValidForm /> : <RenderInvalidForm />}
     </main>
   );
 };

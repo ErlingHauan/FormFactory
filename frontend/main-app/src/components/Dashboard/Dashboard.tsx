@@ -1,126 +1,36 @@
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./Dashboard.module.css";
 import React, { useEffect, useState } from "react";
-import { Accordion, Button, Heading, Paragraph } from "@digdir/design-system-react";
-import {
-  ClipboardLinkFillIcon,
-  CloudDownFillIcon,
-  FilePlusFillIcon,
-  PersonEnvelopeFillIcon,
-  TrashFillIcon
-} from "@navikt/aksel-icons";
-import { SubmissionViewer } from "../SubmissionViewer";
-import { CustomParagraph } from "../CustomParagraph";
-import { useTranslation } from "react-i18next";
-import formData from "./formData.json";
+import { DashboardOverview } from "../DashboardOverview/DashboardOverview";
+import { DashboardAccordion } from "../DashboardAccordion/DashboardAccordion";
+import { getApiUrl } from "../Login/LoginUtils";
+import axios from "axios";
 
-const forms = formData;
-
-const Overview = (): React.JSX.Element => {
-  const { t } = useTranslation();
-  const [numberOfSubmissions, setNumberOfSubmissions] = useState(0);
+export const Dashboard = (): React.JSX.Element => {
+  const [forms, setForms] = useState<Form[]>([]);
 
   useEffect(() => {
-    let totalSubmissions = 0;
-    for (const form of forms) {
-      totalSubmissions += form.submissions;
-    }
-    setNumberOfSubmissions(totalSubmissions);
+    (async function getAllForms() {
+      const apiUrl = getApiUrl();
+      const targetUrl = `${apiUrl}/api/forms`;
+
+      try {
+        const result = await axios.get(targetUrl);
+        setForms(result.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   }, []);
 
   return (
-    <div className={classes.overview}>
-      <div className={classes.headingContainer}>
-        <Heading level={1} size="medium">
-          {t("dashboard")}
-        </Heading>
-      </div>
-      <div className={classes.overviewContent}>
-        <div className={classes.paragraphContainer}>
-          {forms.length > 0 ? (
-            <>
-              <Paragraph>
-                {t("dashboard.number.of.forms")}
-                {forms.length}
-              </Paragraph>
-              <Paragraph>
-                {t("dashboard.total.submissions")}
-                {numberOfSubmissions}
-              </Paragraph>
-            </>
-          ) : (
-            <Paragraph>{t("dashboard.empty.message")}</Paragraph>
-          )}
-        </div>
-        <div className={classes.newFormButtonContainer}>
-          <Button size="small" color="success" asChild>
-            <a href="/form-builder">
-              <FilePlusFillIcon />
-              {t("dashboard.new.form")}
-            </a>
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ButtonGroup = (): React.JSX.Element => {
-  const { t } = useTranslation();
-  return (
-    <div className={classes.accordionButtonContainer}>
-      <SubmissionViewer className={classes.button} size="small" variant="secondary">
-        <PersonEnvelopeFillIcon />
-        {t("dashboard.view.submissions")}
-      </SubmissionViewer>
-      <Button className={classes.button} size="small" variant="secondary">
-        <CloudDownFillIcon />
-        {t("dashboard.download")}
-      </Button>
-      <Button className={classes.button} size="small" variant="secondary">
-        <ClipboardLinkFillIcon />
-        {t("dashboard.share.form")}
-      </Button>
-      <Button className={classes.button} color="danger" size="small" variant="secondary">
-        <TrashFillIcon />
-        {t("dashboard.delete.form")}
-      </Button>
-    </div>
-  );
-};
-
-const FormList = (): React.JSX.Element => {
-  return (
-    <div className={classes.formList}>
-      {forms.map((form) => (
-        <Accordion border={true} key={form.id}>
-          <Accordion.Item>
-            <Accordion.Header>
-              <Heading level={2} size="xxsmall">
-                {form.title}
-              </Heading>
-            </Accordion.Header>
-            <Accordion.Content className={classes.accordionContentContainer}>
-              <div className={classes.infoContainer}>
-                <CustomParagraph heading="Description" content={form.description} />
-                <CustomParagraph heading="Status" content={form.status} />
-                <CustomParagraph heading="Expiration date" content={form.expirationDate} />
-                <CustomParagraph heading="Submissions" content={form.submissions} />
-              </div>
-              <ButtonGroup />
-            </Accordion.Content>
-          </Accordion.Item>
-        </Accordion>
-      ))}
-    </div>
-  );
-};
-
-export const Dashboard = (): React.JSX.Element => {
-  return (
     <main className={classes.dashboard}>
-      <Overview />
-      <FormList />
+      <DashboardOverview forms={forms} />
+      <div className={classes.formList}>
+        {forms.map((form) => (
+          <DashboardAccordion key={form.id} form={form} />
+        ))}
+      </div>
     </main>
   );
 };

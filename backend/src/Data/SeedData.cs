@@ -50,7 +50,7 @@ public static class SeedData
                 Required = true,
                 Order = 1,
                 Type = "radio",
-                RadioChoices = ["Yes", "No", "Maybe"]
+                RadioChoices = ["Yes", "No", "Maybe"],
             }
         };
 
@@ -58,12 +58,12 @@ public static class SeedData
         {
             new()
             {
-                Id = Guid.NewGuid(),
+                Id = new Guid("f7795736-611b-4951-a1f1-f9992b236718"),
                 User = "user1@example.com",
                 Organization = "Org1",
                 Title = "Test Survey",
                 Description = "This form was created as a test.",
-                Status = "draft",
+                Status = "Draft",
                 Published = null,
                 Expires = null,
                 Components = componentList
@@ -79,6 +79,7 @@ public static class SeedData
                 Order = 0,
                 Response = "Yes, I agree"
             },
+
             new()
             {
                 Name = "question2",
@@ -93,6 +94,7 @@ public static class SeedData
             new()
             {
                 Id = Guid.NewGuid(),
+                FormId = new Guid("f7795736-611b-4951-a1f1-f9992b236718"),
                 Submitted = DateTimeOffset.UtcNow,
                 Responses = responseList
             },
@@ -100,6 +102,7 @@ public static class SeedData
             new()
             {
                 Id = Guid.NewGuid(),
+                FormId = new Guid("f7795736-611b-4951-a1f1-f9992b236718"),
                 Submitted = DateTimeOffset.UtcNow,
                 Responses = responseList
             }

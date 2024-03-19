@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FormAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240314124920_SeedData")]
+    [Migration("20240318122627_SeedData")]
     partial class SeedData
     {
         /// <inheritdoc />
@@ -66,7 +66,7 @@ namespace FormAPI.Migrations
                             Components = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\",\"Maybe\"]}]",
                             Description = "This form was created as a test.",
                             Organization = "Org1",
-                            Status = "draft",
+                            Status = "Draft",
                             Title = "Test Survey",
                             User = "user1@example.com"
                         });
@@ -94,17 +94,17 @@ namespace FormAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b12af4fb-93e9-4be6-967a-522ee77f0da0"),
-                            FormId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Id = new Guid("a209ad3d-9495-4d2d-83ac-22c55293bfab"),
+                            FormId = new Guid("f7795736-611b-4951-a1f1-f9992b236718"),
                             Responses = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"response\":\"Yes, I agree\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"response\":\"No\"}]",
-                            Submitted = new DateTimeOffset(new DateTime(2024, 3, 14, 12, 49, 20, 181, DateTimeKind.Unspecified).AddTicks(5990), new TimeSpan(0, 0, 0, 0, 0))
+                            Submitted = new DateTimeOffset(new DateTime(2024, 3, 18, 12, 26, 26, 806, DateTimeKind.Unspecified).AddTicks(8992), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
-                            Id = new Guid("15dcfbe8-3815-4312-ae0e-e19316d9a33f"),
-                            FormId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Id = new Guid("83c84894-a7db-441f-841c-4121567560d6"),
+                            FormId = new Guid("f7795736-611b-4951-a1f1-f9992b236718"),
                             Responses = "[{\"name\":\"question1\",\"order\":0,\"label\":\"Question 1\",\"response\":\"Yes, I agree\"},{\"name\":\"question2\",\"order\":1,\"label\":\"Question 2\",\"response\":\"No\"}]",
-                            Submitted = new DateTimeOffset(new DateTime(2024, 3, 14, 12, 49, 20, 181, DateTimeKind.Unspecified).AddTicks(5993), new TimeSpan(0, 0, 0, 0, 0))
+                            Submitted = new DateTimeOffset(new DateTime(2024, 3, 18, 12, 26, 26, 806, DateTimeKind.Unspecified).AddTicks(9010), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 

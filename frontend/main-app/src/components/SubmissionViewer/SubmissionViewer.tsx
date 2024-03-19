@@ -1,21 +1,22 @@
 import classes from "./SubmissionViewer.module.css";
 import { Heading, Modal } from "@digdir/design-system-react";
 import React, { ReactNode } from "react";
-import submittedData from "./submittedData.json";
 import { CustomParagraph } from "../CustomParagraph";
 
-const ListAnswers = (): React.JSX.Element => {
-  const submissions = submittedData.submissions;
+interface ListAnswersProps {
+  submissions: Submission[];
+}
 
+const ListAnswers: React.FC<ListAnswersProps> = ({ submissions }) => {
   return (
     <>
-      {submissions.map(({ submissionId, answers }) => (
-        <div key={submissionId} className={classes.submission}>
+      {submissions.map(({ id, responses }, index: number) => (
+        <div key={id} className={classes.submission}>
           <Heading level={3} size="medium" className={classes.submissionHeading}>
-            Submission #{submissionId}
+            Submission #{index + 1}
           </Heading>
-          {answers.map(({ answerId, question, answer }) => (
-            <CustomParagraph key={answerId} heading={question} content={answer} />
+          {responses.map(({ order, label, response }) => (
+            <CustomParagraph key={order} heading={label} content={response} />
           ))}
         </div>
       ))}
@@ -23,15 +24,19 @@ const ListAnswers = (): React.JSX.Element => {
   );
 };
 
-interface FormModalProps {
+interface SubmissionViewerProps {
   children: ReactNode;
+  submissions: Submission[];
+  formTitle: string;
   className?: string;
   size?: string;
   variant?: string;
 }
 
-export const SubmissionViewer: React.FC<FormModalProps> = ({
+export const SubmissionViewer: React.FC<SubmissionViewerProps> = ({
   children,
+  submissions,
+  formTitle,
   className,
   size,
   variant,
@@ -42,11 +47,9 @@ export const SubmissionViewer: React.FC<FormModalProps> = ({
         {children}
       </Modal.Trigger>
       <Modal.Dialog className={classes.modalWindow}>
-        <Modal.Header className={classes.modalHeader}>
-          Submissions to {submittedData.title}
-        </Modal.Header>
+        <Modal.Header className={classes.modalHeader}>Submissions to {formTitle}</Modal.Header>
         <Modal.Content className={classes.modalContent}>
-          <ListAnswers />
+          <ListAnswers submissions={submissions} />
         </Modal.Content>
       </Modal.Dialog>
     </Modal.Root>
