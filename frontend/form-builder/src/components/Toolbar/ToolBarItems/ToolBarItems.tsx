@@ -7,7 +7,7 @@ import {
 } from "@navikt/aksel-icons";
 import { useTranslation } from "react-i18next";
 import classes from "./ToolBarItems.module.css";
-import { DraggableItem } from "../DraggableItem/DraggableItem";
+import { DraggableItem } from "../DraggableItem";
 
 export const ToolBarItems = () => {
   const { t } = useTranslation();

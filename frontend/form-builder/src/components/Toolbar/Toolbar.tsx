@@ -1,7 +1,7 @@
 import { Heading } from "@digdir/design-system-react";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { ToolBarItems } from "./ToolBarItems/ToolBarItems";
+import { ToolBarItems } from "./ToolBarItems";
 
 export const Toolbar = (): React.JSX.Element => {
   const { t } = useTranslation();

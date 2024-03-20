@@ -22,5 +22,5 @@
 
 .removalItem:hover {
   cursor: pointer;
-  color: var(--fds-color-danger);
+  color: var(--fds-semantic-surface-danger-hover);
 }

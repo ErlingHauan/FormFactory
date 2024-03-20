@@ -5,7 +5,7 @@ import classes from "./FormBoard.module.css";
 import { useTranslation } from "react-i18next";
 import { useDrop } from "react-dnd";
 import { DraggableItemsType } from "../../types/dndTypes";
-import { ItemProps } from "../Toolbar/DraggableItem/DraggableItem";
+import { ItemProps } from "../Toolbar/DraggableItem";
 
 export const FormBoard = (): React.JSX.Element => {
   const form = [];
@@ -36,7 +36,7 @@ export const FormBoard = (): React.JSX.Element => {
         <div
           ref={drop}
           className={classes.noComponents}
-          style={{ backgroundColor: isOver ? "lightgreen" : "lightgrey" }}
+          style={{ backgroundColor: isOver && "lightgreen" }}
         >
           {droppedItems.length === 0 ? (
             <>
