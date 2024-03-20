@@ -81,7 +81,22 @@ public class UsersController : ControllerBase
         {
             return Unauthorized("Email/password combination was not found.");
         }
+        
+        // store username in session state (server) and cookie (browser)
+        HttpContext.Session.SetString("authorizedUser", dto.Email);
+        return Ok();
+    }
+    
+    [HttpGet("verify")]
+    public ActionResult Verify()
+    {
+        var authorizedUser = HttpContext.Session.GetString("authorizedUser");
+        if (string.IsNullOrWhiteSpace(authorizedUser))
+        {
+            return Unauthorized("User has not been authorized.");
+        }
 
+        Console.WriteLine($"Authorized user: {authorizedUser}");
         return Ok();
     }
 }

@@ -10,6 +10,13 @@ builder.Services.AddDbContext<ApiDbContext>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IFormRepository, FormRepository>();
 builder.Services.AddScoped<ISubmissionRepository, SubmissionRepository>();
+builder.Services.AddDistributedMemoryCache(); // Stores session in-memory
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -23,6 +30,7 @@ app.UseCors(builder =>
         .AllowAnyHeader()
 );
 
+app.UseSession();
 app.UseAuthorization();
 app.MapControllers();
 
