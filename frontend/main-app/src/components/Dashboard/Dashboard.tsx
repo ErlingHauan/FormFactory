@@ -5,9 +5,9 @@ import { DashboardOverview } from "../DashboardOverview/DashboardOverview";
 import { DashboardAccordion } from "../DashboardAccordion/DashboardAccordion";
 import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
-
 export const Dashboard = (): React.JSX.Element => {
   const [forms, setForms] = useState<Form[]>([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     (async function getAllForms() {
@@ -23,9 +23,26 @@ export const Dashboard = (): React.JSX.Element => {
     })();
   }, []);
 
+  useEffect(() => {
+    const verifyUserCookie = async () => {
+      const apiUrl = getApiUrl();
+      const targetUrl = `${apiUrl}/api/users/verify`;
+
+      try {
+        await axios.get(targetUrl);
+        setIsLoggedIn(true);
+      } catch (error) {
+        console.log(error);
+        setIsLoggedIn(false);
+      }
+    };
+
+    verifyUserCookie();
+  }, []);
+
   return (
     <main className={classes.dashboard}>
-      <DashboardOverview forms={forms} />
+      {isLoggedIn && <DashboardOverview forms={forms} />}
       <div className={classes.formList}>
         {forms.map((form) => (
           <DashboardAccordion key={form.id} form={form} />

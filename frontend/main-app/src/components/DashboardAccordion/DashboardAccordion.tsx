@@ -71,7 +71,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
     };
 
     getSubmissionCount();
-  });
+  }, []);
 
   return (
     <Accordion border={true} key={form.id}>
