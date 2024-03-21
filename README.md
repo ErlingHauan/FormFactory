@@ -4,7 +4,7 @@ To run the app, clone the repo with `git clone https://github.com/ErlingHauan/Fo
 
 ## Run in Docker
 To run the build in containers, run `docker-compose up --build` and then `yarn db:seed` to populate the database (required).
-If you are getting error regarding a missing Dotnet utility, try running `dotnet tool install --global dotnet-ef --version 8.*` before seeding.
+If you are getting an error regarding a missing Dotnet utility, try running `dotnet tool install --global dotnet-ef --version 8.*` before seeding.
 
 Access the frontend on http://localhost:3030. \
 The backend endpoints can be viewed at https://localhost:8081/swagger. \
