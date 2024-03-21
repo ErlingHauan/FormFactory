@@ -20,9 +20,9 @@ public record FormDto
     [Required]
     public string? Status { get; init; }
 
-    public DateTime? Published { get; init; }
+    public DateTimeOffset? Published { get; init; }
 
-    public DateTime? Expires { get; init; }
+    public DateTimeOffset? Expires { get; init; }
 
     public List<FormComponent>? Components { get; init; }
 }

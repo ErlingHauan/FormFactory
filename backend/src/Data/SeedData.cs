@@ -5,107 +5,125 @@ namespace FormAPI.Data;
 
 public static class SeedData
 {
-    public static void Seed(ModelBuilder builder)
+    public static void SeedUsers(ModelBuilder builder)
     {
-        builder.Entity<UserEntity>().HasData(new List<UserEntity>
-        {
-            new()
+        builder.Entity<UserEntity>().HasData(
+            new UserEntity
             {
                 Id = 1,
                 Email = "a@a.com",
                 Password = "12345678",
                 Organization = "A.com"
             },
-            new()
+            new UserEntity
             {
                 Id = 2,
                 Email = "johnny@testepartementet.no",
                 Password = "johnny123",
                 Organization = "Testdepartementet"
             },
-            new()
+            new UserEntity
             {
                 Id = 3,
                 Email = "test@test.com",
                 Password = "12345678",
                 Organization = ""
             }
-        });
+        );
+    }
 
-        var componentList = new List<FormComponent>
-        {
-            new()
-            {
-                Name = "question1",
-                Label = "Question 1",
-                Required = true,
-                Order = 0,
-                Type = "textfield"
-            },
+    public static void SeedForms(ModelBuilder builder)
+    {
+        var userSurveyComponents = FormComponentsProvider.GetUserSurveyComponents();
+        var devConferenceComponents = FormComponentsProvider.GetDevConferenceComponents();
+        var psychSafetyComponents = FormComponentsProvider.GetPsychSafetyComponents();
 
-            new()
+        builder.Entity<FormEntity>().HasData(
+            new FormEntity
             {
-                Name = "question2",
-                Label = "Question 2",
-                Required = true,
-                Order = 1,
-                Type = "radio",
-                RadioChoices = ["Yes", "No", "Maybe"],
-            }
-        };
-
-        builder.Entity<FormEntity>().HasData(new List<FormEntity>
-        {
-            new()
-            {
-                Id = new Guid("f7795736-611b-4951-a1f1-f9992b236718"),
+                Id = new Guid("11111111-1111-1111-1111-111111111111"),
                 User = "user1@example.com",
                 Organization = "Org1",
-                Title = "Test Survey",
-                Description = "This form was created as a test.",
+                Title = "Survey of the users of Form Factory",
+                Description = "We want to get to know you!",
+                Status = "Published",
+                Published = DateTimeOffset.UtcNow,
+                Expires = null,
+                Components = userSurveyComponents
+            },
+            new FormEntity
+            {
+                Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                User = "user2@example.com",
+                Organization = "Org2",
+                Title = "2024 Developer's Conference registration form",
+                Description = "Official signup form for participants.",
                 Status = "Draft",
                 Published = null,
                 Expires = null,
-                Components = componentList
-            }
-        });
-
-        var responseList = new List<SubmissionResponse>
-        {
-            new()
-            {
-                Name = "question1",
-                Label = "Question 1",
-                Order = 0,
-                Response = "Yes, I agree"
+                Components = devConferenceComponents
             },
-
-            new()
+            new FormEntity
             {
-                Name = "question2",
-                Label = "Question 2",
-                Order = 1,
-                Response = "No"
+                Id = new Guid("33333333-3333-3333-3333-333333333333"),
+                User = "user3@example.com",
+                Organization = null,
+                Title = "Psychological Safety survey",
+                Description = "Quarterly survey.",
+                Status = "Published",
+                Published = DateTimeOffset.UtcNow,
+                Expires = DateTimeOffset.UtcNow.AddDays(14),
+                Components = psychSafetyComponents
             }
-        };
+        );
+    }
 
-        builder.Entity<SubmissionEntity>().HasData(new List<SubmissionEntity>
-        {
-            new()
+    public static void SeedSubmissions(ModelBuilder builder)
+    {
+        var responseList1 = SubmissionResponseProvider.GetUserSurveyResponseList1();
+        var responseList2 = SubmissionResponseProvider.GetUserSurveyResponseList2();
+        var responseList3 = SubmissionResponseProvider.GetUserSurveyResponseList3();
+        var responseList4 = SubmissionResponseProvider.GetUserSurveyResponseList4();
+        var responseList5 = SubmissionResponseProvider.GetUserSurveyResponseList5();
+
+        builder.Entity<SubmissionEntity>().HasData(
+            new SubmissionEntity
             {
                 Id = Guid.NewGuid(),
-                FormId = new Guid("f7795736-611b-4951-a1f1-f9992b236718"),
-                Submitted = DateTimeOffset.UtcNow,
-                Responses = responseList
-            },
+                FormId = new Guid("11111111-1111-1111-1111-111111111111"),
 
-            new()
+                Submitted = DateTimeOffset.UtcNow,
+                Responses = responseList1
+            },
+            new SubmissionEntity
             {
                 Id = Guid.NewGuid(),
-                FormId = new Guid("f7795736-611b-4951-a1f1-f9992b236718"),
+                FormId = new Guid("11111111-1111-1111-1111-111111111111"),
+
                 Submitted = DateTimeOffset.UtcNow,
-                Responses = responseList
+                Responses = responseList2
+            },
+            new SubmissionEntity
+            {
+                Id = Guid.NewGuid(),
+                FormId = new Guid("11111111-1111-1111-1111-111111111111"),
+                Submitted = DateTimeOffset.UtcNow,
+                Responses = responseList3
+            },
+            new SubmissionEntity
+            {
+                Id = Guid.NewGuid(),
+                FormId = new Guid("11111111-1111-1111-1111-111111111111"),
+                Submitted = DateTimeOffset.UtcNow,
+                Responses = responseList4
+            },
+            new SubmissionEntity
+            {
+                Id = Guid.NewGuid(),
+                FormId = new Guid("11111111-1111-1111-1111-111111111111"),
+                Submitted = DateTimeOffset.UtcNow,
+                Responses = responseList5
             }
-        });
+        );
     }
 }
