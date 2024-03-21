@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import classes from "./DashboardAccordion.module.css";
-import {
-  ClipboardLinkFillIcon,
-  CloudDownFillIcon,
-  PersonEnvelopeFillIcon,
-  TrashFillIcon,
-} from "@navikt/aksel-icons";
+import { CloudDownFillIcon, PersonEnvelopeFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
 import { Accordion, Button, Heading } from "@digdir/design-system-react";
 import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
 import { CustomParagraph } from "../CustomParagraph";
 import { SubmissionViewer } from "../SubmissionViewer";
-
+import { ShareForm } from "./ShareForm";
 interface ButtonGroupProps {
   submissions: Submission[];
-  formTitle: string;
+  form: Form;
 }
 
-const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formTitle }) => {
+const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, form }) => {
   const { t } = useTranslation();
+  const { title, id } = form;
+
   return (
     <div className={classes.buttonContainer}>
       <SubmissionViewer
         submissions={submissions}
-        formTitle={formTitle}
+        formTitle={title}
         className={classes.button}
         size="small"
         variant="secondary"
@@ -36,10 +33,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formTitle }) => 
         <CloudDownFillIcon />
         {t("dashboard.download")}
       </Button>
-      <Button className={classes.button} size="small" variant="secondary">
-        <ClipboardLinkFillIcon />
-        {t("dashboard.share.form")}
-      </Button>
+      <ShareForm id={id} />
       <Button className={classes.button} color="danger" size="small" variant="secondary">
         <TrashFillIcon />
         {t("dashboard.delete.form")}
@@ -71,7 +65,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
     };
 
     getSubmissionCount();
-  });
+  }, [form.id]);
 
   return (
     <Accordion border={true} key={form.id}>
@@ -88,7 +82,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
             <CustomParagraph heading="Expiration date" content={form.expires || "Not set"} />
             <CustomParagraph heading="Submissions" content={submissionCount} />
           </div>
-          <ButtonGroup submissions={submissions} formTitle={form.title} />
+          <ButtonGroup submissions={submissions} form={form} />
         </Accordion.Content>
       </Accordion.Item>
     </Accordion>

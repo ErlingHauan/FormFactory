@@ -15,6 +15,16 @@
   justify-content: left;
 }
 
+.popoverButtons {
+  display: flex;
+  justify-content: center;
+  gap: var(--fds-spacing-4);
+}
+
+.popoverButtons button {
+  white-space: nowrap;
+}
+
 @media screen and (max-width: 1000px) {
   .accordionContentContainer {
     flex-direction: column;
