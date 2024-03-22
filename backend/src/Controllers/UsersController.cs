@@ -82,6 +82,10 @@ public class UsersController : ControllerBase
             return Unauthorized("Email/password combination was not found.");
         }
         
+        // Checked: email exists on DTO. But somehow it does not get written to cookies in the browser.
+        // Checked: backend sends Set-Cookie in response header. The problem must be somewhere in the frontend/browser
+        
+        
         // store username in session state (server) and cookie (browser)
         HttpContext.Session.SetString("authorizedUser", dto.Email);
         return Ok();
