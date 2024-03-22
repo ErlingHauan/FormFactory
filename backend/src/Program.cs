@@ -28,6 +28,7 @@ app.UseCors(builder =>
         .WithOrigins("http://localhost:3050", "http://localhost:3030")
         .AllowAnyMethod()
         .AllowAnyHeader()
+        .AllowCredentials()
 );
 
 app.UseSession();

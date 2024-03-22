@@ -29,7 +29,9 @@ export const Dashboard = (): React.JSX.Element => {
       const targetUrl = `${apiUrl}/api/users/verify`;
 
       try {
-        await axios.get(targetUrl);
+        await axios.get(targetUrl, {
+          withCredentials: true,
+        });
         setIsLoggedIn(true);
       } catch (error) {
         console.log(error);

@@ -25,7 +25,9 @@ export const validateLoginForm: IValidateLoginForm = ({ loginForm, setFormErrors
 export const axiosPostForm = async (targetUrl: string, formData: FormData): Promise<boolean> => {
   const formObject = Object.fromEntries(formData);
   try {
-    const response = await axios.post(targetUrl, formObject);
+    const response = await axios.post(targetUrl, formObject, {
+      withCredentials: true,
+    });
     console.log(response);
     if (response.status === 200 || response.status === 201) {
       return true;
