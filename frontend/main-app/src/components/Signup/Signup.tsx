@@ -3,7 +3,7 @@ import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import { Alert, Button, Heading, Textfield } from "@digdir/design-system-react";
 import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { axiosPostForm, getApiUrl } from "../Login/LoginUtils";
+import { submitForm, getApiUrl } from "../Login/LoginUtils";
 import { validateSignupForm } from "./SignupUtils";
 import { SignupForm, SignupFormError } from "./types";
 import { useTranslation } from "react-i18next";
@@ -24,7 +24,7 @@ export const Signup = (): React.JSX.Element => {
     if (formIsValid) {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/users`;
-      if (await axiosPostForm(targetUrl, formData)) {
+      if (await submitForm(targetUrl, formData)) {
         navigate("/dashboard");
       } else {
         setServerError(t("signup_page.server.error"));

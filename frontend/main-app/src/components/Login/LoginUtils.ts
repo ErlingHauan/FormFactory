@@ -22,7 +22,7 @@ export const validateLoginForm: IValidateLoginForm = ({ loginForm, setFormErrors
   return true;
 };
 
-export const axiosPostForm = async (targetUrl: string, formData: FormData): Promise<boolean> => {
+export const submitForm = async (targetUrl: string, formData: FormData): Promise<boolean> => {
   const formObject = Object.fromEntries(formData);
   try {
     const response = await axios.post(targetUrl, formObject, {

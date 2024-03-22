@@ -45,6 +45,7 @@ public class UsersController : ControllerBase
         var createdEntity = await _userRepository.Create(entity);
         var createdDto = UserMappers.EntityToDto(createdEntity);
 
+        HttpContext.Session.SetString("authorizedUser", dto.Email);
         return CreatedAtAction(nameof(Get), new { userId = createdDto.Id }, createdDto);
     }
 

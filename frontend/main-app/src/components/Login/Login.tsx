@@ -3,7 +3,7 @@ import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import { Button, Heading, Textfield } from "@digdir/design-system-react";
 import React, { FormEvent, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { axiosPostForm, getApiUrl, validateLoginForm } from "./LoginUtils";
+import { submitForm, getApiUrl, validateLoginForm } from "./LoginUtils";
 import { LoginForm, LoginFormError } from "./types";
 import { useTranslation } from "react-i18next";
 import { alertToRender } from "../FormViewer/validationUtils";
@@ -11,9 +11,10 @@ import { alertToRender } from "../FormViewer/validationUtils";
 export const Login = (): React.JSX.Element => {
   const { authError } = useParams();
   const navigate = useNavigate();
-  const [formErrors, setFormErrors] = useState<LoginFormError | null>(null);
   const { t } = useTranslation();
-  const [error, setError] = useState<string | null>(authError);
+
+  const [formErrors, setFormErrors] = useState<LoginFormError | null>(null);
+  const [error, setError] = useState(authError);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,7 +26,7 @@ export const Login = (): React.JSX.Element => {
     if (formIsValid) {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/users/login`;
-      if (await axiosPostForm(targetUrl, formData)) {
+      if (await submitForm(targetUrl, formData)) {
         navigate("/dashboard");
       } else {
         setError("loginServerError");
