@@ -8,9 +8,12 @@ import { Heading } from "@digdir/design-system-react";
 import { useTranslation } from "react-i18next";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { useAuthorization } from "../../../main-app/src/hooks/useAuthorization";
 
 export const App = (): React.JSX.Element => {
   const { t } = useTranslation();
+  useAuthorization();
+
   return (
     <>
       <Heading level={1} spacing className={classes.headline}>
