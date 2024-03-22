@@ -81,7 +81,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
           <Heading level={2} size="xxsmall">
             {form.title}
           </Heading>
-          <Button asChild size="small">
+          <Button asChild size="small" variant="tertiary">
             <a target="_blank" href={formUrl} onClick={(e) => e.stopPropagation()} rel="noreferrer">
               <FileSearchIcon />
               {t("dashboard.view.form")}
