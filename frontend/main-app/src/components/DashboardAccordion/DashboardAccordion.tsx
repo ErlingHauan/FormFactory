@@ -77,7 +77,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
   return (
     <Accordion border={true} key={form.id}>
       <Accordion.Item>
-        <Accordion.Header className={classes.accordianHeader}>
+        <Accordion.Header className={classes.accordionHeader}>
           <Heading level={2} size="xxsmall">
             {form.title}
           </Heading>

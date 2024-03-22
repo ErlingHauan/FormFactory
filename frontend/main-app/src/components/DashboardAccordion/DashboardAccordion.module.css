@@ -15,7 +15,7 @@
   justify-content: left;
 }
 
-.accordianHeader span {
+.accordionHeader span {
   display: flex;
   justify-content: space-between;
   align-items: center;
