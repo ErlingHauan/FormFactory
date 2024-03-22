@@ -40,7 +40,7 @@ export const postSubmission = async (formSchema, formData, setFormAlert) => {
     await axios.post(targetUrl, formattedSubmission);
     setFormAlert("success");
   } catch (error) {
-    setFormAlert("serverError");
+    setFormAlert("submissionServerError");
     console.log(error);
   }
 };

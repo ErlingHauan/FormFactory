@@ -94,11 +94,18 @@ const getNumberValidator = (component: FormComponent) => {
 };
 
 export const alertToRender = (alertType: string, t: TFunction): React.JSX.Element => {
-  if (alertType == "success") {
-    return <Alert severity="success">{t("form_viewer.success")}</Alert>;
-  } else if (alertType == "validationError") {
-    return <Alert severity="danger">{t("form_viewer.validationError")}</Alert>;
-  } else if (alertType == "serverError") {
-    return <Alert severity="danger">{t("form_viewer.serverError")}</Alert>;
+  switch (alertType) {
+    case "success":
+      return <Alert severity="success">{t("form_viewer.success")}</Alert>;
+    case "validationError":
+      return <Alert severity="danger">{t("form_viewer.validationError")}</Alert>;
+    case "submissionServerError":
+      return <Alert severity="danger">{t("form_viewer.serverError")}</Alert>;
+    case "authError":
+      return <Alert severity="danger">{t("login_page.auth.error")}</Alert>;
+    case "loginServerError":
+      return <Alert severity="danger">{t("login_page.login.error")}</Alert>;
+    default:
+      return null;
   }
 };

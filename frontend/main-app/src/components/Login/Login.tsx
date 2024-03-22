@@ -1,17 +1,19 @@
 import classes from "./Login.module.css";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
-import { Alert, Button, Heading, Textfield } from "@digdir/design-system-react";
+import { Button, Heading, Textfield } from "@digdir/design-system-react";
 import React, { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { axiosPostForm, getApiUrl, validateLoginForm } from "./LoginUtils";
 import { LoginForm, LoginFormError } from "./types";
 import { useTranslation } from "react-i18next";
+import { alertToRender } from "../FormViewer/validationUtils";
 
 export const Login = (): React.JSX.Element => {
+  const { authError } = useParams();
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState<LoginFormError | null>(null);
   const { t } = useTranslation();
-  const [serverError, setServerError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(authError);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,7 +28,7 @@ export const Login = (): React.JSX.Element => {
       if (await axiosPostForm(targetUrl, formData)) {
         navigate("/dashboard");
       } else {
-        setServerError(t("signup_page.server.error"));
+        setError("loginServerError");
       }
     }
   };
@@ -50,7 +52,8 @@ export const Login = (): React.JSX.Element => {
           error={formErrors?.password}
         />
       </div>
-      {serverError && <Alert severity="danger">{serverError}</Alert>}
+
+      {error && alertToRender(error, t)}
       <div className={classes.buttonContainer}>
         <Button type="submit" className={classes.button}>
           {t("login_page.login.button")}

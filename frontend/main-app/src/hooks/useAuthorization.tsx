@@ -20,7 +20,7 @@ export const useAuthorization = () => {
         });
       } catch (error) {
         console.error(error);
-        navigate("/login"); // To do: add an error message parameter
+        navigate("/login/authError");
       }
     };
 
