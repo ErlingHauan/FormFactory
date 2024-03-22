@@ -1,7 +1,7 @@
+import React from "react";
 import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
 import { Paragraph } from "@digdir/design-system-react";
-import React from "react";
 import { TFunction } from "i18next";
 
 export const getFormSchema = async (formId: string, setFormSchema) => {

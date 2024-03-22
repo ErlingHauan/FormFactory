@@ -11,3 +11,16 @@
   font-size: 3rem;
   margin-bottom: var(--fds-spacing-4);
 }
+
+.droppedItem {
+  display: flex;
+  gap: var(--fds-spacing-4);
+  margin-bottom: var(--fds-spacing-4);
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+.removalItem:hover {
+  cursor: pointer;
+  color: var(--fds-semantic-surface-danger-hover);
+}
