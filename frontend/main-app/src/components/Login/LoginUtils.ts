@@ -28,7 +28,6 @@ export const submitForm = async (targetUrl: string, formData: FormData): Promise
     const response = await axios.post(targetUrl, formObject, {
       withCredentials: true,
     });
-    console.log(response);
     if (response.status === 200 || response.status === 201) {
       return true;
     }
