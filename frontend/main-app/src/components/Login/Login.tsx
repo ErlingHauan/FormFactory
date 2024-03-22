@@ -13,15 +13,15 @@ export const Login = (): React.JSX.Element => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const [formErrors, setFormErrors] = useState<LoginFormError | null>(null);
-  const [error, setError] = useState(authError);
+  const [fieldErrors, setFieldErrors] = useState<LoginFormError | null>(null);
+  const [errorAlert, setErrorAlert] = useState(authError);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const loginForm: LoginForm = Object.fromEntries(formData);
-    const formIsValid: boolean = validateLoginForm({ loginForm, setFormErrors });
+    const formIsValid: boolean = validateLoginForm({ loginForm, setFieldErrors });
 
     if (formIsValid) {
       const apiUrl = getApiUrl();
@@ -29,7 +29,7 @@ export const Login = (): React.JSX.Element => {
       if (await submitForm(targetUrl, formData)) {
         navigate("/dashboard");
       } else {
-        setError("loginServerError");
+        setErrorAlert("loginServerError");
       }
     }
   };
@@ -44,17 +44,17 @@ export const Login = (): React.JSX.Element => {
           name="email"
           type="email"
           label={t("signup_page.email.label")}
-          error={formErrors?.email}
+          error={fieldErrors?.email}
         />
         <Textfield
           name="password"
           type="password"
           label={t("signup_page.password.label")}
-          error={formErrors?.password}
+          error={fieldErrors?.password}
         />
       </div>
 
-      {error && alertToRender(error, t)}
+      {errorAlert && alertToRender(errorAlert, t)}
       <div className={classes.buttonContainer}>
         <Button type="submit" className={classes.button}>
           {t("login_page.login.button")}
