@@ -15,6 +15,13 @@
   justify-content: left;
 }
 
+.accordionHeader span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 @media screen and (max-width: 1000px) {
   .accordionContentContainer {
     flex-direction: column;
