@@ -1,0 +1,31 @@
+.card {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--fds-semantic-background-default);
+    border: 1px solid var(--fds-semantic-border-neutral-subtle);
+    border-radius: var(--fds-border_radius-medium);
+    padding: var(--fds-spacing-10) var(--fds-spacing-14);
+    max-width: 1000px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fds-spacing-2);
+}
+
+.image {
+    width: 40%;
+}
+
+@media (max-width: 600px) {
+    .card {
+        flex-direction: column;
+        padding: var(--fds-spacing-10) var(--fds-spacing-14);
+    }
+    
+    .image {
+        margin: var(--fds-spacing-6) auto 0 auto;
+        width: 70%;
+    }
+}
