@@ -1,32 +1,35 @@
 import classes from "./Login.module.css";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
-import { Alert, Button, Heading, Textfield } from "@digdir/design-system-react";
+import { Button, Heading, Textfield } from "@digdir/design-system-react";
 import React, { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { axiosPostForm, getApiUrl, validateLoginForm } from "./LoginUtils";
+import { useNavigate, useParams } from "react-router-dom";
+import { submitForm, getApiUrl, validateLoginForm } from "./LoginUtils";
 import { LoginForm, LoginFormError } from "./types";
 import { useTranslation } from "react-i18next";
+import { alertToRender } from "../FormViewer/validationUtils";
 
 export const Login = (): React.JSX.Element => {
+  const { authError } = useParams();
   const navigate = useNavigate();
-  const [formErrors, setFormErrors] = useState<LoginFormError | null>(null);
   const { t } = useTranslation();
-  const [serverError, setServerError] = useState<string | null>(null);
+
+  const [fieldErrors, setFieldErrors] = useState<LoginFormError | null>(null);
+  const [errorAlert, setErrorAlert] = useState(authError);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const loginForm: LoginForm = Object.fromEntries(formData);
-    const formIsValid: boolean = validateLoginForm({ loginForm, setFormErrors });
+    const formIsValid: boolean = validateLoginForm({ loginForm, setFieldErrors });
 
     if (formIsValid) {
       const apiUrl = getApiUrl();
       const targetUrl = `${apiUrl}/api/users/login`;
-      if (await axiosPostForm(targetUrl, formData)) {
+      if (await submitForm(targetUrl, formData)) {
         navigate("/dashboard");
       } else {
-        setServerError(t("signup_page.server.error"));
+        setErrorAlert("loginServerError");
       }
     }
   };
@@ -41,16 +44,17 @@ export const Login = (): React.JSX.Element => {
           name="email"
           type="email"
           label={t("signup_page.email.label")}
-          error={formErrors?.email}
+          error={fieldErrors?.email}
         />
         <Textfield
           name="password"
           type="password"
           label={t("signup_page.password.label")}
-          error={formErrors?.password}
+          error={fieldErrors?.password}
         />
       </div>
-      {serverError && <Alert severity="danger">{serverError}</Alert>}
+
+      {errorAlert && alertToRender(errorAlert, t)}
       <div className={classes.buttonContainer}>
         <Button type="submit" className={classes.button}>
           {t("login_page.login.button")}

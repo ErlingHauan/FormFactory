@@ -7,7 +7,7 @@ const loginFormSchema = z.object({
   password: z.string().min(8, "Password must be at least 8 characters long"),
 });
 
-export const validateLoginForm: IValidateLoginForm = ({ loginForm, setFormErrors }) => {
+export const validateLoginForm: IValidateLoginForm = ({ loginForm, setFieldErrors }) => {
   const validation: z.SafeParseReturnType<LoginForm, LoginForm> =
     loginFormSchema.safeParse(loginForm);
 
@@ -15,18 +15,19 @@ export const validateLoginForm: IValidateLoginForm = ({ loginForm, setFormErrors
     const zodFieldErrors: LoginFormError =
       "error" in validation && validation.error.formErrors.fieldErrors;
 
-    setFormErrors(zodFieldErrors);
+    setFieldErrors(zodFieldErrors);
     return false;
   }
-  setFormErrors(null);
+  setFieldErrors(null);
   return true;
 };
 
-export const axiosPostForm = async (targetUrl: string, formData: FormData): Promise<boolean> => {
+export const submitForm = async (targetUrl: string, formData: FormData): Promise<boolean> => {
   const formObject = Object.fromEntries(formData);
   try {
-    const response = await axios.post(targetUrl, formObject);
-    console.log(response);
+    const response = await axios.post(targetUrl, formObject, {
+      withCredentials: true,
+    });
     if (response.status === 200 || response.status === 201) {
       return true;
     }

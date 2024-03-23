@@ -1,7 +1,7 @@
 export interface IValidateSignupForm {
   (params: {
     signupForm: SignupForm;
-    setFormErrors: (value: SignupFormError | null) => void;
+    setFieldErrors: (value: SignupFormError | null) => void;
   }): boolean;
 }
 

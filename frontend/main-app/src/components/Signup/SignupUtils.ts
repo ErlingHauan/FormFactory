@@ -16,7 +16,7 @@ const signupFormSchema = z
     path: ["passwordRepeat"],
   });
 
-export const validateSignupForm: IValidateSignupForm = ({ signupForm, setFormErrors }) => {
+export const validateSignupForm: IValidateSignupForm = ({ signupForm, setFieldErrors }) => {
   const validation: z.SafeParseReturnType<SignupForm, SignupForm> =
     signupFormSchema.safeParse(signupForm);
 
@@ -24,9 +24,9 @@ export const validateSignupForm: IValidateSignupForm = ({ signupForm, setFormErr
     const zodFieldErrors: SignupFormError =
       "error" in validation && validation.error.formErrors.fieldErrors;
 
-    setFormErrors(zodFieldErrors);
+    setFieldErrors(zodFieldErrors);
     return false;
   }
-  setFormErrors(null);
+  setFieldErrors(null);
   return true;
 };

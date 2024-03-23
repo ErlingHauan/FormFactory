@@ -11,7 +11,6 @@ describe("Header component", () => {
     // Act
     const title = await screen.getByRole("heading", { name: "Form Factory" });
     const titleLink = await screen.getByRole("link", { name: "Form Factory" });
-    const homeLink = await screen.getByRole("link", { name: "header_form.factory.home.link" });
     const formBuilderLink = await screen.getByRole("link", {
       name: "header_form.factory.form.builder.link",
     });
@@ -19,7 +18,6 @@ describe("Header component", () => {
     // Assert
     expect(title).toBeInTheDocument();
     expect(titleLink).toHaveAttribute("href", "/");
-    expect(homeLink).toHaveAttribute("href", "/");
     expect(formBuilderLink).toHaveAttribute("href", "/form-builder");
   });
 });

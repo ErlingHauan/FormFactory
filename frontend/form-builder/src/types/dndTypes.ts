@@ -1,3 +1,3 @@
 export enum DraggableItemsType {
-    ToolbarItem = 'TOOLBAR_ITEM'
+  ToolbarItem = "TOOLBAR_ITEM",
 }
