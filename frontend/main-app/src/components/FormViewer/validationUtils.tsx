@@ -105,6 +105,8 @@ export const alertToRender = (alertType: string, t: TFunction): React.JSX.Elemen
       return <Alert severity="danger">{t("login_page.auth.error")}</Alert>;
     case "loginServerError":
       return <Alert severity="danger">{t("login_page.login.error")}</Alert>;
+    case "signupServerError":
+      return <Alert severity="danger">{t("signup_page.server.error")}</Alert>;
     default:
       return null;
   }
