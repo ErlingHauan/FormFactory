@@ -25,7 +25,7 @@
   }
 
   .image {
-    margin: var(--fds-spacing-6) auto 0 auto;
+    margin: var(--fds-spacing-8) auto 0 auto;
     width: 70%;
   }
 }
