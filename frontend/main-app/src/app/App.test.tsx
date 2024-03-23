@@ -4,7 +4,7 @@ import { App } from "./App";
 import { MemoryRouter } from "react-router";
 import { useAuthorization } from "../hooks/useAuthorization";
 
-// Prevent API call and redirect
+// Prevent both API call and redirect
 jest.mock("../hooks/useAuthorization");
 jest.mocked(useAuthorization);
 
