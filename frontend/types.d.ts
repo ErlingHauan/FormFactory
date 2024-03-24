@@ -1,3 +1,4 @@
+// Type declarations for importing images as modules
 declare module "*.png" {
   const value: any;
   export = value;

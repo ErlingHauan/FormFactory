@@ -21,7 +21,6 @@
 @media (max-width: 600px) {
   .card {
     flex-direction: column;
-    padding: var(--fds-spacing-10) var(--fds-spacing-14);
   }
 
   .image {
