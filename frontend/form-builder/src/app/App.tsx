@@ -9,8 +9,10 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Heading, Link } from "@digdir/design-system-react";
 import { FloppydiskFillIcon, TasklistSendFillIcon } from "@navikt/aksel-icons";
+import { useTranslation } from "react-i18next";
 
 export const App = (): React.JSX.Element => {
+  const { t } = useTranslation();
   return (
     <>
       <SubHeader>
@@ -19,11 +21,11 @@ export const App = (): React.JSX.Element => {
         </Heading>
         <div className={classes.subHeaderLinks}>
           <Link>
-            Save
+            {t("form_builder.save")}
             <FloppydiskFillIcon className={classes.subHeaderIcon} />
           </Link>
           <Link>
-            Publish
+            {t("form_builder.publish")}
             <TasklistSendFillIcon className={classes.subHeaderIcon} />
           </Link>
         </div>

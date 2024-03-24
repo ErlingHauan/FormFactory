@@ -11,6 +11,6 @@
   a,
   a:hover {
     text-decoration: none;
-    color: var(--fds-semantic-surface-on_inverted-default);
+    color: inherit;
   }
 }
