@@ -2,13 +2,14 @@ import { Heading } from "@digdir/design-system-react";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ToolBarItems } from "./ToolBarItems";
+import classes from "./Toolbar.module.css";
 
 export const Toolbar = (): React.JSX.Element => {
   const { t } = useTranslation();
 
   return (
-    <div>
-      <Heading level={2} size="small" spacing>
+    <div className={classes.toolbar}>
+      <Heading level={3} size="xxsmall">
         {t("toolbar_tools")}
       </Heading>
       <ToolBarItems />

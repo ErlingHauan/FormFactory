@@ -15,6 +15,7 @@
   "footer_form.factory.designsystem.link": "Components and colors by Designsystemet",
   "footer_form.factory.gitHub.link": "Form Factory on GitHub",
   "form_builder": "Form Builder",
+  "form_builder.canvas": "Canvas",
   "form_builder.drag.component.message": "Drag components here",
   "form_builder.form": "Form",
   "form_viewer.serverError": "You submitted the form correctly, but the server could not process the form. Please contact us at GitHub.",
@@ -40,9 +41,9 @@
   "signup_page.server.error": "The server did not respond as expected. If you are a developer, please make sure that both the database and the correct backend for your environment is running. If problems persist, please contact us at GitHub.",
   "signup_page.signup.button": "Sign up",
   "signup_page.title": "Sign up",
-  "toolbar_tools": "Tools",
-  "toolbar_tools.multiple.choice.component": "Multiple choice",
+  "toolbar_tools": "Components",
+  "toolbar_tools.multiple.choice.component": "Option selector",
   "toolbar_tools.save.form.component": "Save form",
-  "toolbar_tools.text.field.component": "Text field",
+  "toolbar_tools.text.field.component": "Input field",
   "toolbar_tools.validate.form.component": "Validate form"
 }

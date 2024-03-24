@@ -1,3 +1,5 @@
-.submissionHeading {
-  margin-bottom: var(--fds-spacing-4);
+.settingsSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-spacing-4);
 }
