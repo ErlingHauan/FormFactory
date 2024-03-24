@@ -13,8 +13,21 @@ body {
   font-feature-settings: "cv05" 1 !important; /* Enable lowercase l with tail */
 }
 
-.headline {
-  align-self: flex-start;
+.main {
+  padding: var(--fds-spacing-10) var(--fds-spacing-30);
+}
+
+.subHeaderHeading {
+  color: var(--fds-semantic-surface-on_inverted-default);
+}
+
+.subHeaderLinks {
+  display: flex;
+  gap: var(--fds-spacing-10);
+}
+
+.subHeaderIcon {
+  font-size: 1.5rem;
 }
 
 .builderGrid {
