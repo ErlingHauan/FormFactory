@@ -8,7 +8,7 @@ export const Toolbar = (): React.JSX.Element => {
 
   return (
     <div>
-      <Heading level={2} size="medium" spacing>
+      <Heading level={2} size="small" spacing>
         {t("toolbar_tools")}
       </Heading>
       <ToolBarItems />
