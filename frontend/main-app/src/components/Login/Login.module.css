@@ -1,33 +1,33 @@
 .loginContainer {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--fds-semantic-background-default);
-    border: 1px solid var(--fds-semantic-border-neutral-subtle);
-    border-radius: var(--fds-border_radius-medium);
-    padding: var(--fds-spacing-10) var(--fds-spacing-14);
-    margin: var(--fds-spacing-10);
-    max-width: 400px;
-    gap: var(--fds-spacing-8);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--fds-semantic-background-default);
+  border: 1px solid var(--fds-semantic-border-neutral-subtle);
+  border-radius: var(--fds-border_radius-medium);
+  padding: var(--fds-spacing-10) var(--fds-spacing-14);
+  margin: var(--fds-spacing-10);
+  max-width: 400px;
+  gap: var(--fds-spacing-8);
 }
 
 .fieldContainer {
-    display: flex;
-    flex-direction: column;
-    gap: var(--fds-spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-spacing-4);
 }
 
 .buttonContainer {
-    display: flex;
-    flex-direction: column;
-    margin-top: var(--fds-spacing-2);
-    gap: var(--fds-spacing-4);
-    align-self: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--fds-spacing-2);
+  gap: var(--fds-spacing-4);
+  align-self: center;
 }
 
 @media (max-width: 600px) {
-    .loginContainer {
-        border: 0;
-        background-color: var(--fds-semantic-background-subtle);
-        padding: 0;
-    }
+  .loginContainer {
+    border: 0;
+    background-color: var(--fds-semantic-background-subtle);
+    padding: 0;
+  }
 }

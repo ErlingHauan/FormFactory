@@ -1,15 +1,15 @@
 .card {
-    background: var(--fds-semantic-background-default);
-    border: 1px solid var(--fds-semantic-border-neutral-subtle);
-    border-radius: var(--fds-border_radius-medium);
-    padding: var(--fds-spacing-10) var(--fds-spacing-14);
-    margin: var(--fds-spacing-10);
-    min-width: 50%;
-    max-width: 1000px;
+  background: var(--fds-semantic-background-default);
+  border: 1px solid var(--fds-semantic-border-neutral-subtle);
+  border-radius: var(--fds-border_radius-medium);
+  padding: var(--fds-spacing-10) var(--fds-spacing-14);
+  margin: var(--fds-spacing-10);
+  min-width: 50%;
+  max-width: 1000px;
 }
 
 .buttonContainer {
-    display: flex;
-    justify-content: end;
-    padding: var(--fds-spacing-5) 0;
+  display: flex;
+  justify-content: end;
+  padding: var(--fds-spacing-5) 0;
 }

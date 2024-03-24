@@ -1,7 +1,6 @@
 import React from "react";
 import { BulletListIcon, MenuHamburgerIcon } from "@navikt/aksel-icons";
 import { useTranslation } from "react-i18next";
-import classes from "./ToolBarItems.module.css";
 import { DraggableItem } from "../DraggableItem";
 
 export const ToolBarItems = () => {
@@ -22,16 +21,9 @@ export const ToolBarItems = () => {
 
   return (
     <>
-      {Items.map((item, index) =>
-        item.draggable ? (
-          <DraggableItem key={index} item={item} index={index} />
-        ) : (
-          <div key={index} className={classes.toolbarIcon}>
-            {item.icon}
-            <div>{item.text}</div>
-          </div>
-        ),
-      )}
+      {Items.map((item, index) => (
+        <DraggableItem key={index} item={item} index={index} />
+      ))}
     </>
   );
 };
