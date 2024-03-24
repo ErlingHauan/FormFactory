@@ -1,8 +1,5 @@
-import React from "react";
 import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
-import { Paragraph } from "@digdir/design-system-react";
-import { TFunction } from "i18next";
 
 export const getFormSchema = async (formId: string, setFormSchema) => {
   const apiUrl = getApiUrl();
@@ -43,16 +40,4 @@ export const postSubmission = async (formSchema, formData, setFormAlert) => {
     setFormAlert("serverError");
     console.log(error);
   }
-};
-
-export const getFormIdError = (formId: string, t: TFunction) => {
-  if (formId) {
-    return (
-      <Paragraph>
-        {t("form_viewer.formId.notFound")}
-        {formId}.
-      </Paragraph>
-    );
-  }
-  return <Paragraph>{t("form_viewer.formId.notProvided")}</Paragraph>;
 };

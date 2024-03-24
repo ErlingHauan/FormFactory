@@ -12,7 +12,7 @@ const config = {
   roots: ["../"],
   setupFilesAfterEnv: [path.join(__dirname, "./jestSetup.ts")],
   moduleNameMapper: {
-    "\\.css$": path.join(__dirname, "/styleMock.js"),
+    "\\.(css|png|jpg|jpeg|svg|ico)$": path.join(__dirname, "/importMock.js"),
   },
   transform: {
     [`node_modules(\\\\|/)(${packagesToTransform})(\\\\|/).+\\.(j|t)sx?$`]: "@swc/jest",

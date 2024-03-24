@@ -5,8 +5,9 @@ import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
 import { cleanFormData, generateValidationSchema, alertToRender } from "./validationUtils";
 import { FormComponent } from "../FormComponent";
-import { getFormIdError, getFormSchema, postSubmission } from "./httpUtils";
+import { getFormSchema, postSubmission } from "./httpUtils";
 import { useTranslation } from "react-i18next";
+import { NotFound } from "../NotFound";
 
 export const FormViewer = (): React.JSX.Element => {
   const { t } = useTranslation();
@@ -37,9 +38,9 @@ export const FormViewer = (): React.JSX.Element => {
     }
   };
 
-  const RenderValidForm = () => {
+  const RenderForm = () => {
     return (
-      <>
+      <main className={classes.card}>
         <form onSubmit={handleSubmit}>
           <Heading level={1} size="xlarge">
             {formSchema.title}
@@ -59,23 +60,9 @@ export const FormViewer = (): React.JSX.Element => {
           </div>
         </form>
         {alertToRender(formAlert, t)}
-      </>
+      </main>
     );
   };
 
-  const RenderInvalidForm = () => {
-    return (
-      <>
-        <Heading spacing>Form not found</Heading>
-        {getFormIdError(formId, t)}
-      </>
-    );
-  };
-
-  return (
-    // prettier-ignore
-    <main className={classes.card}>
-      {formSchema ? <RenderValidForm /> : <RenderInvalidForm />}
-    </main>
-  );
+  return formSchema ? <RenderForm /> : <NotFound />;
 };
