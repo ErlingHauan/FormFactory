@@ -1,5 +1,11 @@
-.dashboard {
+.dashboardContainer {
   width: 100%;
+  padding: var(--fds-spacing-10);
+}
+
+.dashboard {
+  margin: 0 auto;
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
   gap: var(--fds-spacing-2);
@@ -9,4 +15,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--fds-spacing-2);
+}
+
+@media (max-width: 600px) {
+  .dashboardContainer {
+    padding: var(--fds-spacing-2);
+  }
 }
