@@ -1,3 +1,11 @@
 .toolbarIcon {
-  margin-bottom: var(--fds-spacing-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--fds-semantic-border-neutral-subtle);
+  border-radius: var(--fds-border_radius-medium);
+  padding: var(--fds-spacing-2);
+  height: 100px;
+  width: 100px;
 }

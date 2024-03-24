@@ -29,8 +29,8 @@ export const FormBoard = (): React.JSX.Element => {
 
   return (
     <>
-      <Heading level={2} size="medium" spacing>
-        {t("form_builder")}
+      <Heading level={3} size="xxsmall" spacing>
+        {t("form_builder.canvas")}
       </Heading>
       {form.length < 1 && (
         <div
