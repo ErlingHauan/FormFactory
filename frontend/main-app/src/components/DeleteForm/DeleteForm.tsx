@@ -3,6 +3,20 @@ import { Button, Modal, Paragraph, Textfield } from "@digdir/design-system-react
 import React, { FormEvent, ReactNode, useContext, useState } from "react";
 import { TrashFillIcon } from "@navikt/aksel-icons";
 import { FormContext } from "../Dashboard";
+import { getApiUrl } from "../Login/LoginUtils";
+import axios from "axios";
+
+const deleteForm = async (formId: string) => {
+  const apiUrl = getApiUrl();
+  const targetUrl = `${apiUrl}/api/forms/${formId}`;
+
+  try {
+    const response = await axios.delete(targetUrl);
+    alert(response.status);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const ModalContent = ({ className }) => {
   const form = useContext(FormContext);
@@ -15,6 +29,7 @@ const ModalContent = ({ className }) => {
 
     if (cleanFormData.confirmDelete.toString().toLowerCase() === "delete") {
       alert(`Deleting form with id ${form.id}`);
+      deleteForm(form.id.toString());
     } else {
       setFormError("Confirmation keyword is incorrect.");
     }
