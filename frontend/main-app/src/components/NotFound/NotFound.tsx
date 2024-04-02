@@ -2,14 +2,22 @@ import classes from "./NotFound.module.css";
 import { Heading, Link, Paragraph } from "@digdir/design-system-react";
 import React from "react";
 import notFoundImage from "./notFound.png";
+import { useTranslation } from "react-i18next";
+
 export const NotFound: React.FC = () => {
+  const { t } = useTranslation();
+
+  const isFormUrl = window.location.pathname.startsWith("/view");
+  const pageType = isFormUrl ? "form" : "page";
+  const capitalizedPageType = pageType.charAt(0).toUpperCase() + pageType.slice(1);
+
   return (
     <main className={classes.card}>
       <div className={classes.text}>
-        <Heading spacing>Page not found</Heading>
-        <Paragraph>We could not find the page you were looking for.</Paragraph>
-        <Link href="/login">Go to the login page</Link>
-        <Link href="/signup">Go to the signup page</Link>
+        <Heading spacing>{t("not_found.title", { capitalizedPageType })}</Heading>
+        <Paragraph>{t("not_found.message", { pageType })}</Paragraph>
+        <Link href="/login">{t("not_found.login.link")}</Link>
+        <Link href="/signup">{t("not_found.signup.link")}</Link>
       </div>
       <img
         src={notFoundImage}
