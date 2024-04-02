@@ -6,21 +6,26 @@ import { FormContext } from "../Dashboard";
 import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
 
-const deleteForm = async (formId: string) => {
-  const apiUrl = getApiUrl();
-  const targetUrl = `${apiUrl}/api/forms/${formId}`;
+interface ModalContentProps {
+  className: string;
+}
 
-  try {
-    const response = await axios.delete(targetUrl);
-    alert(response.status);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const ModalContent = ({ className }) => {
+const ModalContent: React.FC<ModalContentProps> = ({ className }) => {
   const form = useContext(FormContext);
   const [formError, setFormError] = useState("");
+
+  const deleteForm = async (formId: string) => {
+    const apiUrl = getApiUrl();
+    const targetUrl = `${apiUrl}/api/forms/${formId}`;
+    // To do: Add deletion of submissions belonging to this form ID.
+
+    try {
+      await axios.delete(targetUrl);
+      location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleDelete = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,7 +33,6 @@ const ModalContent = ({ className }) => {
     const cleanFormData = Object.fromEntries(formData);
 
     if (cleanFormData.confirmDelete.toString().toLowerCase() === "delete") {
-      alert(`Deleting form with id ${form.id}`);
       deleteForm(form.id.toString());
     } else {
       setFormError("Confirmation keyword is incorrect.");

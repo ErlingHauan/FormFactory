@@ -29,8 +29,8 @@ export const Dashboard = (): React.JSX.Element => {
       <DashboardOverview forms={forms} />
       <div className={classes.formList}>
         {forms.map((form) => (
-          <FormContext.Provider value={form}>
-            <DashboardAccordion key={form.id} form={form} />
+          <FormContext.Provider value={form} key={form.id}>
+            <DashboardAccordion form={form} />
           </FormContext.Provider>
         ))}
       </div>
