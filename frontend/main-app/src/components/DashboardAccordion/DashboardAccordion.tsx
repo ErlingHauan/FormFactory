@@ -13,6 +13,7 @@ import axios from "axios";
 import { CustomParagraph } from "../CustomParagraph";
 import { SubmissionViewer } from "../SubmissionViewer";
 import { ShareForm } from "./ShareForm";
+import { DeleteForm } from "../DeleteForm/DeleteForm";
 interface ButtonGroupProps {
   submissions: Submission[];
   formTitle: string;
@@ -39,10 +40,16 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formTitle, formU
         {t("dashboard.download")}
       </Button>
       <ShareForm formUrl={formUrl} />
-      <Button className={classes.button} color="danger" size="small" variant="secondary">
+      <DeleteForm
+        className={classes.button}
+        color="danger"
+        size="small"
+        variant="secondary"
+        formTitle={formTitle}
+      >
         <TrashFillIcon />
         {t("dashboard.delete.form")}
-      </Button>
+      </DeleteForm>
     </div>
   );
 };
