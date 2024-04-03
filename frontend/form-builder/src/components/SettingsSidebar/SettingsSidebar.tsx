@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next";
 export const SettingsSidebar = (): React.JSX.Element => {
   const { t } = useTranslation();
   return (
-    <>
-      <Heading level={2} size="medium" spacing>
+    <div className={classes.settingsSidebar}>
+      <Heading level={3} size="xxsmall" spacing>
         {t("settings_side_bar")}
       </Heading>
       <Textfield
@@ -25,6 +25,6 @@ export const SettingsSidebar = (): React.JSX.Element => {
         size="small"
         className={classes.spacing}
       />
-    </>
+    </div>
   );
 };
