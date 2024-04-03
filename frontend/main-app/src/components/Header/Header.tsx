@@ -32,7 +32,7 @@ export const Header = (): React.JSX.Element => {
 
   if (isSmallScreen) {
     return (
-      <header className={classes.header}>
+      <div className={classes.header}>
         <HeadingBrand />
         <DropdownMenu size="small">
           <DropdownMenu.Trigger variant="tertiary" icon="true">
@@ -52,12 +52,12 @@ export const Header = (): React.JSX.Element => {
             </DropdownMenu.Group>
           </DropdownMenu.Content>
         </DropdownMenu>
-      </header>
+      </div>
     );
   }
 
   return (
-    <header className={classes.header}>
+    <div className={classes.header}>
       <HeadingBrand />
       <nav className={classes.nav}>
         <ul>
@@ -72,6 +72,6 @@ export const Header = (): React.JSX.Element => {
           </li>
         </ul>
       </nav>
-    </header>
+    </div>
   );
 };

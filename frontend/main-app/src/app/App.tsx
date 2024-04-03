@@ -28,10 +28,10 @@ i18next.use(initReactI18next).init({
 export const App = (): React.JSX.Element => {
   return (
     <div className={classes.layout}>
-      <div>
+      <header>
         <Header />
         <SubHeader />
-      </div>
+      </header>
       <main className={classes.main}>
         <Routes>
           <Route path="/" element={<Login />} />
