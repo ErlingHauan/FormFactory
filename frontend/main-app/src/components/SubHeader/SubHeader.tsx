@@ -59,7 +59,7 @@ const formBuilderLinks = () => {
 const formViewerHeading = () => {
   return (
     <Link href="/">
-      {t("header_form.factory.title.link")}{" "}
+      {t("header_form.factory.title.link")}
       <ClipboardCheckmarkFillIcon className={classes.subHeaderIcon} />
     </Link>
   );
