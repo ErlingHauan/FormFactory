@@ -12,6 +12,7 @@ import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import en from "../../../language/src/en.json";
 import { FormViewer } from "../components/FormViewer";
+import { SubHeader } from "../components/SubHeader";
 
 i18next.use(initReactI18next).init({
   resources: {
@@ -26,8 +27,11 @@ i18next.use(initReactI18next).init({
 
 export const App = (): React.JSX.Element => {
   return (
-    <>
-      <Header />
+    <div className={classes.layout}>
+      <div>
+        <Header />
+        <SubHeader />
+      </div>
       <main className={classes.main}>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -40,6 +44,6 @@ export const App = (): React.JSX.Element => {
         </Routes>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };

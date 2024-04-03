@@ -13,19 +13,6 @@ body {
   font-feature-settings: "cv05" 1 !important; /* Enable lowercase l with tail */
 }
 
-.subHeaderHeading {
-  color: var(--fds-semantic-surface-on_inverted-default);
-}
-
-.subHeaderLinks {
-  display: flex;
-  gap: var(--fds-spacing-10);
-}
-
-.subHeaderIcon {
-  font-size: 1.5rem;
-}
-
 .main {
   padding: var(--fds-spacing-10);
   max-width: 1500px;

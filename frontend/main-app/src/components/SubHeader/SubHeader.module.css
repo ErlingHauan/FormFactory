@@ -11,6 +11,25 @@
   a,
   a:hover {
     text-decoration: none;
-    color: inherit;
+    color: inherit !important;
+  }
+}
+
+.subHeaderHeading {
+  color: var(--fds-semantic-surface-on_inverted-default);
+}
+
+.subHeaderLinks {
+  display: flex;
+  gap: var(--fds-spacing-10);
+}
+
+.subHeaderIcon {
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .subHeader {
+    padding: 0 var(--fds-spacing-6);
   }
 }

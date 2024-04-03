@@ -1,35 +1,15 @@
 import React from "react";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./App.module.css";
-import { SubHeader } from "../../../main-app/src/components/SubHeader";
 import { Toolbar } from "../components/Toolbar";
 import { FormBoard } from "../components/FormBoard";
 import { SettingsSidebar } from "../components/SettingsSidebar";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { Heading, Link } from "@digdir/design-system-react";
-import { FloppydiskFillIcon, TasklistSendFillIcon } from "@navikt/aksel-icons";
-import { useTranslation } from "react-i18next";
 
 export const App = (): React.JSX.Element => {
-  const { t } = useTranslation();
   return (
     <>
-      <SubHeader>
-        <Heading className={classes.subHeaderHeading} level={2} size="xxsmall">
-          Form Builder
-        </Heading>
-        <div className={classes.subHeaderLinks}>
-          <Link>
-            {t("form_builder.save")}
-            <FloppydiskFillIcon className={classes.subHeaderIcon} />
-          </Link>
-          <Link>
-            {t("form_builder.publish")}
-            <TasklistSendFillIcon className={classes.subHeaderIcon} />
-          </Link>
-        </div>
-      </SubHeader>
       <main className={classes.main}>
         <div className={classes.builderGrid}>
           <DndProvider backend={HTML5Backend}>

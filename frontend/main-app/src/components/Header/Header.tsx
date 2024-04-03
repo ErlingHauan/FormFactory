@@ -27,6 +27,9 @@ export const Header = (): React.JSX.Element => {
     </Link>
   );
 
+  const isFormViewer = window.location.pathname.startsWith("/view");
+  if (isFormViewer) return;
+
   if (isSmallScreen) {
     return (
       <header className={classes.header}>

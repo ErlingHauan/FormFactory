@@ -1,14 +1,65 @@
 import React from "react";
 import classes from "./SubHeader.module.css";
+import { Heading, Link } from "@digdir/design-system-react";
+import {
+  ClipboardCheckmarkFillIcon,
+  FloppydiskFillIcon,
+  TasklistSendFillIcon,
+} from "@navikt/aksel-icons";
+import { t } from "i18next";
 
-interface SubHeaderProps {
-  children: React.ReactNode;
-}
+export const SubHeader: React.FC = () => {
+  const pathname = window.location.pathname;
 
-export const SubHeader: React.FC<SubHeaderProps> = ({ children }) => {
+  const isLogin = pathname.startsWith("/login") || pathname === "/";
+  const isFormBuilder = pathname.startsWith("/form-builder");
+  const isDashboard = pathname.startsWith("/dashboard");
+  const isFormViewer = pathname.startsWith("/view");
+
+  const heading = () => {
+    if (isLogin) return "Log in";
+    if (isFormBuilder) return "Form Builder";
+    if (isDashboard) return "Dashboard";
+    if (isFormViewer) return formViewerHeading();
+
+    return;
+  };
+
+  const links = () => {
+    if (isFormBuilder) return formBuilderLinks();
+
+    return;
+  };
+
+  return (
+    <div className={classes.subHeader}>
+      <Heading className={classes.subHeaderHeading} level={2} size="xxsmall">
+        {heading()}
+      </Heading>
+      <div className={classes.subHeaderLinks}>{links()}</div>
+    </div>
+  );
+};
+
+const formBuilderLinks = () => {
   return (
     <>
-      <div className={classes.subHeader}>{children}</div>
+      <Link>
+        {t("form_builder.save")}
+        <FloppydiskFillIcon className={classes.subHeaderIcon} />
+      </Link>
+      <Link>
+        {t("form_builder.publish")}
+        <TasklistSendFillIcon className={classes.subHeaderIcon} />
+      </Link>
     </>
+  );
+};
+
+const formViewerHeading = () => {
+  return (
+    <Link href="/">
+      Form Factory <ClipboardCheckmarkFillIcon className={classes.subHeaderIcon} />
+    </Link>
   );
 };
