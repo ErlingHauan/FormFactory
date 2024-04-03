@@ -51,7 +51,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formUrl }) => {
 export const DashboardAccordion: React.FC = () => {
   const form = useContext(FormContext);
 
-  const [submissions, setSubmissions] = useState();
+  const [submissions, setSubmissions] = useState([]);
   const [submissionCount, setSubmissionCount] = useState();
   const formUrl = `${window.location.origin}/view/${form.id}`;
 
