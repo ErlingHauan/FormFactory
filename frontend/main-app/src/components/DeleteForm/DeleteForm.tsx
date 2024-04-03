@@ -5,6 +5,8 @@ import { TrashFillIcon } from "@navikt/aksel-icons";
 import { FormContext } from "../Dashboard";
 import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
+import { Trans } from "react-i18next";
+import { t } from "i18next";
 
 interface ModalContentProps {
   className: string;
@@ -29,29 +31,27 @@ const ModalContent: React.FC<ModalContentProps> = ({ className }) => {
 
   const handleDelete = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const cleanFormData = Object.fromEntries(formData);
 
     if (cleanFormData.confirmDelete.toString().toLowerCase() === "delete") {
       deleteForm(form.id.toString());
     } else {
-      setFormError("Confirmation keyword is incorrect.");
+      setFormError(t("dashboard.delete.error"));
     }
   };
 
   return (
     <form className={className} onSubmit={handleDelete}>
+      <Paragraph>{t("dashboard.delete.areYouSure")}</Paragraph>
       <Paragraph>
-        Are you sure you want to delete this form? Both the form and its submissions will be deleted
-        permanently.
-      </Paragraph>
-      <Paragraph>
-        To confirm, type <strong>delete</strong> in the box below.
+        <Trans i18nKey="dashboard.delete.confirm" />
       </Paragraph>
       <Textfield name="confirmDelete" error={formError} />
       <Button color="danger" type="submit">
         <TrashFillIcon />
-        Delete form
+        {t("dashboard.delete.form")}
       </Button>
     </form>
   );
