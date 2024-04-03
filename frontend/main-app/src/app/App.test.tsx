@@ -25,17 +25,17 @@ describe("App component", () => {
   it("renders Login when accessing '/'", () => {
     renderApp();
 
-    const title = screen.getByRole("heading", { name: "Log in" });
+    const titles = screen.getAllByRole("heading", { name: "Log in" });
 
-    expect(title).toBeInTheDocument();
+    expect(titles[0]).toBeInTheDocument();
   });
 
   it("renders Login when accessing '/login'", () => {
     renderApp(["/login"]);
 
-    const title = screen.getByRole("heading", { name: "Log in" });
+    const titles = screen.getAllByRole("heading", { name: "Log in" });
 
-    expect(title).toBeInTheDocument();
+    expect(titles[0]).toBeInTheDocument();
   });
 
   it("renders Signup when accessing '/signup'", () => {

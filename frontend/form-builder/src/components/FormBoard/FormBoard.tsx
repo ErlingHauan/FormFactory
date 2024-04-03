@@ -29,8 +29,8 @@ export const FormBoard = (): React.JSX.Element => {
 
   return (
     <>
-      <Heading level={2} size="medium" spacing>
-        {t("form_builder")}
+      <Heading level={3} size="xxsmall" spacing>
+        {t("form_builder.canvas")}
       </Heading>
       {form.length < 1 && (
         <div
@@ -48,7 +48,7 @@ export const FormBoard = (): React.JSX.Element => {
               <div key={index} className={classes.droppedItem}>
                 <div>{item}</div>
                 <XMarkIcon
-                  title={t("form_builder.form.delete_item")}
+                  title="Remove item"
                   className={classes.removalItem}
                   onClick={() => handleRemoveItem(index)}
                 />
