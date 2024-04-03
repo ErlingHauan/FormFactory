@@ -9,22 +9,18 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 export const App = (): React.JSX.Element => {
   return (
-    <>
-      <main className={classes.main}>
-        <div className={classes.builderGrid}>
-          <DndProvider backend={HTML5Backend}>
-            <div className={classes.builderSection}>
-              <Toolbar />
-            </div>
-            <div className={classes.builderSection}>
-              <FormBoard />
-            </div>
-          </DndProvider>
-          <div className={classes.builderSection}>
-            <SettingsSidebar />
-          </div>
+    <div className={classes.formBuilder}>
+      <DndProvider backend={HTML5Backend}>
+        <div className={classes.builderSection}>
+          <Toolbar />
         </div>
-      </main>
-    </>
+        <div className={classes.builderSection}>
+          <FormBoard />
+        </div>
+      </DndProvider>
+      <div className={classes.builderSection}>
+        <SettingsSidebar />
+      </div>
+    </div>
   );
 };

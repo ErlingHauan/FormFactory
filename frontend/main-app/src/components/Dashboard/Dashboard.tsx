@@ -24,7 +24,7 @@ export const Dashboard = (): React.JSX.Element => {
   }, []);
 
   return (
-    <main className={classes.dashboardContainer}>
+    <div className={classes.dashboardContainer}>
       <div className={classes.dashboard}>
         <DashboardOverview forms={forms} />
         <div className={classes.formList}>
@@ -33,6 +33,6 @@ export const Dashboard = (): React.JSX.Element => {
           ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 };

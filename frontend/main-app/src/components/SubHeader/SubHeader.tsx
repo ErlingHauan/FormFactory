@@ -17,9 +17,9 @@ export const SubHeader: React.FC = () => {
   const isFormViewer = pathname.startsWith("/view");
 
   const heading = () => {
-    if (isLogin) return "Log in";
-    if (isFormBuilder) return "Form Builder";
-    if (isDashboard) return "Dashboard";
+    if (isLogin) return t("login_page.title");
+    if (isFormBuilder) return t("form_builder");
+    if (isDashboard) return t("dashboard");
     if (isFormViewer) return formViewerHeading();
 
     return;
@@ -59,7 +59,8 @@ const formBuilderLinks = () => {
 const formViewerHeading = () => {
   return (
     <Link href="/">
-      Form Factory <ClipboardCheckmarkFillIcon className={classes.subHeaderIcon} />
+      {t("header_form.factory.title.link")}{" "}
+      <ClipboardCheckmarkFillIcon className={classes.subHeaderIcon} />
     </Link>
   );
 };
