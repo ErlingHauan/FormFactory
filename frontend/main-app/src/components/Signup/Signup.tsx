@@ -3,11 +3,12 @@ import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import { Button, Heading, Textfield } from "@digdir/design-system-react";
 import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { submitForm, getApiUrl } from "../Login/LoginUtils";
+import { getApiUrl } from "../Login/LoginUtils";
 import { validateSignupForm } from "./SignupUtils";
 import { SignupForm, SignupFormError } from "./types";
 import { useTranslation } from "react-i18next";
 import { alertToRender } from "../FormViewer/validationUtils";
+import axios from "axios";
 
 export const Signup = (): React.JSX.Element => {
   const navigate = useNavigate();
@@ -21,16 +22,23 @@ export const Signup = (): React.JSX.Element => {
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const signupForm: SignupForm = Object.fromEntries(formData);
-    const formIsValid: boolean = validateSignupForm({ signupForm, setFieldErrors });
+    const formIsValid = validateSignupForm({ signupForm, setFieldErrors });
 
-    if (formIsValid) {
-      const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/users`;
-      if (await submitForm(targetUrl, formData)) {
-        navigate("/dashboard");
-      } else {
-        setErrorAlert("signupServerError");
-      }
+    if (!formIsValid) {
+      return;
+    }
+
+    const apiUrl = getApiUrl();
+    const targetUrl = `${apiUrl}/api/users`;
+
+    try {
+      await axios.post(targetUrl, signupForm, {
+        withCredentials: true,
+      });
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+      setErrorAlert("signupServerError");
     }
   };
 

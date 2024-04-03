@@ -3,10 +3,11 @@ import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import { Button, Heading, Textfield } from "@digdir/design-system-react";
 import React, { FormEvent, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { submitForm, getApiUrl, validateLoginForm } from "./LoginUtils";
+import { getApiUrl, validateLoginForm } from "./LoginUtils";
 import { LoginForm, LoginFormError } from "./types";
 import { useTranslation } from "react-i18next";
 import { alertToRender } from "../FormViewer/validationUtils";
+import axios from "axios";
 
 export const Login = (): React.JSX.Element => {
   const { authError } = useParams();
@@ -21,16 +22,23 @@ export const Login = (): React.JSX.Element => {
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const loginForm: LoginForm = Object.fromEntries(formData);
-    const formIsValid: boolean = validateLoginForm({ loginForm, setFieldErrors });
+    const formIsValid = validateLoginForm({ loginForm, setFieldErrors });
 
-    if (formIsValid) {
-      const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/users/login`;
-      if (await submitForm(targetUrl, formData)) {
-        navigate("/dashboard");
-      } else {
-        setErrorAlert("loginServerError");
-      }
+    if (!formIsValid) {
+      return;
+    }
+
+    const apiUrl = getApiUrl();
+    const targetUrl = `${apiUrl}/api/users/login`;
+
+    try {
+      await axios.post(targetUrl, loginForm, {
+        withCredentials: true,
+      });
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+      setErrorAlert("loginServerError");
     }
   };
 

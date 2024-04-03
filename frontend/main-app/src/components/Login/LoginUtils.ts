@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { IValidateLoginForm, LoginForm, LoginFormError } from "./types";
-import axios from "axios";
 
 const loginFormSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -20,21 +19,6 @@ export const validateLoginForm: IValidateLoginForm = ({ loginForm, setFieldError
   }
   setFieldErrors(null);
   return true;
-};
-
-export const submitForm = async (targetUrl: string, formData: FormData): Promise<boolean> => {
-  const formObject = Object.fromEntries(formData);
-  try {
-    const response = await axios.post(targetUrl, formObject, {
-      withCredentials: true,
-    });
-    if (response.status === 200 || response.status === 201) {
-      return true;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return false;
 };
 
 export const getApiUrl = (): string => {
