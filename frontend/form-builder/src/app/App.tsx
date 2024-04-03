@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./App.module.css";
 import { Toolbar } from "../components/Toolbar";
@@ -8,6 +8,8 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 export const App = (): React.JSX.Element => {
+  const [formComponents, setFormComponents] = useState<FormComponent[]>([]);
+
   return (
     <div className={classes.formBuilder}>
       <DndProvider backend={HTML5Backend}>
@@ -15,7 +17,7 @@ export const App = (): React.JSX.Element => {
           <Toolbar />
         </div>
         <div className={classes.builderSection}>
-          <FormBoard />
+          <FormBoard formComponents={formComponents} setFormComponents={setFormComponents} />
         </div>
       </DndProvider>
       <div className={classes.builderSection}>

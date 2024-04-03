@@ -6,14 +6,14 @@ import { Paragraph } from "@digdir/design-system-react";
 
 interface FormComponentsProps {
   component: FormComponent;
-  error: string[];
+  error?: string[];
 }
 
 export const FormComponent: React.FC<FormComponentsProps> = ({
   component,
   error,
 }): React.JSX.Element => {
-  const { type, name, label, required, radioChoices } = component;
+  const { type, name, label = type, required, radioChoices } = component;
   let componentToRender: React.JSX.Element;
 
   if (type === "textfield") {

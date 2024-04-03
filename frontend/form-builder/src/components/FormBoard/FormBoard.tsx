@@ -1,21 +1,29 @@
-import { Heading, Paragraph } from "@digdir/design-system-react";
 import React from "react";
+import { Heading, Paragraph } from "@digdir/design-system-react";
 import { ComponentIcon, XMarkIcon } from "@navikt/aksel-icons";
 import classes from "./FormBoard.module.css";
 import { useTranslation } from "react-i18next";
 import { useDrop } from "react-dnd";
 import { DraggableItemsType } from "../../types/dndTypes";
 import { ItemProps } from "../Toolbar/DraggableItem";
+import { FormComponent } from "../../../../main-app/src/components/FormComponent";
 
-export const FormBoard = (): React.JSX.Element => {
+interface FormBoardProps {
+  formComponents: FormComponent[];
+  setFormComponents: React.Dispatch<React.SetStateAction<FormComponent[]>>;
+}
+
+export const FormBoard = ({
+  formComponents,
+  setFormComponents,
+}: FormBoardProps): React.JSX.Element => {
   const form = [];
   const { t } = useTranslation();
-  const [droppedItems, setDroppedItems] = React.useState<string[]>([]);
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: DraggableItemsType.ToolbarItem,
     drop: (item: ItemProps) => {
-      setDroppedItems((prev) => [...prev, item.text]);
+      setFormComponents((prev) => [...prev, item]);
     },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
@@ -23,8 +31,8 @@ export const FormBoard = (): React.JSX.Element => {
   }));
 
   const handleRemoveItem = (index: number) => {
-    const newItems = droppedItems.filter((_, i) => i !== index);
-    setDroppedItems(newItems);
+    const newItems = formComponents.filter((_, i) => i !== index);
+    setFormComponents(newItems);
   };
 
   return (
@@ -38,15 +46,15 @@ export const FormBoard = (): React.JSX.Element => {
           className={classes.noComponents}
           style={{ backgroundColor: isOver && "lightgreen" }}
         >
-          {droppedItems.length === 0 ? (
+          {formComponents.length === 0 ? (
             <>
               <ComponentIcon className={classes.noComponentsIcon} />
               <Paragraph>{t("form_builder.drag.component.message")}</Paragraph>
             </>
           ) : (
-            droppedItems.map((item, index) => (
+            formComponents.map((item, index) => (
               <div key={index} className={classes.droppedItem}>
-                <div>{item}</div>
+                <FormComponent component={item} />
                 <XMarkIcon
                   title={t("form_builder.form.delete_item")}
                   className={classes.removalItem}
