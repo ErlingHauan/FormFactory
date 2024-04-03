@@ -11,7 +11,8 @@ public interface ISubmissionRepository
     Task<SubmissionEntity?> GetSingle(Guid submissionId);
     Task<List<SubmissionEntity>> GetFormSubmissions(Guid formId);
     Task<SubmissionEntity?> Create(SubmissionEntity entity);
-    Task<SubmissionEntity?> Delete(Guid submussionId);
+    Task<SubmissionEntity?> DeleteSingle(Guid submussionId);
+    Task<List<SubmissionEntity>?> DeleteFormSubmissions(Guid formId);
 }
 
 public class SubmissionRepository : ISubmissionRepository
@@ -55,7 +56,7 @@ public class SubmissionRepository : ISubmissionRepository
         return entity;
     }
 
-    public async Task<SubmissionEntity?> Delete(Guid submissionId)
+    public async Task<SubmissionEntity?> DeleteSingle(Guid submissionId)
     {
         var entity = await _context.Submissions.FindAsync(submissionId);
         if (entity == null)
@@ -67,5 +68,21 @@ public class SubmissionRepository : ISubmissionRepository
         _context.Submissions.Remove(entity);
         await _context.SaveChangesAsync();
         return entity;
+    }
+
+    public async Task<List<SubmissionEntity>?> DeleteFormSubmissions(Guid formId)
+    {
+        var submissionList = await _context.Submissions.Where(submission => formId == submission.FormId).ToListAsync();
+
+        if (submissionList.Count == 0)
+        {
+            Console.WriteLine($"Could not find submissions under form ID {formId}.");
+            return null;
+        }
+
+        _context.Submissions.RemoveRange(submissionList);
+
+        await _context.SaveChangesAsync();
+        return submissionList;
     }
 }

@@ -18,11 +18,12 @@ const ModalContent: React.FC<ModalContentProps> = ({ className }) => {
 
   const deleteForm = async (formId: string) => {
     const apiUrl = getApiUrl();
-    const targetUrl = `${apiUrl}/api/forms/${formId}`;
-    // To do: Add deletion of submissions belonging to this form ID.
+    const deleteFormEndpoint = `${apiUrl}/api/forms/${formId}`;
+    const deleteSubmissionsEndpoint = `${apiUrl}/api/submissions/form/${formId}`;
 
     try {
-      await axios.delete(targetUrl);
+      await axios.delete(deleteFormEndpoint);
+      await axios.delete(deleteSubmissionsEndpoint);
       location.reload();
     } catch (error) {
       console.log(error);
