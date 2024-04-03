@@ -48,7 +48,7 @@ export const FormBoard = (): React.JSX.Element => {
               <div key={index} className={classes.droppedItem}>
                 <div>{item}</div>
                 <XMarkIcon
-                  title="Remove item"
+                  title={t("form_builder.form.delete_item")}
                   className={classes.removalItem}
                   onClick={() => handleRemoveItem(index)}
                 />

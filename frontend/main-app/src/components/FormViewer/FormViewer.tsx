@@ -54,7 +54,7 @@ export const FormViewer = (): React.JSX.Element => {
           ))}
           <div className={classes.buttonContainer}>
             <Button type="submit" size={"large"} fullWidth={false}>
-              Submit form
+              {t("form_viewer.submit")}
               <TasklistSendFillIcon />
             </Button>
           </div>
