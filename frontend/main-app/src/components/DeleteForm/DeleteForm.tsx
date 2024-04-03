@@ -60,7 +60,6 @@ const ModalContent: React.FC<ModalContentProps> = ({ className }) => {
 interface DeleteFormProps {
   children: ReactNode;
   color: string;
-  formTitle: string;
   className?: string;
   size?: string;
   variant?: string;
@@ -69,11 +68,11 @@ interface DeleteFormProps {
 export const DeleteForm: React.FC<DeleteFormProps> = ({
   children,
   color,
-  formTitle,
   className,
   size,
   variant,
 }) => {
+  const formTitle = useContext(FormContext).title;
   return (
     <Modal.Root>
       <Modal.Trigger className={className} variant={variant} size={size} color={color}>

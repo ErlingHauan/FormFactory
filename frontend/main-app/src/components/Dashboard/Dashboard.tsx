@@ -30,7 +30,7 @@ export const Dashboard = (): React.JSX.Element => {
       <div className={classes.formList}>
         {forms.map((form) => (
           <FormContext.Provider value={form} key={form.id}>
-            <DashboardAccordion form={form} />
+            <DashboardAccordion />
           </FormContext.Provider>
         ))}
       </div>
