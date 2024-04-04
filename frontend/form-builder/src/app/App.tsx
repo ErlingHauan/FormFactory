@@ -2,7 +2,7 @@ import React from "react";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./App.module.css";
 import { Toolbar } from "../components/Toolbar";
-import { FormBoard } from "../components/FormBoard";
+import { FormPreview } from "../components/FormPreview";
 import { SettingsSidebar } from "../components/SettingsSidebar";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -15,7 +15,7 @@ export const App = (): React.JSX.Element => {
           <Toolbar />
         </div>
         <div className={classes.builderSection}>
-          <FormBoard />
+          <FormPreview />
         </div>
       </DndProvider>
       <div className={classes.builderSection}>
