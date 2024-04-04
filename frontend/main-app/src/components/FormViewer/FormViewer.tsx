@@ -42,15 +42,13 @@ export const FormViewer = (): React.JSX.Element => {
     return (
       <main className={classes.card}>
         <form onSubmit={handleSubmit}>
-          <Heading level={1} size="xlarge">
+          <Heading level={1} size="xlarge" spacing>
             {formSchema.title}
           </Heading>
           {formSchema.components.map((component) => (
-            <FormComponent
-              key={component.name}
-              component={component}
-              error={formErrors[component.name]}
-            />
+            <span key={component.name} className={classes.component}>
+              <FormComponent component={component} error={formErrors[component.name]} />
+            </span>
           ))}
           <div className={classes.buttonContainer}>
             <Button type="submit" size={"large"} fullWidth={false}>

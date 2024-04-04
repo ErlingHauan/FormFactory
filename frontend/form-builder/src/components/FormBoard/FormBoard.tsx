@@ -5,7 +5,6 @@ import classes from "./FormBoard.module.css";
 import { useTranslation } from "react-i18next";
 import { useDrop } from "react-dnd";
 import { DraggableItemsType } from "../../types/dndTypes";
-import { ItemProps } from "../Toolbar/DraggableItem";
 import { FormComponent } from "../../../../main-app/src/components/FormComponent";
 
 interface FormBoardProps {
@@ -17,12 +16,11 @@ export const FormBoard = ({
   formComponents,
   setFormComponents,
 }: FormBoardProps): React.JSX.Element => {
-  const form = [];
   const { t } = useTranslation();
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: DraggableItemsType.ToolbarItem,
-    drop: (item: ItemProps) => {
+    drop: (item: FormComponent) => {
       setFormComponents((prev) => [...prev, item]);
     },
     collect: (monitor) => ({
@@ -40,31 +38,31 @@ export const FormBoard = ({
       <Heading level={3} size="xxsmall" spacing>
         {t("form_builder.canvas")}
       </Heading>
-      {form.length < 1 && (
-        <div
-          ref={drop}
-          className={classes.noComponents}
-          style={{ backgroundColor: isOver && "lightgreen" }}
-        >
-          {formComponents.length === 0 ? (
-            <>
-              <ComponentIcon className={classes.noComponentsIcon} />
-              <Paragraph>{t("form_builder.drag.component.message")}</Paragraph>
-            </>
-          ) : (
-            formComponents.map((item, index) => (
-              <div key={index} className={classes.droppedItem}>
+      <div
+        ref={drop}
+        className={classes.dropArea}
+        style={{ backgroundColor: isOver && "lightgreen" }}
+      >
+        {formComponents.length === 0 ? (
+          <div className={classes.noComponents}>
+            <ComponentIcon className={classes.noComponentsIcon} />
+            <Paragraph>{t("form_builder.drag.component.message")}</Paragraph>
+          </div>
+        ) : (
+          formComponents.map((item, index) => (
+            <div key={index} className={classes.droppedItem}>
+              <span className={classes.formBoardComponent}>
                 <FormComponent component={item} />
-                <XMarkIcon
-                  title={t("form_builder.form.delete_item")}
-                  className={classes.removalItem}
-                  onClick={() => handleRemoveItem(index)}
-                />
-              </div>
-            ))
-          )}
-        </div>
-      )}
+              </span>
+              <XMarkIcon
+                title={t("form_builder.form.delete_item")}
+                className={classes.removalItem}
+                onClick={() => handleRemoveItem(index)}
+              />
+            </div>
+          ))
+        )}
+      </div>
     </>
   );
 };
