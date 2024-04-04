@@ -3,7 +3,7 @@ import React, { FormEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
-import { cleanFormData, generateValidationSchema, alertToRender } from "./validationUtils";
+import { alertToRender, cleanFormData, generateValidationSchema } from "./validationUtils";
 import { FormComponent } from "../FormComponent";
 import { getFormSchema, postSubmission } from "./httpUtils";
 import { useTranslation } from "react-i18next";

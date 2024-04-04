@@ -41,9 +41,6 @@ export const Header = (): React.JSX.Element => {
           <DropdownMenu.Content>
             <DropdownMenu.Group>
               <DropdownMenu.Item asChild>
-                <a href="/">Home</a>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item asChild>
                 <a href="/dashboard">Dashboard</a>
               </DropdownMenu.Item>
               <DropdownMenu.Item asChild>
@@ -61,9 +58,6 @@ export const Header = (): React.JSX.Element => {
       <HeadingBrand />
       <nav className={classes.nav}>
         <ul>
-          <li>
-            <Link href="/">{t("header_form.factory.home.link")}</Link>
-          </li>
           <li>
             <Link href="/dashboard">Dashboard</Link>
           </li>
