@@ -70,9 +70,9 @@ public class SubmissionsController : ControllerBase
     }
 
     [HttpDelete("form/{formId:guid}")]
-    public async Task<ActionResult<IEnumerable<SubmissionDto>>> DeleteFormSubmissions(Guid formId)
+    public async Task<ActionResult<IEnumerable<SubmissionDto>>> DeleteAllSubmissionsInForm(Guid formId)
     {
-        var entityList = await _submissionRepository.DeleteFormSubmissions(formId);
+        var entityList = await _submissionRepository.DeleteAllSubmissionsInForm(formId);
         if (entityList == null)
         {
             return NotFound();

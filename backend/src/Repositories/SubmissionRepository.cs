@@ -12,7 +12,7 @@ public interface ISubmissionRepository
     Task<List<SubmissionEntity>> GetFormSubmissions(Guid formId);
     Task<SubmissionEntity?> Create(SubmissionEntity entity);
     Task<SubmissionEntity?> DeleteSingle(Guid submussionId);
-    Task<List<SubmissionEntity>?> DeleteFormSubmissions(Guid formId);
+    Task<List<SubmissionEntity>?> DeleteAllSubmissionsInForm(Guid formId);
 }
 
 public class SubmissionRepository : ISubmissionRepository
@@ -70,7 +70,7 @@ public class SubmissionRepository : ISubmissionRepository
         return entity;
     }
 
-    public async Task<List<SubmissionEntity>?> DeleteFormSubmissions(Guid formId)
+    public async Task<List<SubmissionEntity>?> DeleteAllSubmissionsInForm(Guid formId)
     {
         var submissionList = await _context.Submissions.Where(submission => formId == submission.FormId).ToListAsync();
 
