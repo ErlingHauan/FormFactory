@@ -49,7 +49,7 @@
   "signup_page.title": "Sign up",
   "toolbar_tools": "Components",
   "toolbar_tools.save.form.component": "Save form",
-  "toolbar_tools.multiple.choice.component": "radio",
-  "toolbar_tools.text.field.component": "textfield",
+  "toolbar_tools.multiple.choice.component": "Option Selector",
+  "toolbar_tools.text.field.component": "Input field",
   "toolbar_tools.validate.form.component": "Validate form"
 }

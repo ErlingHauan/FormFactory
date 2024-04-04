@@ -14,7 +14,7 @@ export const ToolBarItems = () => {
   const Items: ToolBarItemsProps[] = [
     {
       compProps: {
-        type: t("toolbar_tools.text.field.component"),
+        type: "textfield",
         name: t("toolbar_tools.text.field.component"),
         label: "",
         required: false,
@@ -23,7 +23,7 @@ export const ToolBarItems = () => {
     },
     {
       compProps: {
-        type: t("toolbar_tools.multiple.choice.component"),
+        type: "radio",
         name: t("toolbar_tools.multiple.choice.component"),
         label: "",
       },
