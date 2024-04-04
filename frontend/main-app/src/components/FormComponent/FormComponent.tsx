@@ -17,10 +17,10 @@ export const FormComponent: React.FC<FormComponentsProps> = ({
 
   if (type === "textfield") {
     componentToRender = (
-      <FormTextfield name={name} label={label || type} required={required} error={error} />
+      <FormTextfield name={name} label={label || name} required={required} error={error} />
     );
   } else if (type === "radio") {
-    componentToRender = <FormRadio name={name} label={label || type} radioChoices={radioChoices} />;
+    componentToRender = <FormRadio name={name} label={label || name} radioChoices={radioChoices} />;
   } else {
     componentToRender = <Paragraph>Error reading type from form schema.</Paragraph>;
   }

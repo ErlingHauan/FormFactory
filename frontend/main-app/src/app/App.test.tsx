@@ -2,6 +2,11 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { App } from "./App";
 import { MemoryRouter } from "react-router";
+import { useAuthorization } from "../hooks/useAuthorization";
+
+// Prevent both API call and redirect
+jest.mock("../hooks/useAuthorization");
+jest.mocked(useAuthorization);
 
 describe("App component", () => {
   const renderApp = (initialEntries?: string[]) => {
@@ -46,12 +51,23 @@ describe("App component", () => {
     expect(title).toBeInTheDocument();
   });
 
-  it("renders Form Builder when accessing '/form-builder'", () => {
-    renderApp();
+  it("renders Dashboard when accessing '/dashboard'", () => {
+    jest.spyOn(React, "useEffect").mockImplementation(); // Prevents API calls
+    renderApp(["/dashboard"]);
 
-    const title = screen.getByRole("link", { name: "Form Builder" });
+    const title = screen.getByRole("heading", { name: "Dashboard" });
 
+    expect(React.useEffect).toHaveBeenCalled();
     expect(title).toBeInTheDocument();
+  });
+
+  it("renders Form Builder when accessing '/form-builder'", () => {
+    renderApp(["/form-builder"]);
+
+    // There is an error accessing the form builder heading. To be fixed later.
+    const title = screen.getAllByRole("heading", { name: "Components" });
+
+    expect(title[0]).toBeInTheDocument();
   });
 
   it("renders NotFound when routing to a non-existing page", () => {

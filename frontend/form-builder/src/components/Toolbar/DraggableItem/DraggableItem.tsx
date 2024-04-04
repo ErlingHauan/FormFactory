@@ -28,7 +28,7 @@ export const DraggableItem: React.FC<DraggableItemProps> = ({ item, icon, index 
       }}
     >
       {icon}
-      <div>{item.type}</div>
+      <div>{item.name}</div>
     </div>
   );
 };
