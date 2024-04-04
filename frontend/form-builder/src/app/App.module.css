@@ -29,3 +29,11 @@ body {
   padding: var(--fds-spacing-5);
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .formBuilder {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    width: 100%;
+  }
+}

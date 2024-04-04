@@ -4,3 +4,13 @@
   align-items: center;
   gap: var(--fds-spacing-4);
 }
+
+@media (max-width: 768px) {
+  .toolbar {
+    flex-direction: row;
+    width: 100%;
+  }
+  .toolbarHeader {
+    display: none;
+  }
+}

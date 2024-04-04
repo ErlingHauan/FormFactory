@@ -1,4 +1,4 @@
-.toolbarIcon {
+.toolbarItem {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,4 +8,10 @@
   padding: var(--fds-spacing-2);
   height: 100px;
   width: 100px;
+}
+
+@media (max-width: 768px) {
+  .toolbarItem {
+    width: 100%;
+  }
 }
