@@ -31,7 +31,7 @@ body {
   margin: auto 0;
   height: 100%;
   
-  /* 100vh - header - subheader and margins - footer */
+  /* 100vh, minus header, minus subheader and margins, minus footer */
   /* disables global scrollbar */
   max-height: calc(100vh - var(--fds-sizing-26) - calc(3 * var(--fds-sizing-10)) - calc(2 * var(--fds-spacing-30)));
 }
