@@ -6,8 +6,11 @@ import { FormBoard } from "../components/FormBoard";
 import { SettingsSidebar } from "../components/SettingsSidebar";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { useAuthorization } from "../../../main-app/src/hooks/useAuthorization";
 
 export const App = (): React.JSX.Element => {
+  useAuthorization();
+
   return (
     <div className={classes.formBuilder}>
       <DndProvider backend={HTML5Backend}>

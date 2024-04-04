@@ -1,7 +1,7 @@
 export interface IValidateLoginForm {
   (params: {
     loginForm: LoginForm;
-    setFormErrors: (value: LoginFormError | null) => void;
+    setFieldErrors: (value: LoginFormError | null) => void;
   }): boolean;
 }
 
