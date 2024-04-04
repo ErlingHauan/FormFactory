@@ -13,14 +13,13 @@ body {
   font-feature-settings: "cv05" 1 !important; /* Enable lowercase l with tail */
 }
 
-.headline {
-  align-self: flex-start;
-}
-
-.builderGrid {
+.formBuilder {
+  padding: var(--fds-spacing-10);
+  max-width: 1500px;
   display: grid;
   grid-template-columns: 1fr 6fr 3fr;
-  gap: var(--fds-spacing-4);
+  gap: var(--fds-spacing-2);
+  min-height: 600px;
 }
 
 .builderSection {

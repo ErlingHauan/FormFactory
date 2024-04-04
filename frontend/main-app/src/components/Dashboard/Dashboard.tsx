@@ -26,13 +26,15 @@ export const Dashboard = (): React.JSX.Element => {
   }, []);
 
   return (
-    <main className={classes.dashboard}>
-      <DashboardOverview forms={forms} />
-      <div className={classes.formList}>
-        {forms.map((form) => (
-          <DashboardAccordion key={form.id} form={form} />
-        ))}
+    <div className={classes.dashboardContainer}>
+      <div className={classes.dashboard}>
+        <DashboardOverview forms={forms} />
+        <div className={classes.formList}>
+          {forms.map((form) => (
+            <DashboardAccordion key={form.id} form={form} />
+          ))}
+        </div>
       </div>
-    </main>
+    </div>
   );
 };
