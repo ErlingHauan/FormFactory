@@ -1,5 +1,6 @@
-.settingsSidebar {
+.toolbar {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--fds-spacing-4);
 }
