@@ -20,6 +20,9 @@ export const SubHeader: React.FC = () => {
       case pathname.startsWith("/login") || pathname === "/":
         setHeading(t("login_page.title"));
         break;
+      case pathname.startsWith("/signup"):
+        setHeading(t("signup_page.title"));
+        break;
       case pathname.startsWith("/dashboard"):
         setHeading(t("dashboard"));
         break;
