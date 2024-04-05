@@ -3,7 +3,9 @@ import classes from "./SubHeader.module.css";
 import { Heading, Link } from "@digdir/design-system-react";
 import {
   ClipboardCheckmarkFillIcon,
+  FilePlusFillIcon,
   FloppydiskFillIcon,
+  PersonCircleFillIcon,
   TasklistSendFillIcon,
 } from "@navikt/aksel-icons";
 import { t } from "i18next";
@@ -25,6 +27,7 @@ export const SubHeader: React.FC = () => {
         break;
       case pathname.startsWith("/dashboard"):
         setHeading(t("dashboard"));
+        setLinks(dashboardLinks());
         break;
       case pathname.startsWith("/form-builder"):
         setHeading(t("form_builder"));
@@ -46,6 +49,21 @@ export const SubHeader: React.FC = () => {
       </Heading>
       <div className={classes.subHeaderLinks}>{links}</div>
     </div>
+  );
+};
+
+const dashboardLinks = () => {
+  return (
+    <>
+      <Link>
+        Logged in as user1@example.com
+        <PersonCircleFillIcon className={classes.subHeaderIcon} />
+      </Link>
+      <Link href="/form-builder">
+        {t("dashboard.new.form")}
+        <FilePlusFillIcon className={classes.subHeaderIcon} />
+      </Link>
+    </>
   );
 };
 

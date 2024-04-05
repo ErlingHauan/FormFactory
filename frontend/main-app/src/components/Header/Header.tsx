@@ -27,45 +27,52 @@ export const Header = (): React.JSX.Element => {
     </Link>
   );
 
+  const Navigation = (): React.JSX.Element => {
+    if (isSmallScreen) {
+      return (
+        <>
+          <DropdownMenu size="small">
+            <DropdownMenu.Trigger variant="tertiary" icon="true">
+              <MenuHamburgerIcon className={classes.headerIcon} />
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content>
+              <DropdownMenu.Group>
+                <DropdownMenu.Item asChild>
+                  <a href="/dashboard">Dashboard</a>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item asChild>
+                  <a href="/form-builder">Form Builder</a>
+                </DropdownMenu.Item>
+              </DropdownMenu.Group>
+            </DropdownMenu.Content>
+          </DropdownMenu>
+        </>
+      );
+    }
+
+    if (!isSmallScreen) {
+      return (
+        <nav className={classes.nav}>
+          <ul>
+            <li>
+              <Link href="/dashboard">Dashboard</Link>
+            </li>
+            <li>
+              <Link href="/form-builder">{t("header_form.factory.form.builder.link")}</Link>
+            </li>
+          </ul>
+        </nav>
+      );
+    }
+  };
+
   const isFormViewer = window.location.pathname.startsWith("/view");
   if (isFormViewer) return;
-
-  if (isSmallScreen) {
-    return (
-      <div className={classes.header}>
-        <HeadingBrand />
-        <DropdownMenu size="small">
-          <DropdownMenu.Trigger variant="tertiary" icon="true">
-            <MenuHamburgerIcon className={classes.headerIcon} />
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Content>
-            <DropdownMenu.Group>
-              <DropdownMenu.Item asChild>
-                <a href="/dashboard">Dashboard</a>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item asChild>
-                <a href="/form-builder">Form Builder</a>
-              </DropdownMenu.Item>
-            </DropdownMenu.Group>
-          </DropdownMenu.Content>
-        </DropdownMenu>
-      </div>
-    );
-  }
 
   return (
     <div className={classes.header}>
       <HeadingBrand />
-      <nav className={classes.nav}>
-        <ul>
-          <li>
-            <Link href="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link href="/form-builder">{t("header_form.factory.form.builder.link")}</Link>
-          </li>
-        </ul>
-      </nav>
+      <Navigation />
     </div>
   );
 };
