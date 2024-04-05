@@ -14,10 +14,12 @@ export const Dashboard = (): React.JSX.Element => {
   useEffect(() => {
     (async function getAllForms() {
       const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/forms`;
+      const targetUrl = `${apiUrl}/api/forms/user`;
 
       try {
-        const result = await axios.get(targetUrl);
+        const result = await axios.get(targetUrl, {
+          withCredentials: true,
+        });
         setForms(result.data);
       } catch (error) {
         console.error(error);
