@@ -2,6 +2,7 @@ using FormAPI.Controllers;
 using FormAPI.Mappers;
 using FormAPI.Models;
 using FormAPI.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
@@ -79,6 +80,15 @@ public class UsersControllerTests
         var newUserDto = new UserDto(1, "user1@example.com", "password1", "Org1");
         _mockRepo.Setup(repo => repo.Create(It.IsAny<UserEntity>())).ReturnsAsync((UserEntity e) => e);
 
+        var httpContext = new DefaultHttpContext();
+        var sessionMock = new Mock<ISession>();
+        httpContext.Session = sessionMock.Object;
+
+        _controller.ControllerContext = new ControllerContext
+        {
+            HttpContext = httpContext
+        };
+
         // Act
         var result = await _controller.Create(newUserDto);
 
@@ -112,6 +122,15 @@ public class UsersControllerTests
         var entity = new UserEntity();
         UserMappers.DtoToEntity(dto, entity);
         _mockRepo.Setup(repo => repo.ConfirmEmailAndPassword(It.IsAny<UserEntity>())).ReturnsAsync(entity);
+
+        var httpContext = new DefaultHttpContext();
+        var sessionMock = new Mock<ISession>();
+        httpContext.Session = sessionMock.Object;
+
+        _controller.ControllerContext = new ControllerContext
+        {
+            HttpContext = httpContext
+        };
 
         // Act
         var result = await _controller.Login(dto);

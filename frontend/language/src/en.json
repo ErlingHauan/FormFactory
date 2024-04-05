@@ -18,9 +18,11 @@
   "form_builder.preview": "Preview",
   "form_builder.drag.component.message": "Drag components here",
   "form_builder.form": "Form",
+  "form_builder.form.delete_item": "Remove item",
   "form_builder.save": "Save",
   "form_builder.publish": "Publish",
   "form_viewer.serverError": "You submitted the form correctly, but the server could not process the form. Please contact us at GitHub.",
+  "form_viewer.submit": "Submit",
   "form_viewer.success": "The form was sent successfully. You can safely close the window.",
   "form_viewer.validationError": "There was an error validating the form. Please see the error messages above.",
   "header_form.factory.form.builder.link": "Form Builder",
@@ -48,8 +50,8 @@
   "signup_page.signup.button": "Sign up",
   "signup_page.title": "Sign up",
   "toolbar_tools": "Components",
-  "toolbar_tools.multiple.choice.component": "Option selector",
   "toolbar_tools.save.form.component": "Save form",
+  "toolbar_tools.multiple.choice.component": "Option Selector",
   "toolbar_tools.text.field.component": "Input field",
   "toolbar_tools.validate.form.component": "Validate form"
 }

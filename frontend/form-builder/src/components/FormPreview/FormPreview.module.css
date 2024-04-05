@@ -1,40 +1,62 @@
+.dropArea,
+.noComponents {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-spacing-4);
+}
+
 .previewHeading {
   margin-bottom: var(--fds-spacing-4);
 }
 
 .dropArea {
   /* Center the 'drag components here' text in both axis */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 90%;
-  overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--fds-semantic-surface-neutral-inverted) transparent;
+  margin-bottom: var(--fds-spacing-4);
 }
 
-.noComponentsIcon {
+.noComponents {
+  justify-content: center;
+  align-items: center;
   font-size: 3rem;
-  margin-bottom: var(--fds-spacing-4);
+  height: 80%;
+}
+
+.formBoardComponent {
+  width: 100%;
 }
 
 .droppedItem {
   display: flex;
-  gap: var(--fds-spacing-4);
-  margin-bottom: var(--fds-spacing-4);
   align-items: center;
-  font-size: 1.3rem;
-  transition: 0.5s;
+  padding: 0;
+  width: 80%;
+  justify-content: center;
+  text-align: start;
+  margin: 0 auto;
+  gap: var(--fds-spacing-4);
+  transition: 0.3s;
+}
+
+.droppedItem svg {
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+.droppedItem:hover,
+.removalItem:hover {
+  cursor: pointer;
 }
 
 .droppedItem:hover {
-  cursor: pointer;
-  transform: scale(1.05);
+  transform: scale(1.02);
+  transition: 0.5s;
 }
 
 .removalItem:hover {
-  cursor: pointer;
   color: var(--fds-semantic-surface-danger-hover);
 }

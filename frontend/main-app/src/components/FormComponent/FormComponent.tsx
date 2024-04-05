@@ -1,4 +1,3 @@
-import classes from "./FormComponent.module.css";
 import { FormTextfield } from "../FormTextfield";
 import { FormRadio } from "../FormRadio";
 import React from "react";
@@ -6,7 +5,7 @@ import { Paragraph } from "@digdir/design-system-react";
 
 interface FormComponentsProps {
   component: FormComponent;
-  error: string[];
+  error?: string[];
 }
 
 export const FormComponent: React.FC<FormComponentsProps> = ({
@@ -18,17 +17,13 @@ export const FormComponent: React.FC<FormComponentsProps> = ({
 
   if (type === "textfield") {
     componentToRender = (
-      <FormTextfield name={name} label={label} required={required} error={error} />
+      <FormTextfield name={name} label={label || name} required={required} error={error} />
     );
   } else if (type === "radio") {
-    componentToRender = <FormRadio name={name} label={label} radioChoices={radioChoices} />;
+    componentToRender = <FormRadio name={name} label={label || name} radioChoices={radioChoices} />;
   } else {
     componentToRender = <Paragraph>Error reading type from form schema.</Paragraph>;
   }
 
-  return (
-    <div key={name} className={classes.component}>
-      {componentToRender}
-    </div>
-  );
+  return <div key={name}>{componentToRender}</div>;
 };

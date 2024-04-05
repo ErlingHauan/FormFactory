@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./App.module.css";
 import { Toolbar } from "../components/Toolbar";
@@ -9,6 +9,7 @@ import { useAuthorization } from "../../../main-app/src/hooks/useAuthorization";
 import { CompSettings } from "../components/CompSettings";
 
 export const App = (): React.JSX.Element => {
+  const [formComponents, setFormComponents] = useState<FormComponent[]>([]);
   useAuthorization();
   const settingsRef = useRef<HTMLDialogElement>(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
@@ -29,7 +30,11 @@ export const App = (): React.JSX.Element => {
           <Toolbar />
         </div>
         <div className={classes.builderSection}>
-          <FormPreview settingsRef={settingsRef} />
+          <FormPreview
+            settingsRef={settingsRef}
+            formComponents={formComponents}
+            setFormComponents={setFormComponents}
+          />
         </div>
       </DndProvider>
       <div className={isSmallScreen ? classes.builderModal : classes.builderSection}>

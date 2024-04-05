@@ -3,18 +3,13 @@ import { useDrag } from "react-dnd";
 import { DraggableItemsType } from "../../../types/dndTypes";
 import classes from "./DraggableItem.module.css";
 
-export interface ItemProps {
-  icon: React.ReactNode;
-  text: string;
-  draggable: boolean;
-}
-
 interface DraggableItemProps {
-  item: ItemProps;
+  item: FormComponent;
+  icon: React.ReactNode;
   index: number;
 }
 
-export const DraggableItem: React.FC<DraggableItemProps> = ({ item, index }) => {
+export const DraggableItem: React.FC<DraggableItemProps> = ({ item, icon, index }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: DraggableItemsType.ToolbarItem,
     item: { ...item, index },
@@ -32,8 +27,8 @@ export const DraggableItem: React.FC<DraggableItemProps> = ({ item, index }) => 
         cursor: "move",
       }}
     >
-      <div className={classes.toolbarIcon}>{item.icon}</div>
-      <div>{item.text}</div>
+      <div className={classes.toolbarIcon}>{icon}</div>
+      <div>{item.name}</div>
     </div>
   );
 };
