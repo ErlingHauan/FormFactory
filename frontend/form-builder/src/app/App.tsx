@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./App.module.css";
 import { Toolbar } from "../components/Toolbar";
-import { FormBoard } from "../components/FormBoard";
+import { FormPreview } from "../components/FormPreview";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useAuthorization } from "../../../main-app/src/hooks/useAuthorization";
@@ -29,7 +29,7 @@ export const App = (): React.JSX.Element => {
           <Toolbar />
         </div>
         <div className={classes.builderSection}>
-          <FormBoard settingsRef={settingsRef} />
+          <FormPreview settingsRef={settingsRef} />
         </div>
       </DndProvider>
       <div className={isSmallScreen ? classes.builderModal : classes.builderSection}>

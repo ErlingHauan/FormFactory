@@ -1,10 +1,18 @@
-.noComponents {
+.previewHeading {
+  margin-bottom: var(--fds-spacing-4);
+}
+
+.dropArea {
   /* Center the 'drag components here' text in both axis */
-  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--fds-semantic-surface-neutral-inverted) transparent;
 }
 
 .noComponentsIcon {
