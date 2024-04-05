@@ -47,6 +47,7 @@ public class FormsController : ControllerBase
 
         if (string.IsNullOrEmpty(email))
         {
+            Console.WriteLine("GetAllFormsByUser: Email was null or empty");
             dtoList = [];
         }
         else
