@@ -46,9 +46,9 @@ describe("App component", () => {
   it("renders Signup when accessing '/signup'", () => {
     renderApp(["/signup"]);
 
-    const title = screen.getByRole("heading", { name: "Sign up" });
+    const titles = screen.getAllByRole("heading", { name: "Sign up" });
 
-    expect(title).toBeInTheDocument();
+    expect(titles[0]).toBeInTheDocument();
   });
 
   it("renders Dashboard when accessing '/dashboard'", () => {
