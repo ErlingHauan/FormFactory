@@ -19,7 +19,7 @@ export const ToolBarItems = () => {
         label: "",
         required: false,
       },
-      icon: <MenuHamburgerIcon fontSize="3rem" />,
+      icon: <MenuHamburgerIcon />,
     },
     {
       compProps: {
@@ -27,7 +27,7 @@ export const ToolBarItems = () => {
         name: t("toolbar_tools.multiple.choice.component"),
         label: "",
       },
-      icon: <BulletListIcon fontSize="3rem" />,
+      icon: <BulletListIcon />,
     },
   ];
 
