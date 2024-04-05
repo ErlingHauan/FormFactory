@@ -20,6 +20,7 @@
 }
 
 .nav {
+  display: flex;
 
   ul {
     list-style: none;
@@ -28,8 +29,6 @@
   }
 
   a {
-    padding-top: var(--fds-spacing-1);
-    padding-bottom: var(--fds-spacing-1);
     font-size: large;
     color: inherit !important;
     text-decoration: none;

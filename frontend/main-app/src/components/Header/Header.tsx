@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { Heading, Link } from "@digdir/design-system-react";
-import { ClipboardCheckmarkFillIcon, MenuHamburgerIcon } from "@navikt/aksel-icons";
+import {
+  ClipboardCheckmarkFillIcon,
+  MenuHamburgerIcon,
+  // PersonCircleFillIcon,
+} from "@navikt/aksel-icons";
 import classes from "./Header.module.css";
 import { DropdownMenu } from "@digdir/design-system-react";
 import { useTranslation } from "react-i18next";
@@ -60,6 +64,7 @@ export const Header = (): React.JSX.Element => {
             <li>
               <Link href="/form-builder">{t("header_form.factory.form.builder.link")}</Link>
             </li>
+            {/*<UserDropDown />*/}
           </ul>
         </nav>
       );
@@ -76,3 +81,23 @@ export const Header = (): React.JSX.Element => {
     </div>
   );
 };
+
+// const UserDropDown = (): React.JSX.Element => {
+//   return (
+//     <DropdownMenu size="small">
+//       <DropdownMenu.Trigger variant="tertiary" icon="true">
+//         <PersonCircleFillIcon className={classes.headerIcon} />
+//       </DropdownMenu.Trigger>
+//       <DropdownMenu.Content>
+//         <DropdownMenu.Group>
+//           <DropdownMenu.Item asChild>
+//             <Paragraph>Logged in as user1@example.com</Paragraph>
+//           </DropdownMenu.Item>
+//           <DropdownMenu.Item asChild>
+//             <Link>Log out</Link>
+//           </DropdownMenu.Item>
+//         </DropdownMenu.Group>
+//       </DropdownMenu.Content>
+//     </DropdownMenu>
+//   );
+// };
