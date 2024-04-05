@@ -39,6 +39,26 @@ public class FormsController : ControllerBase
         return Ok(dto);
     }
 
+    [HttpGet("user")]
+    public async Task<ActionResult<IEnumerable<FormDto>>> GetAllFormsByUser()
+    {
+        var email = HttpContext.Session.GetString("authorizedUser");
+        List<FormDto> dtoList;
+
+        if (string.IsNullOrEmpty(email))
+        {
+            Console.WriteLine("GetAllFormsByUser: Email was null or empty");
+            dtoList = [];
+        }
+        else
+        {
+            var entityList = await _formRepository.GetAllFormsByUser(email);
+            dtoList = entityList.Select(FormMappers.ToDto).ToList();
+        }
+
+        return Ok(dtoList);
+    }
+
     [HttpPost]
     public async Task<ActionResult<FormDto>> Create([FromBody] FormDto formData)
     {

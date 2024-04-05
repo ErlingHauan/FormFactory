@@ -1,6 +1,7 @@
 using FormAPI.Controllers;
 using FormAPI.Models;
 using FormAPI.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
@@ -24,7 +25,8 @@ public class FormsControllerTests
         // Arrange
         var mockComponents = new List<FormComponent>
         {
-            new FormComponent { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
+            new FormComponent
+                { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
             new FormComponent
             {
                 Name = "question2", Label = "Question 2", Required = false, Order = 1, Type = "radio",
@@ -101,7 +103,8 @@ public class FormsControllerTests
         // Arrange
         var mockComponents = new List<FormComponent>
         {
-            new FormComponent { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
+            new FormComponent
+                { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
             new FormComponent
             {
                 Name = "question2", Label = "Question 2", Required = false, Order = 1, Type = "radio",
@@ -136,7 +139,8 @@ public class FormsControllerTests
         // Arrange 
         var mockComponents = new List<FormComponent>
         {
-            new FormComponent { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
+            new FormComponent
+                { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
             new FormComponent
             {
                 Name = "question2", Label = "Question 2", Required = false, Order = 1, Type = "radio",
