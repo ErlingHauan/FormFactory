@@ -11,7 +11,6 @@ export const CompSettingsModal = ({
   settingsRef,
   SettingsContent,
 }: SettingsSidebarProps): React.JSX.Element => {
-  console.log(settingsRef);
   return (
     <Modal ref={settingsRef} className={classes.modalWindow}>
       <Modal.Header className={classes.modalHeader}>Settings</Modal.Header>
