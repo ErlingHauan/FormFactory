@@ -1,9 +1,0 @@
-.settingsHeading {
-  margin-bottom: var(--fds-spacing-4);
-}
-
-.settingsContent {
-  display: flex;
-  flex-direction: column;
-  gap: var(--fds-spacing-4);
-}

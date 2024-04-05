@@ -8,12 +8,12 @@ export const ToolBarItems = () => {
 
   const Items = [
     {
-      icon: <MenuHamburgerIcon fontSize="3rem" />,
+      icon: <MenuHamburgerIcon />,
       text: t("toolbar_tools.text.field.component"),
       draggable: true,
     },
     {
-      icon: <BulletListIcon fontSize="3rem" />,
+      icon: <BulletListIcon />,
       text: t("toolbar_tools.multiple.choice.component"),
       draggable: true,
     },

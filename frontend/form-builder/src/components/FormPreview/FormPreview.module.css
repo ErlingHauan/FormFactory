@@ -26,6 +26,12 @@
   margin-bottom: var(--fds-spacing-4);
   align-items: center;
   font-size: 1.3rem;
+  transition: 0.5s;
+}
+
+.droppedItem:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .removalItem:hover {

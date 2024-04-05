@@ -7,7 +7,11 @@ import { useDrop } from "react-dnd";
 import { DraggableItemsType } from "../../types/dndTypes";
 import { ItemProps } from "../Toolbar/DraggableItem";
 
-export const FormPreview = (): React.JSX.Element => {
+interface FormPreviewProps {
+  settingsRef: React.RefObject<HTMLDialogElement>;
+}
+
+export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Element => {
   const { t } = useTranslation();
   const [droppedItems, setDroppedItems] = React.useState<string[]>([]);
 
@@ -43,7 +47,11 @@ export const FormPreview = (): React.JSX.Element => {
           </>
         ) : (
           droppedItems.map((item, index) => (
-            <div key={index} className={classes.droppedItem}>
+            <div
+              key={index}
+              className={classes.droppedItem}
+              onClick={() => settingsRef.current?.showModal()}
+            >
               <div>{item}</div>
               <XMarkIcon
                 title="Remove item"
