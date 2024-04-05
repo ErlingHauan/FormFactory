@@ -28,6 +28,5 @@
 @media screen and (max-width: 600px) {
   .header {
     padding: var(--fds-spacing-4);
-    padding-right: var(--fds-spacing-2);
   }
 }

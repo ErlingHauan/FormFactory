@@ -33,9 +33,9 @@ export const UserDropdown = (): React.JSX.Element => {
         <PersonIcon className={classes.userIcon} />
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
-        <DropdownMenu.Group heading="Logged in as user1@example.com">
+        <DropdownMenu.Group>
           <DropdownMenu.Item asChild>
-            <Link onClick={logOutUser}>Log out</Link>
+            <Link onClick={logOutUser}>Log out user1@example.com</Link>
           </DropdownMenu.Item>
         </DropdownMenu.Group>
       </DropdownMenu.Content>
