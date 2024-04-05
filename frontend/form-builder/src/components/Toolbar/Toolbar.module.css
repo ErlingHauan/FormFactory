@@ -9,6 +9,9 @@
   .toolbar {
     flex-direction: row;
     width: 100%;
+    gap: 0;
+    padding: 0;
+    border-radius: 0;
   }
   .toolbarHeader {
     display: none;

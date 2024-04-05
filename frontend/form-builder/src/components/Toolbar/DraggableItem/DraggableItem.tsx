@@ -32,7 +32,7 @@ export const DraggableItem: React.FC<DraggableItemProps> = ({ item, index }) => 
         cursor: "move",
       }}
     >
-      {item.icon}
+      <div className={classes.toolbarIcon}>{item.icon}</div>
       <div>{item.text}</div>
     </div>
   );

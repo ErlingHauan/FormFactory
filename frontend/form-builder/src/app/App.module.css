@@ -35,5 +35,10 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
     width: 100%;
+    padding: var(--fds-spacing-4);
+  }
+
+  .builderSection:first-child {
+    padding: 0;
   }
 }
