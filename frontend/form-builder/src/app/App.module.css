@@ -14,12 +14,12 @@ body {
 }
 
 .formBuilder {
+  margin: auto 0;
   padding: var(--fds-spacing-10);
   max-width: 1500px;
   display: grid;
   grid-template-columns: 1fr 6fr 3fr;
   gap: var(--fds-spacing-2);
-  height: 100%;
 }
 
 .builderSection {
@@ -30,12 +30,10 @@ body {
   text-align: center;
   margin: auto 0;
   height: 100%;
+}
 
-  /* 100vh, minus header, minus subheader and margins, minus footer */
-  /* disables global scrollbar */
-  max-height: calc(
-    100vh - var(--fds-sizing-26) - calc(3 * var(--fds-sizing-10)) - calc(2 * var(--fds-spacing-30))
-  );
+.builderSection:nth-child(2) {
+  height: 600px;
 }
 
 @media (max-width: 768px) {
@@ -43,11 +41,16 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
     width: 100%;
-    padding: var(--fds-spacing-4);
   }
 
   .builderSection:first-child {
     padding: 0;
     border: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .formBuilder {
+    padding: var(--fds-spacing-2);
   }
 }
