@@ -2,11 +2,11 @@
 
 .header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: var(--fds-sizing-26);
   padding: 0 var(--fds-spacing-12);
   border-bottom: 1px solid var(--fds-semantic-border-neutral-subtle);
-  justify-content: space-between;
 }
 
 .headerIcon {
@@ -14,31 +14,9 @@
   color: var(--fds-semantic-text-neutral-default);
 }
 
-.headerLink {
+.brandLink {
   color: inherit !important;
   text-decoration: none;
-}
-
-.nav {
-  display: flex;
-
-  ul {
-    list-style: none;
-    display: flex;
-    gap: var(--fds-spacing-10);
-  }
-
-  a {
-    font-size: large;
-    color: inherit !important;
-    text-decoration: none;
-    transition: box-shadow 0.2s;
-  }
-
-  a:hover {
-    box-shadow: 0 2px var(--fds-semantic-border-action-subtle);
-    transition: box-shadow 0.1s;
-  }
 }
 
 @media screen and (max-width: 1000px) {

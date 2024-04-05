@@ -5,7 +5,6 @@ import {
   ClipboardCheckmarkFillIcon,
   FilePlusFillIcon,
   FloppydiskFillIcon,
-  PersonCircleFillIcon,
   TasklistSendFillIcon,
 } from "@navikt/aksel-icons";
 import { t } from "i18next";
@@ -55,10 +54,6 @@ export const SubHeader: React.FC = () => {
 const dashboardLinks = () => {
   return (
     <>
-      <Link>
-        Logged in as user1@example.com
-        <PersonCircleFillIcon className={classes.subHeaderIcon} />
-      </Link>
       <Link href="/form-builder">
         {t("dashboard.new.form")}
         <FilePlusFillIcon className={classes.subHeaderIcon} />

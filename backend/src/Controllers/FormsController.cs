@@ -43,11 +43,11 @@ public class FormsController : ControllerBase
     public async Task<ActionResult<IEnumerable<FormDto>>> GetAllFormsByUser()
     {
         var email = HttpContext.Session.GetString("authorizedUser");
+        Console.WriteLine($"Getting forms belonging to user: {email}");
         List<FormDto> dtoList;
 
         if (string.IsNullOrEmpty(email))
         {
-            Console.WriteLine("GetAllFormsByUser: Email was null or empty");
             dtoList = [];
         }
         else

@@ -103,6 +103,9 @@ public class UsersController : ControllerBase
     [HttpPost("logout")]
     public ActionResult Logout()
     {
+        var email = HttpContext.Session.GetString("authorizedUser");
+        Console.WriteLine($"Signing out user: {email}");
+        
         HttpContext.Session.Remove("authorizedUser");
 
         if (HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Session"))
