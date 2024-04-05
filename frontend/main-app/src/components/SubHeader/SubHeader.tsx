@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./SubHeader.module.css";
 import { Heading, Link } from "@digdir/design-system-react";
 import {
@@ -7,50 +7,41 @@ import {
   TasklistSendFillIcon,
 } from "@navikt/aksel-icons";
 import { t } from "i18next";
+import { useLocation } from "react-router-dom";
 
 export const SubHeader: React.FC = () => {
-  const pathname = window.location.pathname;
+  const [heading, setHeading] = useState<string | React.JSX.Element>("");
+  const [links, setLinks] = useState<React.JSX.Element>(null);
 
-  const isLogin = pathname.startsWith("/login") || pathname === "/";
-  const isFormBuilder = pathname.startsWith("/form-builder");
-  const isDashboard = pathname.startsWith("/dashboard");
-  const isFormViewer = pathname.startsWith("/view");
+  const pathname = useLocation().pathname;
 
-  const heading = () => {
-    let title;
-
+  useEffect(() => {
     switch (true) {
-      case isLogin:
-        title = t("login_page.title");
+      case pathname.startsWith("/login") || pathname === "/":
+        setHeading(t("login_page.title"));
         break;
-      case isFormBuilder:
-        title = t("form_builder");
+      case pathname.startsWith("/dashboard"):
+        setHeading(t("dashboard"));
         break;
-      case isDashboard:
-        title = t("dashboard");
+      case pathname.startsWith("/form-builder"):
+        setHeading(t("form_builder"));
+        setLinks(formBuilderLinks());
         break;
-      case isFormViewer:
-        title = formViewerHeading();
+      case pathname.startsWith("/view"):
+        setHeading(formViewerHeading());
         break;
       default:
-        title = t("not_found.title.page");
+        setHeading(t("not_found.title.page"));
+        break;
     }
-
-    return title;
-  };
-
-  const links = () => {
-    if (isFormBuilder) return formBuilderLinks();
-
-    return;
-  };
+  }, [pathname]);
 
   return (
     <div className={classes.subHeader}>
       <Heading className={classes.subHeaderHeading} level={2} size="xxsmall">
-        {heading()}
+        {heading}
       </Heading>
-      <div className={classes.subHeaderLinks}>{links()}</div>
+      <div className={classes.subHeaderLinks}>{links}</div>
     </div>
   );
 };
