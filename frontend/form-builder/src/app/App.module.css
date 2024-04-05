@@ -19,7 +19,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 6fr 3fr;
   gap: var(--fds-spacing-2);
-  height: 100%;
+  /* height: 100%; */
 }
 
 .builderSection {
@@ -33,7 +33,7 @@ body {
 }
 
 .builderSection:nth-child(2) {
-  min-height: 500px;
+  height: 500px;
 }
 
 @media (max-width: 768px) {
