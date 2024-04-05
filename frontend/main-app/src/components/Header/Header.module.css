@@ -44,7 +44,14 @@
 
 @media screen and (max-width: 1000px) {
   .header {
-    padding: 0 var(--padding-small-frame);
+    padding-right: var(--fds-spacing-10);
     justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    padding: var(--fds-spacing-4);
+    padding-right: var(--fds-spacing-2);
   }
 }
