@@ -34,7 +34,7 @@ export const FormPreview = ({
     const newItems = formComponents.filter((_, i) => i !== index);
     setFormComponents(newItems);
   };
-
+  console.log("test");
   return (
     <>
       <Heading level={3} size="xxsmall" className={classes.previewHeading}>
