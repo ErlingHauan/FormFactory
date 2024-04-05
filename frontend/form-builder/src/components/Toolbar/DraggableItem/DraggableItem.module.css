@@ -18,9 +18,17 @@
 @media (max-width: 768px) {
   .toolbarItem {
     width: 100%;
-    border-radius: 0;
     flex-direction: row;
     gap: var(--fds-spacing-2);
+  }
+
+  .toolbarItem:first-of-type {
+    border-radius: var(--fds-border_radius-medium) 0 0 var(--fds-border_radius-medium);
+    border-right: none;
+  }
+
+  .toolbarItem:last-of-type {
+    border-radius: 0 var(--fds-border_radius-medium) var(--fds-border_radius-medium) 0;
   }
 
   .toolbarIcon {
