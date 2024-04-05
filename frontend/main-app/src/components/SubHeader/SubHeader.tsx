@@ -17,12 +17,26 @@ export const SubHeader: React.FC = () => {
   const isFormViewer = pathname.startsWith("/view");
 
   const heading = () => {
-    if (isLogin) return t("login_page.title");
-    if (isFormBuilder) return t("form_builder");
-    if (isDashboard) return t("dashboard");
-    if (isFormViewer) return formViewerHeading();
+    let title;
 
-    return;
+    switch (true) {
+      case isLogin:
+        title = t("login_page.title");
+        break;
+      case isFormBuilder:
+        title = t("form_builder");
+        break;
+      case isDashboard:
+        title = t("dashboard");
+        break;
+      case isFormViewer:
+        title = formViewerHeading();
+        break;
+      default:
+        title = t("not_found.title.page");
+    }
+
+    return title;
   };
 
   const links = () => {
