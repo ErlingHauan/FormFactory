@@ -48,5 +48,6 @@ body {
 
   .builderSection:first-child {
     padding: 0;
+    border: none;
   }
 }
