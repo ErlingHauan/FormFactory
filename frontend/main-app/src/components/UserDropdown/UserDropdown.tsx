@@ -4,7 +4,7 @@ import { PersonIcon } from "@navikt/aksel-icons";
 import classes from "./UserDropdown.module.css";
 import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const UserDropdown = (): React.JSX.Element => {
   const navigate = useNavigate();
@@ -26,6 +26,11 @@ export const UserDropdown = (): React.JSX.Element => {
       console.error(error);
     }
   };
+
+  const pathname = useLocation().pathname;
+  const isLogin = pathname.startsWith("/login") || pathname === "/";
+  const isSignup = pathname.startsWith("/signup");
+  if (isLogin || isSignup) return;
 
   return (
     <DropdownMenu size="small">
