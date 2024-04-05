@@ -1,0 +1,1 @@
+export { CompSettings } from "./CompSettings";

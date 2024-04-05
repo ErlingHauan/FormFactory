@@ -1,21 +1,23 @@
-import React from "react";
 import { Heading, Paragraph } from "@digdir/design-system-react";
+import React from "react";
 import { ComponentIcon, XMarkIcon } from "@navikt/aksel-icons";
-import classes from "./FormBoard.module.css";
+import classes from "./FormPreview.module.css";
 import { useTranslation } from "react-i18next";
 import { useDrop } from "react-dnd";
 import { DraggableItemsType } from "../../types/dndTypes";
 import { FormComponent } from "../../../../main-app/src/components/FormComponent";
 
-interface FormBoardProps {
+interface FormPreviewProps {
+  settingsRef: React.RefObject<HTMLDialogElement>;
   formComponents: FormComponent[];
   setFormComponents: React.Dispatch<React.SetStateAction<FormComponent[]>>;
 }
 
-export const FormBoard = ({
+export const FormPreview = ({
+  settingsRef,
   formComponents,
   setFormComponents,
-}: FormBoardProps): React.JSX.Element => {
+}: FormPreviewProps): React.JSX.Element => {
   const { t } = useTranslation();
 
   const [{ isOver }, drop] = useDrop(() => ({
@@ -35,8 +37,8 @@ export const FormBoard = ({
 
   return (
     <>
-      <Heading level={3} size="xxsmall" spacing>
-        {t("form_builder.canvas")}
+      <Heading level={3} size="xxsmall" className={classes.previewHeading}>
+        {t("form_builder.preview")}
       </Heading>
       <div
         ref={drop}
@@ -50,7 +52,11 @@ export const FormBoard = ({
           </div>
         ) : (
           formComponents.map((item, index) => (
-            <div key={index} className={classes.droppedItem}>
+            <div
+              key={index}
+              className={classes.droppedItem}
+              onClick={() => settingsRef.current?.showModal()}
+            >
               <span className={classes.formBoardComponent}>
                 <FormComponent component={item} />
               </span>

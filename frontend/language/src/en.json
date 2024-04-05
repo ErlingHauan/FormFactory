@@ -15,7 +15,7 @@
   "footer_form.factory.designsystem.link": "Components and colors by Designsystemet",
   "footer_form.factory.gitHub.link": "Form Factory on GitHub",
   "form_builder": "Form Builder",
-  "form_builder.canvas": "Canvas",
+  "form_builder.preview": "Preview",
   "form_builder.drag.component.message": "Drag components here",
   "form_builder.form": "Form",
   "form_builder.form.delete_item": "Remove item",

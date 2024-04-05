@@ -21,13 +21,13 @@ export const DraggableItem: React.FC<DraggableItemProps> = ({ item, icon, index 
   return (
     <div
       ref={drag}
-      className={classes.toolbarIcon}
+      className={classes.toolbarItem}
       style={{
         opacity: isDragging ? 0.5 : 1,
         cursor: "move",
       }}
     >
-      {icon}
+      <div className={classes.toolbarIcon}>{icon}</div>
       <div>{item.name}</div>
     </div>
   );
