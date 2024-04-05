@@ -31,6 +31,7 @@ body {
   margin: auto 0;
   height: 100%;
 
+  min-height: 500px;
   /* 100vh, minus header, minus subheader and margins, minus footer */
   /* disables global scrollbar */
   max-height: calc(
