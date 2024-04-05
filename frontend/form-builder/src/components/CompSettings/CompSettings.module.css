@@ -1,3 +1,7 @@
+.settingsHeading {
+  margin-bottom: var(--fds-spacing-4);
+}
+
 .compSettingsContent {
   display: flex;
   flex-direction: column;
