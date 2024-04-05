@@ -33,7 +33,7 @@ body {
 }
 
 .builderSection:nth-child(2) {
-  height: 500px;
+  min-height: 500px;
 }
 
 @media (max-width: 768px) {
