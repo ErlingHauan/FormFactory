@@ -25,8 +25,6 @@
   "form_viewer.submit": "Submit",
   "form_viewer.success": "The form was sent successfully. You can safely close the window.",
   "form_viewer.validationError": "There was an error validating the form. Please see the error messages above.",
-  "header_form.factory.form.builder.link": "Form Builder",
-  "header_form.factory.title.link": "Form Factory",
   "login_page.auth.error": "Please log in, or sign up if you're new here.",
   "login_page.login.button": "Log in",
   "login_page.login.error": "We could not sign you in. Please ensure your username and password are correct and try again.",
