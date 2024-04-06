@@ -1,27 +1,27 @@
 .navigation {
-    display: flex;
-    align-items: center;
-    gap: var(--fds-spacing-8);
+  display: flex;
+  align-items: center;
+  gap: var(--fds-spacing-8);
 
-    a {
-        font-size: large;
-        color: inherit !important;
-        text-decoration: none;
-        transition: box-shadow 0.2s;
-    }
+  a {
+    font-size: large;
+    color: inherit !important;
+    text-decoration: none;
+    transition: box-shadow 0.2s;
+  }
 
-    a:hover {
-        box-shadow: 0 2px var(--fds-semantic-border-action-subtle);
-        transition: box-shadow 0.1s;
-    }
+  a:hover {
+    box-shadow: 0 2px var(--fds-semantic-border-action-subtle);
+    transition: box-shadow 0.1s;
+  }
 }
 
 .menuIcon {
-    font-size: 2rem;
-    color: var(--fds-semantic-text-neutral-default);
+  font-size: 2rem;
+  color: var(--fds-semantic-text-neutral-default);
 }
 
 .horizontalLinkList {
-    display: flex;
-    gap: var(--fds-spacing-10);
+  display: flex;
+  gap: var(--fds-spacing-10);
 }

@@ -1,42 +1,42 @@
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./Dashboard.module.css";
-import React, {useEffect, useState} from "react";
-import {DashboardOverview} from "../DashboardOverview/DashboardOverview";
-import {DashboardAccordion} from "../DashboardAccordion/DashboardAccordion";
-import {getApiUrl} from "../Login/LoginUtils";
+import React, { useEffect, useState } from "react";
+import { DashboardOverview } from "../DashboardOverview/DashboardOverview";
+import { DashboardAccordion } from "../DashboardAccordion/DashboardAccordion";
+import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
-import {useAuthorization} from "../../hooks/useAuthorization";
+import { useAuthorization } from "../../hooks/useAuthorization";
 
 export const Dashboard = (): React.JSX.Element => {
-    useAuthorization();
-    const [forms, setForms] = useState<Form[]>([]);
+  useAuthorization();
+  const [forms, setForms] = useState<Form[]>([]);
 
-    useEffect(() => {
-        (async function getAllForms() {
-            const apiUrl = getApiUrl();
-            const targetUrl = `${apiUrl}/api/forms/user`;
+  useEffect(() => {
+    (async function getAllForms() {
+      const apiUrl = getApiUrl();
+      const targetUrl = `${apiUrl}/api/forms/user`;
 
-            try {
-                const result = await axios.get(targetUrl, {
-                    withCredentials: true,
-                });
-                setForms(result.data);
-            } catch (error) {
-                console.error(error);
-            }
-        })();
-    }, []);
-    
-    return (
-        <div className={classes.dashboardContainer}>
-            <div className={classes.dashboard}>
-                <DashboardOverview forms={forms}/>
-                <div className={classes.formList}>
-                    {forms.map((form) => (
-                        <DashboardAccordion key={form.id} form={form}/>
-                    ))}
-                </div>
-            </div>
+      try {
+        const result = await axios.get(targetUrl, {
+          withCredentials: true,
+        });
+        setForms(result.data);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
+
+  return (
+    <div className={classes.dashboardContainer}>
+      <div className={classes.dashboard}>
+        <DashboardOverview forms={forms} />
+        <div className={classes.formList}>
+          {forms.map((form) => (
+            <DashboardAccordion key={form.id} form={form} />
+          ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 };

@@ -27,31 +27,27 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({ forms }) =
     })();
   }, []);
 
-  return (
-    <div className={classes.overview}>
-      <div className={classes.headingContainer}>
-        <Heading level={1} size="medium">
-          {t("dashboard")}
+  if (forms.length !== 0)
+    return (
+      <div className={classes.overview}>
+        <Heading level={3} size="xsmall">
+          Summary
         </Heading>
+        <Paragraph>
+          {t("dashboard.number.of.forms")}
+          {forms.length}
+        </Paragraph>
+        <Paragraph>
+          {t("dashboard.total.submissions")}
+          {submissionCount}
+        </Paragraph>
       </div>
-      <div className={classes.overviewContent}>
-        <div className={classes.paragraphContainer}>
-          {forms.length > 0 ? (
-            <>
-              <Paragraph>
-                {t("dashboard.number.of.forms")}
-                {forms.length}
-              </Paragraph>
-              <Paragraph>
-                {t("dashboard.total.submissions")}
-                {submissionCount}
-              </Paragraph>
-            </>
-          ) : (
-            <Paragraph>{t("dashboard.empty.message")}</Paragraph>
-          )}
-        </div>
+    );
+
+  if (forms.length === 0)
+    return (
+      <div className={classes.overview}>
+        <Paragraph>{t("dashboard.empty.message")}</Paragraph>
       </div>
-    </div>
-  );
+    );
 };

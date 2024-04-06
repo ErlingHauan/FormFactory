@@ -4,14 +4,3 @@
   border-radius: var(--fds-border_radius-medium);
   padding: var(--fds-spacing-5);
 }
-
-.headingContainer {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: var(--fds-spacing-4);
-}
-
-.overviewContent {
-  display: flex;
-  justify-content: space-between;
-}
