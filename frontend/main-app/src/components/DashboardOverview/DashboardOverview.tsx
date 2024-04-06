@@ -3,8 +3,7 @@ import { useTranslation } from "react-i18next";
 import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
 import classes from "./DashboardOverview.module.css";
-import { Button, Heading, Paragraph } from "@digdir/design-system-react";
-import { FilePlusFillIcon } from "@navikt/aksel-icons";
+import { Heading, Paragraph } from "@digdir/design-system-react";
 
 interface DashboardOverviewProps {
   forms: Form[];
@@ -51,14 +50,6 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({ forms }) =
           ) : (
             <Paragraph>{t("dashboard.empty.message")}</Paragraph>
           )}
-        </div>
-        <div className={classes.newFormButtonContainer}>
-          <Button size="small" color="success" asChild>
-            <a href="/form-builder">
-              <FilePlusFillIcon />
-              {t("dashboard.new.form")}
-            </a>
-          </Button>
         </div>
       </div>
     </div>

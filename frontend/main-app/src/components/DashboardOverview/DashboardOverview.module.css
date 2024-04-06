@@ -15,8 +15,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-.newFormButtonContainer {
-  display: flex;
-  align-items: end;
-}
