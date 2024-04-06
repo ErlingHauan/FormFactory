@@ -9,12 +9,14 @@ export const NotFound: React.FC = () => {
 
   const isFormUrl = window.location.pathname.startsWith("/view");
   const pageType = isFormUrl ? "form" : "page";
-  const capitalizedPageType = pageType.charAt(0).toUpperCase() + pageType.slice(1);
 
   return (
     <main className={classes.card}>
       <div className={classes.text}>
-        <Heading spacing>{t("not_found.title", { capitalizedPageType })}</Heading>
+        <Heading spacing>
+          {isFormUrl && t("not_found.title.form")}
+          {!isFormUrl && t("not_found.title.page")}
+        </Heading>
         <Paragraph>{t("not_found.message", { pageType })}</Paragraph>
         <Link href="/login">{t("not_found.login.link")}</Link>
         <Link href="/signup">{t("not_found.signup.link")}</Link>
