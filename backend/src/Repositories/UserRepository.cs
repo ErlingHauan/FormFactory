@@ -8,7 +8,7 @@ namespace FormAPI.Repositories;
 public interface IUserRepository
 {
     Task<List<UserEntity>> GetAll();
-    Task<UserEntity?> Get(int id);
+    Task<UserEntity?> GetSingle(int id);
     Task<UserEntity?> ConfirmEmailAndPassword(UserEntity entity);
     Task<UserEntity> Create(UserEntity user);
     Task<UserEntity> Update(UserEntity updatedEntity);
@@ -31,7 +31,7 @@ public class UserRepository : IUserRepository
         return userList;
     }
 
-    public async Task<UserEntity?> Get(int userId)
+    public async Task<UserEntity?> GetSingle(int userId)
     {
         var foundEntity = await _context.Users.SingleOrDefaultAsync(u => u.Id == userId);
         if (foundEntity == null)

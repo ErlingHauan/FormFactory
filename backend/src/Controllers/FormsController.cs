@@ -17,6 +17,9 @@ public class FormsController : ControllerBase
         _formRepository = formRepository;
     }
 
+    /// <summary>
+    /// Gets all forms in the database.
+    /// </summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<FormDto>>> GetAll()
     {
@@ -25,8 +28,11 @@ public class FormsController : ControllerBase
         return Ok(dtoList);
     }
 
+    /// <summary>
+    /// Gets a single form.
+    /// </summary>
     [HttpGet("{formId:guid}")]
-    public async Task<ActionResult<FormDto>> Get(Guid formId)
+    public async Task<ActionResult<FormDto>> GetSingle(Guid formId)
     {
         var entity = await _formRepository.Get(formId);
 
@@ -39,6 +45,9 @@ public class FormsController : ControllerBase
         return Ok(dto);
     }
 
+    /// <summary>
+    /// Gets all forms belonging to a user.
+    /// </summary>
     [HttpGet("user")]
     public async Task<ActionResult<IEnumerable<FormDto>>> GetAllFormsByUser()
     {
@@ -59,6 +68,9 @@ public class FormsController : ControllerBase
         return Ok(dtoList);
     }
 
+    /// <summary>
+    /// Creates a new form.
+    /// </summary>
     [HttpPost]
     public async Task<ActionResult<FormDto>> Create([FromBody] FormDto formData)
     {
@@ -70,9 +82,12 @@ public class FormsController : ControllerBase
         }
 
         var resultDto = FormMappers.ToDto(resultEntity);
-        return CreatedAtAction(nameof(Get), new { formId = resultDto.Id }, resultDto);
+        return CreatedAtAction(nameof(GetSingle), new { formId = resultDto.Id }, resultDto);
     }
 
+    /// <summary>
+    /// Updates a form.
+    /// </summary>
     [HttpPut]
     public async Task<ActionResult<FormDto>> Update([FromBody] FormDto formData)
     {
@@ -87,6 +102,9 @@ public class FormsController : ControllerBase
         return Ok(resultDto);
     }
 
+    /// <summary>
+    /// Deletes a form.
+    /// </summary>
     [HttpDelete("{formId:guid}")]
     public async Task<ActionResult<FormDto>> Delete(Guid formId)
     {
