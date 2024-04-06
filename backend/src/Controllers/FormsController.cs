@@ -46,7 +46,7 @@ public class FormsController : ControllerBase
     }
 
     /// <summary>
-    /// Gets all forms belonging to a user.
+    /// Gets all forms belonging to a user from session data.
     /// </summary>
     [HttpGet("user")]
     public async Task<ActionResult<IEnumerable<FormDto>>> GetAllFormsByUser()

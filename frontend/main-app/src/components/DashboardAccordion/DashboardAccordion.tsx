@@ -60,7 +60,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
   useEffect(() => {
     const getSubmissionCount = async () => {
       const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/submissions/form/${form.id}`;
+      const targetUrl = `${apiUrl}/api/forms/${form.id}/submissions`;
 
       try {
         const result = await axios.get(targetUrl);

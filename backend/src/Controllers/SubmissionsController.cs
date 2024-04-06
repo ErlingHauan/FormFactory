@@ -49,7 +49,7 @@ public class SubmissionsController : ControllerBase
     /// <summary>
     /// Gets all submissions belonging to a form.
     /// </summary>
-    [HttpGet("form/{formId}")]
+    [HttpGet("/api/forms/{formId:guid}/submissions")]
     public async Task<ActionResult<IEnumerable<SubmissionDto>>> GetFormSubmissions(Guid formId)
     {
         var entityList = await _submissionRepository.GetFormSubmissions(formId);
