@@ -28,16 +28,20 @@ public class UsersController : ControllerBase
     }
 
     /// <summary>
-    /// Gets a single user. Not used.
+    /// Gets a single user. Uses the session data or an optional userEmail paramater.
     /// </summary>
-    [HttpGet("{userId:int}")]
-    [ApiExplorerSettings(IgnoreApi = true)]
-    public async Task<ActionResult<UserDto>> GetSingle(int userId)
+    [HttpGet("/api/user")]
+    public async Task<ActionResult<UserDto>> GetSingle(string? userEmail)
     {
-        var userEntity = await _userRepository.GetSingle(userId);
+        if (userEmail == null)
+        {
+            userEmail = HttpContext.Session.GetString("authorizedUser");
+        }
+
+        var userEntity = await _userRepository.GetSingleByEmail(userEmail);
         if (userEntity == null)
         {
-            return NotFound($"User {userId} was not found.");
+            return NotFound($"User {userEmail} was not found.");
         }
 
         var userDto = UserMappers.EntityToDto(userEntity);
@@ -81,7 +85,7 @@ public class UsersController : ControllerBase
     [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<IActionResult> Delete(int userId)
     {
-        if (await _userRepository.GetSingle(userId) == null)
+        if (await _userRepository.GetSingleById(userId) == null)
         {
             return NotFound($"User with id {userId} was not found.");
         }
@@ -132,7 +136,7 @@ public class UsersController : ControllerBase
     {
         var email = HttpContext.Session.GetString("authorizedUser");
         Console.WriteLine($"Signing out user: {email}");
-        
+
         HttpContext.Session.Remove("authorizedUser");
 
         if (HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Session"))
