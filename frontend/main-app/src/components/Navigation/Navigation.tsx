@@ -3,9 +3,10 @@ import classes from "./Navigation.module.css";
 import { DropdownMenu, Link } from "@digdir/design-system-react";
 import { MenuHamburgerIcon } from "@navikt/aksel-icons";
 import { UserDropdown } from "../UserDropdown";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 export const Navigation = (): React.JSX.Element => {
+  const { t } = useTranslation();
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
   const isSmallScreen = windowSize < 1000;
 

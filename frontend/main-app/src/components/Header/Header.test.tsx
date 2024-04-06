@@ -16,8 +16,8 @@ describe("Header component", () => {
     // Act
     const title = screen.getByRole("heading", { name: "Form Factory" });
     const titleLink = screen.getByRole("link", { name: "Form Factory" });
-    const dashboardLink = screen.getByRole("link", { name: "Dashboard" });
-    const formBuilderLink = screen.getByRole("link", { name: "Form Builder" });
+    const dashboardLink = screen.getByRole("link", { name: "dashboard" });
+    const formBuilderLink = screen.getByRole("link", { name: "form_builder" });
 
     // Assert
     expect(title).toBeInTheDocument();
