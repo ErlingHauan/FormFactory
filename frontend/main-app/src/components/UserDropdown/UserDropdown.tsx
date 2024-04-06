@@ -5,6 +5,7 @@ import classes from "./UserDropdown.module.css";
 import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { t } from "i18next";
 
 export const UserDropdown = (): React.JSX.Element => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ export const UserDropdown = (): React.JSX.Element => {
       <DropdownMenu.Content>
         <DropdownMenu.Group>
           <DropdownMenu.Item asChild>
-            <Link onClick={logOutUser}>Log out</Link>
+            <Link onClick={logOutUser}>{t("user.logout")}</Link>
           </DropdownMenu.Item>
         </DropdownMenu.Group>
       </DropdownMenu.Content>

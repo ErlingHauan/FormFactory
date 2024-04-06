@@ -54,5 +54,6 @@
   "toolbar_tools.multiple.choice.component": "Option Selector",
   "toolbar_tools.save.form.component": "Save form",
   "toolbar_tools.text.field.component": "Input field",
-  "toolbar_tools.validate.form.component": "Validate form"
+  "toolbar_tools.validate.form.component": "Validate form",
+  "user.logout": "Log out"
 }
