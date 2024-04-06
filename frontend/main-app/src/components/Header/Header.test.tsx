@@ -2,18 +2,21 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Header } from "./Header";
+import { MemoryRouter } from "react-router";
 
 describe("Header component", () => {
   it("loads and displays Header Component", async () => {
     // Arrange
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
 
     // Act
-    const title = await screen.getByRole("heading", { name: "Form Factory" });
-    const titleLink = await screen.getByRole("link", { name: "Form Factory" });
-    const formBuilderLink = await screen.getByRole("link", {
-      name: "header_form.factory.form.builder.link",
-    });
+    const title = screen.getByRole("heading", { name: "Form Factory" });
+    const titleLink = screen.getByRole("link", { name: "Form Factory" });
+    const formBuilderLink = screen.getByRole("link", { name: "Form Builder" });
 
     // Assert
     expect(title).toBeInTheDocument();

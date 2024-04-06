@@ -3,7 +3,6 @@ import classes from "./Navigation.module.css";
 import { DropdownMenu, Link } from "@digdir/design-system-react";
 import { MenuHamburgerIcon } from "@navikt/aksel-icons";
 import { UserDropdown } from "../UserDropdown";
-import { t } from "i18next";
 
 export const Navigation = (): React.JSX.Element => {
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
@@ -28,10 +27,10 @@ export const Navigation = (): React.JSX.Element => {
           <DropdownMenu.Content>
             <DropdownMenu.Group>
               <DropdownMenu.Item asChild>
-                <a href="/dashboard">Dashboard</a>
+                <Link href="/dashboard">Dashboard</Link>
               </DropdownMenu.Item>
               <DropdownMenu.Item asChild>
-                <a href="/form-builder">Form Builder</a>
+                <Link href="/form-builder">Form Builder</Link>
               </DropdownMenu.Item>
             </DropdownMenu.Group>
           </DropdownMenu.Content>
@@ -48,7 +47,7 @@ export const Navigation = (): React.JSX.Element => {
             <Link href="/dashboard">Dashboard</Link>
           </li>
           <li>
-            <Link href="/form-builder">{t("header_form.factory.form.builder.link")}</Link>
+            <Link href="/form-builder">Form Builder</Link>
           </li>
         </ul>
         <UserDropdown />

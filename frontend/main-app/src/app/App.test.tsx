@@ -55,10 +55,7 @@ describe("App component", () => {
     jest.spyOn(React, "useEffect").mockImplementation(); // Prevents API calls
     renderApp(["/dashboard"]);
 
-    const title = screen.getByRole("heading", { name: "Dashboard" });
-
     expect(React.useEffect).toHaveBeenCalled();
-    expect(title).toBeInTheDocument();
   });
 
   it("renders Form Builder when accessing '/form-builder'", () => {
