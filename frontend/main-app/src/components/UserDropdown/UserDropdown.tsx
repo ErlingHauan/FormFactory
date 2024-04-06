@@ -40,6 +40,7 @@ export const UserDropdown = (): React.JSX.Element => {
       <DropdownMenu.Content>
         <DropdownMenu.Group>
           <DropdownMenu.Item asChild>
+            {/*Todo: add logged in user to context*/}
             <Link onClick={logOutUser}>Log out user1@example.com</Link>
           </DropdownMenu.Item>
         </DropdownMenu.Group>

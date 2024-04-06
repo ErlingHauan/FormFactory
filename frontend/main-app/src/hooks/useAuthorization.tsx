@@ -12,7 +12,7 @@ export const useAuthorization = () => {
   useEffect(() => {
     const verifyUserCookie = async () => {
       const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/users/verify`;
+      const targetUrl = `${apiUrl}/api/user`;
 
       try {
         await axios.get(targetUrl, {
