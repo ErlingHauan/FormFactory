@@ -3,7 +3,7 @@ import classes from "./Dashboard.module.css";
 import React, { useEffect, useState } from "react";
 import { DashboardOverview } from "../DashboardOverview/DashboardOverview";
 import { DashboardAccordion } from "../DashboardAccordion/DashboardAccordion";
-import { getApiUrl } from "../Login/LoginUtils";
+import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { useAuthorization } from "../../hooks/useAuthorization";
 
@@ -14,7 +14,7 @@ export const Dashboard = (): React.JSX.Element => {
   useEffect(() => {
     (async function getAllForms() {
       const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/forms/user`;
+      const targetUrl = `${apiUrl}/forms/user`;
 
       try {
         const result = await axios.get(targetUrl, {

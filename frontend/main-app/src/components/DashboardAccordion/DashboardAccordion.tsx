@@ -8,7 +8,7 @@ import {
   FileSearchIcon,
 } from "@navikt/aksel-icons";
 import { Accordion, Button, Heading } from "@digdir/design-system-react";
-import { getApiUrl } from "../Login/LoginUtils";
+import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { CustomParagraph } from "../CustomParagraph";
 import { SubmissionViewer } from "../SubmissionViewer";
@@ -60,7 +60,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
   useEffect(() => {
     const getSubmissionCount = async () => {
       const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/forms/${form.id}/submissions`;
+      const targetUrl = `${apiUrl}/forms/${form.id}/submissions`;
 
       try {
         const result = await axios.get(targetUrl);

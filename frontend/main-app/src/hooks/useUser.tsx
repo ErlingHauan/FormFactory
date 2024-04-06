@@ -1,4 +1,4 @@
-import { getApiUrl } from "../components/Login/LoginUtils";
+import { getApiUrl } from "../utils/getApiUrl";
 import axios from "axios";
 import { User } from "../types";
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ export const useUser = () => {
 
   useEffect(() => {
     const apiUrl = getApiUrl();
-    const targetUrl = `${apiUrl}/api/user`;
+    const targetUrl = `${apiUrl}/user`;
 
     const fetchUser = async () => {
       try {
