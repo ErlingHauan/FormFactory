@@ -114,21 +114,6 @@ public class UsersController : ControllerBase
     }
 
     /// <summary>
-    /// Verifies the session data.
-    /// </summary>
-    [HttpGet("verify")]
-    public ActionResult Verify()
-    {
-        var authorizedUser = HttpContext.Session.GetString("authorizedUser");
-        if (string.IsNullOrWhiteSpace(authorizedUser))
-        {
-            return Unauthorized("User has not been authorized.");
-        }
-
-        return Ok();
-    }
-
-    /// <summary>
     /// Invalidates the session data.
     /// </summary>
     [HttpPost("logout")]
