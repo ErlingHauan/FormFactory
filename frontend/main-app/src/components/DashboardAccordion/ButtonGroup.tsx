@@ -21,7 +21,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, form, for
     const file = new Blob([jsonString], { type: "application/json" });
     const fileName = form.title + ".json";
 
-    // Setup element
+    // Setup temporary element
     const element = document.createElement("a");
     element.href = URL.createObjectURL(file);
     element.download = fileName;
