@@ -32,9 +32,11 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, form, for
       element.href = URL.createObjectURL(file);
       element.download = fileName;
 
-      document.body.appendChild(element); // Required for this to work in FireFox
+      document.body.appendChild(element);
       element.click();
+
       document.body.removeChild(element);
+      URL.revokeObjectURL(element.href);
     } catch (error) {
       console.error(error);
     }
