@@ -1,7 +1,5 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { getApiUrl } from "../Login/LoginUtils";
-import axios from "axios";
 import classes from "./DashboardAccordion.module.css";
 import { SubmissionViewer } from "../SubmissionViewer";
 import { CloudDownFillIcon, PersonEnvelopeFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
@@ -18,28 +16,20 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, form, for
   const { t } = useTranslation();
 
   const handleDownload = async () => {
-    const apiUrl = getApiUrl();
-    const targetUrl = `${apiUrl}/api/submissions/form/${form.id}`;
+    const jsonString = JSON.stringify(submissions, null, 2);
+    const file = new Blob([jsonString], { type: "application/json" });
+
+    const element = document.createElement("a");
+    element.href = URL.createObjectURL(file);
+
     const fileName = form.title + ".json";
+    element.download = fileName;
 
-    try {
-      const result = await axios.get(targetUrl);
-      const jsonString = JSON.stringify(result.data, null, 2);
+    document.body.appendChild(element);
+    element.click();
 
-      const file = new Blob([jsonString], { type: "application/json" });
-      const element = document.createElement("a");
-
-      element.href = URL.createObjectURL(file);
-      element.download = fileName;
-
-      document.body.appendChild(element);
-      element.click();
-
-      document.body.removeChild(element);
-      URL.revokeObjectURL(element.href);
-    } catch (error) {
-      console.error(error);
-    }
+    document.body.removeChild(element);
+    URL.revokeObjectURL(element.href);
   };
 
   return (
