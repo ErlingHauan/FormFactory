@@ -11,7 +11,7 @@
 .buttonContainer {
   display: flex;
   justify-content: end;
-  padding-top: var(--fds-spacing-5);
+  padding: var(--fds-spacing-5) 0;
 }
 
 .component {
