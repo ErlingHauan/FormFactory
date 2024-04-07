@@ -16,18 +16,20 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, form, for
   const { t } = useTranslation();
 
   const handleDownload = async () => {
+    // Setup file
     const jsonString = JSON.stringify(submissions, null, 2);
     const file = new Blob([jsonString], { type: "application/json" });
+    const fileName = form.title + ".json";
 
+    // Setup element
     const element = document.createElement("a");
     element.href = URL.createObjectURL(file);
-
-    const fileName = form.title + ".json";
     element.download = fileName;
-
     document.body.appendChild(element);
+
     element.click();
 
+    // Cleanup
     document.body.removeChild(element);
     URL.revokeObjectURL(element.href);
   };
