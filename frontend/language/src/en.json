@@ -21,6 +21,8 @@
   "form_builder.preview": "Preview",
   "form_builder.publish": "Publish",
   "form_builder.save": "Save",
+  "form_viewer.draft": "Could not display this form, because it still has status as <i>draft</i>. To solve this, go to the Form Builder and publish the form.",
+  "form_viewer.form_builder.link": "Go to the Form Builder",
   "form_viewer.serverError": "You submitted the form correctly, but the server could not process the form. Please contact us at GitHub.",
   "form_viewer.submit": "Submit",
   "form_viewer.success": "The form was sent successfully. You can safely close the window.",

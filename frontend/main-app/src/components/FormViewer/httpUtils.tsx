@@ -1,15 +1,16 @@
 import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
 
-export const getFormSchema = async (formId: string, setFormSchema) => {
+export const getFormSchema = async (formId: string) => {
   const apiUrl = getApiUrl();
   const targetUrl = `${apiUrl}/api/forms/${formId}`;
 
   try {
     const response = await axios.get(targetUrl);
-    setFormSchema(response.data);
+    return response.data;
   } catch (error) {
     console.log(error);
+    return null;
   }
 };
 
