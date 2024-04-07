@@ -1,51 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import classes from "./DashboardAccordion.module.css";
-import {
-  CloudDownFillIcon,
-  PersonEnvelopeFillIcon,
-  TrashFillIcon,
-  FileSearchIcon,
-} from "@navikt/aksel-icons";
+import { FileSearchIcon } from "@navikt/aksel-icons";
 import { Accordion, Button, Heading } from "@digdir/design-system-react";
 import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
 import { CustomParagraph } from "../CustomParagraph";
-import { SubmissionViewer } from "../SubmissionViewer";
-import { ShareForm } from "./ShareForm";
-interface ButtonGroupProps {
-  submissions: Submission[];
-  formTitle: string;
-  formUrl: string;
-}
-
-const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formTitle, formUrl }) => {
-  const { t } = useTranslation();
-
-  return (
-    <div className={classes.buttonContainer}>
-      <SubmissionViewer
-        submissions={submissions}
-        formTitle={formTitle}
-        className={classes.button}
-        size="small"
-        variant="secondary"
-      >
-        <PersonEnvelopeFillIcon />
-        {t("dashboard.view.submissions")}
-      </SubmissionViewer>
-      <Button className={classes.button} size="small" variant="secondary">
-        <CloudDownFillIcon />
-        {t("dashboard.download")}
-      </Button>
-      <ShareForm formUrl={formUrl} />
-      <Button className={classes.button} color="danger" size="small" variant="secondary">
-        <TrashFillIcon />
-        {t("dashboard.delete.form")}
-      </Button>
-    </div>
-  );
-};
+import { ButtonGroup } from "./ButtonGroup";
 
 interface DashboardAccordionProps {
   form: Form;
@@ -95,7 +56,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
             <CustomParagraph heading="Expiration date" content={form.expires || "Not set"} />
             <CustomParagraph heading="Submissions" content={submissionCount} />
           </div>
-          <ButtonGroup submissions={submissions} formTitle={form.title} formUrl={formUrl} />
+          <ButtonGroup submissions={submissions} form={form} formUrl={formUrl} />
         </Accordion.Content>
       </Accordion.Item>
     </Accordion>
