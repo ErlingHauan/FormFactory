@@ -1,7 +1,7 @@
 import React from "react";
 import { Heading } from "@digdir/design-system-react";
 import { useTranslation } from "react-i18next";
-import classes from "./CompSettings.module.css";
+import classes from "./ComponentSettings.module.css";
 
 interface SettingsSidebarProps {
   SettingsContent: () => React.JSX.Element;

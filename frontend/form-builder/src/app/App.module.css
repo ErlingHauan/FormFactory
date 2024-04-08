@@ -26,7 +26,8 @@ body {
   background-color: var(--fds-semantic-background-default);
   border: 1px solid var(--fds-semantic-border-neutral-subtle);
   border-radius: var(--fds-border_radius-medium);
-  padding: var(--fds-spacing-5);
+  padding: var(--fds-spacing-4);
+  padding-top: var(--fds-spacing-6);
   text-align: center;
   margin: auto 0;
   height: 100%;

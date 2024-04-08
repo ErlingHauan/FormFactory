@@ -1,1 +1,0 @@
-export { CompSettings } from "./CompSettings";

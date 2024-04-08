@@ -1,13 +1,13 @@
 import React from "react";
 import { Modal } from "@digdir/design-system-react";
-import classes from "./CompSettings.module.css";
+import classes from "./ComponentSettings.module.css";
 
 interface SettingsSidebarProps {
   settingsRef: React.RefObject<HTMLDialogElement>;
   SettingsContent: () => React.JSX.Element;
 }
 
-export const CompSettingsModal = ({
+export const SettingsModal = ({
   settingsRef,
   SettingsContent,
 }: SettingsSidebarProps): React.JSX.Element => {

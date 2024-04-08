@@ -10,12 +10,13 @@
 }
 
 .previewHeading {
-  margin-bottom: var(--fds-spacing-4);
+  padding-bottom: var(--fds-spacing-4);
 }
 
 .formHeading {
   text-align: left;
   padding: var(--fds-spacing-4);
+  padding-top: 0;
 }
 
 .formHeading:hover {

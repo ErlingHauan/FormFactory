@@ -14,7 +14,7 @@ interface FormPreviewProps {
 
 export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Element => {
   const { t } = useTranslation();
-  const { form, setForm } = useContext(FormBuilderContext);
+  const { form, setForm, setCurrentComponent } = useContext(FormBuilderContext);
   const formRef = useRef<Form>();
 
   useEffect(() => {
@@ -35,6 +35,11 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
     let newForm = form;
     newForm.components = form.components.filter((_, i) => i !== index);
     setForm({ ...form, ...newForm });
+  };
+
+  const handleClick = (item) => {
+    settingsRef.current?.showModal();
+    setCurrentComponent(item);
   };
 
   return (
@@ -60,11 +65,7 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
           </div>
         ) : (
           form?.components?.map((item, index) => (
-            <div
-              key={index}
-              className={classes.droppedItem}
-              onClick={() => settingsRef.current?.showModal()}
-            >
+            <div key={index} className={classes.droppedItem} onClick={() => handleClick(item)}>
               <span className={classes.formBoardComponent}>
                 <FormComponent component={item} />
               </span>
