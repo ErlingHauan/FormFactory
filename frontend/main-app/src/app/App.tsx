@@ -14,6 +14,7 @@ import en from "../../../language/src/en.json";
 import { FormViewer } from "../components/FormViewer";
 import { SubHeader } from "../components/SubHeader";
 import { NotFound } from "../components/NotFound";
+import { CreateNewForm } from "./CreateNewForm";
 
 i18next.use(initReactI18next).init({
   resources: {
@@ -41,6 +42,8 @@ export const App = (): React.JSX.Element => {
           <Route path="/login/:authError" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/form-builder" element={<FormBuilder />} />
+          <Route path="/form-builder/new" element={<CreateNewForm />} />
+          <Route path="/form-builder/:formId" element={<FormBuilder />} />
           <Route path="/view/:formId" element={<FormViewer />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,0 +1,28 @@
+// Get form
+import { useEffect, useState } from "react";
+import { getApiUrl } from "../../../main-app/src/components/Login/LoginUtils";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+// Get a form using the URL parameter.
+
+export const useGetForm = () => {
+  const [form, setForm] = useState<Form | null>(null);
+  const { formId } = useParams();
+
+  useEffect(() => {
+    (async () => {
+      const apiUrl = getApiUrl();
+      const targetUrl = `${apiUrl}/api/forms/${formId}`;
+
+      try {
+        const response = await axios.get(targetUrl);
+        setForm(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  return { form, setForm };
+};

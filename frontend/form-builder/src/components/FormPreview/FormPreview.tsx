@@ -1,11 +1,12 @@
 import { Heading, Paragraph } from "@digdir/design-system-react";
-import React from "react";
+import React, { useContext } from "react";
 import { ComponentIcon, XMarkIcon } from "@navikt/aksel-icons";
 import classes from "./FormPreview.module.css";
 import { useTranslation } from "react-i18next";
 import { useDrop } from "react-dnd";
 import { DraggableItemsType } from "../../types/dndTypes";
 import { FormComponent } from "../../../../main-app/src/components/FormComponent";
+import { FormBuilderContext } from "../../app/App";
 
 interface FormPreviewProps {
   settingsRef: React.RefObject<HTMLDialogElement>;
@@ -35,10 +36,15 @@ export const FormPreview = ({
     setFormComponents(newItems);
   };
 
+  const { form } = useContext(FormBuilderContext);
+
   return (
     <>
       <Heading level={3} size="xxsmall" className={classes.previewHeading}>
         {t("form_builder.preview")}
+      </Heading>
+      <Heading level={3} size="xxsmall" className={classes.previewHeading}>
+        {form?.title || "Title was not fetched"}
       </Heading>
       <div
         ref={drop}

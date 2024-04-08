@@ -7,8 +7,15 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useAuthorization } from "../../../main-app/src/hooks/useAuthorization";
 import { CompSettings } from "../components/CompSettings";
+import { useGetForm } from "../hooks/useGetForm";
 
-export const ComponentContext = createContext(null);
+// ✅ When going to /form-builder/new, a new form should be created by contacting /api/forms with POST. Use the returned form ID to redirect.
+// ✅ Redirect to /form-builder/form-id. Get the newly created form from /api/forms/{formId} and store in a state.
+// ✅ The frontend should store a 1:1 copy of the backend format of the form.
+// Display the title, description and components from the form in the form builder.
+// Use PUT on endpoint /api/forms to store the changed data.
+
+export const FormBuilderContext = createContext(null);
 
 export const App = (): React.JSX.Element => {
   const [formComponents, setFormComponents] = useState<FormComponent[]>([]);
@@ -16,8 +23,6 @@ export const App = (): React.JSX.Element => {
   const settingsRef = useRef<HTMLDialogElement>(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
   const isSmallScreen = windowSize < 768;
-
-  const [currentComponent, setCurrentComponent] = useState<FormComponent | null>();
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,11 +32,15 @@ export const App = (): React.JSX.Element => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // This PR
+  const { form, setForm } = useGetForm();
+  const [currentComponent, setCurrentComponent] = useState<FormComponent | null>();
+
   return (
-    <ComponentContext.Provider
+    <FormBuilderContext.Provider
       value={{
-        formComponents,
-        setFormComponents,
+        form,
+        setForm,
         currentComponent,
         setCurrentComponent,
       }}
@@ -53,6 +62,6 @@ export const App = (): React.JSX.Element => {
           <CompSettings isSmallScreen={isSmallScreen} settingsRef={settingsRef} />
         </div>
       </div>
-    </ComponentContext.Provider>
+    </FormBuilderContext.Provider>
   );
 };

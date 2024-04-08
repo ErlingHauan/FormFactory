@@ -12,7 +12,7 @@ interface FormComponent {
 }
 
 interface Form {
-  id: number;
+  id?: number;
   user: string;
   organization?: string;
   title: string;

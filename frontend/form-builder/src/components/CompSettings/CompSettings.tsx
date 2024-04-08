@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { CompSettingsModal } from "./CompSettingsModal";
 import { CompSettingsSidebar } from "./CompSettingsSideBar";
 import classes from "./CompSettings.module.css";
-import { ComponentContext } from "../../app/App";
+import { FormBuilderContext } from "../../app/App";
 import { TrashFillIcon } from "@navikt/aksel-icons";
 
 interface CompSettingsProps {
@@ -17,7 +17,7 @@ export const CompSettings = ({
   settingsRef,
 }: CompSettingsProps): React.JSX.Element => {
   const SettingsContent = () => {
-    const { currentComponent } = useContext(ComponentContext);
+    const { currentComponent } = useContext(FormBuilderContext);
     return (
       <div className={classes.compSettingsContent}>
         <InputFieldSettings />
