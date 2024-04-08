@@ -74,7 +74,7 @@ public class FormsControllerTests
         _mockRepo.Setup(repo => repo.Get(mockGuid)).ReturnsAsync(mockForms.First(u => u.Id == mockGuid));
 
         // Act
-        var result = await _controller.Get(mockGuid);
+        var result = await _controller.GetSingle(mockGuid);
 
         // Assert
         var actionResult = Assert.IsType<OkObjectResult>(result.Result);
@@ -91,7 +91,7 @@ public class FormsControllerTests
 
         // Act
         var randomGuid = new Guid("8bd8e16b-e1ec-4834-9c76-863b56995291");
-        var result = await _controller.Get(randomGuid);
+        var result = await _controller.GetSingle(randomGuid);
 
         // Assert
         Assert.IsType<NotFoundObjectResult>(result.Result);

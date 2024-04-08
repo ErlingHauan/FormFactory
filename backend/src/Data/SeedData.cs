@@ -54,8 +54,8 @@ public static class SeedData
             new FormEntity
             {
                 Id = new Guid("22222222-2222-2222-2222-222222222222"),
-                User = "user2@example.com",
-                Organization = "Org2",
+                User = "user1@example.com",
+                Organization = "Org1",
                 Title = "2024 Developer's Conference registration form",
                 Description = "Official signup form for participants.",
                 Status = "Draft",
@@ -66,8 +66,8 @@ public static class SeedData
             new FormEntity
             {
                 Id = new Guid("33333333-3333-3333-3333-333333333333"),
-                User = "user3@example.com",
-                Organization = null,
+                User = "user1@example.com",
+                Organization = "Org1",
                 Title = "Psychological Safety survey",
                 Description = "Quarterly survey.",
                 Status = "Published",

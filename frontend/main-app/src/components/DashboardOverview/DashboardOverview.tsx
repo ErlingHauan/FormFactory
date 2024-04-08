@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getApiUrl } from "../Login/LoginUtils";
+import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import classes from "./DashboardOverview.module.css";
-import { Button, Heading, Paragraph } from "@digdir/design-system-react";
-import { FilePlusFillIcon } from "@navikt/aksel-icons";
+import { Heading, Paragraph } from "@digdir/design-system-react";
 
 interface DashboardOverviewProps {
   forms: Form[];
@@ -17,7 +16,7 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({ forms }) =
   useEffect(() => {
     (async function getSubmissionCount() {
       const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/submissions/`;
+      const targetUrl = `${apiUrl}/submissions/`;
 
       try {
         const result = await axios.get(targetUrl);
@@ -28,39 +27,27 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({ forms }) =
     })();
   }, []);
 
-  return (
-    <div className={classes.overview}>
-      <div className={classes.headingContainer}>
-        <Heading level={1} size="medium">
-          {t("dashboard")}
+  if (forms.length !== 0)
+    return (
+      <div className={classes.overview}>
+        <Heading level={3} size="xsmall">
+          Summary
         </Heading>
+        <Paragraph>
+          {t("dashboard.number.of.forms")}
+          {forms.length}
+        </Paragraph>
+        <Paragraph>
+          {t("dashboard.total.submissions")}
+          {submissionCount}
+        </Paragraph>
       </div>
-      <div className={classes.overviewContent}>
-        <div className={classes.paragraphContainer}>
-          {forms.length > 0 ? (
-            <>
-              <Paragraph>
-                {t("dashboard.number.of.forms")}
-                {forms.length}
-              </Paragraph>
-              <Paragraph>
-                {t("dashboard.total.submissions")}
-                {submissionCount}
-              </Paragraph>
-            </>
-          ) : (
-            <Paragraph>{t("dashboard.empty.message")}</Paragraph>
-          )}
-        </div>
-        <div className={classes.newFormButtonContainer}>
-          <Button size="small" color="success" asChild>
-            <a href="/form-builder">
-              <FilePlusFillIcon />
-              {t("dashboard.new.form")}
-            </a>
-          </Button>
-        </div>
+    );
+
+  if (forms.length === 0)
+    return (
+      <div className={classes.overview}>
+        <Paragraph>{t("dashboard.empty.message")}</Paragraph>
       </div>
-    </div>
-  );
+    );
 };

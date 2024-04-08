@@ -2,7 +2,7 @@
   "dashboard": "Dashboard",
   "dashboard.delete.form": "Delete form",
   "dashboard.download": "Download data",
-  "dashboard.empty.message": "Dashboard is currently empty.",
+  "dashboard.empty.message": "The dashboard is currently empty.",
   "dashboard.new.form": "New form",
   "dashboard.number.of.forms": "Number of forms: ",
   "dashboard.share.form": "Share form",
@@ -21,13 +21,11 @@
   "form_builder.preview": "Preview",
   "form_builder.publish": "Publish",
   "form_builder.save": "Save",
+  "form_factory": "Form Factory",
   "form_viewer.serverError": "You submitted the form correctly, but the server could not process the form. Please contact us at GitHub.",
   "form_viewer.submit": "Submit",
   "form_viewer.success": "The form was sent successfully. You can safely close the window.",
   "form_viewer.validationError": "There was an error validating the form. Please see the error messages above.",
-  "header_form.factory.form.builder.link": "Form Builder",
-  "header_form.factory.home.link": "Home",
-  "header_form.factory.title.link": "Form Factory",
   "login_page.auth.error": "Please log in, or sign up if you're new here.",
   "login_page.login.button": "Log in",
   "login_page.login.error": "We could not sign you in. Please ensure your username and password are correct and try again.",
@@ -54,5 +52,6 @@
   "toolbar_tools.multiple.choice.component": "Option Selector",
   "toolbar_tools.save.form.component": "Save form",
   "toolbar_tools.text.field.component": "Input field",
-  "toolbar_tools.validate.form.component": "Validate form"
+  "toolbar_tools.validate.form.component": "Validate form",
+  "user.logout": "Log out"
 }

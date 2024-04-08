@@ -8,7 +8,8 @@ namespace FormAPI.Repositories;
 public interface IUserRepository
 {
     Task<List<UserEntity>> GetAll();
-    Task<UserEntity?> Get(int id);
+    Task<UserEntity?> GetSingleById(int id);
+    Task<UserEntity?> GetSingleByEmail(string? email);
     Task<UserEntity?> ConfirmEmailAndPassword(UserEntity entity);
     Task<UserEntity> Create(UserEntity user);
     Task<UserEntity> Update(UserEntity updatedEntity);
@@ -31,12 +32,24 @@ public class UserRepository : IUserRepository
         return userList;
     }
 
-    public async Task<UserEntity?> Get(int userId)
+    public async Task<UserEntity?> GetSingleById(int userId)
     {
         var foundEntity = await _context.Users.SingleOrDefaultAsync(u => u.Id == userId);
         if (foundEntity == null)
         {
             Console.WriteLine($"User with ID {userId} was not found.");
+            return null;
+        }
+
+        return foundEntity;
+    }
+
+    public async Task<UserEntity?> GetSingleByEmail(string? email)
+    {
+        var foundEntity = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+        if (foundEntity == null)
+        {
+            Console.WriteLine($"User with email {email} was not found.");
             return null;
         }
 
