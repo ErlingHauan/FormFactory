@@ -1,3 +1,7 @@
+/** {*/
+/*  border: 1px solid pink;*/
+/*}*/
+
 .dropArea,
 .noComponents {
   display: flex;
@@ -10,7 +14,6 @@
 }
 
 .formHeading {
-  margin: 0 auto;
   text-align: left;
   padding: var(--fds-spacing-4);
 }
@@ -22,8 +25,7 @@
 
 .dropArea {
   /* Center the 'drag components here' text in both axis */
-  align-items: center;
-  height: 90%;
+  height: 80%;
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--fds-semantic-surface-neutral-inverted) transparent;
