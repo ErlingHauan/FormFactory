@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import classes from "./DashboardAccordion.module.css";
 import { FileSearchIcon } from "@navikt/aksel-icons";
 import { Accordion, Button, Heading } from "@digdir/design-system-react";
-import { getApiUrl } from "../Login/LoginUtils";
+import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { CustomParagraph } from "../CustomParagraph";
 import { ButtonGroup } from "./ButtonGroup";
@@ -21,7 +21,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
   useEffect(() => {
     const getSubmissionCount = async () => {
       const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/submissions/form/${form.id}`;
+      const targetUrl = `${apiUrl}/forms/${form.id}/submissions`;
 
       try {
         const result = await axios.get(targetUrl);

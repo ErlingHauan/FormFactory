@@ -1,29 +1,15 @@
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { getApiUrl } from "../components/Login/LoginUtils";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "./useUser";
 
-// Verifies the user's session via an API call. If not verified, it redirects to the login page.
-// It should be used in components that require the user to be logged in.
-
+// Checks if user is logged in. If not, it redirects back to the login page.
 export const useAuthorization = () => {
+  const { user, isLoading } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const verifyUserCookie = async () => {
-      const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/users/verify`;
-
-      try {
-        await axios.get(targetUrl, {
-          withCredentials: true,
-        });
-      } catch (error) {
-        console.error(error);
-        navigate("/login/authError");
-      }
-    };
-
-    verifyUserCookie();
-  }, [navigate]);
+    if (!user && !isLoading) {
+      navigate("/login/authError");
+    }
+  }, [user, isLoading, navigate]);
 };

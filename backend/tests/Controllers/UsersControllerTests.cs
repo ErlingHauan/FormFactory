@@ -48,10 +48,10 @@ public class UsersControllerTests
         {
             new UserEntity { Id = 1, Email = "user1@example.com", Password = "password1", Organization = "Org1" },
         };
-        _mockRepo.Setup(repo => repo.Get(1)).ReturnsAsync(mockUsers.First(u => u.Id == 1));
+        _mockRepo.Setup(repo => repo.GetSingleByEmail("user1@example.com")).ReturnsAsync(mockUsers.First(u => u.Id == 1));
 
         // Act
-        var result = await _controller.Get(1);
+        var result = await _controller.GetSingle("user1@example.com");
 
         // Assert
         var actionResult = Assert.IsType<OkObjectResult>(result.Result);
@@ -64,10 +64,10 @@ public class UsersControllerTests
     public async Task Get_UserNotFound_ReturnsNotFound()
     {
         // Arrange
-        _mockRepo.Setup(repo => repo.Get(1)).ReturnsAsync((UserEntity?)null);
+        _mockRepo.Setup(repo => repo.GetSingleByEmail("user1@example.com")).ReturnsAsync((UserEntity?)null);
 
         // Act
-        var result = await _controller.Get(1);
+        var result = await _controller.GetSingle("user1@example.com");
 
         // Assert
         Assert.IsType<NotFoundObjectResult>(result.Result);
@@ -159,7 +159,7 @@ public class UsersControllerTests
         // Arrange
         var userToBeDeleted = new UserEntity
         { Id = 1, Email = "user1@example.com", Password = "password1", Organization = "Org1" };
-        _mockRepo.Setup(repo => repo.Get(userToBeDeleted.Id)).ReturnsAsync(userToBeDeleted);
+        _mockRepo.Setup(repo => repo.GetSingleById(userToBeDeleted.Id)).ReturnsAsync(userToBeDeleted);
         _mockRepo.Setup(repo => repo.Delete(userToBeDeleted.Id));
 
         // Act
@@ -174,7 +174,7 @@ public class UsersControllerTests
     {
         // Arrange
         var userId = 1;
-        _mockRepo.Setup(repo => repo.Get(userId)).ReturnsAsync((UserEntity?)null);
+        _mockRepo.Setup(repo => repo.GetSingleById(userId)).ReturnsAsync((UserEntity?)null);
         _mockRepo.Setup(repo => repo.Delete(userId));
 
         // Act
