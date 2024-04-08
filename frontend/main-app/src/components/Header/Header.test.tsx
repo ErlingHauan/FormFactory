@@ -3,6 +3,17 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Header } from "./Header";
 import { MemoryRouter } from "react-router";
+import { useUser } from "../../hooks/useUser";
+
+const mockedUser = {
+  id: "string",
+  email: "string",
+  password: "string",
+  organization: "string",
+};
+
+jest.mock("../../hooks/useUser");
+jest.mocked(useUser).mockReturnValue({ user: mockedUser, isLoading: false });
 
 describe("Header component", () => {
   it("loads and displays Header Component", async () => {

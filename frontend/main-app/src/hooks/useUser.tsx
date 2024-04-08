@@ -11,7 +11,7 @@ export const useUser = () => {
     const apiUrl = getApiUrl();
     const targetUrl = `${apiUrl}/user`;
 
-    const fetchUser = async () => {
+    (async () => {
       try {
         const result = await axios.get(targetUrl, {
           withCredentials: true,
@@ -22,8 +22,7 @@ export const useUser = () => {
       } finally {
         setIsLoading(false);
       }
-    };
-    fetchUser();
+    })();
   }, []);
 
   return { user, isLoading };
