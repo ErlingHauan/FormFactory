@@ -10,8 +10,6 @@ import { FormBuilderContext } from "../../app/App";
 
 interface FormPreviewProps {
   settingsRef: React.RefObject<HTMLDialogElement>;
-  formComponents: FormComponent[];
-  setFormComponents: React.Dispatch<React.SetStateAction<FormComponent[]>>;
 }
 
 export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Element => {

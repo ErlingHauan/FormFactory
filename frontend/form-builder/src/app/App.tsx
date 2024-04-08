@@ -12,13 +12,12 @@ import { useGetForm } from "../hooks/useGetForm";
 // ✅ When going to /form-builder/new, a new form should be created by contacting /api/forms with POST. Use the returned form ID to redirect.
 // ✅ Redirect to /form-builder/form-id. Get the newly created form from /api/forms/{formId} and store in a state.
 // ✅ The frontend should store a 1:1 copy of the backend format of the form.
-// Display the title, description and components from the form in the form builder.
+// ✅ Display the title, description and components from the form in the form builder.
 // Use PUT on endpoint /api/forms to store the changed data.
 
 export const FormBuilderContext = createContext(null);
 
 export const App = (): React.JSX.Element => {
-  const [formComponents, setFormComponents] = useState<FormComponent[]>([]);
   useAuthorization();
   const settingsRef = useRef<HTMLDialogElement>(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
@@ -51,11 +50,7 @@ export const App = (): React.JSX.Element => {
             <Toolbar />
           </div>
           <div className={classes.builderSection}>
-            <FormPreview
-              settingsRef={settingsRef}
-              formComponents={formComponents}
-              setFormComponents={setFormComponents}
-            />
+            <FormPreview settingsRef={settingsRef} />
           </div>
         </DndProvider>
         <div className={isSmallScreen ? classes.builderModal : classes.builderSection}>
