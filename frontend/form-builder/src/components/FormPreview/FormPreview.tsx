@@ -43,13 +43,16 @@ export const FormPreview = ({
       <Heading level={3} size="xxsmall" className={classes.previewHeading}>
         {t("form_builder.preview")}
       </Heading>
-      <Heading level={3} size="xxsmall" className={classes.previewHeading}>
-        {form?.title || "Title was not fetched"}
-      </Heading>
+      <div className={classes.formHeading}>
+        <Heading level={4} size="medium">
+          {form?.title}
+        </Heading>
+        <Paragraph>{form?.description}</Paragraph>
+      </div>
       <div
         ref={drop}
         className={classes.dropArea}
-        style={{ backgroundColor: isOver && "lightgreen" }}
+        style={{ backgroundColor: isOver && "var(--fds-semantic-surface-warning-subtle)" }}
       >
         {formComponents.length === 0 ? (
           <div className={classes.noComponents}>

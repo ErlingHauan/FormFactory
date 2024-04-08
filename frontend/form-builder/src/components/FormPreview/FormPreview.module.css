@@ -9,6 +9,17 @@
   margin-bottom: var(--fds-spacing-4);
 }
 
+.formHeading {
+  margin: 0 auto;
+  text-align: left;
+  padding: var(--fds-spacing-4);
+}
+
+.formHeading:hover {
+  background-color: var(--fds-brand-alt3-100);
+  transition: 0.1s;
+}
+
 .dropArea {
   /* Center the 'drag components here' text in both axis */
   align-items: center;
@@ -33,8 +44,8 @@
 .droppedItem {
   display: flex;
   align-items: center;
-  padding: 0;
-  width: 80%;
+  padding: var(--fds-spacing-4);
+  width: 100%;
   justify-content: center;
   text-align: start;
   margin: 0 auto;
@@ -52,9 +63,11 @@
   cursor: pointer;
 }
 
-.droppedItem:hover {
-  transform: scale(1.02);
-  transition: 0.5s;
+.droppedItem:hover,
+.formHeading:hover {
+  background-color: var(--fds-brand-alt3-100);
+  transition: 0.1s;
+  cursor: pointer;
 }
 
 .removalItem:hover {

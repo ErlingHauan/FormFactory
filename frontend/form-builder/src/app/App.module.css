@@ -32,9 +32,9 @@ body {
   height: 100%;
 }
 
-.builderSection:nth-child(2) {
-  height: 600px;
-}
+/*.builderSection:nth-child(2) {*/
+/*  height: 600px;*/
+/*}*/
 
 @media (max-width: 768px) {
   .formBuilder {
