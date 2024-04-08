@@ -1,5 +1,5 @@
 import { Heading, Paragraph } from "@digdir/design-system-react";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { ComponentIcon, XMarkIcon } from "@navikt/aksel-icons";
 import classes from "./FormPreview.module.css";
 import { useTranslation } from "react-i18next";
@@ -14,17 +14,19 @@ interface FormPreviewProps {
   setFormComponents: React.Dispatch<React.SetStateAction<FormComponent[]>>;
 }
 
-export const FormPreview = ({
-  settingsRef,
-  formComponents,
-  setFormComponents,
-}: FormPreviewProps): React.JSX.Element => {
+export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Element => {
   const { t } = useTranslation();
+  const { form, setForm } = useContext(FormBuilderContext);
+  const formRef = useRef<Form>();
+
+  useEffect(() => {
+    formRef.current = form;
+  }, [form]);
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: DraggableItemsType.ToolbarItem,
     drop: (item: FormComponent) => {
-      setFormComponents((prev) => [...prev, item]);
+      setForm({ ...formRef.current, components: [...formRef.current.components, item] });
     },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
@@ -32,18 +34,16 @@ export const FormPreview = ({
   }));
 
   const handleRemoveItem = (index: number) => {
-    const newItems = formComponents.filter((_, i) => i !== index);
-    setFormComponents(newItems);
+    let newForm = form;
+    newForm.components = form.components.filter((_, i) => i !== index);
+    setForm({ ...form, ...newForm });
   };
-
-  const { form } = useContext(FormBuilderContext);
 
   return (
     <>
       <Heading level={3} size="xxsmall" className={classes.previewHeading}>
         {t("form_builder.preview")}
       </Heading>
-
       <div
         ref={drop}
         className={classes.dropArea}
@@ -55,13 +55,13 @@ export const FormPreview = ({
           </Heading>
           <Paragraph>{form?.description}</Paragraph>
         </div>
-        {formComponents.length === 0 ? (
+        {form?.components?.length === 0 ? (
           <div className={classes.noComponents}>
             <ComponentIcon className={classes.noComponentsIcon} />
             <Paragraph>{t("form_builder.drag.component.message")}</Paragraph>
           </div>
         ) : (
-          formComponents.map((item, index) => (
+          form?.components?.map((item, index) => (
             <div
               key={index}
               className={classes.droppedItem}
