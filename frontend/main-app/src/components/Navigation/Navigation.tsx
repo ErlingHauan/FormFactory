@@ -29,7 +29,7 @@ export const Navigation = (): React.JSX.Element => {
           <DropdownMenu.Content>
             <DropdownMenu.Group>
               <DropdownMenu.Item asChild>
-                <Link href="/dashboard">{t("dashboard")}</Link>
+                <Link href={"/dashboard"}>{t("dashboard")}</Link>
               </DropdownMenu.Item>
               <DropdownMenu.Item asChild>
                 <Link href="/form-builder">{t("form_builder")}</Link>
@@ -46,7 +46,7 @@ export const Navigation = (): React.JSX.Element => {
       <nav className={classes.navigation}>
         <ul className={classes.horizontalLinkList}>
           <li>
-            <Link href="/dashboard">{t("dashboard")}</Link>
+            <Link href={"/dashboard"}>{t("dashboard")}</Link>
           </li>
           <li>
             <Link href="/form-builder">{t("form_builder")}</Link>
