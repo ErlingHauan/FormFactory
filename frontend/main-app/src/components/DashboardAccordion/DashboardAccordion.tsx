@@ -1,52 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import classes from "./DashboardAccordion.module.css";
-import {
-  CloudDownFillIcon,
-  PersonEnvelopeFillIcon,
-  TrashFillIcon,
-  FileSearchIcon,
-} from "@navikt/aksel-icons";
+import { FileSearchIcon } from "@navikt/aksel-icons";
 import { Accordion, Button, Heading } from "@digdir/design-system-react";
 import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { CustomParagraph } from "../CustomParagraph";
-import { SubmissionViewer } from "../SubmissionViewer";
-import { ShareForm } from "./ShareForm";
-import { DeleteForm } from "../DeleteForm/DeleteForm";
+import { ButtonGroup } from "./ButtonGroup";
 import { FormContext } from "../Dashboard";
 import { t } from "i18next";
-interface ButtonGroupProps {
-  submissions: Submission[];
-  formUrl: string;
-}
-
-const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formUrl }) => {
-  const { t } = useTranslation();
-
-  return (
-    <div className={classes.buttonContainer}>
-      <SubmissionViewer
-        submissions={submissions}
-        className={classes.button}
-        size="small"
-        variant="secondary"
-      >
-        <PersonEnvelopeFillIcon />
-        {t("dashboard.view.submissions")}
-      </SubmissionViewer>
-      <Button className={classes.button} size="small" variant="secondary">
-        <CloudDownFillIcon />
-        {t("dashboard.download")}
-      </Button>
-      <ShareForm formUrl={formUrl} />
-      <DeleteForm className={classes.button} color="danger" size="small" variant="secondary">
-        <TrashFillIcon />
-        {t("dashboard.delete.form")}
-      </DeleteForm>
-    </div>
-  );
-};
 
 export const DashboardAccordion: React.FC = () => {
   const form = useContext(FormContext);
