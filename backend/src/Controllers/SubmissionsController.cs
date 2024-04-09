@@ -75,7 +75,7 @@ public class SubmissionsController : ControllerBase
         var entityList = await _submissionRepository.DeleteAllSubmissionsInForm(formId);
         if (entityList == null)
         {
-            return NotFound();
+            return Ok();
         }
 
         var dtoList = entityList.Select(SubmissionMappers.ToDto).ToList();

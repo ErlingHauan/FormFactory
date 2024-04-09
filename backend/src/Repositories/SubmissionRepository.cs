@@ -11,7 +11,7 @@ public interface ISubmissionRepository
     Task<SubmissionEntity?> GetSingle(Guid submissionId);
     Task<List<SubmissionEntity>> GetFormSubmissions(Guid formId);
     Task<SubmissionEntity?> Create(SubmissionEntity entity);
-    Task<SubmissionEntity?> DeleteSingle(Guid submussionId);
+    Task<SubmissionEntity?> DeleteSingle(Guid submissionId);
     Task<List<SubmissionEntity>?> DeleteAllSubmissionsInForm(Guid formId);
 }
 
