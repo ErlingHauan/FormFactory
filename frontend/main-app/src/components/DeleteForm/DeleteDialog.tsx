@@ -28,9 +28,9 @@ export const DeleteDialog: React.FC = () => {
     <Modal.Dialog className={classes.modalWindow}>
       <Modal.Header className={classes.modalHeader}>{form.title}</Modal.Header>
       <form className={classes.modalContent} onSubmit={handleDelete}>
-        <Paragraph>{t("dashboard.delete.form.confirm1")}</Paragraph>
+        <Paragraph>{t("dashboard.delete.form.confirm.question")}</Paragraph>
         <Paragraph>
-          <Trans i18nKey="dashboard.delete.form.confirm2" />
+          <Trans i18nKey="dashboard.delete.form.confirm.instruction" />
         </Paragraph>
         <Textfield name="confirmDelete" error={formError} />
         <Button color="danger" type="submit">

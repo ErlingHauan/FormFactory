@@ -1,8 +1,8 @@
 {
   "dashboard": "Dashboard",
   "dashboard.delete.form": "Delete form",
-  "dashboard.delete.form.confirm1": "Are you sure you want to delete this form? Both the form and its submissions will be deleted permanently.",
-  "dashboard.delete.form.confirm2": "To confirm, type <strong>delete</strong> in the box below.",
+  "dashboard.delete.form.confirm.question": "Are you sure you want to delete this form? Both the form and its submissions will be deleted permanently.",
+  "dashboard.delete.form.confirm.instruction": "To confirm, type <strong>delete</strong> in the box below.",
   "dashboard.delete.error": "Confirmation keyword is incorrect.",
   "dashboard.download": "Download data",
   "dashboard.empty.message": "Dashboard is currently empty.",
