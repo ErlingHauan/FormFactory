@@ -82,7 +82,7 @@ const InputFieldSettings = () => {
         size="small"
         placeholder={"Required"}
       />
-      <Checkbox size="small" value="required" checked={currentComponent.required}>
+      <Checkbox size="small" value="required" defaultChecked={currentComponent.required}>
         Require user response
       </Checkbox>
       <Radio.Group

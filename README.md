@@ -25,3 +25,4 @@ To rebuild the database only, run the following:
 * `docker-compose down`
 * `docker volume rm formfactory_db`
 * `docker-compose up -d --no-deps --build db`.
+* `yarn db:seed`
