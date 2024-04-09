@@ -20,6 +20,8 @@ export const FormBuilderContext = createContext(null);
 
 export const App = (): React.JSX.Element => {
   useAuthorization();
+
+  const [formComponents, setFormComponents] = useState<FormComponent[]>([]);
   const settingsRef = useRef<HTMLDialogElement>(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
   const isSmallScreen = windowSize < 768;

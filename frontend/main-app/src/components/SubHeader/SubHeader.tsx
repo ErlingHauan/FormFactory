@@ -20,13 +20,14 @@ export const SubHeader: React.FC = () => {
     switch (true) {
       case pathname.startsWith("/login") || pathname === "/":
         setHeading(t("login_page.title"));
+        setLinks(null);
         break;
       case pathname.startsWith("/signup"):
         setHeading(t("signup_page.title"));
         break;
       case pathname.startsWith("/dashboard"):
         setHeading(t("dashboard"));
-        setLinks(dashboardLink());
+        setLinks(dashboardLinks());
         break;
       case pathname.startsWith("/form-builder"):
         setHeading(t("form_builder"));
@@ -66,9 +67,9 @@ const formBuilderLinks = () => {
   );
 };
 
-const dashboardLink = () => {
+const dashboardLinks = () => {
   return (
-    <Link href="/form-builder/new">
+    <Link href={"/form-builder/new"}>
       {t("dashboard.new.form")}
       <FilePlusFillIcon className={classes.subHeaderIcon} />
     </Link>
@@ -78,7 +79,7 @@ const dashboardLink = () => {
 const formViewerHeading = () => {
   return (
     <Link href="/">
-      {t("header_form.factory.title.link")}
+      {t("form_factory")}
       <ClipboardCheckmarkFillIcon className={classes.subHeaderIcon} />
     </Link>
   );

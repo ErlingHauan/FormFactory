@@ -1,15 +1,16 @@
-import { getApiUrl } from "../Login/LoginUtils";
+import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 
-export const getFormSchema = async (formId: string, setFormSchema) => {
+export const getFormSchema = async (formId: string) => {
   const apiUrl = getApiUrl();
-  const targetUrl = `${apiUrl}/api/forms/${formId}`;
+  const targetUrl = `${apiUrl}/forms/${formId}`;
 
   try {
     const response = await axios.get(targetUrl);
-    setFormSchema(response.data);
+    return response.data;
   } catch (error) {
     console.log(error);
+    return null;
   }
 };
 
@@ -31,7 +32,7 @@ const formatSubmission = (formSchema, formData) => {
 export const postSubmission = async (formSchema, formData, setFormAlert) => {
   const formattedSubmission = formatSubmission(formSchema, formData);
   const apiUrl = getApiUrl();
-  const targetUrl = `${apiUrl}/api/submissions/`;
+  const targetUrl = `${apiUrl}/submissions/`;
 
   try {
     await axios.post(targetUrl, formattedSubmission);
