@@ -16,6 +16,9 @@ public class UsersController : ControllerBase
         _userRepository = userRepository;
     }
 
+    /// <summary>
+    /// Gets all users in the database.
+    /// </summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UserDto>>> GetAll()
     {
@@ -24,19 +27,30 @@ public class UsersController : ControllerBase
         return Ok(dtoList);
     }
 
-    [HttpGet("{userId:int}")]
-    public async Task<ActionResult<UserDto>> Get(int userId)
+    /// <summary>
+    /// Gets a single user. Uses the session data or an optional userEmail paramater.
+    /// </summary>
+    [HttpGet("/api/user")]
+    public async Task<ActionResult<UserDto>> GetSingle(string? userEmail)
     {
-        var userEntity = await _userRepository.Get(userId);
+        if (userEmail == null)
+        {
+            userEmail = HttpContext.Session.GetString("authorizedUser");
+        }
+
+        var userEntity = await _userRepository.GetSingleByEmail(userEmail);
         if (userEntity == null)
         {
-            return NotFound($"User {userId} was not found.");
+            return NotFound($"User {userEmail} was not found.");
         }
 
         var userDto = UserMappers.EntityToDto(userEntity);
         return Ok(userDto);
     }
 
+    /// <summary>
+    /// Registers a new user.
+    /// </summary>
     [HttpPost]
     public async Task<ActionResult<UserDto>> Create([FromBody] UserDto dto)
     {
@@ -46,10 +60,14 @@ public class UsersController : ControllerBase
         var createdDto = UserMappers.EntityToDto(createdEntity);
 
         HttpContext.Session.SetString("authorizedUser", dto.Email);
-        return CreatedAtAction(nameof(Get), new { userId = createdDto.Id }, createdDto);
+        return CreatedAtAction(nameof(GetSingle), new { userId = createdDto.Id }, createdDto);
     }
 
+    /// <summary>
+    /// Updates a user. Not used.
+    /// </summary>
     [HttpPut]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<ActionResult<UserDto>> Update([FromBody] UserDto dto)
     {
         var entity = new UserEntity();
@@ -60,10 +78,14 @@ public class UsersController : ControllerBase
         return Ok(updatedDto);
     }
 
+    /// <summary>
+    /// Deletes a user. Not used.
+    /// </summary>
     [HttpDelete("{userId:int}")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<IActionResult> Delete(int userId)
     {
-        if (await _userRepository.Get(userId) == null)
+        if (await _userRepository.GetSingleById(userId) == null)
         {
             return NotFound($"User with id {userId} was not found.");
         }
@@ -72,6 +94,9 @@ public class UsersController : ControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// Logs in a user.
+    /// </summary>
     [HttpPost("login")]
     public async Task<ActionResult> Login([FromBody] UserDto dto)
     {
@@ -88,21 +113,15 @@ public class UsersController : ControllerBase
         return Ok();
     }
 
-    [HttpGet("verify")]
-    public ActionResult Verify()
-    {
-        var authorizedUser = HttpContext.Session.GetString("authorizedUser");
-        if (string.IsNullOrWhiteSpace(authorizedUser))
-        {
-            return Unauthorized("User has not been authorized.");
-        }
-
-        return Ok();
-    }
-
+    /// <summary>
+    /// Invalidates the session data.
+    /// </summary>
     [HttpPost("logout")]
     public ActionResult Logout()
     {
+        var email = HttpContext.Session.GetString("authorizedUser");
+        Console.WriteLine($"Signing out user: {email}");
+
         HttpContext.Session.Remove("authorizedUser");
 
         if (HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Session"))

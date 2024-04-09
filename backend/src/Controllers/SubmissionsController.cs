@@ -1,7 +1,6 @@
 using FormAPI.Mappers;
 using FormAPI.Models;
 using FormAPI.Repositories;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FormAPI.Controllers;
@@ -17,6 +16,9 @@ public class SubmissionsController : ControllerBase
         _submissionRepository = submissionRepository;
     }
 
+    /// <summary>
+    /// Gets all submissions in the database.
+    /// </summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<SubmissionDto>>> GetAll()
     {
@@ -25,7 +27,11 @@ public class SubmissionsController : ControllerBase
         return Ok(dtoList);
     }
 
+    /// <summary>
+    /// Gets a single submission. Not used.
+    /// </summary>
     [HttpGet("{submissionId}")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<ActionResult<SubmissionDto>> GetSingle(Guid submissionId)
     {
         var entity = await _submissionRepository.GetSingle(submissionId);
@@ -39,7 +45,10 @@ public class SubmissionsController : ControllerBase
         return Ok(dto);
     }
 
-    [HttpGet("form/{formId}")]
+    /// <summary>
+    /// Gets all submissions belonging to a form.
+    /// </summary>
+    [HttpGet("/api/forms/{formId:guid}/submissions")]
     public async Task<ActionResult<IEnumerable<SubmissionDto>>> GetFormSubmissions(Guid formId)
     {
         var entityList = await _submissionRepository.GetFormSubmissions(formId);
@@ -47,6 +56,9 @@ public class SubmissionsController : ControllerBase
         return Ok(dtoList);
     }
 
+    /// <summary>
+    /// Stores a new submission.
+    /// </summary>
     [HttpPost]
     public async Task<ActionResult<SubmissionDto>> Create([FromBody] SubmissionDto dto)
     {
@@ -55,7 +67,11 @@ public class SubmissionsController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Deletes a single submission. Not in use.
+    /// </summary>
     [HttpDelete("{submissionId}")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<ActionResult<SubmissionDto>> Delete(Guid submissionId)
     {
         var entity = await _submissionRepository.Delete(submissionId);

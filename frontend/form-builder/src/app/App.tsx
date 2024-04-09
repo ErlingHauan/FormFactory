@@ -5,12 +5,13 @@ import { Toolbar } from "../components/Toolbar";
 import { FormPreview } from "../components/FormPreview";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { useAuthorization } from "../../../main-app/src/hooks/useAuthorization";
 import { CompSettings } from "../components/CompSettings";
+import { useAuthorization } from "../../../main-app/src/hooks/useAuthorization";
 
 export const App = (): React.JSX.Element => {
-  const [formComponents, setFormComponents] = useState<FormComponent[]>([]);
   useAuthorization();
+
+  const [formComponents, setFormComponents] = useState<FormComponent[]>([]);
   const settingsRef = useRef<HTMLDialogElement>(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
   const isSmallScreen = windowSize < 768;

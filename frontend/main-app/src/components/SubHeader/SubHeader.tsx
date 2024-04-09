@@ -3,6 +3,7 @@ import classes from "./SubHeader.module.css";
 import { Heading, Link } from "@digdir/design-system-react";
 import {
   ClipboardCheckmarkFillIcon,
+  FilePlusFillIcon,
   FloppydiskFillIcon,
   TasklistSendFillIcon,
 } from "@navikt/aksel-icons";
@@ -19,12 +20,14 @@ export const SubHeader: React.FC = () => {
     switch (true) {
       case pathname.startsWith("/login") || pathname === "/":
         setHeading(t("login_page.title"));
+        setLinks(null);
         break;
       case pathname.startsWith("/signup"):
         setHeading(t("signup_page.title"));
         break;
       case pathname.startsWith("/dashboard"):
         setHeading(t("dashboard"));
+        setLinks(dashboardLinks());
         break;
       case pathname.startsWith("/form-builder"):
         setHeading(t("form_builder"));
@@ -49,6 +52,17 @@ export const SubHeader: React.FC = () => {
   );
 };
 
+const dashboardLinks = () => {
+  return (
+    <>
+      <Link href="/form-builder">
+        {t("dashboard.new.form")}
+        <FilePlusFillIcon className={classes.subHeaderIcon} />
+      </Link>
+    </>
+  );
+};
+
 const formBuilderLinks = () => {
   return (
     <>
@@ -67,7 +81,7 @@ const formBuilderLinks = () => {
 const formViewerHeading = () => {
   return (
     <Link href="/">
-      {t("header_form.factory.title.link")}
+      {t("form_factory")}
       <ClipboardCheckmarkFillIcon className={classes.subHeaderIcon} />
     </Link>
   );

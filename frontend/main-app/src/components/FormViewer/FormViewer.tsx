@@ -89,8 +89,7 @@ export const FormViewer = (): React.JSX.Element => {
 
   return (
     <>
-      {formSchema && !isDraft && <RenderForm />}
-      {formSchema && isDraft && <RenderDraft />}
+      {formSchema && isDraft ? <RenderDraft /> : <RenderForm />}
       {!formSchema && <NotFound />}
     </>
   );
