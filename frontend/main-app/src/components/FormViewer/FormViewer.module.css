@@ -13,3 +13,7 @@
   justify-content: end;
   padding: var(--fds-spacing-5) 0;
 }
+
+.component {
+  margin: var(--fds-spacing-10) 0;
+}

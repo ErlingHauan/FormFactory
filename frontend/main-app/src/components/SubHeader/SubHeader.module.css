@@ -28,8 +28,12 @@
   font-size: 1.5rem;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 600px) {
   .subHeader {
-    padding: 0 var(--fds-spacing-6);
+    padding: 0 var(--fds-spacing-4);
+  }
+
+  .subHeaderLinks {
+    gap: var(--fds-spacing-6);
   }
 }

@@ -1,34 +1,44 @@
 import classes from "./Signup.module.css";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
-import { Alert, Button, Heading, Textfield } from "@digdir/design-system-react";
+import { Button, Heading, Textfield } from "@digdir/design-system-react";
 import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { axiosPostForm, getApiUrl } from "../Login/LoginUtils";
+import { getApiUrl } from "../../utils/getApiUrl";
 import { validateSignupForm } from "./SignupUtils";
 import { SignupForm, SignupFormError } from "./types";
 import { useTranslation } from "react-i18next";
+import { alertToRender } from "../FormViewer/validationUtils";
+import axios from "axios";
 
 export const Signup = (): React.JSX.Element => {
   const navigate = useNavigate();
-  const [formErrors, setFormErrors] = useState<SignupFormError | null>(null);
-  const [serverError, setServerError] = useState<string | null>(null);
   const { t } = useTranslation();
+
+  const [fieldErrors, setFieldErrors] = useState<SignupFormError | null>(null);
+  const [errorAlert, setErrorAlert] = useState("");
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const signupForm: SignupForm = Object.fromEntries(formData);
-    const formIsValid: boolean = validateSignupForm({ signupForm, setFormErrors });
+    const formIsValid = validateSignupForm({ signupForm, setFieldErrors });
 
-    if (formIsValid) {
-      const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/users`;
-      if (await axiosPostForm(targetUrl, formData)) {
-        navigate("/dashboard");
-      } else {
-        setServerError(t("signup_page.server.error"));
-      }
+    if (!formIsValid) {
+      return;
+    }
+
+    const apiUrl = getApiUrl();
+    const targetUrl = `${apiUrl}/users`;
+
+    try {
+      await axios.post(targetUrl, signupForm, {
+        withCredentials: true,
+      });
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+      setErrorAlert("signupServerError");
     }
   };
 
@@ -42,7 +52,7 @@ export const Signup = (): React.JSX.Element => {
           name="email"
           type="email"
           label={t("signup_page.email.label")}
-          error={formErrors?.email}
+          error={fieldErrors?.email}
         />
         <Textfield
           name="organization"
@@ -53,16 +63,16 @@ export const Signup = (): React.JSX.Element => {
           name="password"
           type="password"
           label={t("signup_page.password.label")}
-          error={formErrors?.password}
+          error={fieldErrors?.password}
         />
         <Textfield
           name="passwordRepeat"
           type="password"
           label={t("signup_page.password.repeat.label")}
-          error={formErrors?.passwordRepeat}
+          error={fieldErrors?.passwordRepeat}
         />
       </div>
-      {serverError && <Alert severity="danger">{serverError}</Alert>}
+      {errorAlert && alertToRender(errorAlert, t)}
       <div className={classes.buttonContainer}>
         <Button type="submit" className={classes.button}>
           {t("signup_page.signup.button")}

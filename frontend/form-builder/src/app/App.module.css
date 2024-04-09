@@ -14,12 +14,12 @@ body {
 }
 
 .formBuilder {
+  margin: auto 0;
   padding: var(--fds-spacing-10);
   max-width: 1500px;
   display: grid;
   grid-template-columns: 1fr 6fr 3fr;
   gap: var(--fds-spacing-2);
-  min-height: 600px;
 }
 
 .builderSection {
@@ -28,4 +28,29 @@ body {
   border-radius: var(--fds-border_radius-medium);
   padding: var(--fds-spacing-5);
   text-align: center;
+  margin: auto 0;
+  height: 100%;
+}
+
+.builderSection:nth-child(2) {
+  height: 600px;
+}
+
+@media (max-width: 768px) {
+  .formBuilder {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    width: 100%;
+  }
+
+  .builderSection:first-child {
+    padding: 0;
+    border: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .formBuilder {
+    padding: var(--fds-spacing-2);
+  }
 }

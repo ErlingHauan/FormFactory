@@ -2,6 +2,7 @@ using FormAPI.Controllers;
 using FormAPI.Mappers;
 using FormAPI.Models;
 using FormAPI.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
@@ -47,10 +48,10 @@ public class UsersControllerTests
         {
             new UserEntity { Id = 1, Email = "user1@example.com", Password = "password1", Organization = "Org1" },
         };
-        _mockRepo.Setup(repo => repo.Get(1)).ReturnsAsync(mockUsers.First(u => u.Id == 1));
+        _mockRepo.Setup(repo => repo.GetSingleByEmail("user1@example.com")).ReturnsAsync(mockUsers.First(u => u.Id == 1));
 
         // Act
-        var result = await _controller.Get(1);
+        var result = await _controller.GetSingle("user1@example.com");
 
         // Assert
         var actionResult = Assert.IsType<OkObjectResult>(result.Result);
@@ -63,10 +64,10 @@ public class UsersControllerTests
     public async Task Get_UserNotFound_ReturnsNotFound()
     {
         // Arrange
-        _mockRepo.Setup(repo => repo.Get(1)).ReturnsAsync((UserEntity?)null);
+        _mockRepo.Setup(repo => repo.GetSingleByEmail("user1@example.com")).ReturnsAsync((UserEntity?)null);
 
         // Act
-        var result = await _controller.Get(1);
+        var result = await _controller.GetSingle("user1@example.com");
 
         // Assert
         Assert.IsType<NotFoundObjectResult>(result.Result);
@@ -78,6 +79,15 @@ public class UsersControllerTests
         // Arrange
         var newUserDto = new UserDto(1, "user1@example.com", "password1", "Org1");
         _mockRepo.Setup(repo => repo.Create(It.IsAny<UserEntity>())).ReturnsAsync((UserEntity e) => e);
+
+        var httpContext = new DefaultHttpContext();
+        var sessionMock = new Mock<ISession>();
+        httpContext.Session = sessionMock.Object;
+
+        _controller.ControllerContext = new ControllerContext
+        {
+            HttpContext = httpContext
+        };
 
         // Act
         var result = await _controller.Create(newUserDto);
@@ -113,6 +123,15 @@ public class UsersControllerTests
         UserMappers.DtoToEntity(dto, entity);
         _mockRepo.Setup(repo => repo.ConfirmEmailAndPassword(It.IsAny<UserEntity>())).ReturnsAsync(entity);
 
+        var httpContext = new DefaultHttpContext();
+        var sessionMock = new Mock<ISession>();
+        httpContext.Session = sessionMock.Object;
+
+        _controller.ControllerContext = new ControllerContext
+        {
+            HttpContext = httpContext
+        };
+
         // Act
         var result = await _controller.Login(dto);
 
@@ -140,7 +159,7 @@ public class UsersControllerTests
         // Arrange
         var userToBeDeleted = new UserEntity
         { Id = 1, Email = "user1@example.com", Password = "password1", Organization = "Org1" };
-        _mockRepo.Setup(repo => repo.Get(userToBeDeleted.Id)).ReturnsAsync(userToBeDeleted);
+        _mockRepo.Setup(repo => repo.GetSingleById(userToBeDeleted.Id)).ReturnsAsync(userToBeDeleted);
         _mockRepo.Setup(repo => repo.Delete(userToBeDeleted.Id));
 
         // Act
@@ -155,7 +174,7 @@ public class UsersControllerTests
     {
         // Arrange
         var userId = 1;
-        _mockRepo.Setup(repo => repo.Get(userId)).ReturnsAsync((UserEntity?)null);
+        _mockRepo.Setup(repo => repo.GetSingleById(userId)).ReturnsAsync((UserEntity?)null);
         _mockRepo.Setup(repo => repo.Delete(userId));
 
         // Act

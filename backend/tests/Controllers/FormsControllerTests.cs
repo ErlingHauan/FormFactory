@@ -1,6 +1,7 @@
 using FormAPI.Controllers;
 using FormAPI.Models;
 using FormAPI.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
@@ -24,7 +25,8 @@ public class FormsControllerTests
         // Arrange
         var mockComponents = new List<FormComponent>
         {
-            new FormComponent { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
+            new FormComponent
+                { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
             new FormComponent
             {
                 Name = "question2", Label = "Question 2", Required = false, Order = 1, Type = "radio",
@@ -72,7 +74,7 @@ public class FormsControllerTests
         _mockRepo.Setup(repo => repo.Get(mockGuid)).ReturnsAsync(mockForms.First(u => u.Id == mockGuid));
 
         // Act
-        var result = await _controller.Get(mockGuid);
+        var result = await _controller.GetSingle(mockGuid);
 
         // Assert
         var actionResult = Assert.IsType<OkObjectResult>(result.Result);
@@ -89,7 +91,7 @@ public class FormsControllerTests
 
         // Act
         var randomGuid = new Guid("8bd8e16b-e1ec-4834-9c76-863b56995291");
-        var result = await _controller.Get(randomGuid);
+        var result = await _controller.GetSingle(randomGuid);
 
         // Assert
         Assert.IsType<NotFoundObjectResult>(result.Result);
@@ -101,7 +103,8 @@ public class FormsControllerTests
         // Arrange
         var mockComponents = new List<FormComponent>
         {
-            new FormComponent { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
+            new FormComponent
+                { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
             new FormComponent
             {
                 Name = "question2", Label = "Question 2", Required = false, Order = 1, Type = "radio",
@@ -136,7 +139,8 @@ public class FormsControllerTests
         // Arrange 
         var mockComponents = new List<FormComponent>
         {
-            new FormComponent { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
+            new FormComponent
+                { Name = "question1", Label = "Question 1", Required = true, Order = 0, Type = "textfield" },
             new FormComponent
             {
                 Name = "question2", Label = "Question 2", Required = false, Order = 1, Type = "radio",

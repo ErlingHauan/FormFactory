@@ -9,6 +9,7 @@ public interface IFormRepository
 {
     Task<List<FormEntity>> GetAll();
     Task<FormEntity?> Get(Guid id);
+    Task<List<FormEntity>> GetAllFormsByUser(string email);
     Task<FormEntity?> Create(FormEntity form);
     Task<FormEntity?> Update(FormEntity form);
     Task<FormEntity?> Delete(Guid id);
@@ -38,6 +39,12 @@ public class FormRepository : IFormRepository
             return null;
         }
         return foundEntity;
+    }
+
+    public async Task<List<FormEntity>> GetAllFormsByUser(string email)
+    {
+        var formList = await _context.Forms.Where(form => form.User == email).ToListAsync();
+        return formList;
     }
 
     public async Task<FormEntity?> Create(FormEntity form)

@@ -7,7 +7,7 @@ To run the build in containers, run `docker-compose up --build` and then `yarn d
 If you are getting an error regarding a missing Dotnet utility, try running `dotnet tool install --global dotnet-ef --version 8.*` before seeding.
 
 Access the frontend on http://localhost:3030. \
-The backend endpoints can be viewed at https://localhost:8081/swagger. \
+The backend endpoints can be viewed at https://localhost:8081. \
 A database GUI is available on http://localhost:5050/ (log in with "a@a.com" and password "123456").
 
 ## Run in development mode
@@ -19,4 +19,4 @@ Note that the database is only available through Docker, meaning the `formfactor
 3. Run `yarn start-frontend`.
 
 Then access the app on http://localhost:3050.
-To see the backend endpoints, go to http://localhost:8080/swagger.
+To see the backend endpoints, go to http://localhost:8080.

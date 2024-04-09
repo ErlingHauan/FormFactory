@@ -1,28 +1,40 @@
 import React from "react";
-import { BulletListIcon, MenuHamburgerIcon } from "@navikt/aksel-icons";
 import { useTranslation } from "react-i18next";
 import { DraggableItem } from "../DraggableItem";
+import { BulletListIcon, MenuHamburgerIcon } from "@navikt/aksel-icons";
+
+interface ToolBarItemsProps {
+  compProps: FormComponent;
+  icon: React.ReactNode;
+}
 
 export const ToolBarItems = () => {
   const { t } = useTranslation();
 
-  const Items = [
+  const Items: ToolBarItemsProps[] = [
     {
-      icon: <MenuHamburgerIcon fontSize="3rem" />,
-      text: t("toolbar_tools.text.field.component"),
-      draggable: true,
+      compProps: {
+        type: "textfield",
+        name: t("toolbar_tools.text.field.component"),
+        label: "",
+        required: false,
+      },
+      icon: <MenuHamburgerIcon />,
     },
     {
-      icon: <BulletListIcon fontSize="3rem" />,
-      text: t("toolbar_tools.multiple.choice.component"),
-      draggable: true,
+      compProps: {
+        type: "radio",
+        name: t("toolbar_tools.multiple.choice.component"),
+        label: "",
+      },
+      icon: <BulletListIcon />,
     },
   ];
 
   return (
     <>
       {Items.map((item, index) => (
-        <DraggableItem key={index} item={item} index={index} />
+        <DraggableItem key={index} item={item.compProps} icon={item.icon} index={index} />
       ))}
     </>
   );

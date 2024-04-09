@@ -1,10 +1,10 @@
-import { getApiUrl } from "../Login/LoginUtils";
 import axios from "axios";
+import { getApiUrl } from "../../utils/getApiUrl";
 
 export const deleteForm = async (formId: string) => {
   const apiUrl = getApiUrl();
-  const deleteFormEndpoint = `${apiUrl}/api/forms/${formId}`;
-  const deleteSubmissionsEndpoint = `${apiUrl}/api/submissions/form/${formId}`;
+  const deleteFormEndpoint = `${apiUrl}/forms/${formId}`;
+  const deleteSubmissionsEndpoint = `${apiUrl}/submissions/form/${formId}`;
 
   try {
     await axios.delete(deleteFormEndpoint);

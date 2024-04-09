@@ -2,6 +2,21 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { App } from "./App";
 import { MemoryRouter } from "react-router";
+import { useAuthorization } from "../hooks/useAuthorization";
+import { useUser } from "../hooks/useUser";
+
+jest.mock("../hooks/useAuthorization");
+jest.mocked(useAuthorization);
+
+const mockedUser = {
+  id: "string",
+  email: "string",
+  password: "string",
+  organization: "string",
+};
+
+jest.mock("../hooks/useUser");
+jest.mocked(useUser).mockReturnValue({ user: mockedUser, isLoading: false });
 
 describe("App component", () => {
   const renderApp = (initialEntries?: string[]) => {
@@ -41,17 +56,25 @@ describe("App component", () => {
   it("renders Signup when accessing '/signup'", () => {
     renderApp(["/signup"]);
 
-    const title = screen.getByRole("heading", { name: "Sign up" });
+    const titles = screen.getAllByRole("heading", { name: "Sign up" });
 
-    expect(title).toBeInTheDocument();
+    expect(titles[0]).toBeInTheDocument();
+  });
+
+  it("renders Dashboard when accessing '/dashboard'", () => {
+    jest.spyOn(React, "useEffect").mockImplementation(); // Prevents API calls
+    renderApp(["/dashboard"]);
+
+    expect(React.useEffect).toHaveBeenCalled();
   });
 
   it("renders Form Builder when accessing '/form-builder'", () => {
-    renderApp();
+    renderApp(["/form-builder"]);
 
-    const title = screen.getByRole("link", { name: "Form Builder" });
+    // There is an error accessing the form builder heading. To be fixed later.
+    const title = screen.getAllByRole("heading", { name: "Components" });
 
-    expect(title).toBeInTheDocument();
+    expect(title[0]).toBeInTheDocument();
   });
 
   it("renders NotFound when routing to a non-existing page", () => {

@@ -3,23 +3,27 @@ import classes from "./Dashboard.module.css";
 import React, { useEffect, useState, createContext } from "react";
 import { DashboardOverview } from "../DashboardOverview/DashboardOverview";
 import { DashboardAccordion } from "../DashboardAccordion/DashboardAccordion";
-import { getApiUrl } from "../Login/LoginUtils";
+import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
+import { useAuthorization } from "../../hooks/useAuthorization";
 
 export const FormContext: React.Context<null | Form> = createContext(null);
 export const Dashboard = (): React.JSX.Element => {
+  useAuthorization();
   const [forms, setForms] = useState<Form[]>([]);
 
   useEffect(() => {
     (async function getAllForms() {
       const apiUrl = getApiUrl();
-      const targetUrl = `${apiUrl}/api/forms`;
+      const targetUrl = `${apiUrl}/forms/user`;
 
       try {
-        const result = await axios.get(targetUrl);
+        const result = await axios.get(targetUrl, {
+          withCredentials: true,
+        });
         setForms(result.data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     })();
   }, []);

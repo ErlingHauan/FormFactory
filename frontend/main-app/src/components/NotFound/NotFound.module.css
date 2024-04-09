@@ -4,6 +4,7 @@
   background-color: var(--fds-semantic-background-default);
   border: 1px solid var(--fds-semantic-border-neutral-subtle);
   border-radius: var(--fds-border_radius-medium);
+  margin: var(--fds-spacing-10);
   padding: var(--fds-spacing-10) var(--fds-spacing-14);
   max-width: 1000px;
 }
@@ -18,13 +19,14 @@
   width: 40%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .card {
     flex-direction: column;
   }
 
   .image {
     margin: var(--fds-spacing-8) auto 0 auto;
-    width: 80%;
+    width: 70%;
+    min-width: 200px;
   }
 }
