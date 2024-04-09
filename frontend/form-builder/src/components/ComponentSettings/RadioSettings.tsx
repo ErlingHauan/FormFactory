@@ -10,13 +10,15 @@ export const RadioSettings = () => {
 
   return (
     <>
-      <Textfield label="Name" defaultValue={currentComponent.name} size="small" />
+      <Textfield name="name" label="Name" defaultValue={currentComponent.name} size="small" />
       <Textfield
+        name="label"
         label={t("settings_side_bar.component.label")}
         defaultValue={currentComponent.label || ""}
         size="small"
       />
       <Textarea
+        name="radioChoices"
         label={"Choices (comma separated)"}
         defaultValue={currentComponent.radioChoices?.join(", ") || ""}
         size="small"

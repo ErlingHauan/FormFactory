@@ -46,6 +46,7 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
     setCurrentComponent({ ...item });
 
     settingsRef.current?.showModal();
+    settingsRef.current?.focus();
   };
 
   const RenderComponents = () => (

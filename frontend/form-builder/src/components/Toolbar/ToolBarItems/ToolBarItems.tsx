@@ -26,6 +26,7 @@ export const ToolBarItems = () => {
         type: "radio",
         name: t("toolbar_tools.multiple.choice.component"),
         label: t("toolbar_tools.multiple.choice.component"),
+        radioChoices: ["Yes", "No"],
       },
       icon: <BulletListIcon />,
     },

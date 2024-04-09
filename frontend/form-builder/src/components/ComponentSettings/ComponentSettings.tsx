@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { FormEvent, useContext } from "react";
 import { SettingsModal } from "./SettingsModal";
 import { CompSettingsSidebar } from "./SettingsSidebar";
 import classes from "./ComponentSettings.module.css";
 import { FormBuilderContext } from "../../app/App";
 import { InputSettings } from "./InputSettings";
 import { RadioSettings } from "./RadioSettings";
+import { cleanFormData } from "../../../../main-app/src/components/FormViewer/validationUtils";
 
 interface ComponentSettingsProps {
   isSmallScreen: boolean;
@@ -16,14 +17,28 @@ export const ComponentSettings = ({
   settingsRef,
 }: ComponentSettingsProps): React.JSX.Element => {
   const SettingsContent = () => {
-    const { currentComponent } = useContext(FormBuilderContext);
+    const { currentComponent, form, setForm } = useContext(FormBuilderContext);
+
+    const handleSaveComponent = (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.currentTarget as HTMLFormElement);
+      const cleanedFormData = cleanFormData(formData);
+
+      // check for boolean or number fields and convert them from strings
+
+      let updatedItem = { ...currentComponent, ...cleanedFormData };
+      const index = currentComponent.order;
+      let updatedComponents = form.components;
+      updatedComponents[index] = updatedItem;
+      setForm({ ...form, components: updatedComponents });
+    };
 
     return (
-      <div className={classes.compSettingsContent}>
-        <p>Order: {currentComponent?.order}</p>
+      <form className={classes.compSettingsContent} onSubmit={handleSaveComponent}>
         {currentComponent?.type === "input" && <InputSettings />}
         {currentComponent?.type === "radio" && <RadioSettings />}
-      </div>
+      </form>
     );
   };
 
