@@ -32,15 +32,6 @@ services:
       - POSTGRES_USER=formfactory
       - POSTGRES_PASSWORD=123456
       - POSTGRES_DB=formfactory-db
-
-  db-viewer:
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    ports:
-      - "5050:80"
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=a@a.com
-      - PGADMIN_DEFAULT_PASSWORD=123456
   
 volumes:
   db:

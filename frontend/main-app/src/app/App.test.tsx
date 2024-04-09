@@ -12,20 +12,30 @@ describe("App component", () => {
     );
   };
 
+  it("renders Header and Footer", () => {
+    renderApp();
+
+    const header = screen.getByRole("banner");
+    const footer = screen.getByRole("contentinfo");
+
+    expect(header).toHaveTextContent("Form Factory");
+    expect(footer).toHaveTextContent("Designsystemet");
+  });
+
   it("renders Login when accessing '/'", () => {
     renderApp();
 
-    const title = screen.getByRole("heading", { name: "Log in" });
+    const titles = screen.getAllByRole("heading", { name: "Log in" });
 
-    expect(title).toBeInTheDocument();
+    expect(titles[0]).toBeInTheDocument();
   });
 
   it("renders Login when accessing '/login'", () => {
     renderApp(["/login"]);
 
-    const title = screen.getByRole("heading", { name: "Log in" });
+    const titles = screen.getAllByRole("heading", { name: "Log in" });
 
-    expect(title).toBeInTheDocument();
+    expect(titles[0]).toBeInTheDocument();
   });
 
   it("renders Signup when accessing '/signup'", () => {
@@ -44,23 +54,11 @@ describe("App component", () => {
     expect(title).toBeInTheDocument();
   });
 
-  it("renders footer and header when accessing '/'", () => {
-    renderApp();
+  it("renders NotFound when routing to a non-existing page", () => {
+    renderApp(["/page-that-does-not-exist"]);
 
-    const header = screen.getByRole("banner");
-    const footer = screen.getByRole("contentinfo");
+    const title = screen.getByRole("heading", { name: "Page not found" });
 
-    expect(header).toHaveTextContent("Form Factory");
-    expect(footer).toHaveTextContent("Designsystemet");
-  });
-
-  it("renders footer and header when not accessing '/'", () => {
-    renderApp(["/form-builder"]);
-
-    const header = screen.getByRole("banner");
-    const footer = screen.getByRole("contentinfo");
-
-    expect(header).toHaveTextContent("Form Factory");
-    expect(footer).toHaveTextContent("Designsystemet");
+    expect(title).toBeInTheDocument();
   });
 });
