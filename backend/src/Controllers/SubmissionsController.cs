@@ -26,7 +26,7 @@ public class SubmissionsController : ControllerBase
         var dtoList = entityList.Select(SubmissionMappers.ToDto).ToList();
         return Ok(dtoList);
     }
-    
+
     /// <summary>
     /// Gets a single submission. Not used.
     /// </summary>
@@ -44,7 +44,7 @@ public class SubmissionsController : ControllerBase
         var dto = SubmissionMappers.ToDto(entity);
         return Ok(dto);
     }
-    
+
     /// <summary>
     /// Gets all submissions belonging to a form.
     /// </summary>
@@ -66,7 +66,7 @@ public class SubmissionsController : ControllerBase
         var result = await _submissionRepository.Create(entity);
         return Ok(result);
     }
-    
+
     /// <summary>
     /// Deletes a single submission. Not in use.
     /// </summary>
