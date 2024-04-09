@@ -24,7 +24,9 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
   const [{ isOver }, drop] = useDrop(() => ({
     accept: DraggableItemsType.ToolbarItem,
     drop: (item: FormComponent) => {
-      const updatedComponents = [...formRef.current.components, item];
+      const randomString = Math.random().toString(36).substring(2, 7);
+      const updatedItem = { ...item, name: randomString };
+      const updatedComponents = [...formRef.current.components, updatedItem];
       setForm({ ...formRef.current, components: updatedComponents });
     },
     collect: (monitor) => ({
@@ -40,7 +42,7 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
 
   const handleClick = (item, index) => {
     item.order = index;
-    console.log(item.order);
+    console.log(item);
     setCurrentComponent({ ...item });
 
     settingsRef.current?.showModal();

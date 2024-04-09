@@ -16,7 +16,7 @@ export const ToolBarItems = () => {
       compProps: {
         type: "input",
         name: t("toolbar_tools.text.field.component"),
-        label: "",
+        label: t("toolbar_tools.text.field.component"),
         required: false,
       },
       icon: <MenuHamburgerIcon />,
@@ -25,7 +25,7 @@ export const ToolBarItems = () => {
       compProps: {
         type: "radio",
         name: t("toolbar_tools.multiple.choice.component"),
-        label: "",
+        label: t("toolbar_tools.multiple.choice.component"),
       },
       icon: <BulletListIcon />,
     },

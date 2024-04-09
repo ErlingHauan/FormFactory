@@ -17,7 +17,7 @@ export const FormComponent: React.FC<FormComponentsProps> = ({
 
   if (type === "input") {
     componentToRender = (
-      <FormTextfield name={name} label={label || name} required={required} error={error} />
+      <FormTextfield name={name} label={label} required={required} error={error} />
     );
   } else if (type === "radio") {
     componentToRender = <FormRadio name={name} label={label || name} radioChoices={radioChoices} />;

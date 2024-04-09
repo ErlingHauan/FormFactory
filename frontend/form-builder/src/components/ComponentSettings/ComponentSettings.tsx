@@ -35,21 +35,37 @@ export const ComponentSettings = ({
   );
 };
 
-const InputFieldSettings = () => {
-  const { t } = useTranslation();
+const ButtonGroup = () => {
   const { currentComponent, form, setForm } = useContext(FormBuilderContext);
-  const [inputType, setInputType] = useState<"string" | "number">("string");
-
-  const handleInputFormat = (value: string) => {
-    setInputType(value as "string" | "number");
-  };
-
   const handleSave = () => {
     const index = currentComponent.order;
     let updatedComponents = form.components;
     updatedComponents[index] = currentComponent;
 
     setForm({ ...form, components: updatedComponents });
+  };
+
+  return (
+    <div className={classes.buttons}>
+      <Button color={"danger"} variant={"secondary"} size={"small"}>
+        <TrashFillIcon />
+        Delete component
+      </Button>
+      <Button color={"success"} size={"small"} onClick={handleSave}>
+        <FloppydiskFillIcon />
+        Save component
+      </Button>
+    </div>
+  );
+};
+
+const InputFieldSettings = () => {
+  const { t } = useTranslation();
+  const { currentComponent } = useContext(FormBuilderContext);
+  const [inputType, setInputType] = useState(currentComponent.inputType);
+
+  const handleInputFormat = (value: string) => {
+    setInputType(value as "string" | "number");
   };
 
   return (
@@ -80,16 +96,7 @@ const InputFieldSettings = () => {
       </Radio.Group>
       {inputType === "string" && <TextSettings />}
       {inputType === "number" && <NumberSettings />}
-      <div className={classes.buttons}>
-        <Button color={"danger"} variant={"secondary"} size={"small"}>
-          <TrashFillIcon />
-          Delete component
-        </Button>
-        <Button color={"success"} size={"small"} onClick={handleSave}>
-          <FloppydiskFillIcon />
-          Save component
-        </Button>
-      </div>
+      <ButtonGroup />
     </>
   );
 };
@@ -142,21 +149,18 @@ const RadioSettings = () => {
 
   return (
     <>
-      <Textfield label="Name" value={currentComponent.name} size="small" />
+      <Textfield label="Name" defaultValue={currentComponent.name} size="small" />
       <Textfield
         label={t("settings_side_bar.component.label")}
-        value={currentComponent.label || ""}
+        defaultValue={currentComponent.label || ""}
         size="small"
       />
       <Textarea
         label={"Choices (comma separated)"}
-        value={currentComponent.radioChoices?.join(", ") || ""}
+        defaultValue={currentComponent.radioChoices?.join(", ") || ""}
         size="small"
       />
-      <Button color={"danger"} variant={"secondary"} size={"small"}>
-        <TrashFillIcon />
-        Delete component
-      </Button>
+      <ButtonGroup />
     </>
   );
 };
