@@ -35,8 +35,10 @@ export const ComponentSettings = ({
 
 const InputFieldSettings = () => {
   const { t } = useTranslation();
-  const [inputType, setInputType] = useState<"string" | "number">("string");
   const { currentComponent } = useContext(FormBuilderContext);
+  const [inputType, setInputType] = useState<"string" | "number">(
+    currentComponent.inputType || "string",
+  );
 
   const handleInputFormat = (value: string) => {
     setInputType(value as "string" | "number");
