@@ -15,7 +15,6 @@ export const ToolBarItems = () => {
     {
       compProps: {
         type: "input",
-        order: 0,
         name: t("toolbar_tools.text.field.component"),
         label: "",
         required: false,
@@ -25,7 +24,6 @@ export const ToolBarItems = () => {
     {
       compProps: {
         type: "radio",
-        order: 1,
         name: t("toolbar_tools.multiple.choice.component"),
         label: "",
       },
@@ -36,7 +34,7 @@ export const ToolBarItems = () => {
   return (
     <>
       {Items.map((item, index) => (
-        <DraggableItem key={index} item={item.compProps} icon={item.icon} index={index} />
+        <DraggableItem key={index} item={item.compProps} icon={item.icon} />
       ))}
     </>
   );

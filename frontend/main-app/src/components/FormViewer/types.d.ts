@@ -1,6 +1,6 @@
 interface FormComponent {
   name: string;
-  order: number;
+  order?: number;
   label: string;
   type: string;
   inputType?: string;

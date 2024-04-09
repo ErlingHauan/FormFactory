@@ -24,7 +24,8 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
   const [{ isOver }, drop] = useDrop(() => ({
     accept: DraggableItemsType.ToolbarItem,
     drop: (item: FormComponent) => {
-      setForm({ ...formRef.current, components: [...formRef.current.components, item] });
+      const updatedComponents = [...formRef.current.components, item];
+      setForm({ ...formRef.current, components: updatedComponents });
     },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
@@ -37,10 +38,30 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
     setForm({ ...form, ...newForm });
   };
 
-  const handleClick = (item) => {
+  const handleClick = (item, index) => {
+    item.order = index;
+    console.log(item.order);
+    setCurrentComponent({ ...item });
+
     settingsRef.current?.showModal();
-    setCurrentComponent(item);
   };
+
+  const RenderComponents = () => (
+    <>
+      {form?.components?.map((item, index) => (
+        <div key={index} className={classes.droppedItem} onClick={() => handleClick(item, index)}>
+          <span className={classes.formBoardComponent}>
+            <FormComponent component={item} />
+          </span>
+          <XMarkIcon
+            title={t("form_builder.form.delete_item")}
+            className={classes.removalItem}
+            onClick={() => handleRemoveItem(index)}
+          />
+        </div>
+      ))}
+    </>
+  );
 
   return (
     <>
@@ -64,18 +85,7 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
             <Paragraph>{t("form_builder.drag.component.message")}</Paragraph>
           </div>
         ) : (
-          form?.components?.map((item, index) => (
-            <div key={index} className={classes.droppedItem} onClick={() => handleClick(item)}>
-              <span className={classes.formBoardComponent}>
-                <FormComponent component={item} />
-              </span>
-              <XMarkIcon
-                title={t("form_builder.form.delete_item")}
-                className={classes.removalItem}
-                onClick={() => handleRemoveItem(index)}
-              />
-            </div>
-          ))
+          <RenderComponents />
         )}
       </div>
     </>

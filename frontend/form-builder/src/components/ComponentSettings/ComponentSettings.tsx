@@ -18,6 +18,7 @@ export const ComponentSettings = ({
 }: ComponentSettingsProps): React.JSX.Element => {
   const SettingsContent = () => {
     const { currentComponent } = useContext(FormBuilderContext);
+
     return (
       <div className={classes.compSettingsContent}>
         <p>Order: {currentComponent?.order}</p>
@@ -55,13 +56,13 @@ const InputFieldSettings = () => {
     <>
       <Textfield
         label="Name"
-        value={currentComponent.name || ""}
+        defaultValue={currentComponent.name || ""}
         size="small"
         placeholder={"Required"}
       />
       <Textfield
         label={t("settings_side_bar.component.label")}
-        value={currentComponent.label || ""}
+        defaultValue={currentComponent.label || ""}
         size="small"
         placeholder={"Required"}
       />
@@ -100,13 +101,13 @@ const TextSettings = () => {
     <>
       <Textfield
         label={t("settings_side_bar.minimum.length")}
-        value={currentComponent.minLength || ""}
+        defaultValue={currentComponent.minLength || ""}
         size="small"
         placeholder="Optional"
       />
       <Textfield
         label={t("settings_side_bar.maximum.length")}
-        value={currentComponent.maxLength || ""}
+        defaultValue={currentComponent.maxLength || ""}
         size="small"
         placeholder="Optional"
       />
@@ -121,13 +122,13 @@ const NumberSettings = () => {
     <>
       <Textfield
         label={t("settings_side_bar.minimum.value")}
-        value={currentComponent.greaterThan || ""}
+        defaultValue={currentComponent.greaterThan || ""}
         size="small"
         placeholder="Optional"
       />
       <Textfield
         label={t("settings_side_bar.maximum.value")}
-        value={currentComponent.lessThan || ""}
+        defaultValue={currentComponent.lessThan || ""}
         size="small"
         placeholder="Optional"
       />
