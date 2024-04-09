@@ -6,6 +6,8 @@ import { FormBuilderContext } from "../../app/App";
 import { InputSettings } from "./InputSettings";
 import { RadioSettings } from "./RadioSettings";
 import { cleanFormData } from "../../../../main-app/src/components/FormViewer/validationUtils";
+import { ComponentAsStrings } from "./types";
+import { updateComponent, updateComponentArray } from "./utils";
 
 interface ComponentSettingsProps {
   isSmallScreen: boolean;
@@ -16,24 +18,27 @@ export const ComponentSettings = ({
   isSmallScreen,
   settingsRef,
 }: ComponentSettingsProps): React.JSX.Element => {
-  const SettingsContent = () => {
-    const { currentComponent, form, setForm } = useContext(FormBuilderContext);
+  const { currentComponent, form, setForm } = useContext(FormBuilderContext);
 
-    const handleSaveComponent = (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
+  const handleSaveComponent = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-      const formData = new FormData(event.currentTarget as HTMLFormElement);
-      const cleanedFormData = cleanFormData(formData);
+    const formData = new FormData(event.currentTarget as HTMLFormElement);
+    const updatedComponentData = cleanFormData(formData) as ComponentAsStrings;
 
-      // check for boolean or number fields and convert them from strings
+    // TODO: Use Zod validation here.
+    // See FormViewer for an example of how it can be done.
 
-      let updatedItem = { ...currentComponent, ...cleanedFormData };
-      const index = currentComponent.order;
-      let updatedComponents = form.components;
-      updatedComponents[index] = updatedItem;
-      setForm({ ...form, components: updatedComponents });
-    };
+    const updatedComponent: FormComponent = updateComponent(currentComponent, updatedComponentData);
+    const updatedComponents: FormComponent[] = updateComponentArray(
+      form.components,
+      updatedComponent,
+    );
 
+    setForm({ ...form, components: updatedComponents });
+  };
+
+  const RenderSettingsContent = () => {
     return (
       <form className={classes.compSettingsContent} onSubmit={handleSaveComponent}>
         {currentComponent?.type === "input" && <InputSettings />}
@@ -43,8 +48,8 @@ export const ComponentSettings = ({
   };
 
   return isSmallScreen ? (
-    <SettingsModal SettingsContent={SettingsContent} settingsRef={settingsRef} />
+    <SettingsModal SettingsContent={RenderSettingsContent} settingsRef={settingsRef} />
   ) : (
-    <CompSettingsSidebar SettingsContent={SettingsContent} />
+    <CompSettingsSidebar SettingsContent={RenderSettingsContent} />
   );
 };
