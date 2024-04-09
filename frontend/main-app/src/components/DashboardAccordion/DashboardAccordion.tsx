@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import React, { useContext, useEffect, useState } from "react";
 import classes from "./DashboardAccordion.module.css";
 import { FileSearchIcon } from "@navikt/aksel-icons";
 import { Accordion, Button, Heading } from "@digdir/design-system-react";
@@ -7,16 +6,15 @@ import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { CustomParagraph } from "../CustomParagraph";
 import { ButtonGroup } from "./ButtonGroup";
+import { FormContext } from "../Dashboard";
+import { t } from "i18next";
 
-interface DashboardAccordionProps {
-  form: Form;
-}
+export const DashboardAccordion: React.FC = () => {
+  const form = useContext(FormContext);
 
-export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) => {
-  const [submissions, setSubmissions] = useState();
+  const [submissions, setSubmissions] = useState([]);
   const [submissionCount, setSubmissionCount] = useState();
   const formUrl = `${window.location.origin}/view/${form.id}`;
-  const { t } = useTranslation();
 
   useEffect(() => {
     const getSubmissionCount = async () => {
@@ -56,7 +54,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
             <CustomParagraph heading="Expiration date" content={form.expires || "Not set"} />
             <CustomParagraph heading="Submissions" content={submissionCount} />
           </div>
-          <ButtonGroup submissions={submissions} form={form} formUrl={formUrl} />
+          <ButtonGroup submissions={submissions} formUrl={formUrl} />
         </Accordion.Content>
       </Accordion.Item>
     </Accordion>

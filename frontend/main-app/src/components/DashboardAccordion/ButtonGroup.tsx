@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import classes from "./DashboardAccordion.module.css";
 import { SubmissionViewer } from "../SubmissionViewer";
 import { CloudDownFillIcon, PersonEnvelopeFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
 import { Button } from "@digdir/design-system-react";
 import { ShareForm } from "./ShareForm";
+import { FormContext } from "../Dashboard";
+import { DeleteForm } from "../DeleteForm/DeleteForm";
 
 interface ButtonGroupProps {
   submissions: Submission[];
-  form: Form;
   formUrl: string;
 }
 
-export const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, form, formUrl }) => {
+export const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formUrl }) => {
   const { t } = useTranslation();
+  const form = useContext(FormContext);
 
   const handleDownload = async () => {
     // Setup file
@@ -38,7 +40,6 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, form, for
     <div className={classes.buttonContainer}>
       <SubmissionViewer
         submissions={submissions}
-        formTitle={form.title}
         className={classes.button}
         size="small"
         variant="secondary"
@@ -51,10 +52,10 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, form, for
         {t("dashboard.download")}
       </Button>
       <ShareForm formUrl={formUrl} />
-      <Button className={classes.button} color="danger" size="small" variant="secondary">
+      <DeleteForm className={classes.button} color="danger" size="small" variant="secondary">
         <TrashFillIcon />
         {t("dashboard.delete.form")}
-      </Button>
+      </DeleteForm>
     </div>
   );
 };
