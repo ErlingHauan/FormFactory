@@ -14,22 +14,24 @@ public static class FormComponentsProvider
         [
             new FormComponent()
             {
-                Name = "age",
+                Name = "Age",
                 Label = "How old are you?",
                 Required = true,
                 Order = 0,
-                Type = "textfield",
+                Type = "input",
+                InputType = "number",
                 GreaterThan = 8,
                 LessThan = 125
             },
 
             new FormComponent()
             {
-                Name = "usage",
+                Name = "Usage",
                 Label = "What will you be using Form Factory for?",
                 Required = false,
                 Order = 1,
-                Type = "textfield",
+                Type = "input",
+                InputType = "string",
                 MaxLength = 1000
             },
 
@@ -59,7 +61,8 @@ public static class FormComponentsProvider
                 Label = "Full name: ",
                 Required = true,
                 Order = 0,
-                Type = "textfield"
+                Type = "input",
+                InputType = "string"
             },
 
             new FormComponent()
@@ -78,7 +81,8 @@ public static class FormComponentsProvider
                 Label = "Do you have any allergies/dietary restrictions?",
                 Required = false,
                 Order = 2,
-                Type = "textfield"
+                Type = "input",
+                InputType = "string"
             }
         ];
     }

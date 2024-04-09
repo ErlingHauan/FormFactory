@@ -20,7 +20,7 @@ export const ComponentSettings = ({
     const { currentComponent } = useContext(FormBuilderContext);
     return (
       <div className={classes.compSettingsContent}>
-        {currentComponent?.type === "textfield" && <InputFieldSettings />}
+        {currentComponent?.type === "input" && <InputFieldSettings />}
         {currentComponent?.type === "radio" && <RadioSettings />}
       </div>
     );
@@ -35,19 +35,24 @@ export const ComponentSettings = ({
 
 const InputFieldSettings = () => {
   const { t } = useTranslation();
-  const [inputType, setInputType] = useState<"Text" | "Number">("Text");
+  const [inputType, setInputType] = useState<"string" | "number">("string");
   const { currentComponent } = useContext(FormBuilderContext);
 
   const handleInputFormat = (value: string) => {
-    setInputType(value as "Text" | "Number");
+    setInputType(value as "string" | "number");
   };
 
   return (
     <>
-      <Textfield label="Name" value={currentComponent.name} size="small" placeholder={"Required"} />
+      <Textfield
+        label="Name"
+        value={currentComponent.name || ""}
+        size="small"
+        placeholder={"Required"}
+      />
       <Textfield
         label={t("settings_side_bar.component.label")}
-        value={currentComponent.label}
+        value={currentComponent.label || ""}
         size="small"
         placeholder={"Required"}
       />
@@ -60,11 +65,11 @@ const InputFieldSettings = () => {
         legend="Input format"
         onChange={handleInputFormat}
       >
-        <Radio value="Text">Text</Radio>
-        <Radio value="Number">Number</Radio>
+        <Radio value="string">Text</Radio>
+        <Radio value="number">Number</Radio>
       </Radio.Group>
-      {inputType === "Text" && <TextSettings />}
-      {inputType === "Number" && <NumberSettings />}
+      {inputType === "string" && <TextSettings />}
+      {inputType === "number" && <NumberSettings />}
       <Button color={"danger"} variant={"secondary"} size={"small"}>
         <TrashFillIcon />
         Delete component
@@ -80,13 +85,13 @@ const TextSettings = () => {
     <>
       <Textfield
         label={t("settings_side_bar.minimum.length")}
-        value={currentComponent.minLength}
+        value={currentComponent.minLength || ""}
         size="small"
         placeholder="Optional"
       />
       <Textfield
         label={t("settings_side_bar.maximum.length")}
-        value={currentComponent.maxLength}
+        value={currentComponent.maxLength || ""}
         size="small"
         placeholder="Optional"
       />
@@ -101,13 +106,13 @@ const NumberSettings = () => {
     <>
       <Textfield
         label={t("settings_side_bar.minimum.value")}
-        value={currentComponent.greaterThan}
+        value={currentComponent.greaterThan || ""}
         size="small"
         placeholder="Optional"
       />
       <Textfield
         label={t("settings_side_bar.maximum.value")}
-        value={currentComponent.lessThan}
+        value={currentComponent.lessThan || ""}
         size="small"
         placeholder="Optional"
       />
@@ -124,12 +129,12 @@ const RadioSettings = () => {
       <Textfield label="Name" value={currentComponent.name} size="small" />
       <Textfield
         label={t("settings_side_bar.component.label")}
-        value={currentComponent.label}
+        value={currentComponent.label || ""}
         size="small"
       />
       <Textarea
         label={"Choices (comma separated)"}
-        value={currentComponent.radioChoices?.join(", ")}
+        value={currentComponent.radioChoices?.join(", ") || ""}
         size="small"
       />
       <Button color={"danger"} variant={"secondary"} size={"small"}>

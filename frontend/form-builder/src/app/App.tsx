@@ -13,7 +13,9 @@ import { useGetForm } from "../hooks/useGetForm";
 // ✅ Redirect to /form-builder/form-id. Get the newly created form from /api/forms/{formId} and store in a state.
 // ✅ The frontend should store a 1:1 copy of the backend format of the form.
 // ✅ Display the title, description and components from the form in the form builder.
-// Make settings sidebar respond to clicked form.
+// ✅ Make settings sidebar respond to clicked form.
+// ✅ Add inputType property to backend and update database. Make sure it works, both in Viewer and Builder.
+// When pressing "Save" in settings, the form state should update the changed component.
 // Use PUT on endpoint /api/forms to store the changed data.
 
 export const FormBuilderContext = createContext(null);
@@ -21,7 +23,6 @@ export const FormBuilderContext = createContext(null);
 export const App = (): React.JSX.Element => {
   useAuthorization();
 
-  const [formComponents, setFormComponents] = useState<FormComponent[]>([]);
   const settingsRef = useRef<HTMLDialogElement>(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
   const isSmallScreen = windowSize < 768;

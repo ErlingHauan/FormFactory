@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { getApiUrl } from "../../../main-app/src/components/Login/LoginUtils";
 import React, { useEffect } from "react";
+import { getApiUrl } from "../utils/getApiUrl";
 
 const user = {
   id: "some-id",
@@ -24,7 +24,7 @@ export const CreateNewForm = () => {
   };
 
   const apiUrl = getApiUrl();
-  const targetUrl = `${apiUrl}/api/forms`;
+  const targetUrl = `${apiUrl}/forms`;
 
   useEffect(() => {
     (async () => {
