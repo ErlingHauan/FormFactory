@@ -5,7 +5,7 @@ import { SettingsModal } from "./SettingsModal";
 import { CompSettingsSidebar } from "./SettingsSidebar";
 import classes from "./ComponentSettings.module.css";
 import { FormBuilderContext } from "../../app/App";
-import { TrashFillIcon } from "@navikt/aksel-icons";
+import { FloppydiskFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
 
 interface ComponentSettingsProps {
   isSmallScreen: boolean;
@@ -20,6 +20,7 @@ export const ComponentSettings = ({
     const { currentComponent } = useContext(FormBuilderContext);
     return (
       <div className={classes.compSettingsContent}>
+        <p>Order: {currentComponent?.order}</p>
         {currentComponent?.type === "input" && <InputFieldSettings />}
         {currentComponent?.type === "radio" && <RadioSettings />}
       </div>
@@ -35,13 +36,19 @@ export const ComponentSettings = ({
 
 const InputFieldSettings = () => {
   const { t } = useTranslation();
-  const { currentComponent } = useContext(FormBuilderContext);
-  const [inputType, setInputType] = useState<"string" | "number">(
-    currentComponent.inputType || "string",
-  );
+  const { currentComponent, form, setForm } = useContext(FormBuilderContext);
+  const [inputType, setInputType] = useState<"string" | "number">("string");
 
   const handleInputFormat = (value: string) => {
     setInputType(value as "string" | "number");
+  };
+
+  const handleSave = () => {
+    const index = currentComponent.order;
+    let updatedComponents = form.components;
+    updatedComponents[index] = currentComponent;
+
+    setForm({ ...form, components: updatedComponents });
   };
 
   return (
@@ -72,10 +79,16 @@ const InputFieldSettings = () => {
       </Radio.Group>
       {inputType === "string" && <TextSettings />}
       {inputType === "number" && <NumberSettings />}
-      <Button color={"danger"} variant={"secondary"} size={"small"}>
-        <TrashFillIcon />
-        Delete component
-      </Button>
+      <div className={classes.buttons}>
+        <Button color={"danger"} variant={"secondary"} size={"small"}>
+          <TrashFillIcon />
+          Delete component
+        </Button>
+        <Button color={"success"} size={"small"} onClick={handleSave}>
+          <FloppydiskFillIcon />
+          Save component
+        </Button>
+      </div>
     </>
   );
 };

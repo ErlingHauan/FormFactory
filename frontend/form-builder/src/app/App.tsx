@@ -18,7 +18,13 @@ import { useGetForm } from "../hooks/useGetForm";
 // When pressing "Save" in settings, the form state should update the changed component.
 // Use PUT on endpoint /api/forms to store the changed data.
 
-export const FormBuilderContext = createContext(null);
+interface FormBuilderContextProps {
+  form: Form;
+  setForm: React.Dispatch<React.SetStateAction<Form>>;
+  currentComponent: FormComponent;
+  setCurrentComponent: React.Dispatch<React.SetStateAction<FormComponent>>;
+}
+export const FormBuilderContext = createContext<FormBuilderContextProps>(null);
 
 export const App = (): React.JSX.Element => {
   useAuthorization();
