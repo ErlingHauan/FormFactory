@@ -79,10 +79,9 @@ public class UsersController : ControllerBase
     }
 
     /// <summary>
-    /// Deletes a user. Not used.
+    /// Deletes a single user.
     /// </summary>
     [HttpDelete("{userId:int}")]
-    [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<IActionResult> Delete(int userId)
     {
         if (await _userRepository.GetSingleById(userId) == null)

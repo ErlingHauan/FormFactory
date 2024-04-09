@@ -85,7 +85,10 @@ public class SubmissionsController : ControllerBase
         return Ok(dto);
     }
 
-    [HttpDelete("form/{formId:guid}")]
+    /// <summary>
+    /// Deletes all submission belonging to a form.
+    /// </summary>
+    [HttpDelete("/api/forms/{formId:guid}/submissions")]
     public async Task<ActionResult<IEnumerable<SubmissionDto>>> DeleteAllSubmissionsInForm(Guid formId)
     {
         var entityList = await _submissionRepository.DeleteAllSubmissionsInForm(formId);
