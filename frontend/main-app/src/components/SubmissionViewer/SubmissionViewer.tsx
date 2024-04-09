@@ -1,13 +1,19 @@
 import classes from "./SubmissionViewer.module.css";
-import { Heading, Modal } from "@digdir/design-system-react";
-import React, { ReactNode } from "react";
+import { Heading, Modal, Paragraph } from "@digdir/design-system-react";
+import React, { ReactNode, useContext } from "react";
 import { CustomParagraph } from "../CustomParagraph";
+import { FormContext } from "../Dashboard";
+import { t } from "i18next";
 
 interface ListAnswersProps {
   submissions: Submission[];
 }
 
 const ListAnswers: React.FC<ListAnswersProps> = ({ submissions }) => {
+  if (submissions.length === 0) {
+    return <Paragraph className={classes.submission}>{t("dashboard.submissions.empty")}</Paragraph>;
+  }
+
   return (
     <>
       {submissions.map(({ id, responses }, index: number) => (
@@ -27,7 +33,6 @@ const ListAnswers: React.FC<ListAnswersProps> = ({ submissions }) => {
 interface SubmissionViewerProps {
   children: ReactNode;
   submissions: Submission[];
-  formTitle: string;
   className?: string;
   size?: string;
   variant?: string;
@@ -36,18 +41,18 @@ interface SubmissionViewerProps {
 export const SubmissionViewer: React.FC<SubmissionViewerProps> = ({
   children,
   submissions,
-  formTitle,
   className,
   size,
   variant,
 }) => {
+  const formTitle = useContext(FormContext).title;
   return (
     <Modal.Root>
       <Modal.Trigger className={className} variant={variant} size={size}>
         {children}
       </Modal.Trigger>
       <Modal.Dialog className={classes.modalWindow}>
-        <Modal.Header className={classes.modalHeader}>Submissions to {formTitle}</Modal.Header>
+        <Modal.Header className={classes.modalHeader}>{formTitle}</Modal.Header>
         <Modal.Content className={classes.modalContent}>
           <ListAnswers submissions={submissions} />
         </Modal.Content>

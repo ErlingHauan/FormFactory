@@ -72,9 +72,9 @@ public class SubmissionsController : ControllerBase
     /// </summary>
     [HttpDelete("{submissionId}")]
     [ApiExplorerSettings(IgnoreApi = true)]
-    public async Task<ActionResult<SubmissionDto>> Delete(Guid submissionId)
+    public async Task<ActionResult<SubmissionDto>> DeleteSingle(Guid submissionId)
     {
-        var entity = await _submissionRepository.Delete(submissionId);
+        var entity = await _submissionRepository.DeleteSingle(submissionId);
 
         if (entity == null)
         {
@@ -83,5 +83,21 @@ public class SubmissionsController : ControllerBase
 
         var dto = SubmissionMappers.ToDto(entity);
         return Ok(dto);
+    }
+
+    /// <summary>
+    /// Deletes all submission belonging to a form.
+    /// </summary>
+    [HttpDelete("/api/forms/{formId:guid}/submissions")]
+    public async Task<ActionResult<IEnumerable<SubmissionDto>>> DeleteAllSubmissionsInForm(Guid formId)
+    {
+        var entityList = await _submissionRepository.DeleteAllSubmissionsInForm(formId);
+        if (entityList == null)
+        {
+            return Ok();
+        }
+
+        var dtoList = entityList.Select(SubmissionMappers.ToDto).ToList();
+        return Ok(dtoList);
     }
 }
