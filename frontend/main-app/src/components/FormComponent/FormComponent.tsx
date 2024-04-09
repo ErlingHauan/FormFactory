@@ -6,7 +6,7 @@ import { Paragraph } from "@digdir/design-system-react";
 
 interface FormComponentsProps {
   component: FormComponent;
-  error: string[];
+  error?: string[];
 }
 
 export const FormComponent: React.FC<FormComponentsProps> = ({
