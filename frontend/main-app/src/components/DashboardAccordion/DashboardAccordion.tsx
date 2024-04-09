@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import classes from "./DashboardAccordion.module.css";
 import {
@@ -13,20 +13,21 @@ import axios from "axios";
 import { CustomParagraph } from "../CustomParagraph";
 import { SubmissionViewer } from "../SubmissionViewer";
 import { ShareForm } from "./ShareForm";
+import { DeleteForm } from "../DeleteForm/DeleteForm";
+import { FormContext } from "../Dashboard";
+import { t } from "i18next";
 interface ButtonGroupProps {
   submissions: Submission[];
-  formTitle: string;
   formUrl: string;
 }
 
-const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formTitle, formUrl }) => {
+const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formUrl }) => {
   const { t } = useTranslation();
 
   return (
     <div className={classes.buttonContainer}>
       <SubmissionViewer
         submissions={submissions}
-        formTitle={formTitle}
         className={classes.button}
         size="small"
         variant="secondary"
@@ -39,23 +40,20 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formTitle, formU
         {t("dashboard.download")}
       </Button>
       <ShareForm formUrl={formUrl} />
-      <Button className={classes.button} color="danger" size="small" variant="secondary">
+      <DeleteForm className={classes.button} color="danger" size="small" variant="secondary">
         <TrashFillIcon />
         {t("dashboard.delete.form")}
-      </Button>
+      </DeleteForm>
     </div>
   );
 };
 
-interface DashboardAccordionProps {
-  form: Form;
-}
+export const DashboardAccordion: React.FC = () => {
+  const form = useContext(FormContext);
 
-export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) => {
-  const [submissions, setSubmissions] = useState();
+  const [submissions, setSubmissions] = useState([]);
   const [submissionCount, setSubmissionCount] = useState();
   const formUrl = `${window.location.origin}/view/${form.id}`;
-  const { t } = useTranslation();
 
   useEffect(() => {
     const getSubmissionCount = async () => {
@@ -95,7 +93,7 @@ export const DashboardAccordion: React.FC<DashboardAccordionProps> = ({ form }) 
             <CustomParagraph heading="Expiration date" content={form.expires || "Not set"} />
             <CustomParagraph heading="Submissions" content={submissionCount} />
           </div>
-          <ButtonGroup submissions={submissions} formTitle={form.title} formUrl={formUrl} />
+          <ButtonGroup submissions={submissions} formUrl={formUrl} />
         </Accordion.Content>
       </Accordion.Item>
     </Accordion>

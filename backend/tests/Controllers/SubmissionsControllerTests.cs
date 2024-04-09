@@ -158,11 +158,11 @@ public class SubmissionsControllerTests
             }
         };
 
-        _mockRepo.Setup(repo => repo.Delete(submissionId))
+        _mockRepo.Setup(repo => repo.DeleteSingle(submissionId))
             .ReturnsAsync(mockSubmissions.First(entity => entity.Id == submissionId));
 
         // Act
-        var result = await _controller.Delete(submissionId);
+        var result = await _controller.DeleteSingle(submissionId);
 
         // Assert
         var actionResult = Assert.IsType<OkObjectResult>(result.Result);

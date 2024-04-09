@@ -55,9 +55,9 @@ export const FormViewer = (): React.JSX.Element => {
     <main className={classes.card}>
       <form onSubmit={handleSubmit}>
         <Heading level={1} size="xlarge">
-          {formSchema.title}
+          {formSchema?.title}
         </Heading>
-        {formSchema.components.map((component) => (
+        {formSchema?.components.map((component) => (
           <div key={component.name} className={classes.component}>
             <FormComponent component={component} error={formErrors[component.name]} />
           </div>
@@ -76,7 +76,7 @@ export const FormViewer = (): React.JSX.Element => {
   const RenderDraft = () => (
     <main className={classes.card}>
       <Heading level={1} size="xlarge" spacing>
-        {formSchema.title}
+        {formSchema?.title}
       </Heading>
       <Paragraph>
         <Trans i18nKey="form_viewer.draft" />
