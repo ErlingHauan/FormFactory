@@ -57,7 +57,7 @@ const getStringValidator = (component: FormComponent) => {
   if (component.maxLength) {
     if (validator instanceof ZodString) {
       validator = validator.max(component.maxLength, {
-        message: `Field must have more than ${component.maxLength} characters. `,
+        message: `Field must have less than ${component.maxLength} characters. `,
       });
     }
   }

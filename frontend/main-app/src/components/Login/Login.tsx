@@ -1,7 +1,7 @@
 import classes from "./Login.module.css";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import { Button, Heading, Textfield } from "@digdir/design-system-react";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { validateLoginForm } from "./LoginUtils";
 import { getApiUrl } from "../../utils/getApiUrl";
@@ -9,11 +9,13 @@ import { LoginForm, LoginFormError } from "./types";
 import { useTranslation } from "react-i18next";
 import { alertToRender } from "../FormViewer/validationUtils";
 import axios from "axios";
+import { UserContext } from "../../context/context";
 
 export const Login = (): React.JSX.Element => {
   const { authError } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { setUser } = useContext(UserContext);
 
   const [fieldErrors, setFieldErrors] = useState<LoginFormError | null>(null);
   const [errorAlert, setErrorAlert] = useState(authError);
@@ -33,9 +35,10 @@ export const Login = (): React.JSX.Element => {
     const targetUrl = `${apiUrl}/users/login`;
 
     try {
-      await axios.post(targetUrl, loginForm, {
+      const result = await axios.post(targetUrl, loginForm, {
         withCredentials: true,
       });
+      setUser(result.data);
       navigate("/dashboard");
     } catch (error) {
       console.log(error);

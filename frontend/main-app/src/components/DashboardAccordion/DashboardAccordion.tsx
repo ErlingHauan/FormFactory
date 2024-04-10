@@ -6,9 +6,9 @@ import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { CustomParagraph } from "../CustomParagraph";
 import { ButtonGroup } from "./ButtonGroup";
-import { FormContext } from "../Dashboard";
 import { t } from "i18next";
 import { FormStatus } from "./FormStatus";
+import { FormContext } from "../../context/context";
 
 export const DashboardAccordion: React.FC = () => {
   const form = useContext(FormContext);

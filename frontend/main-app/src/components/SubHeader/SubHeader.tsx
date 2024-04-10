@@ -33,7 +33,7 @@ export const SubHeader: React.FC = () => {
     }
   }, [pathname]);
 
-  if (pathname.startsWith("/form-builder")) return;
+  if (pathname.startsWith("/form-builder/")) return;
 
   return (
     <div className={classes.subHeader}>

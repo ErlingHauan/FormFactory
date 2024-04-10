@@ -5,8 +5,8 @@ import { SubmissionViewer } from "../SubmissionViewer";
 import { CloudDownFillIcon, PersonEnvelopeFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
 import { Button } from "@digdir/design-system-react";
 import { ShareForm } from "./ShareForm";
-import { FormContext } from "../Dashboard";
 import { DeleteForm } from "../DeleteForm/DeleteForm";
+import { FormContext } from "../../context/context";
 
 interface ButtonGroupProps {
   submissions: Submission[];

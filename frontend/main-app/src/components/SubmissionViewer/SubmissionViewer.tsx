@@ -2,8 +2,8 @@ import classes from "./SubmissionViewer.module.css";
 import { Heading, Modal, Paragraph } from "@digdir/design-system-react";
 import React, { ReactNode, useContext } from "react";
 import { CustomParagraph } from "../CustomParagraph";
-import { FormContext } from "../Dashboard";
 import { t } from "i18next";
+import { FormContext } from "../../context/context";
 
 interface ListAnswersProps {
   submissions: Submission[];
