@@ -29,12 +29,8 @@ body {
   padding: var(--fds-spacing-4);
   text-align: center;
   margin: auto 0;
-  height: 100%;
+  height: 60vh;
 }
-
-/*.builderSection:nth-child(2) {*/
-/*  height: 600px;*/
-/*}*/
 
 @media (max-width: 768px) {
   .formBuilder {
@@ -46,6 +42,7 @@ body {
   .builderSection:first-child {
     padding: 0;
     border: none;
+    height: 100%;
   }
 }
 
