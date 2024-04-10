@@ -36,7 +36,6 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
 
   const handleClick = (item, index) => {
     item.order = index;
-    console.log(item);
     setCurrentComponent({ ...item });
 
     settingsRef.current?.showModal();

@@ -7,9 +7,7 @@ interface SettingsSidebarProps {
   SettingsContent: () => React.JSX.Element;
 }
 
-export const CompSettingsSidebar = ({
-  SettingsContent,
-}: SettingsSidebarProps): React.JSX.Element => {
+export const SettingsSidebar = ({ SettingsContent }: SettingsSidebarProps): React.JSX.Element => {
   const { t } = useTranslation();
 
   return (

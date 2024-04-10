@@ -1,7 +1,3 @@
-/** {*/
-/*  border: 1px solid pink;*/
-/*}*/
-
 .dropArea,
 .noComponents {
   display: flex;
@@ -10,13 +6,12 @@
 }
 
 .previewHeading {
-  padding-bottom: var(--fds-spacing-4);
+  padding: var(--fds-spacing-4);
 }
 
 .formHeading {
   text-align: left;
   padding-bottom: var(--fds-spacing-4);
-  padding-top: 0;
 }
 
 .formHeading:hover {
@@ -25,12 +20,12 @@
 }
 
 .dropArea {
-  height: 80%;
+  height: 85%;
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--fds-semantic-surface-neutral-inverted) transparent;
   margin-bottom: var(--fds-spacing-4);
-  padding: 0 var(--fds-spacing-4);
+  padding: 0 var(--fds-spacing-8);
 }
 
 .noComponents {

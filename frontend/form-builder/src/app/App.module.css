@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  /*border: 1px solid pink;*/
 }
 
 ul {
@@ -26,7 +27,7 @@ body {
   background-color: var(--fds-semantic-background-default);
   border: 1px solid var(--fds-semantic-border-neutral-subtle);
   border-radius: var(--fds-border_radius-medium);
-  padding: var(--fds-spacing-4);
+  padding: var(--fds-spacing-1);
   text-align: center;
   margin: auto 0;
   height: 60vh;

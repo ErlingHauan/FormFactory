@@ -5,7 +5,7 @@
 }
 
 .toolbarHeading {
-  padding-bottom: var(--fds-spacing-4);
+  padding: var(--fds-spacing-4);
 }
 
 @media (max-width: 768px) {

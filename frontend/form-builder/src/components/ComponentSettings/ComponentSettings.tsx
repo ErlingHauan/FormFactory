@@ -1,6 +1,6 @@
 import React, { FormEvent, useContext } from "react";
 import { SettingsModal } from "./SettingsModal";
-import { CompSettingsSidebar } from "./SettingsSidebar";
+import { SettingsSidebar } from "./SettingsSidebar";
 import classes from "./ComponentSettings.module.css";
 import { FormBuilderContext } from "../../app/App";
 import { InputSettings } from "./InputSettings";
@@ -18,7 +18,7 @@ export const ComponentSettings = ({
   isSmallScreen,
   settingsRef,
 }: ComponentSettingsProps): React.JSX.Element => {
-  const { currentComponent, form, setForm } = useContext(FormBuilderContext);
+  const { currentComponent, setCurrentComponent, form, setForm } = useContext(FormBuilderContext);
 
   const handleSaveComponent = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,6 +36,7 @@ export const ComponentSettings = ({
     );
 
     setForm({ ...form, components: updatedComponents });
+    setCurrentComponent(null);
   };
 
   const RenderSettingsContent = () => {
@@ -50,6 +51,6 @@ export const ComponentSettings = ({
   return isSmallScreen ? (
     <SettingsModal SettingsContent={RenderSettingsContent} settingsRef={settingsRef} />
   ) : (
-    <CompSettingsSidebar SettingsContent={RenderSettingsContent} />
+    <SettingsSidebar SettingsContent={RenderSettingsContent} />
   );
 };
