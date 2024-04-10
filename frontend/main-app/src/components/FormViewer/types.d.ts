@@ -19,7 +19,7 @@ interface Form {
   title: string;
   description: string;
   status: string;
-  published: string;
+  published: date;
   expires: string;
   components: FormComponent[];
 }

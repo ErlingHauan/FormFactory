@@ -1,8 +1,13 @@
 import { getApiUrl } from "../../../../main-app/src/utils/getApiUrl";
 import axios from "axios";
 
-export const saveForm = async (form: Form) => {
+export const saveForm = async (form: Form, publish?: boolean) => {
   validateOrder(form);
+
+  if (publish) {
+    form.status = "published";
+    form.published = new Date();
+  }
 
   const apiUrl = getApiUrl();
   const targetUrl = `${apiUrl}/forms`;
@@ -12,7 +17,7 @@ export const saveForm = async (form: Form) => {
         "Content-Type": "application/json",
       },
     });
-    alert("The form has been saved!");
+    publish ? alert("Form published!") : alert("Form saved!");
   } catch (error) {
     console.log(error);
   }

@@ -28,10 +28,12 @@ const FormBuilderLinks = () => {
         {t("form_builder.save")}
         <FloppydiskFillIcon className={classes.subHeaderIcon} />
       </Link>
-      <Link>
-        {t("form_builder.publish")}
-        <TasklistSendFillIcon className={classes.subHeaderIcon} />
-      </Link>
+      {form.status.toLowerCase() === "draft" && (
+        <Link onClick={() => saveForm(form, true)}>
+          {t("form_builder.publish")}
+          <TasklistSendFillIcon className={classes.subHeaderIcon} />
+        </Link>
+      )}
     </>
   );
 };
