@@ -3,6 +3,8 @@ import axios from "axios";
 import { User } from "../types";
 import { useEffect, useState } from "react";
 
+// Gets the user data by sending session data to backend
+
 export const useUser = () => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
