@@ -1,19 +1,18 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { getApiUrl } from "../utils/getApiUrl";
-import { UserContext } from "../context/context";
 
-// const user = {
-//   id: "some-id",
-//   email: "user1@example.com",
-//   password: "12345678",
-//   organization: "Example LLC",
-// };
+const user = {
+  id: "some-id",
+  email: "user1@example.com",
+  password: "12345678",
+  organization: "Example LLC",
+};
 
 export const CreateNewForm = () => {
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
+
   const newForm: Form = {
     user: user.email,
     organization: user.organization,

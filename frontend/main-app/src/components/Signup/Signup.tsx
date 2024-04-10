@@ -14,7 +14,7 @@ import { UserContext } from "../../context/context";
 export const Signup = (): React.JSX.Element => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { setUser } = useContext(UserContext);
+  const { setUserFromContext } = useContext(UserContext);
 
   const [fieldErrors, setFieldErrors] = useState<SignupFormError | null>(null);
   const [errorAlert, setErrorAlert] = useState("");
@@ -37,7 +37,7 @@ export const Signup = (): React.JSX.Element => {
       const result = await axios.post(targetUrl, signupForm, {
         withCredentials: true,
       });
-      setUser(result.data);
+      setUserFromContext(result.data);
       navigate("/dashboard");
     } catch (error) {
       console.log(error);

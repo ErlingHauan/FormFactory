@@ -15,7 +15,7 @@ export const Login = (): React.JSX.Element => {
   const { authError } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { setUser } = useContext(UserContext);
+  const { setUserFromContext } = useContext(UserContext);
 
   const [fieldErrors, setFieldErrors] = useState<LoginFormError | null>(null);
   const [errorAlert, setErrorAlert] = useState(authError);
@@ -38,7 +38,7 @@ export const Login = (): React.JSX.Element => {
       const result = await axios.post(targetUrl, loginForm, {
         withCredentials: true,
       });
-      setUser(result.data);
+      setUserFromContext(result.data);
       navigate("/dashboard");
     } catch (error) {
       console.log(error);

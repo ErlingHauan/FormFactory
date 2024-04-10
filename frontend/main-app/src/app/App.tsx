@@ -30,10 +30,12 @@ i18next.use(initReactI18next).init({
 });
 
 export const App = (): React.JSX.Element => {
-  const [user, setUser] = useState<User | null>(null);
+  const [userFromContext, setUserFromContext] = useState<User | null>(null);
+
+  console.log("UserFromContext = " + JSON.stringify(userFromContext, null, 2));
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ userFromContext, setUserFromContext }}>
       <div className={classes.layout}>
         <header>
           <Header />
