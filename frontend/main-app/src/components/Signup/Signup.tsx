@@ -9,7 +9,7 @@ import { SignupForm, SignupFormError } from "./types";
 import { useTranslation } from "react-i18next";
 import { alertToRender } from "../FormViewer/validationUtils";
 import axios from "axios";
-import { UserContext } from "../../context/context";
+import { UserContext } from "../../context";
 
 export const Signup = (): React.JSX.Element => {
   const navigate = useNavigate();

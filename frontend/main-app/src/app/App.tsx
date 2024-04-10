@@ -16,7 +16,7 @@ import { SubHeader } from "../components/SubHeader";
 import { NotFound } from "../components/NotFound";
 import { CreateNewForm } from "./CreateNewForm";
 import { User } from "../types";
-import { UserContext } from "../context/context";
+import { UserContext } from "../context";
 
 i18next.use(initReactI18next).init({
   resources: {
