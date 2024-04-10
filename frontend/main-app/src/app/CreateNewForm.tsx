@@ -35,7 +35,7 @@ export const CreateNewForm = () => {
         console.log(error);
       }
     })();
-  }, []);
+  }, []); // eslint-disable-line
 
   return <></>;
 };

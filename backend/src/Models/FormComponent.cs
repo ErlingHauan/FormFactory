@@ -15,7 +15,7 @@ public class FormComponent
 
     [Required]
     public string? Type { get; set; }
-    
+
     public string? InputType { get; set; }
 
     [Required]

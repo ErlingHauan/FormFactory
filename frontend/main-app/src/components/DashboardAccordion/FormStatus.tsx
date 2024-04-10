@@ -3,7 +3,11 @@ import { DocPencilIcon } from "@navikt/aksel-icons";
 import { CustomParagraph } from "../CustomParagraph";
 import React from "react";
 
-export const FormStatus = ({ form }) => {
+interface FormStatusProps {
+  form: Form;
+}
+
+export const FormStatus = ({ form }: FormStatusProps) => {
   const statusUpperFirstLetter = form.status.charAt(0).toUpperCase() + form.status.slice(1);
   const link = (
     <Link href={`/form-builder/${form.id}`}>

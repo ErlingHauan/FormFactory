@@ -3,9 +3,8 @@ import classes from "./FormBuilderSubHeader.module.css";
 import { Heading, Link } from "@digdir/design-system-react";
 import { FloppydiskFillIcon, TasklistSendFillIcon } from "@navikt/aksel-icons";
 import { t } from "i18next";
-import axios from "axios";
 import { FormBuilderContext } from "../../app/App";
-import { getApiUrl } from "../../../../main-app/src/utils/getApiUrl";
+import { saveForm } from "./utils";
 
 export const FormBuilderSubHeader: React.FC = () => {
   return (
@@ -23,25 +22,9 @@ export const FormBuilderSubHeader: React.FC = () => {
 const FormBuilderLinks = () => {
   const { form } = useContext(FormBuilderContext);
 
-  const apiUrl = getApiUrl();
-  const targetUrl = `${apiUrl}/forms`;
-
-  const saveForm = async () => {
-    try {
-      await axios.put(targetUrl, form, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      alert("The form has been saved!");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <>
-      <Link onClick={saveForm}>
+      <Link onClick={() => saveForm(form)}>
         {t("form_builder.save")}
         <FloppydiskFillIcon className={classes.subHeaderIcon} />
       </Link>

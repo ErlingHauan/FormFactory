@@ -8,7 +8,7 @@ export const ButtonGroup = () => {
   const { form, setForm, currentComponent, setCurrentComponent } = useContext(FormBuilderContext);
 
   const handleDeleteComponent = (index: number) => {
-    let newForm = form;
+    const newForm = form;
     newForm.components = form.components.filter((_, i) => i !== index);
     setForm({ ...form, ...newForm });
     setCurrentComponent(null);
