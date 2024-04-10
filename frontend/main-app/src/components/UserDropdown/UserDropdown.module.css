@@ -1,10 +1,9 @@
 .dropdownButton {
-  border: 1px solid var(--fds-semantic-border-neutral-strong);;
+  border: 1px solid var(--fds-semantic-border-neutral-default);;
 }
 
 .dropdownMenu {
-  border: 1px solid var(--fds-semantic-border-neutral-default);
-  box-shadow: var(--fds-shadow-small);
+  border: 1px solid var(--fds-semantic-border-neutral-subtle);
 }
 
 .userIcon {
