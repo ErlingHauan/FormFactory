@@ -1,6 +1,6 @@
 import { Heading, Paragraph } from "@digdir/design-system-react";
 import React, { useContext, useEffect, useRef } from "react";
-import { ComponentIcon, XMarkIcon } from "@navikt/aksel-icons";
+import { ComponentIcon } from "@navikt/aksel-icons";
 import classes from "./FormPreview.module.css";
 import { useTranslation } from "react-i18next";
 import { useDrop } from "react-dnd";
@@ -34,19 +34,12 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
     }),
   }));
 
-  const handleRemoveItem = (index: number) => {
-    let newForm = form;
-    newForm.components = form.components.filter((_, i) => i !== index);
-    setForm({ ...form, ...newForm });
-  };
-
   const handleClick = (item, index) => {
     item.order = index;
     console.log(item);
     setCurrentComponent({ ...item });
 
     settingsRef.current?.showModal();
-    settingsRef.current?.focus();
   };
 
   const RenderComponents = () => (
@@ -56,14 +49,24 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
           <span className={classes.formBoardComponent}>
             <FormComponent component={item} />
           </span>
-          <XMarkIcon
-            title={t("form_builder.form.delete_item")}
-            className={classes.removalItem}
-            onClick={() => handleRemoveItem(index)}
-          />
         </div>
       ))}
     </>
+  );
+  const RenderHeading = () => (
+    <div className={classes.formHeading}>
+      <Heading level={4} size="medium">
+        {form?.title}
+      </Heading>
+      <Paragraph>{form?.description}</Paragraph>
+    </div>
+  );
+
+  const RenderNoComponentsMessage = () => (
+    <div className={classes.noComponents}>
+      <ComponentIcon className={classes.noComponentsIcon} />
+      <Paragraph>{t("form_builder.drag.component.message")}</Paragraph>
+    </div>
   );
 
   return (
@@ -76,20 +79,8 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
         className={classes.dropArea}
         style={{ backgroundColor: isOver && "var(--fds-semantic-surface-warning-subtle)" }}
       >
-        <div className={classes.formHeading}>
-          <Heading level={4} size="medium">
-            {form?.title}
-          </Heading>
-          <Paragraph>{form?.description}</Paragraph>
-        </div>
-        {form?.components?.length === 0 ? (
-          <div className={classes.noComponents}>
-            <ComponentIcon className={classes.noComponentsIcon} />
-            <Paragraph>{t("form_builder.drag.component.message")}</Paragraph>
-          </div>
-        ) : (
-          <RenderComponents />
-        )}
+        <RenderHeading />
+        {form?.components?.length === 0 ? <RenderNoComponentsMessage /> : <RenderComponents />}
       </div>
     </>
   );

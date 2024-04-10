@@ -40,7 +40,7 @@ export const ComponentSettings = ({
 
   const RenderSettingsContent = () => {
     return (
-      <form className={classes.compSettingsContent} onSubmit={handleSaveComponent}>
+      <form className={classes.SettingsContent} onSubmit={handleSaveComponent}>
         {currentComponent?.type === "input" && <InputSettings />}
         {currentComponent?.type === "radio" && <RadioSettings />}
       </form>

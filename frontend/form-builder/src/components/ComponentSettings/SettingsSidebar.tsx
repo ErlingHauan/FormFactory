@@ -14,7 +14,7 @@ export const CompSettingsSidebar = ({
 
   return (
     <>
-      <Heading level={3} size="xxsmall" spacing className={classes.settingsHeading}>
+      <Heading level={3} size="xxsmall" className={classes.settingsHeading}>
         {t("settings_side_bar")}
       </Heading>
       <SettingsContent />

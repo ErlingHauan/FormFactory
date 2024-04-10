@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./ComponentSettings.module.css";
 import { Button } from "@digdir/design-system-react";
 import { FloppydiskFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
+import { FormBuilderContext } from "../../app/App";
 
 export const ButtonGroup = () => {
-  // const handleSave = () => {
-  //   const index = currentComponent.order;
-  //   let updatedComponents = form.components;
-  //   updatedComponents[index] = currentComponent;
-  //
-  //   setForm({ ...form, components: updatedComponents });
-  // };
+  const { form, setForm, currentComponent } = useContext(FormBuilderContext);
+
+  const handleDeleteComponent = (index: number) => {
+    let newForm = form;
+    newForm.components = form.components.filter((_, i) => i !== index);
+    setForm({ ...form, ...newForm });
+  };
 
   return (
     <div className={classes.buttons}>
-      <Button type="button" color={"danger"} variant={"secondary"} size={"small"}>
+      <Button
+        type="button"
+        color={"danger"}
+        variant={"secondary"}
+        size={"small"}
+        onClick={() => handleDeleteComponent(currentComponent.order)}
+      >
         <TrashFillIcon />
         Delete component
       </Button>

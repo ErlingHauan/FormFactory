@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { DraggableItem } from "../DraggableItem";
 import { BulletListIcon, MenuHamburgerIcon } from "@navikt/aksel-icons";
+import classes from "./ToolbarItems.module.css";
 
 interface ToolBarItemsProps {
   compProps: FormComponent;
@@ -33,10 +34,10 @@ export const ToolBarItems = () => {
   ];
 
   return (
-    <>
+    <div className={classes.toolbarItems}>
       {Items.map((item, index) => (
         <DraggableItem key={index} item={item.compProps} icon={item.icon} />
       ))}
-    </>
+    </div>
   );
 };

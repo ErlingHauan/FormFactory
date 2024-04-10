@@ -31,3 +31,13 @@ export const updateComponentArray = (
   updatedComponents[index] = updatedComponent;
   return updatedComponents;
 };
+
+export const deleteComponent = (
+  components: FormComponent[],
+  updatedComponent: FormComponent,
+): FormComponent[] => {
+  const index = updatedComponent.order;
+  const updatedComponents = [...components];
+  updatedComponents[index] = updatedComponent;
+  return updatedComponents;
+};
