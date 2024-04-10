@@ -5,12 +5,13 @@ import { FloppydiskFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
 import { FormBuilderContext } from "../../app/App";
 
 export const ButtonGroup = () => {
-  const { form, setForm, currentComponent } = useContext(FormBuilderContext);
+  const { form, setForm, currentComponent, setCurrentComponent } = useContext(FormBuilderContext);
 
   const handleDeleteComponent = (index: number) => {
     let newForm = form;
     newForm.components = form.components.filter((_, i) => i !== index);
     setForm({ ...form, ...newForm });
+    setCurrentComponent(null);
   };
 
   return (
