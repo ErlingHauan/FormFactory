@@ -37,11 +37,14 @@ export const UserDropdown = (): React.JSX.Element => {
 
   return (
     <DropdownMenu size="small">
-      <DropdownMenu.Trigger variant="secondary" icon="true">
+      <DropdownMenu.Trigger variant="secondary" icon="true" className={classes.dropdownButton}>
         <PersonIcon className={classes.userIcon} />
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content>
+      <DropdownMenu.Content className={classes.dropdownMenu}>
         <DropdownMenu.Group heading={user?.email}>
+          <DropdownMenu.Item asChild>
+            <Link href={"/dashboard"}>{t("dashboard")}</Link>
+          </DropdownMenu.Item>
           <DropdownMenu.Item asChild>
             <Link onClick={logOutUser}>{t("user.logout")}</Link>
           </DropdownMenu.Item>

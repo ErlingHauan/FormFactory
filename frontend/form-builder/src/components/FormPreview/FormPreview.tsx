@@ -34,7 +34,7 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
     }),
   }));
 
-  const handleClick = (item, index) => {
+  const handleClick = (item: FormComponent, index: number) => {
     item.order = index;
     setCurrentComponent({ ...item });
 
