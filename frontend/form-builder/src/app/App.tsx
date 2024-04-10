@@ -9,6 +9,7 @@ import { useAuthorization } from "../../../main-app/src/hooks/useAuthorization";
 import { ComponentSettings } from "../components/ComponentSettings";
 import { useGetForm } from "../hooks/useGetForm";
 import { NotFound } from "../../../main-app/src/components/NotFound";
+import { FormBuilderSubHeader } from "../components/FormBuilderSubHeader";
 
 interface FormBuilderContextProps {
   form: Form;
@@ -46,6 +47,7 @@ export const App = (): React.JSX.Element => {
           setCurrentComponent,
         }}
       >
+        <FormBuilderSubHeader />
         <div className={classes.formBuilder}>
           <div className={classes.builderSection}>
             <Toolbar />

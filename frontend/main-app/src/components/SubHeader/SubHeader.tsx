@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classes from "./SubHeader.module.css";
 import { Heading, Link } from "@digdir/design-system-react";
-import {
-  ClipboardCheckmarkFillIcon,
-  FilePlusFillIcon,
-  FloppydiskFillIcon,
-  TasklistSendFillIcon,
-} from "@navikt/aksel-icons";
+import { ClipboardCheckmarkFillIcon, FilePlusFillIcon } from "@navikt/aksel-icons";
 import { t } from "i18next";
 import { useLocation } from "react-router-dom";
 
@@ -29,10 +24,6 @@ export const SubHeader: React.FC = () => {
         setHeading(t("dashboard"));
         setLinks(dashboardLinks());
         break;
-      case pathname.startsWith("/form-builder"):
-        setHeading(t("form_builder"));
-        setLinks(formBuilderLinks());
-        break;
       case pathname.startsWith("/view"):
         setHeading(formViewerHeading());
         break;
@@ -42,6 +33,8 @@ export const SubHeader: React.FC = () => {
     }
   }, [pathname]);
 
+  if (pathname.startsWith("/form-builder")) return;
+
   return (
     <div className={classes.subHeader}>
       <Heading className={classes.subHeaderHeading} level={2} size="xxsmall">
@@ -49,21 +42,6 @@ export const SubHeader: React.FC = () => {
       </Heading>
       <div className={classes.subHeaderLinks}>{links}</div>
     </div>
-  );
-};
-
-const formBuilderLinks = () => {
-  return (
-    <>
-      <Link>
-        {t("form_builder.save")}
-        <FloppydiskFillIcon className={classes.subHeaderIcon} />
-      </Link>
-      <Link>
-        {t("form_builder.publish")}
-        <TasklistSendFillIcon className={classes.subHeaderIcon} />
-      </Link>
-    </>
   );
 };
 

@@ -18,10 +18,10 @@ export const useGetForm = () => {
         const response = await axios.get(targetUrl);
         setForm(response.data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     })();
-  }, []);
+  }, [formId]);
 
   return { form, setForm };
 };
