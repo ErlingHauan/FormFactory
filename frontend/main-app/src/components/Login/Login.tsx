@@ -1,7 +1,7 @@
 import classes from "./Login.module.css";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import { Button, Heading, Textfield } from "@digdir/design-system-react";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { validateLoginForm } from "./LoginUtils";
 import { getApiUrl } from "../../utils/getApiUrl";
@@ -17,7 +17,16 @@ export const Login = (): React.JSX.Element => {
 
   const [fieldErrors, setFieldErrors] = useState<LoginFormError | null>(null);
   const [errorAlert, setErrorAlert] = useState(authError);
+  const [showErrorAlert, setShowErrorAlert] = useState(!!authError);
 
+  useEffect(() => {
+    if (errorAlert === "authError" && showErrorAlert) {
+      const timeout = setTimeout(() => {
+        setShowErrorAlert(false);
+      }, 3500);
+      return () => clearTimeout(timeout);
+    }
+  }, [errorAlert, showErrorAlert]);
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -63,7 +72,8 @@ export const Login = (): React.JSX.Element => {
         />
       </div>
 
-      {errorAlert && alertToRender(errorAlert, t)}
+      {showErrorAlert && errorAlert && alertToRender(errorAlert, t)}
+
       <div className={classes.buttonContainer}>
         <Button type="submit" className={classes.button}>
           {t("login_page.login.button")}
