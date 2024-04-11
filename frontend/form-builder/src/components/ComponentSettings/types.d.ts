@@ -1,3 +1,4 @@
+// Updated component data from HTML inputs is submitted in strings
 export interface ComponentAsStrings {
   name: string;
   label: string;

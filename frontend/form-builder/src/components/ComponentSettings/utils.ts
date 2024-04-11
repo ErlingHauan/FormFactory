@@ -1,8 +1,7 @@
 import { ComponentAsStrings } from "./types";
 
-// Updated component data from HTML inputs is submitted in strings
-// They need to be converted into their proper value
-// Additionally, the original values of order and type is kept
+// Updated component data from HTML inputs is submitted in strings, and has to be converted into their proper value
+// The original values for 'order' and 'type' is kept, as they are currently not changed in the settings
 export const updateComponent = (
   currentComponent: FormComponent,
   newData: ComponentAsStrings,
