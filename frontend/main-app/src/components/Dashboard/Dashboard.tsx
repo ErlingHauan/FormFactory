@@ -6,7 +6,7 @@ import { DashboardAccordion } from "../DashboardAccordion/DashboardAccordion";
 import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { useAuthorization } from "../../hooks/useAuthorization";
-import { DashboardContext } from "../../context";
+import { DashboardAccordionContext } from "../../context";
 
 export const Dashboard = (): React.JSX.Element => {
   useAuthorization();
@@ -34,9 +34,9 @@ export const Dashboard = (): React.JSX.Element => {
         <DashboardOverview forms={forms} />
         <div className={classes.formList}>
           {forms.map((form) => (
-            <DashboardContext.Provider value={form} key={form.id}>
+            <DashboardAccordionContext.Provider value={form} key={form.id}>
               <DashboardAccordion />
-            </DashboardContext.Provider>
+            </DashboardAccordionContext.Provider>
           ))}
         </div>
       </div>

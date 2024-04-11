@@ -8,10 +8,10 @@ import { CustomParagraph } from "../CustomParagraph";
 import { ButtonGroup } from "./ButtonGroup";
 import { t } from "i18next";
 import { FormStatus } from "./FormStatus";
-import { DashboardContext } from "../../context/context";
+import { DashboardAccordionContext } from "../../context";
 
 export const DashboardAccordion: React.FC = () => {
-  const form = useContext(DashboardContext);
+  const form = useContext(DashboardAccordionContext);
 
   const [submissions, setSubmissions] = useState([]);
   const [submissionCount, setSubmissionCount] = useState();
