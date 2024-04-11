@@ -7,7 +7,7 @@ import { FormBuilderContext } from "../../context";
 export const InputSettings = () => {
   const { t } = useTranslation();
   const { currentComponent } = useContext(FormBuilderContext);
-  const [inputType, setInputType] = useState(currentComponent.inputType);
+  const [inputType, setInputType] = useState(currentComponent.inputType || "string");
 
   const handleInputFormat = (value: string) => {
     setInputType(value as "string" | "number");
