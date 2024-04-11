@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./App.module.css";
 import { Toolbar } from "../components/Toolbar";
@@ -10,14 +10,7 @@ import { ComponentSettings } from "../components/ComponentSettings";
 import { useGetForm } from "../hooks/useGetForm";
 import { NotFound } from "../../../main-app/src/components/NotFound";
 import { FormBuilderSubHeader } from "../components/FormBuilderSubHeader";
-
-interface FormBuilderContextProps {
-  form: Form;
-  setForm: React.Dispatch<React.SetStateAction<Form>>;
-  currentComponent: FormComponent;
-  setCurrentComponent: React.Dispatch<React.SetStateAction<FormComponent>>;
-}
-export const FormBuilderContext = createContext<FormBuilderContextProps>(null);
+import { FormBuilderContext } from "../context";
 
 export const App = (): React.JSX.Element => {
   useAuthorization();

@@ -2,12 +2,12 @@ import React, { FormEvent, useContext } from "react";
 import { SettingsModal } from "./SettingsModal";
 import { SettingsSidebar } from "./SettingsSidebar";
 import classes from "./ComponentSettings.module.css";
-import { FormBuilderContext } from "../../app/App";
 import { InputSettings } from "./InputSettings";
 import { RadioSettings } from "./RadioSettings";
 import { cleanFormData } from "../../../../main-app/src/components/FormViewer/validationUtils";
 import { ComponentAsStrings } from "./types";
 import { updateComponent, updateComponentArray } from "./utils";
+import { FormBuilderContext } from "../../context";
 
 interface ComponentSettingsProps {
   isSmallScreen: boolean;

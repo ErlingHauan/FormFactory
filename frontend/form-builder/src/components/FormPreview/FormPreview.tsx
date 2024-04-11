@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useDrop } from "react-dnd";
 import { DraggableItemsType } from "../../types/dndTypes";
 import { FormComponent } from "../../../../main-app/src/components/FormComponent";
-import { FormBuilderContext } from "../../app/App";
+import { FormBuilderContext } from "../../context";
 
 interface FormPreviewProps {
   settingsRef: React.RefObject<HTMLDialogElement>;

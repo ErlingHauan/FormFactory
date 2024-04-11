@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import React, { useContext, useState } from "react";
-import { FormBuilderContext } from "../../app/App";
 import { Checkbox, Radio, Textfield } from "@digdir/design-system-react";
 import { ButtonGroup } from "./ButtonGroup";
+import { FormBuilderContext } from "../../context";
 
 export const InputSettings = () => {
   const { t } = useTranslation();

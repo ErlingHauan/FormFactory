@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import classes from "./ComponentSettings.module.css";
 import { Button } from "@digdir/design-system-react";
 import { FloppydiskFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
-import { FormBuilderContext } from "../../app/App";
+import { FormBuilderContext } from "../../context";
 
 export const ButtonGroup = () => {
   const { form, setForm, currentComponent, setCurrentComponent } = useContext(FormBuilderContext);
