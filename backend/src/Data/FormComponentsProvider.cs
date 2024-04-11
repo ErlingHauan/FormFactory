@@ -37,7 +37,7 @@ public static class FormComponentsProvider
 
             new FormComponent()
             {
-                Name = "rating",
+                Name = "Rating",
                 Label = "From 1-5, how would you rate Form Factory?",
                 Required = true,
                 Order = 2,
