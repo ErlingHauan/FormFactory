@@ -20,7 +20,7 @@ jest.mock("../../../main-app/src/hooks/useAuthorization", () => ({
 }));
 
 jest.mock("../hooks/useGetForm", () => ({
-  useGetForm: jest.fn(() => ({ id: "form-id", name: "Test Form" })),
+  useGetForm: jest.fn(),
 }));
 
 describe("Form Builder App component", () => {
