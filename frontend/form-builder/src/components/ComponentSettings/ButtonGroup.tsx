@@ -3,6 +3,7 @@ import classes from "./ComponentSettings.module.css";
 import { Button } from "@digdir/design-system-react";
 import { FloppydiskFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
 import { FormBuilderContext } from "../../context";
+import { validateOrder } from "../../../../main-app/src/components/SubHeader/utils";
 
 export const ButtonGroup = () => {
   const { form, setForm, currentComponent, setCurrentComponent } = useContext(FormBuilderContext);
@@ -10,6 +11,8 @@ export const ButtonGroup = () => {
   const handleDeleteComponent = (index: number) => {
     const newForm = form;
     newForm.components = form.components.filter((_, i) => i !== index);
+    validateOrder(newForm);
+
     setForm({ ...form, ...newForm });
     setCurrentComponent(null);
   };

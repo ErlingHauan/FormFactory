@@ -64,7 +64,7 @@ export const saveForm = async (form: Form, publish?: boolean) => {
   }
 };
 
-const validateOrder = (form: Form) => {
+export const validateOrder = (form: Form) => {
   form.components.forEach((item, index) => {
     item.order = index;
   });

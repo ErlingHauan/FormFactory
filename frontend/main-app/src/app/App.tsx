@@ -29,6 +29,7 @@ i18next.use(initReactI18next).init({
 
 export const App = (): React.JSX.Element => {
   return (
+    // Context needed by both SubHeader and FormBuilder
     <FormBuilderContextProvider>
       <div className={classes.layout}>
         <header>

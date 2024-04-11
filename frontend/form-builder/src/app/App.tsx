@@ -13,6 +13,12 @@ import { FormBuilderContext } from "../context";
 
 export const App = (): React.JSX.Element => {
   useAuthorization();
+  const fetchedForm = useGetForm();
+  const { form, setForm } = useContext(FormBuilderContext);
+
+  useEffect(() => {
+    setForm(fetchedForm);
+  }, [fetchedForm, setForm]);
 
   const settingsRef = useRef<HTMLDialogElement>(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
@@ -25,13 +31,6 @@ export const App = (): React.JSX.Element => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const fetchedForm = useGetForm();
-  const { form, setForm } = useContext(FormBuilderContext);
-
-  useEffect(() => {
-    setForm(fetchedForm);
-  }, [fetchedForm, setForm]);
 
   const RenderFormBuilder = () => (
     <DndProvider backend={HTML5Backend}>
