@@ -17,7 +17,7 @@ export const InputSettings = () => {
     <>
       <Textfield
         name="name"
-        label="Name"
+        label={t("settings_side_bar.component.name")}
         defaultValue={currentComponent.name || ""}
         size="small"
         placeholder={"Required"}
@@ -35,17 +35,17 @@ export const InputSettings = () => {
         value="required"
         defaultChecked={currentComponent.required}
       >
-        Require user response
+        {t("settings_side_bar.require.response")}
       </Checkbox>
       <Radio.Group
         name="inputType"
         defaultValue={currentComponent.inputType || inputType}
         size="small"
-        legend="Input format"
+        legend={t("settings_side_bar.input.format")}
         onChange={handleInputFormat}
       >
-        <Radio value="string">Text</Radio>
-        <Radio value="number">Number</Radio>
+        <Radio value="string">{t("settings_side_bar.text")}</Radio>
+        <Radio value="number">{t("settings_side_bar.number")}</Radio>
       </Radio.Group>
       {inputType === "string" && <TextSettings />}
       {inputType === "number" && <NumberSettings />}

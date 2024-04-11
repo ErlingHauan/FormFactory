@@ -4,8 +4,10 @@ import { Button } from "@digdir/design-system-react";
 import { FloppydiskFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
 import { FormBuilderContext } from "../../context";
 import { validateOrder } from "../../../../main-app/src/components/SubHeader/utils";
+import { useTranslation } from "react-i18next";
 
 export const ButtonGroup = () => {
+  const { t } = useTranslation();
   const { form, setForm, currentComponent, setCurrentComponent } = useContext(FormBuilderContext);
 
   const handleDeleteComponent = (index: number) => {
@@ -27,11 +29,11 @@ export const ButtonGroup = () => {
         onClick={() => handleDeleteComponent(currentComponent.order)}
       >
         <TrashFillIcon />
-        Delete component
+        {t("settings_side_bar.delete.component")}
       </Button>
       <Button type="submit" color={"success"} size={"small"}>
         <FloppydiskFillIcon />
-        Save component
+        {t("settings_side_bar.save.component")}
       </Button>
     </div>
   );

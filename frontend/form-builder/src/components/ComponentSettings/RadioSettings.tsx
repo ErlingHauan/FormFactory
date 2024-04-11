@@ -19,7 +19,7 @@ export const RadioSettings = () => {
       />
       <Textarea
         name="radioChoices"
-        label={"Choices (comma separated)"}
+        label={t("settings_side_bar.radio.choices")}
         defaultValue={currentComponent.radioChoices?.join(", ") || ""}
         size="small"
       />
