@@ -3,12 +3,13 @@ import classes from "./SubHeader.module.css";
 import { Heading, Link } from "@digdir/design-system-react";
 import { ClipboardCheckmarkFillIcon, FilePlusFillIcon } from "@navikt/aksel-icons";
 import { t } from "i18next";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useUser } from "../../hooks/useUser";
+import { createNewForm } from "./utils";
 
 export const SubHeader: React.FC = () => {
   const [heading, setHeading] = useState<string | React.JSX.Element>("");
   const [links, setLinks] = useState<React.JSX.Element>(null);
-
   const pathname = useLocation().pathname;
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export const SubHeader: React.FC = () => {
         break;
       case pathname.startsWith("/dashboard"):
         setHeading(t("dashboard"));
-        setLinks(dashboardLinks());
+        // setLinks(dashboardLinks());
         break;
       case pathname.startsWith("/view"):
         setHeading(formViewerHeading());
@@ -33,21 +34,27 @@ export const SubHeader: React.FC = () => {
     }
   }, [pathname]);
 
-  if (pathname.startsWith("/form-builder/")) return;
+  // if (pathname.startsWith("/form-builder/")) return;
 
   return (
     <div className={classes.subHeader}>
       <Heading className={classes.subHeaderHeading} level={2} size="xxsmall">
         {heading}
       </Heading>
-      <div className={classes.subHeaderLinks}>{links}</div>
+      <div className={classes.subHeaderLinks}>
+        {links}
+        {pathname.startsWith("/dashboard") && <DashboardLinks />}
+      </div>
     </div>
   );
 };
 
-const dashboardLinks = () => {
+const DashboardLinks: React.FC = () => {
+  const navigate = useNavigate();
+  const { user } = useUser();
+
   return (
-    <Link href={"/form-builder/new"}>
+    <Link onClick={() => createNewForm(user, navigate)}>
       {t("dashboard.new.form")}
       <FilePlusFillIcon className={classes.subHeaderIcon} />
     </Link>
