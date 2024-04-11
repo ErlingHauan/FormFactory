@@ -4,9 +4,8 @@ import { App } from "./App";
 import { MemoryRouter } from "react-router";
 import { useAuthorization } from "../hooks/useAuthorization";
 import { useUserSession } from "../hooks/useUserSession";
-
-jest.mock("../hooks/useAuthorization");
-jest.mocked(useAuthorization);
+import { useGetForm } from "../../../form-builder/src/hooks/useGetForm";
+import { FormBuilderContext } from "form-builder/src/context";
 
 const mockedUser = {
   id: "string",
@@ -15,14 +14,39 @@ const mockedUser = {
   organization: "string",
 };
 
+const mockedForm = {
+  id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  user: "user@example.com",
+  organization: "string",
+  title: "string",
+  description: "string",
+  status: "string",
+  published: "2024-04-11T07:58:48.939Z",
+  expires: "2024-04-11T07:58:48.939Z",
+  components: [],
+};
+
 jest.mock("../hooks/useUserSession");
 jest.mocked(useUserSession).mockReturnValue({ user: mockedUser, isLoading: false });
+
+jest.mock("../../../form-builder/src/hooks/useGetForm");
+jest.mocked(useGetForm).mockReturnValue(mockedForm);
+
+jest.mock("../hooks/useAuthorization");
+jest.mocked(useAuthorization);
 
 describe("App component", () => {
   const renderApp = (initialEntries?: string[]) => {
     render(
       <MemoryRouter initialEntries={initialEntries}>
-        <App />
+        <FormBuilderContext.Provider
+          value={{
+            form: mockedForm,
+            setForm: jest.fn(),
+          }}
+        >
+          <App />
+        </FormBuilderContext.Provider>
       </MemoryRouter>,
     );
   };
@@ -34,7 +58,7 @@ describe("App component", () => {
     const footer = screen.getByRole("contentinfo");
 
     expect(header).toHaveTextContent("Form Factory");
-    expect(footer).toHaveTextContent("Designsystemet");
+    expect(footer).toHaveTextContent("Components and colors by Designsystemet");
   });
 
   it("renders Login when accessing '/'", () => {
@@ -66,15 +90,6 @@ describe("App component", () => {
     renderApp(["/dashboard"]);
 
     expect(React.useEffect).toHaveBeenCalled();
-  });
-
-  it("renders Form Builder when accessing '/form-builder'", () => {
-    renderApp(["/form-builder"]);
-
-    // There is an error accessing the form builder heading. To be fixed later.
-    const title = screen.getAllByRole("heading", { name: "Components" });
-
-    expect(title[0]).toBeInTheDocument();
   });
 
   it("renders NotFound when routing to a non-existing page", () => {
