@@ -33,15 +33,6 @@ export const createNewForm = (user: User, navigate: NavigateFunction) => {
   })();
 };
 
-export const formViewerHeading = () => {
-  return (
-    <Link href="/">
-      {t("form_factory")}
-      <ClipboardCheckmarkFillIcon className={classes.subHeaderIcon} />
-    </Link>
-  );
-};
-
 export const saveForm = async (form: Form, publish?: boolean) => {
   validateOrder(form);
 
@@ -68,4 +59,13 @@ export const validateOrder = (form: Form) => {
   form.components.forEach((item, index) => {
     item.order = index;
   });
+};
+
+export const formViewerHeading = () => {
+  return (
+    <Link href="/">
+      {t("form_factory")}
+      <ClipboardCheckmarkFillIcon className={classes.subHeaderIcon} />
+    </Link>
+  );
 };

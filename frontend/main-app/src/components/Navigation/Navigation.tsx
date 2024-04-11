@@ -3,7 +3,7 @@ import classes from "./Navigation.module.css";
 import { UserDropdown } from "../UserDropdown";
 
 //
-// TODO: Make commented lines into a conditional render for "Signup" and "Login" links.
+// TODO: Make lines that are commented out into a conditional render for "Signup" and "Login" links.
 //
 
 export const Navigation = (): React.JSX.Element => {

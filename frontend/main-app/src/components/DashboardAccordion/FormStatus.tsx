@@ -16,7 +16,7 @@ export const FormStatus = ({ form }: FormStatusProps) => {
     </Link>
   );
 
-  if (form.status === "Draft" || form.status === "draft") {
+  if (form.status.toLowerCase() === "draft") {
     return <CustomParagraph heading="Status" content={link} />;
   }
 
