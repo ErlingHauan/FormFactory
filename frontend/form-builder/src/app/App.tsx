@@ -16,7 +16,7 @@ export const App = (): React.JSX.Element => {
 
   const settingsRef = useRef<HTMLDialogElement>(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
-  const isSmallScreen = windowSize < 768;
+  const isSmallScreen = windowSize <= 768;
 
   useEffect(() => {
     const handleResize = () => {

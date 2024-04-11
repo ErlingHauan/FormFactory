@@ -34,10 +34,10 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
     }),
   }));
 
+  // TODO: Fix buggy behaviour when clicking in mobile view
   const handleClick = (item: FormComponent, index: number) => {
     item.order = index;
-    setCurrentComponent({ ...item });
-
+    setCurrentComponent(item);
     settingsRef.current?.showModal();
   };
 
@@ -52,7 +52,7 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
       ))}
     </>
   );
-  const RenderHeading = () => (
+  const RenderFormHeading = () => (
     <div className={classes.formHeading}>
       <Heading level={4} size="medium">
         {form?.title}
@@ -78,7 +78,7 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
         className={classes.dropArea}
         style={{ backgroundColor: isOver && "var(--fds-semantic-surface-warning-subtle)" }}
       >
-        <RenderHeading />
+        <RenderFormHeading />
         {form?.components?.length === 0 ? <RenderNoComponentsMessage /> : <RenderComponents />}
       </div>
     </>
