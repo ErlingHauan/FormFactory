@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./App.module.css";
 import { Toolbar } from "../components/Toolbar";
@@ -27,32 +27,27 @@ export const App = (): React.JSX.Element => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const { form, setForm } = useGetForm();
-  const [currentComponent, setCurrentComponent] = useState<FormComponent | null>();
+  const fetchedForm = useGetForm();
+  const { form, setForm } = useContext(FormBuilderContext);
+
+  useEffect(() => {
+    setForm(fetchedForm);
+  }, [fetchedForm, setForm]);
 
   const RenderFormBuilder = () => (
     <DndProvider backend={HTML5Backend}>
-      <FormBuilderContext.Provider
-        value={{
-          form,
-          setForm,
-          currentComponent,
-          setCurrentComponent,
-        }}
-      >
-        <FormBuilderSubHeader />
-        <div className={classes.formBuilder}>
-          <div className={classes.builderSection}>
-            <Toolbar />
-          </div>
-          <div className={classes.builderSection}>
-            <FormPreview settingsRef={settingsRef} />
-          </div>
-          <div className={isSmallScreen ? classes.builderModal : classes.builderSection}>
-            <ComponentSettings isSmallScreen={isSmallScreen} settingsRef={settingsRef} />
-          </div>
+      <FormBuilderSubHeader />
+      <div className={classes.formBuilder}>
+        <div className={classes.builderSection}>
+          <Toolbar />
         </div>
-      </FormBuilderContext.Provider>
+        <div className={classes.builderSection}>
+          <FormPreview settingsRef={settingsRef} />
+        </div>
+        <div className={isSmallScreen ? classes.builderModal : classes.builderSection}>
+          <ComponentSettings isSmallScreen={isSmallScreen} settingsRef={settingsRef} />
+        </div>
+      </div>
     </DndProvider>
   );
 

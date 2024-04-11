@@ -6,4 +6,5 @@ interface FormBuilderContextProps {
   currentComponent: FormComponent;
   setCurrentComponent: React.Dispatch<React.SetStateAction<FormComponent>>;
 }
+
 export const FormBuilderContext = createContext<FormBuilderContextProps>(null);

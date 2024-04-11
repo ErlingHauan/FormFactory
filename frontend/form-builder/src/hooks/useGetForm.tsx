@@ -23,5 +23,5 @@ export const useGetForm = () => {
     })();
   }, [formId]);
 
-  return { form, setForm };
+  return form;
 };
