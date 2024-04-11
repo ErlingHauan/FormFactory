@@ -9,7 +9,6 @@ import { useAuthorization } from "../../../main-app/src/hooks/useAuthorization";
 import { ComponentSettings } from "../components/ComponentSettings";
 import { useGetForm } from "../hooks/useGetForm";
 import { NotFound } from "../../../main-app/src/components/NotFound";
-import { FormBuilderSubHeader } from "../components/FormBuilderSubHeader";
 import { FormBuilderContext } from "../context";
 
 export const App = (): React.JSX.Element => {
@@ -36,7 +35,6 @@ export const App = (): React.JSX.Element => {
 
   const RenderFormBuilder = () => (
     <DndProvider backend={HTML5Backend}>
-      <FormBuilderSubHeader />
       <div className={classes.formBuilder}>
         <div className={classes.builderSection}>
           <Toolbar />

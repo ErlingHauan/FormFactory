@@ -5,6 +5,7 @@ import { t } from "i18next";
 import { useLocation } from "react-router-dom";
 import { DashboardLink } from "./DashboardLink";
 import { formViewerHeading } from "./utils";
+import { FormBuilderLinks } from "./FormBuilderLinks";
 
 export const SubHeader: React.FC = () => {
   const [heading, setHeading] = useState<string | React.JSX.Element>("");
@@ -21,6 +22,9 @@ export const SubHeader: React.FC = () => {
       case pathname.startsWith("/dashboard"):
         setHeading(t("dashboard"));
         break;
+      case pathname.startsWith("/form-builder"):
+        setHeading(t("form_builder"));
+        break;
       case pathname.startsWith("/view"):
         setHeading(formViewerHeading());
         break;
@@ -30,8 +34,6 @@ export const SubHeader: React.FC = () => {
     }
   }, [pathname]);
 
-  if (pathname.startsWith("/form-builder/")) return;
-
   return (
     <div className={classes.subHeader}>
       <Heading className={classes.subHeaderHeading} level={2} size="xxsmall">
@@ -39,6 +41,7 @@ export const SubHeader: React.FC = () => {
       </Heading>
       <div className={classes.subHeaderLinks}>
         {pathname.startsWith("/dashboard") && <DashboardLink />}
+        {pathname.startsWith("/form-builder") && <FormBuilderLinks />}
       </div>
     </div>
   );
