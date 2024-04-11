@@ -6,7 +6,7 @@ import { DashboardAccordion } from "../DashboardAccordion/DashboardAccordion";
 import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { useAuthorization } from "../../hooks/useAuthorization";
-import { DashboardContext } from "../../context/context";
+import { DashboardContext } from "../../context";
 
 export const Dashboard = (): React.JSX.Element => {
   useAuthorization();
