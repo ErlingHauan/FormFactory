@@ -5,10 +5,10 @@ import { Trans } from "react-i18next";
 import { TrashFillIcon } from "@navikt/aksel-icons";
 import classes from "./DeleteForm.module.css";
 import { deleteForm } from "./utils";
-import { FormContext } from "../../context/context";
+import { DashboardContext } from "../../context/context";
 
 export const DeleteDialog: React.FC = () => {
-  const form = useContext(FormContext);
+  const form = useContext(DashboardContext);
   const [formError, setFormError] = useState("");
 
   const handleDelete = (event: FormEvent<HTMLFormElement>) => {

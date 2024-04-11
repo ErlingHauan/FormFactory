@@ -6,7 +6,7 @@ import { CloudDownFillIcon, PersonEnvelopeFillIcon, TrashFillIcon } from "@navik
 import { Button } from "@digdir/design-system-react";
 import { ShareForm } from "./ShareForm";
 import { DeleteForm } from "../DeleteForm/DeleteForm";
-import { FormContext } from "../../context/context";
+import { DashboardContext } from "../../context/context";
 
 interface ButtonGroupProps {
   submissions: Submission[];
@@ -15,7 +15,7 @@ interface ButtonGroupProps {
 
 export const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formUrl }) => {
   const { t } = useTranslation();
-  const form = useContext(FormContext);
+  const form = useContext(DashboardContext);
 
   const handleDownload = async () => {
     // Setup file

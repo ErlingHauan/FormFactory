@@ -1,3 +1,3 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
 
-export const FormContext: React.Context<null | Form> = createContext(null);
+export const DashboardContext = createContext<Form>(null);

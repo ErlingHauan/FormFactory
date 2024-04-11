@@ -3,7 +3,7 @@ import { Heading, Modal, Paragraph } from "@digdir/design-system-react";
 import React, { ReactNode, useContext } from "react";
 import { CustomParagraph } from "../CustomParagraph";
 import { t } from "i18next";
-import { FormContext } from "../../context/context";
+import { DashboardContext } from "../../context/context";
 
 interface ListAnswersProps {
   submissions: Submission[];
@@ -45,7 +45,7 @@ export const SubmissionViewer: React.FC<SubmissionViewerProps> = ({
   size,
   variant,
 }) => {
-  const formTitle = useContext(FormContext).title;
+  const formTitle = useContext(DashboardContext).title;
   return (
     <Modal.Root>
       <Modal.Trigger className={className} variant={variant} size={size}>

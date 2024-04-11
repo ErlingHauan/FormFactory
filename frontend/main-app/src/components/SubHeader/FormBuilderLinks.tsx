@@ -9,13 +9,15 @@ import classes from "./SubHeader.module.css";
 export const FormBuilderLinks = () => {
   const { form } = useContext(FormBuilderContext);
 
+  if (!form) return;
+
   return (
     <>
       <Link onClick={() => saveForm(form)}>
         {t("form_builder.save")}
         <FloppydiskFillIcon className={classes.subHeaderIcon} />
       </Link>
-      {form?.status.toLowerCase() === "draft" && (
+      {form.status.toLowerCase() === "draft" && (
         <Link onClick={() => saveForm(form, true)}>
           {t("form_builder.publish")}
           <TasklistSendFillIcon className={classes.subHeaderIcon} />
