@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { App } from "./App";
 import { MemoryRouter } from "react-router";
 import { useAuthorization } from "../hooks/useAuthorization";
-import { useUser } from "../hooks/useUser";
+import { useUserSession } from "../hooks/useUserSession";
 
 jest.mock("../hooks/useAuthorization");
 jest.mocked(useAuthorization);
@@ -15,8 +15,8 @@ const mockedUser = {
   organization: "string",
 };
 
-jest.mock("../hooks/useUser");
-jest.mocked(useUser).mockReturnValue({ user: mockedUser, isLoading: false });
+jest.mock("../hooks/useUserSession");
+jest.mocked(useUserSession).mockReturnValue({ user: mockedUser, isLoading: false });
 
 describe("App component", () => {
   const renderApp = (initialEntries?: string[]) => {

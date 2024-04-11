@@ -6,11 +6,11 @@ import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { t } from "i18next";
-import { useUser } from "../../hooks/useUser";
+import { useUserSession } from "../../hooks/useUserSession";
 
 export const UserDropdown = (): React.JSX.Element => {
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { user } = useUserSession();
 
   const logOutUser = async () => {
     const apiUrl = getApiUrl();

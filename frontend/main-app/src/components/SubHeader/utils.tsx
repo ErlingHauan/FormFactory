@@ -2,6 +2,11 @@ import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { User } from "../../types";
 import { NavigateFunction } from "react-router-dom";
+import { Link } from "@digdir/design-system-react";
+import { t } from "i18next";
+import { ClipboardCheckmarkFillIcon } from "@navikt/aksel-icons";
+import classes from "./SubHeader.module.css";
+import React from "react";
 
 export const createNewForm = (user: User, navigate: NavigateFunction) => {
   const apiUrl = getApiUrl();
@@ -26,4 +31,13 @@ export const createNewForm = (user: User, navigate: NavigateFunction) => {
       console.log(error);
     }
   })();
+};
+
+export const formViewerHeading = () => {
+  return (
+    <Link href="/">
+      {t("form_factory")}
+      <ClipboardCheckmarkFillIcon className={classes.subHeaderIcon} />
+    </Link>
+  );
 };
