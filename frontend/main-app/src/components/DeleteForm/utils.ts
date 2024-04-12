@@ -21,7 +21,9 @@ export const fetchUserSubmissions = async () => {
   const targetUrl = `${apiUrl}/submissions/user`;
 
   try {
-    const result = await axios.get(targetUrl);
+    const result = await axios.get(targetUrl, {
+      withCredentials: true,
+    });
     return result.data;
   } catch (error) {
     console.log(error);
