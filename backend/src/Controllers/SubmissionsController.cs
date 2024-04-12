@@ -44,7 +44,7 @@ public class SubmissionsController : ControllerBase
         var dto = SubmissionMappers.ToDto(entity);
         return Ok(dto);
     }
-    
+
     /// <summary>
     /// Gets all submissions belonging to a user from session data.
     /// </summary>
@@ -52,7 +52,7 @@ public class SubmissionsController : ControllerBase
     public async Task<ActionResult<IEnumerable<SubmissionDto>>> GetAllSubmissionsByUser()
     {
         var email = HttpContext.Session.GetString("authorizedUser");
-        Console.WriteLine($"Getting forms belonging to user: {email}");
+        Console.WriteLine($"Getting submissions belonging to user: {email}");
         List<SubmissionDto> dtoList;
 
         if (string.IsNullOrEmpty(email))
@@ -109,7 +109,7 @@ public class SubmissionsController : ControllerBase
     }
 
     /// <summary>
-    /// Deletes all submission belonging to a form.
+    /// Deletes all submissions belonging to a form.
     /// </summary>
     [HttpDelete("/api/forms/{formId:guid}/submissions")]
     public async Task<ActionResult<IEnumerable<SubmissionDto>>> DeleteAllSubmissionsInForm(Guid formId)
@@ -117,7 +117,7 @@ public class SubmissionsController : ControllerBase
         var entityList = await _submissionRepository.DeleteAllSubmissionsInForm(formId);
         if (entityList == null)
         {
-            return Ok();
+            return NotFound();
         }
 
         var dtoList = entityList.Select(SubmissionMappers.ToDto).ToList();

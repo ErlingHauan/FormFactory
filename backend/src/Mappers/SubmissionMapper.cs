@@ -25,7 +25,7 @@ public class SubmissionMappers
         {
             Id = entity.Id,
             FormId = entity.FormId,
-            FormCreator = entity.FormCreator, // Look into this
+            FormCreator = entity.FormCreator,
             Submitted = entity.Submitted,
             Responses = entity.Responses
         };

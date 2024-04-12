@@ -9,6 +9,7 @@ public interface ISubmissionRepository
 {
     Task<List<SubmissionEntity>> GetAll();
     Task<SubmissionEntity?> GetSingle(Guid submissionId);
+    Task<List<SubmissionEntity>> GetAllSubmissionsByUser(string email);
     Task<List<SubmissionEntity>> GetFormSubmissions(Guid formId);
     Task<SubmissionEntity?> Create(SubmissionEntity entity);
     Task<SubmissionEntity?> DeleteSingle(Guid submissionId);
@@ -41,6 +42,12 @@ public class SubmissionRepository : ISubmissionRepository
         }
 
         return entity;
+    }
+
+    public async Task<List<SubmissionEntity>> GetAllSubmissionsByUser(string email)
+    {
+        var submissionList = await _context.Submissions.Where(sub => sub.FormCreator == email).ToListAsync();
+        return submissionList;
     }
 
     public async Task<List<SubmissionEntity>> GetFormSubmissions(Guid formId)

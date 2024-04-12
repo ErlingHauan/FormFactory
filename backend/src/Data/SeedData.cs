@@ -91,7 +91,7 @@ public static class SeedData
             {
                 Id = Guid.NewGuid(),
                 FormId = new Guid("11111111-1111-1111-1111-111111111111"),
-
+                FormCreator = "user1@example.com",
                 Submitted = DateTimeOffset.UtcNow,
                 Responses = responseList1
             },
@@ -99,7 +99,7 @@ public static class SeedData
             {
                 Id = Guid.NewGuid(),
                 FormId = new Guid("11111111-1111-1111-1111-111111111111"),
-
+                FormCreator = "user1@example.com",
                 Submitted = DateTimeOffset.UtcNow,
                 Responses = responseList2
             },
@@ -107,6 +107,7 @@ public static class SeedData
             {
                 Id = Guid.NewGuid(),
                 FormId = new Guid("11111111-1111-1111-1111-111111111111"),
+                FormCreator = "user1@example.com",
                 Submitted = DateTimeOffset.UtcNow,
                 Responses = responseList3
             },
@@ -114,6 +115,7 @@ public static class SeedData
             {
                 Id = Guid.NewGuid(),
                 FormId = new Guid("11111111-1111-1111-1111-111111111111"),
+                FormCreator = "user1@example.com",
                 Submitted = DateTimeOffset.UtcNow,
                 Responses = responseList4
             },
@@ -121,6 +123,7 @@ public static class SeedData
             {
                 Id = Guid.NewGuid(),
                 FormId = new Guid("11111111-1111-1111-1111-111111111111"),
+                FormCreator = "user1@example.com",
                 Submitted = DateTimeOffset.UtcNow,
                 Responses = responseList5
             }

@@ -8,9 +8,9 @@ public record SubmissionDto
 
     [Required]
     public Guid FormId { get; set; }
-    
+
     [Required]
-    public string FormCreator { get; set; }
+    public string? FormCreator { get; set; }
 
     [Required]
     public DateTimeOffset Submitted { get; set; }
