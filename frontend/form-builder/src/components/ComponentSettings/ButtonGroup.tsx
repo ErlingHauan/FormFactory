@@ -11,11 +11,11 @@ export const ButtonGroup = () => {
   const { form, setForm, currentComponent, setCurrentComponent } = useContext(FormBuilderContext);
 
   const handleDeleteComponent = (index: number) => {
-    const newForm = form;
+    const newForm: Form = { ...form };
     newForm.components = form.components.filter((_, i) => i !== index);
     validateOrder(newForm);
 
-    setForm({ ...form, ...newForm });
+    setForm({ ...newForm });
     setCurrentComponent(null);
   };
 
