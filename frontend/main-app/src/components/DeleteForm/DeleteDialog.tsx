@@ -18,7 +18,7 @@ export const DeleteDialog: React.FC = () => {
     const cleanFormData = Object.fromEntries(formData);
 
     if (cleanFormData.confirmDelete.toString().toLowerCase() === "delete") {
-      deleteForm(form.id.toString());
+      deleteForm(form);
     } else {
       setFormError(t("dashboard.delete.error"));
     }
