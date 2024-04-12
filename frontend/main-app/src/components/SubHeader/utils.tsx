@@ -50,7 +50,7 @@ export const saveForm = async (form: Form, publish?: boolean) => {
       },
     });
     publish ? alert("Form published!") : alert("Form saved!");
-    location.reload();
+    publish && location.reload();
   } catch (error) {
     console.log(error);
   }
