@@ -21,10 +21,11 @@ Access the frontend on http://localhost:3050. \
 The backend endpoints can be viewed at http://localhost:8080.
 
 ## Useful commands
-* To remove the current database and rebuild it, run `yarn db:reseed`.
-* To lint all frontend files, run `yarn lint`.
-* To format the frontend code,  run `yarn codestyle:fix`.
-* To format the backend code, run `dotnet format`.
+* To lint the frontend code, run `yarn lint`.
+* To format the code, run `yarn format` to format all code, or `yarn format-frontend` or `yarn format-backend`.
+* To test the code, run `yarn test`, `yarn test-frontend` or `yarn test-backend`.
+* To do all of the above, run `yarn preflight`, `yarn preflight-frontend`, or `yarn preflight-backend`.
+* To remove the current database and rebuild it, run `reseed-db`.
 
 ## Troubleshooting
 If you are getting an error regarding a missing Dotnet utility, try running `dotnet tool install --global dotnet-ef --version 8.*` and then `yarn db:seed`.
