@@ -44,6 +44,29 @@ public class SubmissionsController : ControllerBase
         var dto = SubmissionMappers.ToDto(entity);
         return Ok(dto);
     }
+    
+    /// <summary>
+    /// Gets all submissions belonging to a user from session data.
+    /// </summary>
+    [HttpGet("user")]
+    public async Task<ActionResult<IEnumerable<SubmissionDto>>> GetAllSubmissionsByUser()
+    {
+        var email = HttpContext.Session.GetString("authorizedUser");
+        Console.WriteLine($"Getting forms belonging to user: {email}");
+        List<SubmissionDto> dtoList;
+
+        if (string.IsNullOrEmpty(email))
+        {
+            dtoList = [];
+        }
+        else
+        {
+            var entityList = await _submissionRepository.GetAllSubmissionsByUser(email);
+            dtoList = entityList.Select(SubmissionMappers.ToDto).ToList();
+        }
+
+        return Ok(dtoList);
+    }
 
     /// <summary>
     /// Gets all submissions belonging to a form.
