@@ -16,7 +16,7 @@ export const deleteForm = async (form: Form) => {
   }
 };
 
-const fetchUserSubmissions = async () => {
+export const fetchUserSubmissions = async () => {
   const apiUrl = getApiUrl();
   const targetUrl = `${apiUrl}/submissions/user`;
 
