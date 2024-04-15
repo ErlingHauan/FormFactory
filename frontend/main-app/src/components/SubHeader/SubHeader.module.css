@@ -31,6 +31,8 @@
 .statusText {
   color: var(--fds-semantic-surface-neutral-subtle-hover);
   margin: auto 0;
+  transform: translateY(1px);
+  font-size: var(--fds-sizing-3);
 }
 
 @media screen and (max-width: 600px) {

@@ -20,7 +20,7 @@ export const App = (): React.JSX.Element => {
     setForm(fetchedForm);
   }, [fetchedForm, setForm]);
 
-  const settingsRef = useRef<HTMLDialogElement>(null);
+  const modalRef = useRef<HTMLDialogElement>(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
   const isSmallScreen = windowSize <= 768;
 
@@ -39,10 +39,10 @@ export const App = (): React.JSX.Element => {
           <Toolbar />
         </div>
         <div className={classes.builderSection}>
-          <FormPreview settingsRef={settingsRef} />
+          <FormPreview modalRef={modalRef} />
         </div>
         <div className={isSmallScreen ? classes.builderModal : classes.builderSection}>
-          <ComponentSettings isSmallScreen={isSmallScreen} settingsRef={settingsRef} />
+          <ComponentSettings isSmallScreen={isSmallScreen} modalRef={modalRef} />
         </div>
       </div>
     </DndProvider>

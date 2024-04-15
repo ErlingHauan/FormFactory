@@ -11,12 +11,12 @@ import { FormBuilderContext } from "../../context";
 
 interface ComponentSettingsProps {
   isSmallScreen: boolean;
-  settingsRef: React.RefObject<HTMLDialogElement>;
+  modalRef: React.RefObject<HTMLDialogElement>;
 }
 
 export const ComponentSettings = ({
   isSmallScreen,
-  settingsRef,
+  modalRef,
 }: ComponentSettingsProps): React.JSX.Element => {
   const { currentComponent, setCurrentComponent, form, setForm } = useContext(FormBuilderContext);
 
@@ -49,7 +49,7 @@ export const ComponentSettings = ({
   };
 
   return isSmallScreen ? (
-    <SettingsModal SettingsContent={RenderSettingsContent} settingsRef={settingsRef} />
+    <SettingsModal SettingsContent={RenderSettingsContent} modalRef={modalRef} />
   ) : (
     <SettingsSidebar SettingsContent={RenderSettingsContent} />
   );

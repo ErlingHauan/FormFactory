@@ -9,10 +9,10 @@ import { FormComponent } from "../../../../main-app/src/components/FormComponent
 import { FormBuilderContext } from "../../context";
 
 interface FormPreviewProps {
-  settingsRef: React.RefObject<HTMLDialogElement>;
+  modalRef: React.RefObject<HTMLDialogElement>;
 }
 
-export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Element => {
+export const FormPreview = ({ modalRef }: FormPreviewProps): React.JSX.Element => {
   const { t } = useTranslation();
   const { form, setForm, setCurrentComponent } = useContext(FormBuilderContext);
   const formRef = useRef<Form>();
@@ -38,7 +38,7 @@ export const FormPreview = ({ settingsRef }: FormPreviewProps): React.JSX.Elemen
   const handleClick = (item: FormComponent, index: number) => {
     item.order = index;
     setCurrentComponent(item);
-    settingsRef.current?.showModal();
+    modalRef.current?.showModal();
   };
 
   const RenderComponents = () => (
