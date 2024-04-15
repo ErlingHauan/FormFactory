@@ -35,10 +35,11 @@ export const FormPreview = ({ modalRef }: FormPreviewProps): React.JSX.Element =
     }),
   }));
 
-  // TODO: Fix buggy behaviour when clicking in mobile view
   const handleClick = (item: FormComponent, index: number) => {
     setCurrentComponent({ ...item, order: index });
-    modalRef.current?.showModal();
+    setTimeout(() => {
+      modalRef.current?.showModal();
+    }, 0);
   };
 
   const RenderComponents = () => (

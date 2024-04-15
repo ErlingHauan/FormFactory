@@ -15,7 +15,6 @@ export const SettingsModal = ({
     <Modal ref={modalRef} className={classes.modalWindow}>
       <Modal.Header className={classes.modalHeader}>Settings</Modal.Header>
       <Modal.Content className={classes.modalContent}>
-        <p>Test</p>
         <SettingsContent />
       </Modal.Content>
     </Modal>
