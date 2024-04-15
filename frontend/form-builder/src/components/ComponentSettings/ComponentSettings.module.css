@@ -1,0 +1,37 @@
+.settingsHeading {
+  padding: var(--fds-spacing-4);
+}
+
+.SettingsContent {
+  display: flex;
+  flex-direction: column;
+  padding: var(--fds-spacing-4);
+  padding-top: 0;
+  gap: var(--fds-spacing-6);
+  text-align: left;
+  height: 90%;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--fds-semantic-surface-neutral-inverted) transparent;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-spacing-2);
+  padding-top: var(--fds-spacing-3);
+}
+
+.modalWindow {
+  justify-self: center;
+  align-self: center;
+}
+
+.modalHeader {
+  background: var(--fds-semantic-surface-action-first-subtle);
+  padding: var(--fds-spacing-6);
+}
+
+.modalContent {
+  margin: 10px 0;
+}

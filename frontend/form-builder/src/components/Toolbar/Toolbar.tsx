@@ -9,7 +9,7 @@ export const Toolbar = (): React.JSX.Element => {
 
   return (
     <div className={classes.toolbar}>
-      <Heading level={3} size="xxsmall" className={classes.toolbarHeader}>
+      <Heading level={3} size="xxsmall" className={classes.toolbarHeading}>
         {t("toolbar_tools")}
       </Heading>
       <ToolBarItems />

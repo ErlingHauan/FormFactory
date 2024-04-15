@@ -1,5 +1,6 @@
 interface FormComponent {
   name: string;
+  order?: number;
   label: string;
   type: string;
   inputType?: string;
@@ -12,13 +13,13 @@ interface FormComponent {
 }
 
 interface Form {
-  id: number;
+  id?: string;
   user: string;
   organization?: string;
   title: string;
   description: string;
   status: string;
-  published: string;
+  published: date;
   expires: string;
   components: FormComponent[];
 }

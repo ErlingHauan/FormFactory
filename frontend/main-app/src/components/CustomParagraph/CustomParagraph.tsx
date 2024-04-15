@@ -3,7 +3,7 @@ import { Heading, Paragraph } from "@digdir/design-system-react";
 
 interface CustomParagraphProps {
   heading: string;
-  content: string | number;
+  content: string | number | React.JSX.Element;
 }
 
 export const CustomParagraph: React.FC<CustomParagraphProps> = ({ heading, content }) => (

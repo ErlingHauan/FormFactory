@@ -18,8 +18,8 @@ export const NotFound: React.FC = () => {
           {!isFormUrl && t("not_found.title.page")}
         </Heading>
         <Paragraph>{t("not_found.message", { pageType })}</Paragraph>
-        <Link href="/login">{t("not_found.login.link")}</Link>
-        <Link href="/signup">{t("not_found.signup.link")}</Link>
+        <Link href={"/login"}>{t("not_found.login.link")}</Link>
+        <Link href={"/signup"}>{t("not_found.signup.link")}</Link>
       </div>
       <img
         src={notFoundImage}

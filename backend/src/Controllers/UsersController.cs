@@ -97,19 +97,22 @@ public class UsersController : ControllerBase
     /// Logs in a user.
     /// </summary>
     [HttpPost("login")]
-    public async Task<ActionResult> Login([FromBody] UserDto dto)
+    public async Task<ActionResult<UserDto>> Login([FromBody] UserDto dto)
     {
         var entity = new UserEntity();
         UserMappers.DtoToEntity(dto, entity);
 
-        if (await _userRepository.ConfirmEmailAndPassword(entity) == null)
+        var returnedUserEntity = await _userRepository.ConfirmEmailAndPassword(entity);
+        if (returnedUserEntity == null)
         {
             return Unauthorized("Email/password combination was not found.");
         }
 
+        var returnedUserDto = UserMappers.EntityToDto(returnedUserEntity); 
+        
         // store username in session state (server) and cookie (browser)
         HttpContext.Session.SetString("authorizedUser", dto.Email);
-        return Ok();
+        return Ok(returnedUserDto);
     }
 
     /// <summary>

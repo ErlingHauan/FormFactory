@@ -3,11 +3,13 @@ import { TFunction } from "i18next";
 import React from "react";
 import { Alert } from "@digdir/design-system-react";
 
+// Turns form data into a regular object
+// Then turns values with an empty string into undefined
+// Zod does not validate numbers correctly, if given an empty string
 export const cleanFormData = (formData: FormData) => {
   const obj = Object.fromEntries(formData);
   const newObj = {};
 
-  // Zod does not validate numbers correctly if given empty string
   for (const key in obj) {
     const value = obj[key];
     newObj[key] = value === "" ? undefined : value;
@@ -55,7 +57,7 @@ const getStringValidator = (component: FormComponent) => {
   if (component.maxLength) {
     if (validator instanceof ZodString) {
       validator = validator.max(component.maxLength, {
-        message: `Field must have more than ${component.maxLength} characters. `,
+        message: `Field must have less than ${component.maxLength} characters. `,
       });
     }
   }

@@ -3,12 +3,11 @@ The application is currently under development. \
 To run the app, clone the repo with `git clone https://github.com/ErlingHauan/FormFactory`, and `cd` into the directory.
 
 ## Run in Docker
-To run the build in containers, run `docker-compose up --build` and then `yarn db:seed` to populate the database (required).
+To run the build in containers, run `docker-compose up --build -d` and then `yarn db:seed` to populate the database (required).
 If you are getting an error regarding a missing Dotnet utility, try running `dotnet tool install --global dotnet-ef --version 8.*` before seeding.
 
 Access the frontend on http://localhost:3030. \
 The backend endpoints can be viewed at https://localhost:8081. \
-A database GUI is available on http://localhost:5050/ (log in with "a@a.com" and password "123456").
 
 ## Run in development mode
 If you want to run the frontend or the backend outside of Docker, please see the steps below. \
@@ -20,3 +19,10 @@ Note that the database is only available through Docker, meaning the `formfactor
 
 Then access the app on http://localhost:3050.
 To see the backend endpoints, go to http://localhost:8080.
+
+## Useful commands 
+To rebuild the database only, run the following:
+* `docker-compose down`
+* `docker volume rm formfactory_db`
+* `docker-compose up -d --no-deps --build db`.
+* `yarn db:seed`

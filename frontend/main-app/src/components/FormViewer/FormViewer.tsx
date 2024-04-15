@@ -13,7 +13,6 @@ export const FormViewer = (): React.JSX.Element => {
   const { t } = useTranslation();
   const { formId } = useParams();
 
-  // This path currently leads nowhere, but will be added in the future.
   const formBuilderLink = `/form-builder/${formId}`;
 
   const [formErrors, setFormErrors] = useState({});

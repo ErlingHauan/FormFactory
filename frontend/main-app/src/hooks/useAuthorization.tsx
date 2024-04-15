@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "./useUser";
+import { useUserSession } from "./useUserSession";
 
 // Checks if user is logged in. If not, it redirects back to the login page.
 export const useAuthorization = () => {
-  const { user, isLoading } = useUser();
+  const { user, isLoading } = useUserSession();
   const navigate = useNavigate();
 
   useEffect(() => {

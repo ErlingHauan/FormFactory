@@ -1,14 +1,14 @@
 import React, { FormEvent, useContext, useState } from "react";
-import { FormContext } from "../Dashboard";
 import { t } from "i18next";
 import { Button, Modal, Paragraph, Textfield } from "@digdir/design-system-react";
 import { Trans } from "react-i18next";
 import { TrashFillIcon } from "@navikt/aksel-icons";
 import classes from "./DeleteForm.module.css";
 import { deleteForm } from "./utils";
+import { DashboardAccordionContext } from "../../context";
 
 export const DeleteDialog: React.FC = () => {
-  const form = useContext(FormContext);
+  const form = useContext(DashboardAccordionContext);
   const [formError, setFormError] = useState("");
 
   const handleDelete = (event: FormEvent<HTMLFormElement>) => {

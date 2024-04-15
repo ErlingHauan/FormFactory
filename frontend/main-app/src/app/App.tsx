@@ -14,6 +14,7 @@ import en from "../../../language/src/en.json";
 import { FormViewer } from "../components/FormViewer";
 import { SubHeader } from "../components/SubHeader";
 import { NotFound } from "../components/NotFound";
+import { FormBuilderContextProvider } from "../../../form-builder/src/context/FormBuilderContextProvider";
 
 i18next.use(initReactI18next).init({
   resources: {
@@ -28,24 +29,27 @@ i18next.use(initReactI18next).init({
 
 export const App = (): React.JSX.Element => {
   return (
-    <div className={classes.layout}>
-      <header>
-        <Header />
-        <SubHeader />
-      </header>
-      <main className={classes.main}>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/login/:authError" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/form-builder" element={<FormBuilder />} />
-          <Route path="/view/:formId" element={<FormViewer />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    // Context needed by both SubHeader and FormBuilder
+    <FormBuilderContextProvider>
+      <div className={classes.layout}>
+        <header>
+          <Header />
+          <SubHeader />
+        </header>
+        <main className={classes.main}>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/login/:authError" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/form-builder/:formId" element={<FormBuilder />} />
+            <Route path="/view/:formId" element={<FormViewer />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </FormBuilderContextProvider>
   );
 };

@@ -1,13 +1,13 @@
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./Dashboard.module.css";
-import React, { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState } from "react";
 import { DashboardOverview } from "../DashboardOverview/DashboardOverview";
 import { DashboardAccordion } from "../DashboardAccordion/DashboardAccordion";
 import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { useAuthorization } from "../../hooks/useAuthorization";
+import { DashboardAccordionContext } from "../../context";
 
-export const FormContext: React.Context<null | Form> = createContext(null);
 export const Dashboard = (): React.JSX.Element => {
   useAuthorization();
   const [forms, setForms] = useState<Form[]>([]);
@@ -34,9 +34,9 @@ export const Dashboard = (): React.JSX.Element => {
         <DashboardOverview forms={forms} />
         <div className={classes.formList}>
           {forms.map((form) => (
-            <FormContext.Provider value={form} key={form.id}>
+            <DashboardAccordionContext.Provider value={form} key={form.id}>
               <DashboardAccordion />
-            </FormContext.Provider>
+            </DashboardAccordionContext.Provider>
           ))}
         </div>
       </div>

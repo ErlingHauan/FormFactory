@@ -26,14 +26,10 @@ body {
   background-color: var(--fds-semantic-background-default);
   border: 1px solid var(--fds-semantic-border-neutral-subtle);
   border-radius: var(--fds-border_radius-medium);
-  padding: var(--fds-spacing-5);
+  padding: var(--fds-spacing-1);
   text-align: center;
   margin: auto 0;
-  height: 100%;
-}
-
-.builderSection:nth-child(2) {
-  height: 600px;
+  height: 60vh;
 }
 
 @media (max-width: 768px) {
@@ -46,6 +42,7 @@ body {
   .builderSection:first-child {
     padding: 0;
     border: none;
+    height: 100%;
   }
 }
 

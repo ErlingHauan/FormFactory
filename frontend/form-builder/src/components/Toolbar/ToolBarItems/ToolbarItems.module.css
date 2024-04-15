@@ -1,15 +1,11 @@
-.toolbar {
+.toolbarItems {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.toolbarHeading {
-  padding: var(--fds-spacing-4);
+  gap: var(--fds-spacing-4);
 }
 
 @media (max-width: 768px) {
-  .toolbar {
+  .toolbarItems {
     flex-direction: row;
     width: 100%;
     gap: 0;

@@ -6,11 +6,11 @@ import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { t } from "i18next";
-import { useUser } from "../../hooks/useUser";
+import { useUserSession } from "../../hooks/useUserSession";
 
 export const UserDropdown = (): React.JSX.Element => {
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { user } = useUserSession();
 
   const logOutUser = async () => {
     const apiUrl = getApiUrl();
@@ -37,11 +37,14 @@ export const UserDropdown = (): React.JSX.Element => {
 
   return (
     <DropdownMenu size="small">
-      <DropdownMenu.Trigger variant="secondary" icon="true">
+      <DropdownMenu.Trigger variant="secondary" icon="true" className={classes.dropdownButton}>
         <PersonIcon className={classes.userIcon} />
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content>
+      <DropdownMenu.Content className={classes.dropdownMenu}>
         <DropdownMenu.Group heading={user?.email}>
+          <DropdownMenu.Item asChild>
+            <Link href={"/dashboard"}>{t("dashboard")}</Link>
+          </DropdownMenu.Item>
           <DropdownMenu.Item asChild>
             <Link onClick={logOutUser}>{t("user.logout")}</Link>
           </DropdownMenu.Item>
