@@ -28,13 +28,6 @@
   font-size: 1.5rem;
 }
 
-.statusText {
-  color: var(--fds-semantic-surface-neutral-subtle-hover);
-  margin: auto 0;
-  transform: translateY(1px);
-  font-size: var(--fds-sizing-3);
-}
-
 @media screen and (max-width: 600px) {
   .subHeader {
     padding: 0 var(--fds-spacing-4);
