@@ -1,12 +1,13 @@
-import { Heading, Paragraph } from "@digdir/design-system-react";
+import { Heading } from "@digdir/design-system-react";
 import React, { useContext, useEffect, useRef } from "react";
-import { ComponentIcon } from "@navikt/aksel-icons";
 import classes from "./FormPreview.module.css";
 import { useTranslation } from "react-i18next";
 import { useDrop } from "react-dnd";
 import { DraggableItemsType } from "../../types/dndTypes";
 import { FormComponent } from "../../../../main-app/src/components/FormComponent";
 import { FormBuilderContext } from "../../context";
+import { NoComponentsMessage } from "./NoComponentsMessage";
+import { FormHeading } from "./FormHeading";
 
 interface FormPreviewProps {
   modalRef: React.RefObject<HTMLDialogElement>;
@@ -36,8 +37,7 @@ export const FormPreview = ({ modalRef }: FormPreviewProps): React.JSX.Element =
 
   // TODO: Fix buggy behaviour when clicking in mobile view
   const handleClick = (item: FormComponent, index: number) => {
-    item.order = index;
-    setCurrentComponent(item);
+    setCurrentComponent({ ...item, order: index });
     modalRef.current?.showModal();
   };
 
@@ -52,21 +52,6 @@ export const FormPreview = ({ modalRef }: FormPreviewProps): React.JSX.Element =
       ))}
     </>
   );
-  const RenderFormHeading = () => (
-    <div className={classes.formHeading}>
-      <Heading level={4} size="medium">
-        {form?.title}
-      </Heading>
-      <Paragraph>{form?.description}</Paragraph>
-    </div>
-  );
-
-  const RenderNoComponentsMessage = () => (
-    <div className={classes.noComponents}>
-      <ComponentIcon className={classes.noComponentsIcon} />
-      <Paragraph>{t("form_builder.drag.component.message")}</Paragraph>
-    </div>
-  );
 
   return (
     <>
@@ -78,8 +63,8 @@ export const FormPreview = ({ modalRef }: FormPreviewProps): React.JSX.Element =
         className={classes.dropArea}
         style={{ backgroundColor: isOver && "var(--fds-semantic-surface-warning-subtle)" }}
       >
-        <RenderFormHeading />
-        {form?.components?.length === 0 ? <RenderNoComponentsMessage /> : <RenderComponents />}
+        <FormHeading form={form} />
+        {form?.components?.length === 0 ? <NoComponentsMessage /> : <RenderComponents />}
       </div>
     </>
   );
