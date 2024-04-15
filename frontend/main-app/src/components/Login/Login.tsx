@@ -17,16 +17,15 @@ export const Login = (): React.JSX.Element => {
 
   const [fieldErrors, setFieldErrors] = useState<LoginFormError | null>(null);
   const [errorAlert, setErrorAlert] = useState(authError);
-  const [showErrorAlert, setShowErrorAlert] = useState(!!authError);
 
   useEffect(() => {
-    if (errorAlert === "authError" && showErrorAlert) {
+    if (errorAlert === "authError") {
       const timeout = setTimeout(() => {
-        setShowErrorAlert(false);
+        setErrorAlert(null);
       }, 3500);
       return () => clearTimeout(timeout);
     }
-  }, [errorAlert, showErrorAlert]);
+  }, [errorAlert]);
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -72,7 +71,7 @@ export const Login = (): React.JSX.Element => {
         />
       </div>
 
-      {showErrorAlert && errorAlert && alertToRender(errorAlert, t)}
+      {errorAlert && alertToRender(errorAlert, t)}
 
       <div className={classes.buttonContainer}>
         <Button type="submit" className={classes.button}>
