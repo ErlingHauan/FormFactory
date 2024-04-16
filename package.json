@@ -1,11 +1,4 @@
 {
-  "private": true,
-  "packageManager": "yarn@4.0.2",
-  "prettier": "./config/prettier.config.js",
-  "workspaces": [
-    "frontend/form-builder",
-    "frontend/main-app"
-  ],
   "dependencies": {
     "@digdir/design-system-react": "^0.50.0",
     "@digdir/design-system-tokens": "^0.13.0",
@@ -50,15 +43,31 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   },
+  "packageManager": "yarn@4.0.2",
+  "prettier": "./config/prettier.config.js",
+  "private": true,
   "scripts": {
     "build": "yarn workspaces foreach -A -p run build",
-    "codestyle:check": "prettier frontend --check",
-    "codestyle:fix": "prettier frontend --write",
-    "db:seed": "dotnet ef database update --project backend/src/FormAPI.csproj",
+    "format": "prettier frontend --write && dotnet format backend/FormAPI.sln",
+    "format-backend": "dotnet format backend/FormAPI.sln",
+    "format-frontend": "prettier frontend --write",
     "lint": "yarn workspaces foreach -A -p run lint",
+    "preflight": "yarn lint && yarn format && yarn test",
+    "preflight-backend": "yarn format-backend && yarn test-backend",
+    "preflight-frontend": "yarn lint && yarn format-frontend && yarn test-frontend",
+    "reseed-db": "docker-compose down db && docker volume rm formfactory_db && docker-compose up -d --no-deps --build db && yarn seed-db",
+    "seed-db": "dotnet ef database update --project backend/src/FormAPI.csproj",
+    "setup-db": "docker-compose up -d --no-deps --build db && yarn seed-db",
+    "setup-docker": "docker-compose up --build -d && yarn seed-db",
     "start-backend": "dotnet run --project backend/src/FormAPI.csproj",
     "start-frontend": "yarn workspace main-app run start",
-    "test": "jest --config=./frontend/testing/jest.config.js",
+    "test": "jest --config=./frontend/testing/jest.config.js && dotnet test backend/FormAPI.sln",
+    "test-backend": "dotnet test backend/FormAPI.sln",
+    "test-frontend": "jest --config=./frontend/testing/jest.config.js",
     "typecheck": "yarn workspaces foreach -A -p run typecheck"
-  }
+  },
+  "workspaces": [
+    "frontend/form-builder",
+    "frontend/main-app"
+  ]
 }

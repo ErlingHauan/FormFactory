@@ -11,6 +11,7 @@ public class SubmissionMappers
         {
             Id = dto.Id,
             FormId = dto.FormId,
+            FormCreator = dto.FormCreator,
             Submitted = dto.Submitted,
             Responses = dto.Responses
         };
@@ -24,6 +25,7 @@ public class SubmissionMappers
         {
             Id = entity.Id,
             FormId = entity.FormId,
+            FormCreator = entity.FormCreator,
             Submitted = entity.Submitted,
             Responses = entity.Responses
         };
