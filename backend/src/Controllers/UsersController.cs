@@ -108,8 +108,8 @@ public class UsersController : ControllerBase
             return Unauthorized("Email/password combination was not found.");
         }
 
-        var returnedUserDto = UserMappers.EntityToDto(returnedUserEntity); 
-        
+        var returnedUserDto = UserMappers.EntityToDto(returnedUserEntity);
+
         // store username in session state (server) and cookie (browser)
         HttpContext.Session.SetString("authorizedUser", dto.Email);
         return Ok(returnedUserDto);

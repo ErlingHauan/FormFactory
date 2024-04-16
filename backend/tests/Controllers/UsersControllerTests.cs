@@ -136,7 +136,8 @@ public class UsersControllerTests
         var result = await _controller.Login(dto);
 
         // Assert
-        Assert.IsType<OkResult>(result);
+        var actionResult = Assert.IsType<OkObjectResult>(result.Result);
+        Assert.IsType<UserDto>(actionResult.Value);
     }
 
     [Fact]
@@ -150,7 +151,8 @@ public class UsersControllerTests
         var result = await _controller.Login(dto);
 
         // Assert
-        Assert.IsType<UnauthorizedObjectResult>(result);
+        var actionResult = Assert.IsType<UnauthorizedObjectResult>(result.Result);
+        Assert.IsType<string>(actionResult.Value);
     }
 
     [Fact]

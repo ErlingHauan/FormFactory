@@ -61,9 +61,9 @@
     "setup-docker": "docker-compose up --build -d && yarn seed-db",
     "start-backend": "dotnet run --project backend/src/FormAPI.csproj",
     "start-frontend": "yarn workspace main-app run start",
-    "test": "jest --config=./frontend/test/jest.config.js && dotnet test backend/FormAPI.sln",
+    "test": "jest --config=./frontend/testing/jest.config.js && dotnet test backend/FormAPI.sln",
     "test-backend": "dotnet test backend/FormAPI.sln",
-    "test-frontend": "jest --config=./frontend/test/jest.config.js",
+    "test-frontend": "jest --config=./frontend/testing/jest.config.js",
     "typecheck": "yarn workspaces foreach -A -p run typecheck"
   },
   "workspaces": [

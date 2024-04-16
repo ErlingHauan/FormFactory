@@ -53,17 +53,14 @@ public class SubmissionsController : ControllerBase
     {
         var email = HttpContext.Session.GetString("authorizedUser");
         Console.WriteLine($"Getting submissions belonging to user: {email}");
-        List<SubmissionDto> dtoList;
 
         if (string.IsNullOrEmpty(email))
         {
-            dtoList = [];
+            return NotFound();
         }
-        else
-        {
-            var entityList = await _submissionRepository.GetAllSubmissionsByUser(email);
-            dtoList = entityList.Select(SubmissionMappers.ToDto).ToList();
-        }
+
+        var entityList = await _submissionRepository.GetAllSubmissionsByUser(email);
+        var dtoList = entityList.Select(SubmissionMappers.ToDto).ToList();
 
         return Ok(dtoList);
     }
