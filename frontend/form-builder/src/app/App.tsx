@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./App.module.css";
 import { Toolbar } from "../components/Toolbar";
@@ -14,13 +14,12 @@ import { FormBuilderContext } from "../context";
 export const App = (): React.JSX.Element => {
   useAuthorization();
   const fetchedForm = useGetForm();
-  const { form, setForm } = useContext(FormBuilderContext);
+  const { form, setForm, modalRef } = useContext(FormBuilderContext);
 
   useEffect(() => {
     setForm(fetchedForm);
   }, [fetchedForm, setForm]);
 
-  const modalRef = useRef<HTMLDialogElement>(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
   const isSmallScreen = windowSize <= 768;
 

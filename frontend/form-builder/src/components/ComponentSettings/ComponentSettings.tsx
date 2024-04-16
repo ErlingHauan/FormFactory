@@ -8,6 +8,7 @@ import { cleanFormData } from "../../../../main-app/src/components/FormViewer/va
 import { ComponentAsStrings } from "./types";
 import { updateComponent, updateComponentArray } from "./utils";
 import { FormBuilderContext } from "../../context";
+import { HeadingSettings } from "./HeadingSettings";
 
 interface ComponentSettingsProps {
   isSmallScreen: boolean;
@@ -18,7 +19,7 @@ export const ComponentSettings = ({
   isSmallScreen,
   modalRef,
 }: ComponentSettingsProps): React.JSX.Element => {
-  const { currentComponent, setCurrentComponent, form, setForm } = useContext(FormBuilderContext);
+  const { selectedItem, setSelectedItem, form, setForm } = useContext(FormBuilderContext);
 
   const handleSaveComponent = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,27 +30,28 @@ export const ComponentSettings = ({
     // TODO: Use Zod validation here.
     // See FormViewer for an example of how it can be done.
 
-    const updatedComponent: FormComponent = updateComponent(currentComponent, updatedComponentData);
+    const updatedComponent: FormComponent = updateComponent(selectedItem, updatedComponentData);
     const updatedComponents: FormComponent[] = updateComponentArray(
       form.components,
       updatedComponent,
     );
 
     setForm({ ...form, components: updatedComponents });
-    setCurrentComponent(null);
+    setSelectedItem(null);
   };
 
   const RenderSettingsContent = () => {
     return (
       <form className={classes.SettingsContent} onSubmit={handleSaveComponent}>
-        {currentComponent?.type === "input" && <InputSettings />}
-        {currentComponent?.type === "radio" && <RadioSettings />}
+        {selectedItem?.type === "heading" && <HeadingSettings />}
+        {selectedItem?.type === "input" && <InputSettings />}
+        {selectedItem?.type === "radio" && <RadioSettings />}
       </form>
     );
   };
 
   return isSmallScreen ? (
-    <SettingsModal SettingsContent={RenderSettingsContent} modalRef={modalRef} />
+    <SettingsModal SettingsContent={RenderSettingsContent} />
   ) : (
     <SettingsSidebar SettingsContent={RenderSettingsContent} />
   );

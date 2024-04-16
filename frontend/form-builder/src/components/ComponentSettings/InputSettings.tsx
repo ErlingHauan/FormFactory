@@ -6,8 +6,8 @@ import { FormBuilderContext } from "../../context";
 
 export const InputSettings = () => {
   const { t } = useTranslation();
-  const { currentComponent } = useContext(FormBuilderContext);
-  const [inputType, setInputType] = useState(currentComponent.inputType || "string");
+  const { selectedItem } = useContext(FormBuilderContext);
+  const [inputType, setInputType] = useState(selectedItem.inputType || "string");
 
   const handleInputFormat = (value: string) => {
     setInputType(value as "string" | "number");
@@ -18,14 +18,14 @@ export const InputSettings = () => {
       <Textfield
         name="name"
         label={t("settings_side_bar.component.name")}
-        defaultValue={currentComponent.name || ""}
+        defaultValue={selectedItem.name || ""}
         size="small"
         placeholder={"Required"}
       />
       <Textfield
         name="label"
         label={t("settings_side_bar.component.label")}
-        defaultValue={currentComponent.label || ""}
+        defaultValue={selectedItem.label || ""}
         size="small"
         placeholder={"Required"}
       />
@@ -33,13 +33,13 @@ export const InputSettings = () => {
         name="required"
         size="small"
         value="required"
-        defaultChecked={currentComponent.required}
+        defaultChecked={selectedItem.required}
       >
         {t("settings_side_bar.require.response")}
       </Checkbox>
       <Radio.Group
         name="inputType"
-        defaultValue={currentComponent.inputType || inputType}
+        defaultValue={selectedItem.inputType || inputType}
         size="small"
         legend={t("settings_side_bar.input.format")}
         onChange={handleInputFormat}
@@ -49,27 +49,27 @@ export const InputSettings = () => {
       </Radio.Group>
       {inputType === "string" && <TextSettings />}
       {inputType === "number" && <NumberSettings />}
-      <ButtonGroup />
+      <ButtonGroup showDelete={true} />
     </>
   );
 };
 
 const TextSettings = () => {
   const { t } = useTranslation();
-  const { currentComponent } = useContext(FormBuilderContext);
+  const { selectedItem } = useContext(FormBuilderContext);
   return (
     <>
       <Textfield
         name="minLength"
         label={t("settings_side_bar.minimum.length")}
-        defaultValue={currentComponent.minLength || ""}
+        defaultValue={selectedItem.minLength || ""}
         size="small"
         placeholder="Optional"
       />
       <Textfield
         name="maxLength"
         label={t("settings_side_bar.maximum.length")}
-        defaultValue={currentComponent.maxLength || ""}
+        defaultValue={selectedItem.maxLength || ""}
         size="small"
         placeholder="Optional"
       />
@@ -79,20 +79,20 @@ const TextSettings = () => {
 
 const NumberSettings = () => {
   const { t } = useTranslation();
-  const { currentComponent } = useContext(FormBuilderContext);
+  const { selectedItem } = useContext(FormBuilderContext);
   return (
     <>
       <Textfield
         name="greaterThan"
         label={t("settings_side_bar.minimum.value")}
-        defaultValue={currentComponent.greaterThan || ""}
+        defaultValue={selectedItem.greaterThan || ""}
         size="small"
         placeholder="Optional"
       />
       <Textfield
         name="lessThan"
         label={t("settings_side_bar.maximum.value")}
-        defaultValue={currentComponent.lessThan || ""}
+        defaultValue={selectedItem.lessThan || ""}
         size="small"
         placeholder="Optional"
       />

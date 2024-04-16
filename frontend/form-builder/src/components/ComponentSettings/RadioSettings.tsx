@@ -5,25 +5,25 @@ import { ButtonGroup } from "./ButtonGroup";
 import { FormBuilderContext } from "../../context";
 
 export const RadioSettings = () => {
-  const { currentComponent } = useContext(FormBuilderContext);
+  const { selectedItem } = useContext(FormBuilderContext);
   const { t } = useTranslation();
 
   return (
     <>
-      <Textfield name="name" label="Name" defaultValue={currentComponent.name} size="small" />
+      <Textfield name="name" label="Name" defaultValue={selectedItem.name} size="small" />
       <Textfield
         name="label"
         label={t("settings_side_bar.component.label")}
-        defaultValue={currentComponent.label || ""}
+        defaultValue={selectedItem.label || ""}
         size="small"
       />
       <Textarea
         name="radioChoices"
         label={t("settings_side_bar.radio.choices")}
-        defaultValue={currentComponent.radioChoices?.join(", ") || ""}
+        defaultValue={selectedItem.radioChoices?.join(", ") || ""}
         size="small"
       />
-      <ButtonGroup />
+      <ButtonGroup showDelete={true} />
     </>
   );
 };

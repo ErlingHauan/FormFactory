@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Modal } from "@digdir/design-system-react";
 import classes from "./ComponentSettings.module.css";
+import { FormBuilderContext } from "../../context";
 
 interface SettingsSidebarProps {
-  modalRef: React.RefObject<HTMLDialogElement>;
   SettingsContent: () => React.JSX.Element;
 }
 
-export const SettingsModal = ({
-  modalRef,
-  SettingsContent,
-}: SettingsSidebarProps): React.JSX.Element => {
+export const SettingsModal = ({ SettingsContent }: SettingsSidebarProps): React.JSX.Element => {
+  const { modalRef } = useContext(FormBuilderContext);
   return (
     <Modal ref={modalRef} className={classes.modalWindow}>
       <Modal.Header className={classes.modalHeader}>Settings</Modal.Header>
