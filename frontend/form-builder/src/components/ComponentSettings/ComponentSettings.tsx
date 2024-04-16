@@ -15,10 +15,7 @@ interface ComponentSettingsProps {
   modalRef: React.RefObject<HTMLDialogElement>;
 }
 
-export const ComponentSettings = ({
-  isSmallScreen,
-  modalRef,
-}: ComponentSettingsProps): React.JSX.Element => {
+export const ComponentSettings = ({ isSmallScreen }: ComponentSettingsProps): React.JSX.Element => {
   const { selectedItem, setSelectedItem, form, setForm } = useContext(FormBuilderContext);
 
   const handleSaveComponent = (event: FormEvent<HTMLFormElement>) => {

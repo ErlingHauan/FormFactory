@@ -6,7 +6,7 @@ import { FormBuilderContext } from "../../context";
 import { validateOrder } from "../../../../main-app/src/components/SubHeader/utils";
 import { useTranslation } from "react-i18next";
 
-export const ButtonGroup = ({ showDelete }) => {
+export const ButtonGroup = () => {
   const { t } = useTranslation();
   const { form, setForm, selectedItem, setSelectedItem } = useContext(FormBuilderContext);
 
@@ -20,19 +20,16 @@ export const ButtonGroup = ({ showDelete }) => {
 
   return (
     <div className={classes.buttons}>
-      {showDelete && (
-        <Button
-          type="button"
-          color={"danger"}
-          variant={"secondary"}
-          size={"small"}
-          onClick={() => handleDeleteComponent(selectedItem.order)}
-        >
-          <TrashFillIcon />
-          {t("settings_side_bar.delete.component")}
-        </Button>
-      )}
-
+      <Button
+        type="button"
+        color={"danger"}
+        variant={"secondary"}
+        size={"small"}
+        onClick={() => handleDeleteComponent(selectedItem.order)}
+      >
+        <TrashFillIcon />
+        {t("settings_side_bar.delete.component")}
+      </Button>
       <Button type="submit" color={"success"} size={"small"}>
         <FloppydiskFillIcon />
         {t("settings_side_bar.save.component")}

@@ -23,7 +23,7 @@ export const RadioSettings = () => {
         defaultValue={selectedItem.radioChoices?.join(", ") || ""}
         size="small"
       />
-      <ButtonGroup showDelete={true} />
+      <ButtonGroup />
     </>
   );
 };

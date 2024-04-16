@@ -49,7 +49,7 @@ export const InputSettings = () => {
       </Radio.Group>
       {inputType === "string" && <TextSettings />}
       {inputType === "number" && <NumberSettings />}
-      <ButtonGroup showDelete={true} />
+      <ButtonGroup />
     </>
   );
 };
