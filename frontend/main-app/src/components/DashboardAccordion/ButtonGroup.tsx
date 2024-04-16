@@ -5,8 +5,8 @@ import { SubmissionViewer } from "../SubmissionViewer";
 import { CloudDownFillIcon, PersonEnvelopeFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
 import { Button } from "@digdir/design-system-react";
 import { ShareForm } from "./ShareForm";
-import { FormContext } from "../Dashboard";
 import { DeleteForm } from "../DeleteForm/DeleteForm";
+import { DashboardAccordionContext } from "../../context";
 
 interface ButtonGroupProps {
   submissions: Submission[];
@@ -15,7 +15,7 @@ interface ButtonGroupProps {
 
 export const ButtonGroup: React.FC<ButtonGroupProps> = ({ submissions, formUrl }) => {
   const { t } = useTranslation();
-  const form = useContext(FormContext);
+  const form = useContext(DashboardAccordionContext);
 
   const handleDownload = async () => {
     // Setup file

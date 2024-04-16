@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { DraggableItem } from "../DraggableItem";
 import { BulletListIcon, MenuHamburgerIcon } from "@navikt/aksel-icons";
+import classes from "./ToolbarItems.module.css";
 
 interface ToolBarItemsProps {
   compProps: FormComponent;
@@ -14,9 +15,9 @@ export const ToolBarItems = () => {
   const Items: ToolBarItemsProps[] = [
     {
       compProps: {
-        type: "textfield",
+        type: "input",
         name: t("toolbar_tools.text.field.component"),
-        label: "",
+        label: t("toolbar_tools.text.field.component"),
         required: false,
       },
       icon: <MenuHamburgerIcon />,
@@ -25,17 +26,18 @@ export const ToolBarItems = () => {
       compProps: {
         type: "radio",
         name: t("toolbar_tools.multiple.choice.component"),
-        label: "",
+        label: t("toolbar_tools.multiple.choice.component"),
+        radioChoices: ["Yes", "No"],
       },
       icon: <BulletListIcon />,
     },
   ];
 
   return (
-    <>
+    <div className={classes.toolbarItems}>
       {Items.map((item, index) => (
-        <DraggableItem key={index} item={item.compProps} icon={item.icon} index={index} />
+        <DraggableItem key={index} item={item.compProps} icon={item.icon} />
       ))}
-    </>
+    </div>
   );
 };

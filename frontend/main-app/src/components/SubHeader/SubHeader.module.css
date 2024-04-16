@@ -5,7 +5,7 @@
   width: 100%;
   height: var(--fds-sizing-10);
   background: var(--fds-semantic-surface-neutral-inverted);
-  color: var(--fds-semantic-surface-on_inverted-default);
+  color: var(--fds-semantic-text-neutral-on_inverted);
   padding: 0 var(--fds-spacing-12);
 
   a,
@@ -16,7 +16,7 @@
 }
 
 .subHeaderHeading {
-  color: var(--fds-semantic-surface-on_inverted-default);
+  color: var(--fds-semantic-text-neutral-on_inverted);
 }
 
 .subHeaderLinks {

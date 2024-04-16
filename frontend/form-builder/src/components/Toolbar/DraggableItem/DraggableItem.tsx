@@ -6,13 +6,12 @@ import classes from "./DraggableItem.module.css";
 interface DraggableItemProps {
   item: FormComponent;
   icon: React.ReactNode;
-  index: number;
 }
 
-export const DraggableItem: React.FC<DraggableItemProps> = ({ item, icon, index }) => {
+export const DraggableItem: React.FC<DraggableItemProps> = ({ item, icon }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: DraggableItemsType.ToolbarItem,
-    item: { ...item, index },
+    item: { ...item },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),

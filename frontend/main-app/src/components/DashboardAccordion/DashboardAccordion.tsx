@@ -6,11 +6,12 @@ import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 import { CustomParagraph } from "../CustomParagraph";
 import { ButtonGroup } from "./ButtonGroup";
-import { FormContext } from "../Dashboard";
 import { t } from "i18next";
+import { FormStatus } from "./FormStatus";
+import { DashboardAccordionContext } from "../../context";
 
 export const DashboardAccordion: React.FC = () => {
-  const form = useContext(FormContext);
+  const form = useContext(DashboardAccordionContext);
 
   const [submissions, setSubmissions] = useState([]);
   const [submissionCount, setSubmissionCount] = useState();
@@ -50,7 +51,7 @@ export const DashboardAccordion: React.FC = () => {
         <Accordion.Content className={classes.accordionContentContainer}>
           <div className={classes.infoContainer}>
             <CustomParagraph heading="Description" content={form.description} />
-            <CustomParagraph heading="Status" content={form.status} />
+            <FormStatus form={form} />
             <CustomParagraph heading="Expiration date" content={form.expires || "Not set"} />
             <CustomParagraph heading="Submissions" content={submissionCount} />
           </div>

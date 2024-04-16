@@ -6,17 +6,26 @@
 }
 
 .previewHeading {
-  margin-bottom: var(--fds-spacing-4);
+  padding: var(--fds-spacing-4);
+}
+
+.formHeading {
+  text-align: left;
+  padding-bottom: var(--fds-spacing-4);
+}
+
+.formHeading:hover {
+  background-color: var(--fds-brand-alt3-100);
+  transition: 0.1s;
 }
 
 .dropArea {
-  /* Center the 'drag components here' text in both axis */
-  align-items: center;
   height: 90%;
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--fds-semantic-surface-neutral-inverted) transparent;
   margin-bottom: var(--fds-spacing-4);
+  padding: 0 var(--fds-spacing-8);
 }
 
 .noComponents {
@@ -33,8 +42,8 @@
 .droppedItem {
   display: flex;
   align-items: center;
-  padding: 0;
-  width: 80%;
+  padding: var(--fds-spacing-4) 0;
+  width: 100%;
   justify-content: center;
   text-align: start;
   margin: 0 auto;
@@ -52,9 +61,11 @@
   cursor: pointer;
 }
 
-.droppedItem:hover {
-  transform: scale(1.02);
-  transition: 0.5s;
+.droppedItem:hover,
+.formHeading:hover {
+  background-color: var(--fds-brand-alt3-100);
+  transition: 0.1s;
+  cursor: pointer;
 }
 
 .removalItem:hover {

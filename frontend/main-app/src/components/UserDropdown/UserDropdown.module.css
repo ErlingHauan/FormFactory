@@ -1,3 +1,11 @@
+.dropdownButton {
+  border: 1px solid var(--fds-semantic-border-neutral-default);
+}
+
+.dropdownMenu {
+  border: 1px solid var(--fds-semantic-border-neutral-subtle);
+}
+
 .userIcon {
   color: var(--fds-semantic-text-neutral-default);
 }

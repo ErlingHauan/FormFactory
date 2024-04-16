@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FormAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240412085931_SeedData")]
+    [Migration("20240416110910_SeedData")]
     partial class SeedData
     {
         /// <inheritdoc />
@@ -63,10 +63,10 @@ namespace FormAPI.Migrations
                         new
                         {
                             Id = new Guid("11111111-1111-1111-1111-111111111111"),
-                            Components = "[{\"name\":\"age\",\"order\":0,\"label\":\"How old are you?\",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":8,\"lessThan\":125,\"radioChoices\":null},{\"name\":\"usage\",\"order\":1,\"label\":\"What will you be using Form Factory for?\",\"type\":\"textfield\",\"required\":false,\"minLength\":null,\"maxLength\":1000,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null},{\"name\":\"rating\",\"order\":2,\"label\":\"From 1-5, how would you rate Form Factory?\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"1\",\"2\",\"3\",\"4\",\"5\"]}]",
+                            Components = "[{\"name\":\"Age\",\"order\":0,\"label\":\"How old are you?\",\"type\":\"input\",\"inputType\":\"number\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":8,\"lessThan\":125,\"radioChoices\":null},{\"name\":\"Usage\",\"order\":1,\"label\":\"What will you be using Form Factory for?\",\"type\":\"input\",\"inputType\":\"string\",\"required\":false,\"minLength\":null,\"maxLength\":1000,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null},{\"name\":\"Rating\",\"order\":2,\"label\":\"From 1-5, how would you rate Form Factory?\",\"type\":\"radio\",\"inputType\":null,\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"1\",\"2\",\"3\",\"4\",\"5\"]}]",
                             Description = "We want to get to know you!",
                             Organization = "Org1",
-                            Published = new DateTimeOffset(new DateTime(2024, 4, 12, 8, 59, 31, 97, DateTimeKind.Unspecified).AddTicks(6884), new TimeSpan(0, 0, 0, 0, 0)),
+                            Published = new DateTimeOffset(new DateTime(2024, 4, 16, 11, 9, 10, 223, DateTimeKind.Unspecified).AddTicks(1575), new TimeSpan(0, 0, 0, 0, 0)),
                             Status = "Published",
                             Title = "Survey of the users of Form Factory",
                             User = "user1@example.com"
@@ -74,7 +74,7 @@ namespace FormAPI.Migrations
                         new
                         {
                             Id = new Guid("22222222-2222-2222-2222-222222222222"),
-                            Components = "[{\"name\":\"name\",\"order\":0,\"label\":\"Full name: \",\"type\":\"textfield\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null},{\"name\":\"dinner\",\"order\":1,\"label\":\"Will you be participating in the dinner afterwards?\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\"]},{\"name\":\"allergies\",\"order\":2,\"label\":\"Do you have any allergies/dietary restrictions?\",\"type\":\"textfield\",\"required\":false,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null}]",
+                            Components = "[{\"name\":\"name\",\"order\":0,\"label\":\"Full name: \",\"type\":\"input\",\"inputType\":\"string\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null},{\"name\":\"dinner\",\"order\":1,\"label\":\"Will you be participating in the dinner afterwards?\",\"type\":\"radio\",\"inputType\":null,\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Yes\",\"No\"]},{\"name\":\"allergies\",\"order\":2,\"label\":\"Do you have any allergies/dietary restrictions?\",\"type\":\"input\",\"inputType\":\"string\",\"required\":false,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":null}]",
                             Description = "Official signup form for participants.",
                             Organization = "Org1",
                             Status = "Draft",
@@ -84,11 +84,11 @@ namespace FormAPI.Migrations
                         new
                         {
                             Id = new Guid("33333333-3333-3333-3333-333333333333"),
-                            Components = "[{\"name\":\"expectations\",\"order\":0,\"label\":\"On this team, I understand what is expected of me.\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Strongly agree\",\"Agree\",\"Neutral\",\"Disagree\",\"Strongly Disagree\"]},{\"name\":\"ideas\",\"order\":0,\"label\":\"I feel my ideas are valued, and I feel safe in suggesting them.\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Strongly agree\",\"Agree\",\"Neutral\",\"Disagree\",\"Strongly Disagree\"]},{\"name\":\"mistakes\",\"order\":0,\"label\":\"If I make a mistake on this team, it is never held against me\",\"type\":\"radio\",\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Strongly agree\",\"Agree\",\"Neutral\",\"Disagree\",\"Strongly Disagree\"]}]",
+                            Components = "[{\"name\":\"expectations\",\"order\":0,\"label\":\"On this team, I understand what is expected of me.\",\"type\":\"radio\",\"inputType\":null,\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Strongly agree\",\"Agree\",\"Neutral\",\"Disagree\",\"Strongly Disagree\"]},{\"name\":\"ideas\",\"order\":0,\"label\":\"I feel my ideas are valued, and I feel safe in suggesting them.\",\"type\":\"radio\",\"inputType\":null,\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Strongly agree\",\"Agree\",\"Neutral\",\"Disagree\",\"Strongly Disagree\"]},{\"name\":\"mistakes\",\"order\":0,\"label\":\"If I make a mistake on this team, it is never held against me\",\"type\":\"radio\",\"inputType\":null,\"required\":true,\"minLength\":null,\"maxLength\":null,\"greaterThan\":null,\"lessThan\":null,\"radioChoices\":[\"Strongly agree\",\"Agree\",\"Neutral\",\"Disagree\",\"Strongly Disagree\"]}]",
                             Description = "Quarterly survey.",
-                            Expires = new DateTimeOffset(new DateTime(2024, 4, 26, 8, 59, 31, 97, DateTimeKind.Unspecified).AddTicks(6891), new TimeSpan(0, 0, 0, 0, 0)),
+                            Expires = new DateTimeOffset(new DateTime(2024, 4, 30, 11, 9, 10, 223, DateTimeKind.Unspecified).AddTicks(1583), new TimeSpan(0, 0, 0, 0, 0)),
                             Organization = "Org1",
-                            Published = new DateTimeOffset(new DateTime(2024, 4, 12, 8, 59, 31, 97, DateTimeKind.Unspecified).AddTicks(6891), new TimeSpan(0, 0, 0, 0, 0)),
+                            Published = new DateTimeOffset(new DateTime(2024, 4, 16, 11, 9, 10, 223, DateTimeKind.Unspecified).AddTicks(1582), new TimeSpan(0, 0, 0, 0, 0)),
                             Status = "Published",
                             Title = "Psychological Safety survey",
                             User = "user1@example.com"
@@ -120,43 +120,43 @@ namespace FormAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3d57c969-66ee-48b7-96a7-6404c7db3b2d"),
+                            Id = new Guid("704df196-6f4d-40a1-bed9-c57defbbba59"),
                             FormCreator = "user1@example.com",
                             FormId = new Guid("11111111-1111-1111-1111-111111111111"),
                             Responses = "[{\"name\":\"age\",\"order\":0,\"label\":\"How old are you?\",\"response\":\"29\"},{\"name\":\"usage\",\"order\":1,\"label\":\"What will you be using Form Factory for?\",\"response\":\"Participation forms\"},{\"name\":\"rating\",\"order\":2,\"label\":\"From 1-5, how would you rate Form Factory?\",\"response\":\"4\"}]",
-                            Submitted = new DateTimeOffset(new DateTime(2024, 4, 12, 8, 59, 31, 97, DateTimeKind.Unspecified).AddTicks(7011), new TimeSpan(0, 0, 0, 0, 0))
+                            Submitted = new DateTimeOffset(new DateTime(2024, 4, 16, 11, 9, 10, 223, DateTimeKind.Unspecified).AddTicks(1703), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
-                            Id = new Guid("5cbaf758-9d03-4a4b-aa7e-905c6f6b3541"),
+                            Id = new Guid("9cd04fb5-2935-4e34-9d07-d636b07849f8"),
                             FormCreator = "user1@example.com",
                             FormId = new Guid("11111111-1111-1111-1111-111111111111"),
                             Responses = "[{\"name\":\"age\",\"order\":0,\"label\":\"How old are you?\",\"response\":\"35\"},{\"name\":\"usage\",\"order\":1,\"label\":\"What will you be using Form Factory for?\",\"response\":\"Feedback collection\"},{\"name\":\"rating\",\"order\":2,\"label\":\"From 1-5, how would you rate Form Factory?\",\"response\":\"5\"}]",
-                            Submitted = new DateTimeOffset(new DateTime(2024, 4, 12, 8, 59, 31, 97, DateTimeKind.Unspecified).AddTicks(7014), new TimeSpan(0, 0, 0, 0, 0))
+                            Submitted = new DateTimeOffset(new DateTime(2024, 4, 16, 11, 9, 10, 223, DateTimeKind.Unspecified).AddTicks(1706), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
-                            Id = new Guid("6a1c2194-a453-459e-b626-a0766af626e1"),
+                            Id = new Guid("ce8acdd3-501d-4714-8340-0a81f934014b"),
                             FormCreator = "user1@example.com",
                             FormId = new Guid("11111111-1111-1111-1111-111111111111"),
                             Responses = "[{\"name\":\"age\",\"order\":0,\"label\":\"How old are you?\",\"response\":\"42\"},{\"name\":\"usage\",\"order\":1,\"label\":\"What will you be using Form Factory for?\",\"response\":\"Event registrations\"},{\"name\":\"rating\",\"order\":2,\"label\":\"From 1-5, how would you rate Form Factory?\",\"response\":\"3\"}]",
-                            Submitted = new DateTimeOffset(new DateTime(2024, 4, 12, 8, 59, 31, 97, DateTimeKind.Unspecified).AddTicks(7016), new TimeSpan(0, 0, 0, 0, 0))
+                            Submitted = new DateTimeOffset(new DateTime(2024, 4, 16, 11, 9, 10, 223, DateTimeKind.Unspecified).AddTicks(1708), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
-                            Id = new Guid("0aee04be-f687-44b1-9435-4dd766c0f6cf"),
+                            Id = new Guid("85f8f2e9-5849-4be9-ad06-9fa2bdd185ec"),
                             FormCreator = "user1@example.com",
                             FormId = new Guid("11111111-1111-1111-1111-111111111111"),
                             Responses = "[{\"name\":\"age\",\"order\":0,\"label\":\"How old are you?\",\"response\":\"27\"},{\"name\":\"usage\",\"order\":1,\"label\":\"What will you be using Form Factory for?\",\"response\":\"Survey research\"},{\"name\":\"rating\",\"order\":2,\"label\":\"From 1-5, how would you rate Form Factory?\",\"response\":\"4\"}]",
-                            Submitted = new DateTimeOffset(new DateTime(2024, 4, 12, 8, 59, 31, 97, DateTimeKind.Unspecified).AddTicks(7018), new TimeSpan(0, 0, 0, 0, 0))
+                            Submitted = new DateTimeOffset(new DateTime(2024, 4, 16, 11, 9, 10, 223, DateTimeKind.Unspecified).AddTicks(1710), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
-                            Id = new Guid("c1854140-e9d1-4207-a345-21cd48748914"),
+                            Id = new Guid("362e897f-52dd-4283-84b1-cd416d7959fa"),
                             FormCreator = "user1@example.com",
                             FormId = new Guid("11111111-1111-1111-1111-111111111111"),
                             Responses = "[{\"name\":\"age\",\"order\":0,\"label\":\"How old are you?\",\"response\":\"30\"},{\"name\":\"usage\",\"order\":1,\"label\":\"What will you be using Form Factory for?\",\"response\":\"Customer feedback\"},{\"name\":\"rating\",\"order\":2,\"label\":\"From 1-5, how would you rate Form Factory?\",\"response\":\"5\"}]",
-                            Submitted = new DateTimeOffset(new DateTime(2024, 4, 12, 8, 59, 31, 97, DateTimeKind.Unspecified).AddTicks(7021), new TimeSpan(0, 0, 0, 0, 0))
+                            Submitted = new DateTimeOffset(new DateTime(2024, 4, 16, 11, 9, 10, 223, DateTimeKind.Unspecified).AddTicks(1712), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 

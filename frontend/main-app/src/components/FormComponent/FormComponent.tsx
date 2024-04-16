@@ -15,9 +15,9 @@ export const FormComponent: React.FC<FormComponentsProps> = ({
   const { type, name, label, required, radioChoices } = component;
   let componentToRender: React.JSX.Element;
 
-  if (type === "textfield") {
+  if (type === "input") {
     componentToRender = (
-      <FormTextfield name={name} label={label || name} required={required} error={error} />
+      <FormTextfield name={name} label={label} required={required} error={error} />
     );
   } else if (type === "radio") {
     componentToRender = <FormRadio name={name} label={label || name} radioChoices={radioChoices} />;
