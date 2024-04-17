@@ -1,45 +1,51 @@
 import { Button, Textfield } from "@digdir/design-system-react";
-import React, { useContext, useState } from "react";
+import React, { FormEvent, useContext } from "react";
 import { FloppydiskFillIcon } from "@navikt/aksel-icons";
-import { FormBuilderContext } from "../../context";
+import { FormBuilderContext, FormItem } from "../../context";
 import classes from "./FormSettings.module.css";
+import { useTranslation } from "react-i18next";
+import { cleanFormData } from "../../../../main-app/src/components/FormViewer/validationUtils";
 
 export const HeadingSettings = () => {
+  const { t } = useTranslation();
   const { form, setForm, setSelectedItem } = useContext(FormBuilderContext);
-  const [title, setTitle] = useState(form.title);
-  const [description, setDescription] = useState(form.description);
 
-  const saveHeading = () => {
+  const saveHeading = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget as HTMLFormElement);
+    const { title, description } = cleanFormData(formData) as FormItem;
+
+    // TODO: Use Zod validation here.
+    // See FormViewer for an example of how it can be done.
+
     setForm((prevState) => ({ ...prevState, title, description }));
     setSelectedItem(null);
   };
 
   return (
     <>
-      <div className={classes.settingsContent}>
+      <form onSubmit={saveHeading} className={classes.settingsContent}>
         <Textfield
-          name="formTitle"
-          label={"Form title"}
+          name="title"
+          label={t("settings_side_bar.form.title")}
           defaultValue={form.title || ""}
           size="small"
           placeholder={"Required"}
-          onChange={(e) => setTitle(e.target.value)}
         />
         <Textfield
-          name="formDescription"
-          label={"Form description"}
+          name="description"
+          label={t("settings_side_bar.form.description")}
           defaultValue={form.description || ""}
           size="small"
-          placeholder={"Required"}
-          onChange={(e) => setDescription(e.target.value)}
         />
         <div className={classes.buttonContainer}>
-          <Button color={"success"} size={"small"} onClick={() => saveHeading()}>
+          <Button type={"submit"} color={"success"} size={"small"}>
             <FloppydiskFillIcon />
             Save
           </Button>
         </div>
-      </div>
+      </form>
     </>
   );
 };

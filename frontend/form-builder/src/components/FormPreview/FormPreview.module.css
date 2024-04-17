@@ -12,6 +12,7 @@
 .formHeading {
   text-align: left;
   padding-bottom: var(--fds-spacing-4);
+  transition: 0.3s;
 }
 
 .formHeading:hover {
