@@ -24,8 +24,8 @@
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--fds-semantic-surface-neutral-inverted) transparent;
-  margin-bottom: var(--fds-spacing-4);
-  padding: 0 var(--fds-spacing-8);
+  padding: var(--fds-spacing-2) var(--fds-spacing-8);
+  padding-top: 0;
 }
 
 .noComponents {
@@ -56,18 +56,12 @@
   font-size: 2rem;
 }
 
-.droppedItem:hover,
-.removalItem:hover {
+.droppedItem:hover {
   cursor: pointer;
 }
 
-.droppedItem:hover,
-.formHeading:hover {
+.droppedItem:hover {
   background-color: var(--fds-brand-alt3-100);
   transition: 0.1s;
   cursor: pointer;
-}
-
-.removalItem:hover {
-  color: var(--fds-semantic-surface-danger-hover);
 }

@@ -6,7 +6,7 @@ import { FormBuilderContext } from "../../context";
 import { validateOrder } from "../../../../main-app/src/components/SubHeader/utils";
 import { useTranslation } from "react-i18next";
 
-export const ButtonGroup = () => {
+export const ComponentButtons = () => {
   const { t } = useTranslation();
   const { form, setForm, selectedItem, setSelectedItem } = useContext(FormBuilderContext);
 
@@ -19,7 +19,7 @@ export const ButtonGroup = () => {
   };
 
   return (
-    <div className={classes.buttons}>
+    <div className={classes.buttonContainer}>
       <Button
         type="button"
         color={"danger"}

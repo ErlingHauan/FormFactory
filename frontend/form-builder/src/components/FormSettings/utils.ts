@@ -1,4 +1,6 @@
 import { ComponentAsStrings } from "./types";
+import { FormEvent } from "react";
+import { cleanFormData } from "../../../../main-app/src/components/FormViewer/validationUtils";
 
 // Updated component data from HTML inputs is submitted in strings, and has to be converted into their proper value
 // The original values for 'order' and 'type' is kept, as they are currently not changed in the settings
@@ -29,4 +31,35 @@ export const updateComponentArray = (
   const updatedComponents = [...components];
   updatedComponents[index] = updatedComponent;
   return updatedComponents;
+};
+
+interface HandleSaveComponentConfig {
+  selectedItem: FormComponent;
+  form: Form;
+  setForm: (form: Form) => void;
+  setSelectedItem: (item: FormComponent | null) => void;
+}
+
+export const saveComponent = (
+  event: FormEvent<HTMLFormElement>,
+  config: HandleSaveComponentConfig,
+) => {
+  event.preventDefault();
+
+  const { selectedItem, form, setForm, setSelectedItem } = config;
+
+  const formData = new FormData(event.currentTarget as HTMLFormElement);
+  const updatedComponentData = cleanFormData(formData) as ComponentAsStrings;
+
+  // TODO: Use Zod validation here.
+  // See FormViewer for an example of how it can be done.
+
+  const updatedComponent: FormComponent = updateComponent(selectedItem, updatedComponentData);
+  const updatedComponents: FormComponent[] = updateComponentArray(
+    form.components,
+    updatedComponent,
+  );
+
+  setForm({ ...form, components: updatedComponents });
+  setSelectedItem(null);
 };

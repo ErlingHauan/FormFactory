@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
-import React, { FormEvent, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Checkbox, Radio, Textfield } from "@digdir/design-system-react";
-import { ButtonGroup } from "./ButtonGroup";
+import { ComponentButtons } from "./ComponentButtons";
 import { FormBuilderContext } from "../../context";
 import classes from "./FormSettings.module.css";
-import { cleanFormData } from "../../../../main-app/src/components/FormViewer/validationUtils";
-import { ComponentAsStrings } from "./types";
-import { updateComponent, updateComponentArray } from "./utils";
+import { saveComponent } from "./utils";
+import { TextSettings } from "./TextSettings";
+import { NumberSettings } from "./NumberSettings";
 
 export const InputSettings = () => {
   const { t } = useTranslation();
@@ -17,28 +17,19 @@ export const InputSettings = () => {
     setInputType(value as "string" | "number");
   };
 
-  const handleSaveComponent = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget as HTMLFormElement);
-    const updatedComponentData = cleanFormData(formData) as ComponentAsStrings;
-
-    // TODO: Use Zod validation here.
-    // See FormViewer for an example of how it can be done.
-
-    const updatedComponent: FormComponent = updateComponent(selectedItem, updatedComponentData);
-    const updatedComponents: FormComponent[] = updateComponentArray(
-      form.components,
-      updatedComponent,
-    );
-
-    setForm({ ...form, components: updatedComponents });
-    setSelectedItem(null);
+  const saveComponentConfig = {
+    selectedItem,
+    form,
+    setForm,
+    setSelectedItem,
   };
 
   return (
     <>
-      <form className={classes.SettingsContent} onSubmit={handleSaveComponent}>
+      <form
+        className={classes.settingsContent}
+        onSubmit={(e) => saveComponent(e, saveComponentConfig)}
+      >
         <Textfield
           name="name"
           label={t("settings_side_bar.component.name")}
@@ -73,54 +64,8 @@ export const InputSettings = () => {
         </Radio.Group>
         {inputType === "string" && <TextSettings />}
         {inputType === "number" && <NumberSettings />}
-        <ButtonGroup />
+        <ComponentButtons />
       </form>
-    </>
-  );
-};
-
-const TextSettings = () => {
-  const { t } = useTranslation();
-  const { selectedItem } = useContext(FormBuilderContext);
-  return (
-    <>
-      <Textfield
-        name="minLength"
-        label={t("settings_side_bar.minimum.length")}
-        defaultValue={selectedItem.minLength || ""}
-        size="small"
-        placeholder="Optional"
-      />
-      <Textfield
-        name="maxLength"
-        label={t("settings_side_bar.maximum.length")}
-        defaultValue={selectedItem.maxLength || ""}
-        size="small"
-        placeholder="Optional"
-      />
-    </>
-  );
-};
-
-const NumberSettings = () => {
-  const { t } = useTranslation();
-  const { selectedItem } = useContext(FormBuilderContext);
-  return (
-    <>
-      <Textfield
-        name="greaterThan"
-        label={t("settings_side_bar.minimum.value")}
-        defaultValue={selectedItem.greaterThan || ""}
-        size="small"
-        placeholder="Optional"
-      />
-      <Textfield
-        name="lessThan"
-        label={t("settings_side_bar.maximum.value")}
-        defaultValue={selectedItem.lessThan || ""}
-        size="small"
-        placeholder="Optional"
-      />
     </>
   );
 };

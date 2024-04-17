@@ -16,7 +16,7 @@ export const HeadingSettings = () => {
 
   return (
     <>
-      <div className={classes.SettingsContent}>
+      <div className={classes.settingsContent}>
         <Textfield
           name="formTitle"
           label={"Form title"}
@@ -33,10 +33,12 @@ export const HeadingSettings = () => {
           placeholder={"Required"}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <Button color={"success"} size={"small"} onClick={() => saveHeading()}>
-          <FloppydiskFillIcon />
-          Save
-        </Button>
+        <div className={classes.buttonContainer}>
+          <Button color={"success"} size={"small"} onClick={() => saveHeading()}>
+            <FloppydiskFillIcon />
+            Save
+          </Button>
+        </div>
       </div>
     </>
   );

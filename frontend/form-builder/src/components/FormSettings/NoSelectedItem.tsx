@@ -5,8 +5,7 @@ import classes from "./FormSettings.module.css";
 export const NoSelectedItem = () => {
   return (
     <div className={classes.noSelectedItem}>
-      <Paragraph>No item selected.</Paragraph>
-      <Paragraph>Click on a component to customize it.</Paragraph>
+      <Paragraph>No item selected</Paragraph>
     </div>
   );
 };
