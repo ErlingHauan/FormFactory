@@ -1,7 +1,7 @@
 import { getApiUrl } from "../../utils/getApiUrl";
 import axios from "axios";
 
-export const getFormSchema = async (formId: string) => {
+export const getForm = async (formId: string) => {
   const apiUrl = getApiUrl();
   const targetUrl = `${apiUrl}/forms/${formId}`;
 
@@ -24,6 +24,7 @@ const formatSubmission = (formSchema, formData) => {
 
   return {
     formId: formSchema.id,
+    formCreator: formSchema.user,
     submitted: new Date(),
     responses,
   };

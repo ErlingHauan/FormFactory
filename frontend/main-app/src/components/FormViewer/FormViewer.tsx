@@ -5,7 +5,7 @@ import classes from "./FormViewer.module.css";
 import { TasklistSendFillIcon } from "@navikt/aksel-icons";
 import { alertToRender, cleanFormData, generateValidationSchema } from "./validationUtils";
 import { FormComponent } from "../FormComponent";
-import { getFormSchema, postSubmission } from "./httpUtils";
+import { getForm, postSubmission } from "./httpUtils";
 import { Trans, useTranslation } from "react-i18next";
 import { NotFound } from "../NotFound";
 
@@ -13,23 +13,14 @@ export const FormViewer = (): React.JSX.Element => {
   const { t } = useTranslation();
   const { formId } = useParams();
 
-  const formBuilderLink = `/form-builder/${formId}`;
-
-  const [formErrors, setFormErrors] = useState({});
+  const [form, setForm] = useState<Form>(null);
+  const [formValidationErrors, setFormValidationErrors] = useState({});
   const [formAlert, setFormAlert] = useState("");
-  const [formSchema, setFormSchema] = useState<Form>(null);
-  const [isDraft, setIsDraft] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const fetchedFormSchema = await getFormSchema(formId);
-      setFormSchema(fetchedFormSchema);
-
-      if (fetchedFormSchema?.status === "Draft") {
-        setIsDraft(true);
-      } else {
-        setIsDraft(false);
-      }
+      const fetchedForm = await getForm(formId);
+      setForm(fetchedForm);
     })();
   }, [formId]);
 
@@ -38,15 +29,15 @@ export const FormViewer = (): React.JSX.Element => {
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const cleanedFormData = cleanFormData(formData);
-    const validationSchema = generateValidationSchema(formSchema);
+    const validationSchema = generateValidationSchema(form);
     const result = validationSchema.safeParse(cleanedFormData);
 
     if ("error" in result) {
-      setFormErrors(result.error.formErrors.fieldErrors);
+      setFormValidationErrors(result.error.formErrors.fieldErrors);
       setFormAlert("validationError");
     } else {
-      setFormErrors({});
-      postSubmission(formSchema, cleanedFormData, setFormAlert);
+      setFormValidationErrors({});
+      postSubmission(form, cleanedFormData, setFormAlert);
     }
   };
 
@@ -54,11 +45,11 @@ export const FormViewer = (): React.JSX.Element => {
     <main className={classes.card}>
       <form onSubmit={handleSubmit}>
         <Heading level={1} size="xlarge">
-          {formSchema?.title}
+          {form?.title}
         </Heading>
-        {formSchema?.components.map((component) => (
+        {form?.components.map((component) => (
           <div key={component.name} className={classes.component}>
-            <FormComponent component={component} error={formErrors[component.name]} />
+            <FormComponent component={component} error={formValidationErrors[component.name]} />
           </div>
         ))}
         <div className={classes.buttonContainer}>
@@ -72,10 +63,11 @@ export const FormViewer = (): React.JSX.Element => {
     </main>
   );
 
+  const formBuilderLink = `/form-builder/${formId}`;
   const RenderDraft = () => (
     <main className={classes.card}>
       <Heading level={1} size="xlarge" spacing>
-        {formSchema?.title}
+        {form?.title}
       </Heading>
       <Paragraph>
         <Trans i18nKey="form_viewer.draft" />
@@ -88,8 +80,8 @@ export const FormViewer = (): React.JSX.Element => {
 
   return (
     <>
-      {formSchema && isDraft ? <RenderDraft /> : <RenderForm />}
-      {!formSchema && <NotFound />}
+      {form && form.status.toLowerCase() === "draft" ? <RenderDraft /> : <RenderForm />}
+      {!form && <NotFound />}
     </>
   );
 };
