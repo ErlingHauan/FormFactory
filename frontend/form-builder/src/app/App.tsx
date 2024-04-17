@@ -14,7 +14,7 @@ import { FormBuilderContext } from "../context";
 export const App = (): React.JSX.Element => {
   useAuthorization();
   const fetchedForm = useGetForm();
-  const { form, setForm, modalRef } = useContext(FormBuilderContext);
+  const { form, setForm } = useContext(FormBuilderContext);
 
   useEffect(() => {
     setForm(fetchedForm);
@@ -38,10 +38,10 @@ export const App = (): React.JSX.Element => {
           <Toolbar />
         </div>
         <div className={classes.builderSection}>
-          <FormPreview modalRef={modalRef} />
+          <FormPreview />
         </div>
         <div className={isSmallScreen ? classes.builderModal : classes.builderSection}>
-          <FormSettings isSmallScreen={isSmallScreen} modalRef={modalRef} />
+          <FormSettings isSmallScreen={isSmallScreen} />
         </div>
       </div>
     </DndProvider>

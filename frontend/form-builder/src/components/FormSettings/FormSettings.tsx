@@ -9,7 +9,6 @@ import { NoSelectedItem } from "./NoSelectedItem";
 
 interface ComponentSettingsProps {
   isSmallScreen: boolean;
-  modalRef: React.RefObject<HTMLDialogElement>;
 }
 
 export const FormSettings = ({ isSmallScreen }: ComponentSettingsProps): React.JSX.Element => {

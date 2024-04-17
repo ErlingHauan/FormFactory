@@ -9,13 +9,9 @@ import { FormBuilderContext, FormItem } from "../../context";
 import { NoComponentsMessage } from "./NoComponentsMessage";
 import { FormHeading } from "./FormHeading";
 
-interface FormPreviewProps {
-  modalRef: React.RefObject<HTMLDialogElement>;
-}
-
-export const FormPreview = ({ modalRef }: FormPreviewProps): React.JSX.Element => {
+export const FormPreview = (): React.JSX.Element => {
   const { t } = useTranslation();
-  const { form, setForm, setSelectedItem } = useContext(FormBuilderContext);
+  const { form, setForm, setSelectedItem, modalRef } = useContext(FormBuilderContext);
   const formRef = useRef<Form>();
 
   useEffect(() => {
