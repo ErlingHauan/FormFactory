@@ -1,1 +1,0 @@
-export { ComponentSettings } from "./ComponentSettings";
