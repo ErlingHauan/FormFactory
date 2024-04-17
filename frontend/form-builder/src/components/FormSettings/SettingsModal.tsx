@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Modal } from "@digdir/design-system-react";
-import classes from "./ComponentSettings.module.css";
+import classes from "./FormSettings.module.css";
 import { FormBuilderContext } from "../../context";
 
 interface SettingsSidebarProps {

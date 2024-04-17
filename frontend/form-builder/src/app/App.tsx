@@ -6,7 +6,7 @@ import { FormPreview } from "../components/FormPreview";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useAuthorization } from "../../../main-app/src/hooks/useAuthorization";
-import { ComponentSettings } from "../components/ComponentSettings";
+import { FormSettings } from "../components/FormSettings";
 import { useGetForm } from "../hooks/useGetForm";
 import { NotFound } from "../../../main-app/src/components/NotFound";
 import { FormBuilderContext } from "../context";
@@ -41,7 +41,7 @@ export const App = (): React.JSX.Element => {
           <FormPreview modalRef={modalRef} />
         </div>
         <div className={isSmallScreen ? classes.builderModal : classes.builderSection}>
-          <ComponentSettings isSmallScreen={isSmallScreen} modalRef={modalRef} />
+          <FormSettings isSmallScreen={isSmallScreen} modalRef={modalRef} />
         </div>
       </div>
     </DndProvider>
