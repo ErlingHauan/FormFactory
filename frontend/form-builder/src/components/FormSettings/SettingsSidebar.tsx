@@ -2,12 +2,9 @@ import React from "react";
 import { Heading } from "@digdir/design-system-react";
 import { useTranslation } from "react-i18next";
 import classes from "./FormSettings.module.css";
+import { SettingsContent } from "./SettingsContent";
 
-interface SettingsSidebarProps {
-  SettingsContent: () => React.JSX.Element;
-}
-
-export const SettingsSidebar = ({ SettingsContent }: SettingsSidebarProps): React.JSX.Element => {
+export const SettingsSidebar = (): React.JSX.Element => {
   const { t } = useTranslation();
 
   return (
