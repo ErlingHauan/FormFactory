@@ -7,7 +7,7 @@ import { alertToRender, cleanFormData, generateValidationSchema } from "./valida
 import { FormComponent } from "../FormComponent";
 import { getForm, postSubmission } from "./httpUtils";
 import { Trans, useTranslation } from "react-i18next";
-import { NotFound } from "../NotFound";
+import NotFound from "../NotFound";
 
 export const FormViewer = (): React.JSX.Element => {
   const { t } = useTranslation();

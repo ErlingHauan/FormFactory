@@ -70,10 +70,10 @@ describe("App component", () => {
     expect(React.useEffect).toHaveBeenCalled();
   });
 
-  it("renders NotFound when routing to a non-existing page", () => {
+  it("renders NotFound when routing to a non-existing page", async () => {
     renderApp(["/page-that-does-not-exist"]);
 
-    const title = screen.getByRole("heading", { name: "not_found.title.page" });
+    const title = await screen.findByRole("heading", { name: "not_found.title.page" });
 
     expect(title).toBeInTheDocument();
   });

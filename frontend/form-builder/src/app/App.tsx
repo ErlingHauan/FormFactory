@@ -8,7 +8,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { useAuthorization } from "../../../main-app/src/hooks/useAuthorization";
 import { ComponentSettings } from "../components/ComponentSettings";
 import { useGetForm } from "../hooks/useGetForm";
-import { NotFound } from "../../../main-app/src/components/NotFound";
+import NotFound from "../../../main-app/src/components/NotFound";
 import { FormBuilderContext } from "../context";
 
 export const App = (): React.JSX.Element => {

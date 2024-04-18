@@ -1,1 +1,2 @@
-export { FormViewer } from "./FormViewer";
+import { FormViewer } from "./FormViewer";
+export default FormViewer;
