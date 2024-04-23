@@ -19,7 +19,7 @@ export const HeadingSettings = () => {
     // TODO: Use Zod validation here.
     // See FormViewer for an example of how it can be done.
 
-    setForm((prevState) => ({ ...prevState, title, description }));
+    setForm({ ...form, title, description });
     setSelectedItem(null);
   };
 

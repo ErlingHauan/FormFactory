@@ -5,20 +5,20 @@ import { Textfield } from "@digdir/design-system-react";
 
 export const NumberSettings = () => {
   const { t } = useTranslation();
-  const { selectedItem } = useContext(FormBuilderContext);
+  const { greaterThan = "", lessThan = "" } = useContext(FormBuilderContext).selectedItem;
   return (
     <>
       <Textfield
         name="greaterThan"
         label={t("settings_side_bar.minimum.value")}
-        defaultValue={selectedItem.greaterThan || ""}
+        defaultValue={greaterThan}
         size="small"
         placeholder="Optional"
       />
       <Textfield
         name="lessThan"
         label={t("settings_side_bar.maximum.value")}
-        defaultValue={selectedItem.lessThan || ""}
+        defaultValue={lessThan}
         size="small"
         placeholder="Optional"
       />

@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Checkbox, Radio, Textfield } from "@digdir/design-system-react";
 import { FormBuilderContext } from "../../../context";
 import { TextSettings } from "./TextSettings";
@@ -7,11 +7,11 @@ import { NumberSettings } from "./NumberSettings";
 
 export const InputSettings = () => {
   const { t } = useTranslation();
-  const { selectedItem } = useContext(FormBuilderContext);
-  const [inputType, setInputType] = useState(selectedItem.inputType || "string");
+  const { name, label = "", required, inputType } = useContext(FormBuilderContext).selectedItem;
+  const [inputFormat, setInputFormat] = React.useState(inputType || "string");
 
   const handleInputFormat = (value: string) => {
-    setInputType(value as "string" | "number");
+    setInputFormat(value as "string" | "number");
   };
 
   return (
@@ -19,28 +19,23 @@ export const InputSettings = () => {
       <Textfield
         name="name"
         label={t("settings_side_bar.component.name")}
-        defaultValue={selectedItem.name || ""}
+        defaultValue={name}
         size="small"
         placeholder={"Required"}
       />
       <Textfield
         name="label"
         label={t("settings_side_bar.component.label")}
-        defaultValue={selectedItem.label || ""}
+        defaultValue={label}
         size="small"
         placeholder={"Required"}
       />
-      <Checkbox
-        name="required"
-        size="small"
-        value="required"
-        defaultChecked={selectedItem.required}
-      >
+      <Checkbox name="required" size="small" value="required" defaultChecked={required}>
         {t("settings_side_bar.require.response")}
       </Checkbox>
       <Radio.Group
         name="inputType"
-        defaultValue={selectedItem.inputType || inputType}
+        defaultValue={inputFormat}
         size="small"
         legend={t("settings_side_bar.input.format")}
         onChange={handleInputFormat}
@@ -48,8 +43,8 @@ export const InputSettings = () => {
         <Radio value="string">{t("settings_side_bar.text")}</Radio>
         <Radio value="number">{t("settings_side_bar.number")}</Radio>
       </Radio.Group>
-      {inputType === "string" && <TextSettings />}
-      {inputType === "number" && <NumberSettings />}
+      {inputFormat === "string" && <TextSettings />}
+      {inputFormat === "number" && <NumberSettings />}
     </>
   );
 };

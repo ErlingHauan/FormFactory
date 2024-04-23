@@ -5,20 +5,20 @@ import { Textfield } from "@digdir/design-system-react";
 
 export const TextSettings = () => {
   const { t } = useTranslation();
-  const { selectedItem } = useContext(FormBuilderContext);
+  const { minLength = "", maxLength = "" } = useContext(FormBuilderContext).selectedItem;
   return (
     <>
       <Textfield
         name="minLength"
         label={t("settings_side_bar.minimum.length")}
-        defaultValue={selectedItem.minLength || ""}
+        defaultValue={minLength}
         size="small"
         placeholder="Optional"
       />
       <Textfield
         name="maxLength"
         label={t("settings_side_bar.maximum.length")}
-        defaultValue={selectedItem.maxLength || ""}
+        defaultValue={maxLength}
         size="small"
         placeholder="Optional"
       />
