@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Checkbox, Radio, Textfield } from "@digdir/design-system-react";
 import { FormBuilderContext } from "../../../context";
 import { TextSettings } from "./TextSettings";
@@ -8,7 +8,7 @@ import { NumberSettings } from "./NumberSettings";
 export const InputSettings = () => {
   const { t } = useTranslation();
   const { name, label = "", required, inputType } = useContext(FormBuilderContext).selectedItem;
-  const [inputFormat, setInputFormat] = React.useState(inputType || "string");
+  const [inputFormat, setInputFormat] = useState(inputType || "string");
 
   const handleInputFormat = (value: string) => {
     setInputFormat(value as "string" | "number");
