@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import React, { useContext } from "react";
-import { FormBuilderContext } from "../../context";
+import { FormBuilderContext } from "../../../context";
 import { Textfield } from "@digdir/design-system-react";
 
 export const TextSettings = () => {

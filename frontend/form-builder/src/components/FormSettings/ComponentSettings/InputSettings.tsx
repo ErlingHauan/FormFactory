@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import React, { useContext, useState } from "react";
 import { Checkbox, Radio, Textfield } from "@digdir/design-system-react";
-import { FormBuilderContext } from "../../context";
+import { FormBuilderContext } from "../../../context";
 import { TextSettings } from "./TextSettings";
 import { NumberSettings } from "./NumberSettings";
 

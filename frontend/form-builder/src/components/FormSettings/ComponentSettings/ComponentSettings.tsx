@@ -1,10 +1,10 @@
 import React, { FormEvent, useContext } from "react";
 import { ComponentButtons } from "./ComponentButtons";
-import { FormBuilderContext } from "../../context";
-import classes from "./FormSettings.module.css";
-import { updateComponent, updateComponentArray } from "./utils";
-import { cleanFormData } from "../../../../main-app/src/components/FormViewer/validationUtils";
-import { ComponentAsStrings } from "./types";
+import { FormBuilderContext } from "../../../context";
+import classes from "../FormSettings.module.css";
+import { updateComponent, updateComponentArray } from "../utils";
+import { cleanFormData } from "../../../../../main-app/src/components/FormViewer/validationUtils";
+import { ComponentAsStrings } from "../types";
 import { InputSettings } from "./InputSettings";
 import { RadioSettings } from "./RadioSettings";
 

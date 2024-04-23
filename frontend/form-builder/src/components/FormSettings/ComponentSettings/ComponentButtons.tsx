@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import classes from "./FormSettings.module.css";
+import classes from "../FormSettings.module.css";
 import { Button } from "@digdir/design-system-react";
 import { FloppydiskFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
-import { FormBuilderContext } from "../../context";
-import { validateOrder } from "../../../../main-app/src/components/SubHeader/utils";
+import { FormBuilderContext } from "../../../context";
+import { validateOrder } from "../../../../../main-app/src/components/SubHeader/utils";
 import { useTranslation } from "react-i18next";
 
 export const ComponentButtons = () => {

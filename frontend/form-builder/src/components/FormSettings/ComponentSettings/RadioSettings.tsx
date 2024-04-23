@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Textarea, Textfield } from "@digdir/design-system-react";
-import { FormBuilderContext } from "../../context";
+import { FormBuilderContext } from "../../../context";
 
 export const RadioSettings = () => {
   const { selectedItem } = useContext(FormBuilderContext);
