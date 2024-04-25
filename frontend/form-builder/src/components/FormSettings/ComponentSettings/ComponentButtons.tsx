@@ -1,31 +1,31 @@
 import React, { useContext } from "react";
-import classes from "./ComponentSettings.module.css";
+import classes from "../FormSettings.module.css";
 import { Button } from "@digdir/design-system-react";
 import { FloppydiskFillIcon, TrashFillIcon } from "@navikt/aksel-icons";
-import { FormBuilderContext } from "../../context";
-import { validateOrder } from "../../../../main-app/src/components/SubHeader/utils";
+import { FormBuilderContext } from "../../../context";
+import { validateOrder } from "../../../../../main-app/src/components/SubHeader/utils";
 import { useTranslation } from "react-i18next";
 
-export const ButtonGroup = () => {
+export const ComponentButtons = () => {
   const { t } = useTranslation();
-  const { form, setForm, currentComponent, setCurrentComponent } = useContext(FormBuilderContext);
+  const { form, setForm, selectedItem, setSelectedItem } = useContext(FormBuilderContext);
 
   const handleDeleteComponent = (index: number) => {
     const newForm: Form = { ...form, components: form.components.filter((_, i) => i !== index) };
     validateOrder(newForm);
 
     setForm({ ...newForm });
-    setCurrentComponent(null);
+    setSelectedItem(null);
   };
 
   return (
-    <div className={classes.buttons}>
+    <div className={classes.buttonContainer}>
       <Button
         type="button"
         color={"danger"}
         variant={"secondary"}
         size={"small"}
-        onClick={() => handleDeleteComponent(currentComponent.order)}
+        onClick={() => handleDeleteComponent(selectedItem.order)}
       >
         <TrashFillIcon />
         {t("settings_side_bar.delete.component")}

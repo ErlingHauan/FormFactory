@@ -50,7 +50,9 @@ export const DashboardAccordion: React.FC = () => {
         </Accordion.Header>
         <Accordion.Content className={classes.accordionContentContainer}>
           <div className={classes.infoContainer}>
-            <CustomParagraph heading="Description" content={form.description} />
+            {form.description && (
+              <CustomParagraph heading="Description" content={form.description} />
+            )}
             <FormStatus form={form} />
             <CustomParagraph heading="Expiration date" content={form.expires || "Not set"} />
             <CustomParagraph heading="Submissions" content={submissionCount} />

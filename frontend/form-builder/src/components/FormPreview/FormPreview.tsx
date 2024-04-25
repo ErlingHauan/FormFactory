@@ -5,17 +5,13 @@ import { useTranslation } from "react-i18next";
 import { useDrop } from "react-dnd";
 import { DraggableItemsType } from "../../types/dndTypes";
 import { FormComponent } from "../../../../main-app/src/components/FormComponent";
-import { FormBuilderContext } from "../../context";
+import { FormBuilderContext, FormItem } from "../../context";
 import { NoComponentsMessage } from "./NoComponentsMessage";
 import { FormHeading } from "./FormHeading";
 
-interface FormPreviewProps {
-  modalRef: React.RefObject<HTMLDialogElement>;
-}
-
-export const FormPreview = ({ modalRef }: FormPreviewProps): React.JSX.Element => {
+export const FormPreview = (): React.JSX.Element => {
   const { t } = useTranslation();
-  const { form, setForm, setCurrentComponent } = useContext(FormBuilderContext);
+  const { form, setForm, setSelectedItem, modalRef } = useContext(FormBuilderContext);
   const formRef = useRef<Form>();
 
   useEffect(() => {
@@ -35,8 +31,8 @@ export const FormPreview = ({ modalRef }: FormPreviewProps): React.JSX.Element =
     }),
   }));
 
-  const handleClick = (item: FormComponent, index: number) => {
-    setCurrentComponent({ ...item, order: index });
+  const handleComponentClick = (item: FormItem, index: number) => {
+    setSelectedItem({ ...item, order: index });
     setTimeout(() => {
       modalRef.current?.showModal();
     }, 0);
@@ -45,7 +41,11 @@ export const FormPreview = ({ modalRef }: FormPreviewProps): React.JSX.Element =
   const RenderComponents = () => (
     <>
       {form?.components?.map((item, index) => (
-        <div key={index} className={classes.droppedItem} onClick={() => handleClick(item, index)}>
+        <div
+          key={index}
+          className={classes.droppedItem}
+          onClick={() => handleComponentClick(item, index)}
+        >
           <span className={classes.formBoardComponent}>
             <FormComponent component={item} />
           </span>

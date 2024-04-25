@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import classes from "./App.module.css";
 import { Toolbar } from "../components/Toolbar";
@@ -6,7 +6,7 @@ import { FormPreview } from "../components/FormPreview";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useAuthorization } from "../../../main-app/src/hooks/useAuthorization";
-import { ComponentSettings } from "../components/ComponentSettings";
+import { FormSettings } from "../components/FormSettings";
 import { useGetForm } from "../hooks/useGetForm";
 import { NotFound } from "../../../main-app/src/components/NotFound";
 import { FormBuilderContext } from "../context";
@@ -20,7 +20,6 @@ export const App = (): React.JSX.Element => {
     setForm(fetchedForm);
   }, [fetchedForm, setForm]);
 
-  const modalRef = useRef<HTMLDialogElement>(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
   const isSmallScreen = windowSize <= 768;
 
@@ -39,10 +38,10 @@ export const App = (): React.JSX.Element => {
           <Toolbar />
         </div>
         <div className={classes.builderSection}>
-          <FormPreview modalRef={modalRef} />
+          <FormPreview />
         </div>
         <div className={isSmallScreen ? classes.builderModal : classes.builderSection}>
-          <ComponentSettings isSmallScreen={isSmallScreen} modalRef={modalRef} />
+          <FormSettings isSmallScreen={isSmallScreen} />
         </div>
       </div>
     </DndProvider>

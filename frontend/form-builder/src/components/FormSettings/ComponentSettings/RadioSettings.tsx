@@ -1,29 +1,27 @@
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Textarea, Textfield } from "@digdir/design-system-react";
-import { ButtonGroup } from "./ButtonGroup";
-import { FormBuilderContext } from "../../context";
+import { FormBuilderContext } from "../../../context";
 
 export const RadioSettings = () => {
-  const { currentComponent } = useContext(FormBuilderContext);
+  const { name, label = "", radioChoices } = useContext(FormBuilderContext).selectedItem;
   const { t } = useTranslation();
 
   return (
     <>
-      <Textfield name="name" label="Name" defaultValue={currentComponent.name} size="small" />
+      <Textfield name="name" label="Name" defaultValue={name} size="small" />
       <Textfield
         name="label"
         label={t("settings_side_bar.component.label")}
-        defaultValue={currentComponent.label || ""}
+        defaultValue={label}
         size="small"
       />
       <Textarea
         name="radioChoices"
         label={t("settings_side_bar.radio.choices")}
-        defaultValue={currentComponent.radioChoices?.join(", ") || ""}
+        defaultValue={radioChoices?.join(", ") || ""}
         size="small"
       />
-      <ButtonGroup />
     </>
   );
 };
