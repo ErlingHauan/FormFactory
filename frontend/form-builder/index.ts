@@ -1,1 +1,2 @@
-export { App as FormBuilder } from "./src/app";
+import { App as FormBuilder } from "./src/app";
+export default FormBuilder;
